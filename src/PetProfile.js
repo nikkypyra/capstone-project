@@ -1,8 +1,15 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components/macro'
 import tasks from './tasks.json'
+import { loadFromLocal, saveToLocal } from './services'
 
 export default function PetProfile() {
+  const [checked, setChecked] = useState(loadFromLocal('checked'))
+
+  useEffect(() => {
+    saveToLocal('checked', checked)
+  }, [checked])
+
   return (
     <>
       <HeaderStyled>
@@ -16,7 +23,11 @@ export default function PetProfile() {
             <p>{task.date}</p>
             <h4>{task.time}</h4>
             <p>{task.person}</p>
-            <input type="checkbox"></input>
+            <input
+              type="checkbox"
+              value={checked}
+              onChange={() => setChecked(!checked)}
+            ></input>
           </section>
         ))}
       </TasksStyled>
