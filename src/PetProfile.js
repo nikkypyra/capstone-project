@@ -25,7 +25,7 @@ export default function PetProfile() {
             <p>{task.person}</p>
             <input
               type="checkbox"
-              value={checked}
+              checked={checked}
               onChange={() => setChecked(!checked)}
             ></input>
           </section>
