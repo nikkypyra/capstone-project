@@ -1,12 +1,26 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
+import tasks from './tasks.json'
 
 export default function PetProfile() {
   return (
-    <HeaderStyled>
-      <img src={process.env.PUBLIC_URL + '/images/pet1.png'} alt="" />
-      <h1>FLUFFY</h1>
-    </HeaderStyled>
+    <>
+      <HeaderStyled>
+        <img src={process.env.PUBLIC_URL + '/images/pet1.png'} alt="" />
+        <h1>FLUFFY</h1>
+      </HeaderStyled>
+      <TasksStyled>
+        {tasks.map((task) => (
+          <section key={task.id}>
+            <h3>{task.description}</h3>
+            <p>{task.date}</p>
+            <h4>{task.time}</h4>
+            <p>{task.person}</p>
+            <input type="checkbox"></input>
+          </section>
+        ))}
+      </TasksStyled>
+    </>
   )
 }
 const HeaderStyled = styled.header`
@@ -32,4 +46,7 @@ const HeaderStyled = styled.header`
     grid-row: span 3;
     grid-column: 1/2;
   }
+`
+const TasksStyled = styled.main`
+  display: grid;
 `
