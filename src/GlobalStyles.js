@@ -8,7 +8,9 @@ export default createGlobalStyle`
     color: #002a3a;
 }
 
-main {
+body {
     padding: .75em;
+    font-size: 1em;
+    line-height: 1.4;
 }
 `

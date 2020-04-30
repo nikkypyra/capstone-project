@@ -3,40 +3,33 @@ import styled from 'styled-components'
 
 export default function PetProfile() {
   return (
-    <main>
-      <HeaderStyled>
-        <img src={process.env.PUBLIC_URL + '/images/pet1.png'} alt="" />
-        <h2>Louie's Schedule</h2>
-      </HeaderStyled>
-    </main>
+    <HeaderStyled>
+      <img src={process.env.PUBLIC_URL + '/images/pet1.png'} alt="" />
+      <h1>FLUFFY</h1>
+    </HeaderStyled>
   )
 }
 const HeaderStyled = styled.header`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
-  gap: 8px;
-  justify-items: center;
   align-items: center;
-  h2 {
+  justify-items: center;
+  h1 {
+    display: inline;
     color: #3ec2c4;
+    font-size: 2em;
     grid-row: 2/3;
     grid-column: 2/3;
+    font-family: sans-serif;
   }
 
   img {
-    height: 150px;
-    width: 150px;
-    border: 4px solid #93ddde;
+    height: 180px;
+    width: 180px;
+    border: 8px solid #cff0f0;
     border-radius: 50%;
     grid-row: span 3;
     grid-column: 1/2;
   }
 `
-
-/* img {
-    height: 150px;
-    width: 150px;
-    border: 4px solid #93ddde;
-    border-radius: 50%;
-    */
