@@ -1,5 +1,11 @@
 import React from 'react'
 import styled from 'styled-components/macro'
+import PropTypes from 'prop-types'
+
+TasksStyled.propTypes = {
+  todos: PropTypes.array,
+  onDoneClick: PropTypes.func,
+}
 
 export default function TasksStyled({ todos, onDoneClick }) {
   return (
