@@ -1,27 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styled from 'styled-components/macro'
-import tasks from '../tasks.json'
-import { loadFromLocal, saveToLocal } from '../services'
 
-export default function TasksStyled() {
-  const [checked, setChecked] = useState(loadFromLocal('checked'))
-
-  useEffect(() => {
-    saveToLocal('checked', checked)
-  }, [checked])
+export default function TasksStyled({ todos, onDoneClick }) {
   return (
     <TaskWrapper>
-      {tasks.map((task) => (
-        <section key={task.id}>
+      {todos.map((todo) => (
+        <section key={todo.id}>
           <img src={process.env.PUBLIC_URL + '/images/taskpaw.png'} alt="" />
-          <h3>{task.description}</h3>
-          <h4>{task.time}</h4>
-          <p className="date">{task.date}</p>
-          <p className="person">{task.person}</p>
+          <h3>{todo.description}</h3>
+          <h4>{todo.time}</h4>
+          <p className="date">{todo.date}</p>
+          <p className="person">{todo.person}</p>
           <input
             type="checkbox"
-            checked={checked}
-            onChange={() => setChecked(!checked)}
+            checked={todo.complete}
+            onChange={() => onDoneClick(todo.id)}
           ></input>
         </section>
       ))}
@@ -71,3 +64,20 @@ const TaskWrapper = styled.main`
     grid-column: 4/5;
   }
 `
+
+/*
+import { loadFromLocal, saveToLocal } from '../services'  
+
+const [checked, setChecked] = useState(loadFromLocal('checked'))
+
+  useEffect(() => {
+    saveToLocal('checked', checked)
+  }, [checked])
+
+  <input
+            type="checkbox"
+            id="check"
+            checked={checked}
+            onChange={() => setChecked(!checked)}
+          ></input>
+*/

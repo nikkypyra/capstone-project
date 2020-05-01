@@ -4,7 +4,7 @@
     "date": "May 1, 2020",
     "time": "8:00",
     "person": "To be completed by: Samantha",
-    "complete": "true",
+    "complete": true,
     "id": "1"
   },
   {
@@ -12,7 +12,7 @@
     "date": "May 1, 2020",
     "time": "8:30",
     "person": "To be completed by: Joe",
-    "complete": "false",
+    "complete": false,
     "id": "2"
   },
   {
@@ -20,7 +20,7 @@
     "date": "May 1, 2020",
     "time": "12:00",
     "person": "To be completed by: Mark",
-    "complete": "false",
+    "complete": false,
     "id": "3"
   },
   {
@@ -28,7 +28,7 @@
     "date": "May 6, 2020",
     "time": "14:00",
     "person": "To be completed by: Bob",
-    "complete": "false",
+    "complete": false,
     "id": "4"
   }
 ]
