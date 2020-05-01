@@ -11,7 +11,7 @@ export default function ProfileHeader() {
 }
 
 const HeaderStyled = styled.header`
-  margin-bottom: 16px;
+  margin-bottom: 28px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
