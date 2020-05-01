@@ -24,10 +24,11 @@ export default function TasksStyled({ todos, onDoneClick }) {
 
 const TaskWrapper = styled.main`
   section {
-    margin: 24px 0px;
+    margin: 28px 0px;
     display: grid;
     grid-template-columns: 1fr 1fr 3fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
+    justify-content: space-between;
   }
 
   img {
@@ -62,6 +63,19 @@ const TaskWrapper = styled.main`
   input {
     grid-row: 2/3;
     grid-column: 4/5;
+    appearance: none;
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    padding: 4px;
+    background-clip: padding-box;
+    border: 1.5px solid #bbbbbb;
+    border-radius: 50%;
+
+    &:checked {
+      background-image: url(/images/checkmark.png);
+      background-position: center;
+    }
   }
 `
 
@@ -73,11 +87,4 @@ const [checked, setChecked] = useState(loadFromLocal('checked'))
   useEffect(() => {
     saveToLocal('checked', checked)
   }, [checked])
-
-  <input
-            type="checkbox"
-            id="check"
-            checked={checked}
-            onChange={() => setChecked(!checked)}
-          ></input>
 */
