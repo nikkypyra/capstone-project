@@ -15,7 +15,7 @@ const LinkStyled = styled(Link)`
   justify-content: flex-end;
 
   img {
-    height: 20px;
-    width: 20px;
+    height: 28px;
+    width: 28px;
   }
 `

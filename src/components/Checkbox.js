@@ -12,7 +12,7 @@ const CheckboxStyled = styled.input.attrs({ type: 'checkbox' })`
   height: 28px;
   padding: 4px;
   background-clip: padding-box;
-  border: 1.5px solid #bbbbbb;
+  border: 1.5px solid #78858a;
   border-radius: 50%;
 
   &:checked {

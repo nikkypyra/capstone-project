@@ -11,7 +11,7 @@ export default function ProfileBanner() {
 }
 
 const BannerStyled = styled.section`
-  margin-bottom: 24px;
+  margin: 4px 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
