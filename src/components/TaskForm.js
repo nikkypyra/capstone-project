@@ -26,6 +26,7 @@ export default function TaskForm() {
           name="description"
           type="text"
           value={description}
+          maxLength="100"
           onChange={(e) => setDescription(e.target.value)}
           required
         />
@@ -58,6 +59,8 @@ export default function TaskForm() {
         <input
           name="person"
           type="text"
+          value={person}
+          maxLength="100"
           onChange={(e) => setPerson(e.target.value)}
           required
         />
