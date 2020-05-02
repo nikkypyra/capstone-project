@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import Header from './Header'
+import SubmitButton from './SubmitButton'
 
 export default function TaskForm() {
   const [description, setDescription] = useState('')
@@ -26,7 +27,7 @@ export default function TaskForm() {
         <Form onSubmit={handleSubmit}>
           <div className="description">
             <label>
-              Description
+              Description*
               <input
                 type="text"
                 value={description}
@@ -39,7 +40,7 @@ export default function TaskForm() {
           </div>
           <div className="date">
             <label>
-              Date
+              Date*
               <input
                 type="date"
                 value={date}
@@ -50,7 +51,7 @@ export default function TaskForm() {
           </div>
           <div className="time">
             <label>
-              Time
+              Time*
               <input
                 type="time"
                 value={time}
@@ -61,7 +62,7 @@ export default function TaskForm() {
           </div>
           <div className="person">
             <label>
-              To be completed by
+              To be completed by*
               <input
                 type="text"
                 value={person}
@@ -72,8 +73,9 @@ export default function TaskForm() {
               />
             </label>
           </div>
-          <button>Submit</button>
+          <SubmitButton />
         </Form>
+        <p>*Mandatory Fields</p>
       </BorderStyled>
     </>
   )
@@ -139,8 +141,13 @@ const Form = styled.form`
 `
 
 const BorderStyled = styled.main`
-  margin: 12px;
+  margin: 20px;
   padding: 12px;
   border: 4px solid var(--tertiary);
   border-radius: 12px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16);
+
+  p {
+    margin-top: 4px;
+  }
 `
