@@ -28,5 +28,6 @@ main {
     --primary: #3ec2c4;
     --secondary: #3e474a;
     --tertiary: #cff0f0;
+    --quaternary: #98a6a6;
     }
 `

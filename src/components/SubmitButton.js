@@ -7,7 +7,7 @@ export default function SubmitButton() {
 
 const Button = styled.button`
   background: var(--primary);
-  color: white;
+  color: #ffffff;
   font-size: 18px;
   font-family: sans-serif;
   border-radius: 8px;
