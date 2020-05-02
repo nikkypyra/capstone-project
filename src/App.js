@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import GlobalStyles from './GlobalStyles'
-import PetProfile from './components/PetProfile'
+import PetProfile from './pages/PetProfile'
 
 export default function App() {
   return (

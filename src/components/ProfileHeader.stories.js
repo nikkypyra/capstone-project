@@ -2,10 +2,10 @@ import React from 'react'
 import ProfileHeader from './ProfileHeader'
 
 export default {
-  title: 'ProfileHeader',
+  title: 'Profile Header',
   component: ProfileHeader,
 }
 
-export const profileHeader = () => {
+export const TestProfileHeader = () => {
   return <ProfileHeader />
 }
