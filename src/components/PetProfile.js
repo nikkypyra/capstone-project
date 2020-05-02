@@ -5,7 +5,6 @@ import tasks from '../tasks.json'
 
 export default function PetProfile() {
   const [todos, setTodos] = useState(tasks)
-  console.log(tasks)
 
   function toggleDone(selectedTodo) {
     const index = todos.findIndex((todo) => todo.id === selectedTodo)
