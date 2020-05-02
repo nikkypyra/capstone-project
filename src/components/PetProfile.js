@@ -1,6 +1,6 @@
 import React from 'react'
-import ProfileHeader from '../components/ProfileHeader'
-import TasksStyled from '../components/TasksStyled'
+import ProfileHeader from './ProfileHeader'
+import TasksStyled from './TasksStyled'
 
 export default function PetProfile() {
   return (
