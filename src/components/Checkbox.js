@@ -1,12 +1,8 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 
-export default function Checkbox({ className, checked, ...props }) {
-  return (
-    <label className={className}>
-      <CheckboxStyled className={className} checked={checked} {...props} />
-    </label>
-  )
+export default function Checkbox({ ...props }) {
+  return <CheckboxStyled {...props} />
 }
 
 const CheckboxStyled = styled.input.attrs({ type: 'checkbox' })`
