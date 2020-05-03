@@ -5,7 +5,7 @@ import TasksStyled from './TasksStyled'
 import AddButton from './AddButton'
 import styled from 'styled-components'
 
-export default function PetProfile() {
+export default function PetProfile({ todos, setTodos }) {
   return (
     <>
       <Header />
@@ -14,7 +14,7 @@ export default function PetProfile() {
         <ButtonWrapper>
           <AddButton />
         </ButtonWrapper>
-        <TasksStyled />
+        <TasksStyled todos={todos} setTodos={setTodos} />
       </main>
     </>
   )

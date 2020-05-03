@@ -1,10 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components/macro'
-import tasks from '../tasks.json'
 import Checkbox from './Checkbox'
 
-export default function TasksStyled() {
-  const [todos, setTodos] = useState(tasks)
+export default function TasksStyled({ todos, setTodos }) {
   return (
     <TaskWrapper>
       {todos.map((todo) => (

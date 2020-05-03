@@ -1,22 +1,30 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import Header from './Header'
 import SubmitButton from './SubmitButton'
 import CancelButton from './CancelButton'
-import { saveToLocal } from '../services'
+import { v4 as uuidv4 } from 'uuid'
+import { useHistory } from 'react-router-dom'
 
-export default function TaskForm() {
+export default function TaskForm({ addTodo }) {
   const [description, setDescription] = useState('')
   const [date, setDate] = useState('')
   const [time, setTime] = useState('')
   const [person, setPerson] = useState('')
-  const [complete, setComplete] = useState(false)
+  const history = useHistory()
+  const uniqueId = uuidv4()
 
   const handleSubmit = (event) => {
-    setComplete(false)
-    const newTask = { description, date, time, person, complete }
-    saveToLocal('newTask', newTask)
     event.preventDefault()
+    addTodo({
+      description,
+      date,
+      time,
+      person,
+      complete: false,
+      id: uniqueId,
+    })
+    history.push('/pet-profile')
   }
 
   return (
