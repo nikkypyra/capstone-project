@@ -1,23 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components/macro'
 import Header from './Header'
 import SubmitButton from './SubmitButton'
 import CancelButton from './CancelButton'
+import { saveToLocal } from '../services'
 
 export default function TaskForm() {
   const [description, setDescription] = useState('')
   const [date, setDate] = useState('')
   const [time, setTime] = useState('')
   const [person, setPerson] = useState('')
+  const [complete, setComplete] = useState(false)
 
   const handleSubmit = (event) => {
-    console.log(`
-      Description: ${description}
-      Date: ${date}
-      Time: ${time}
-      Person: ${person}
-    `)
-
+    setComplete(false)
+    const newTask = { description, date, time, person, complete }
+    saveToLocal('newTask', newTask)
     event.preventDefault()
   }
 
@@ -38,6 +36,7 @@ export default function TaskForm() {
               placeholder="Insert description"
               onChange={(e) => setDescription(e.target.value)}
               required
+              autoFocus
             />
           </label>
         </div>
