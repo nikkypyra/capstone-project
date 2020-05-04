@@ -1,19 +1,16 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+
 import styled from 'styled-components'
 
-export default function ButtonCancel() {
+export default function ButtonCancel({ onClick }) {
   return (
-    <LinkStyled to="/pet-profile">
+    <ImageWrapper onClick={onClick}>
       <img src={process.env.PUBLIC_URL + '/images/cancel.png'} alt="" />
-    </LinkStyled>
+    </ImageWrapper>
   )
 }
 
-const LinkStyled = styled(Link)`
-  display: flex;
-  justify-content: flex-end;
-
+const ImageWrapper = styled.div`
   img {
     height: 28px;
     width: 28px;

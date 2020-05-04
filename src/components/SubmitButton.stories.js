@@ -1,19 +1,19 @@
 import React from 'react'
-import AddButton from './AddButton'
+import SubmitButton from './SubmitButton'
 import { action } from '@storybook/addon-actions'
 import mobileWrapper from '../../.storybook/mobileWrapper'
 
 export default {
-  title: 'Add Button',
-  component: AddButton,
+  title: 'Submit Button',
+  component: SubmitButton,
   decorators: [mobileWrapper],
 }
 export const Simple = () => (
-  <AddButton text="Simple" onClick={action('onClick')} />
+  <SubmitButton text="Simple" onClick={action('onClick')} />
 )
 
 export const LongText = () => (
-  <AddButton
+  <SubmitButton
     text="This would be a very long button"
     onClick={action('onClick')}
   />

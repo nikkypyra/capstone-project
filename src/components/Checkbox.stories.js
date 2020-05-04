@@ -1,14 +1,14 @@
 import { action } from '@storybook/addon-actions'
 import React from 'react'
 import Checkbox from './Checkbox'
+import mobileWrapper from '../../.storybook/mobileWrapper'
 
 export default {
   title: 'Checkbox',
   component: Checkbox,
+  decorators: [mobileWrapper],
 }
 
-export const CheckedCheckbox = (props) => {
-  return <Checkbox checked onClick={action('onChange')} />
+export const TestCheckbox = () => {
+  return <Checkbox onClick={action('onChange')} />
 }
-
-export const UncheckedCheckbox = () => <Checkbox />

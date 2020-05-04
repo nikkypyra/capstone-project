@@ -1,14 +1,11 @@
 import React from 'react'
 import ProfileBanner from './ProfileBanner'
+import mobileWrapper from '../../.storybook/mobileWrapper'
 
 export default {
   title: 'Profile Banner',
   component: ProfileBanner,
-  decorators: [
-    (renderBanner) => (
-      <div style={{ padding: 20, width: 400 }}>{renderBanner()}</div>
-    ),
-  ],
+  decorators: [mobileWrapper],
 }
 
 export const TestProfileBanner = () => {

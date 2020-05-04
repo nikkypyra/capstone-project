@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 
-export default function SubmitButton() {
-  return <Button>Submit</Button>
+export default function SubmitButton({ text, onClick }) {
+  return <Button onClick={onClick}>{text}</Button>
 }
 
 const Button = styled.button`

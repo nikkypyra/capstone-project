@@ -5,6 +5,7 @@ import SubmitButton from './SubmitButton'
 import CancelButton from './CancelButton'
 import { v4 as uuidv4 } from 'uuid'
 import { useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export default function TaskForm({ addTodo }) {
   const [description, setDescription] = useState('')
@@ -32,7 +33,9 @@ export default function TaskForm({ addTodo }) {
       <Header />
       <Form onSubmit={handleSubmit}>
         <div className="cancel">
-          <CancelButton />
+          <Link to="/pet-profile">
+            <CancelButton />
+          </Link>
         </div>
         <div className="description">
           <label>
@@ -83,7 +86,7 @@ export default function TaskForm({ addTodo }) {
             />
           </label>
         </div>
-        <SubmitButton />
+        <SubmitButton text="Submit" />
         <p>*Mandatory Fields</p>
       </Form>
     </>
@@ -93,9 +96,8 @@ export default function TaskForm({ addTodo }) {
 const Form = styled.form`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 4fr 4fr 4fr 4fr 1fr;
+  grid-template-rows: 1fr 3fr 3fr 3fr 3fr 1fr;
   align-items: center;
-  grid-gap: 8px;
   color: var(--secondary);
   margin: 20px;
   padding: 12px;
@@ -127,6 +129,8 @@ const Form = styled.form`
   .cancel {
     grid-row: 1/2;
     grid-column: 2/3;
+    display: flex;
+    justify-content: flex-end;
   }
 
   .description {
