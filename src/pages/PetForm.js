@@ -3,13 +3,18 @@ import styled from 'styled-components/macro'
 import Header from '../components/Header'
 import SubmitButton from '../components/SubmitButton'
 import CancelButton from '../components/CancelButton'
+import ImageUpload from '../components/ImageUpload'
 import { v4 as uuidv4 } from 'uuid'
 import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import { storage } from '../firebase'
 
 export default function TaskForm({ addPet }) {
   const [name, setName] = useState('')
-  const [image, setImage] = useState('')
+  const [previewImage, setPreviewImage] = useState({
+    imageUrl: '',
+    imageName: '',
+  })
   const history = useHistory()
   const uniquePetId = uuidv4()
 
@@ -17,10 +22,12 @@ export default function TaskForm({ addPet }) {
     event.preventDefault()
     addPet({
       name,
-      image,
+      imageSrc: previewImage && previewImage.imageUrl,
+      imageTitle: previewImage && previewImage.imageName,
       petId: uniquePetId,
     })
     history.push('/')
+    setPreviewImage({ imageUrl: '', imageName: '' })
   }
 
   return (
@@ -31,6 +38,13 @@ export default function TaskForm({ addPet }) {
           <Link to="/">
             <CancelButton />
           </Link>
+        </div>
+        <div className="photo">
+          <ImageUpload
+            name="imageSrc"
+            onChange={handleImageUpload}
+            previewImage={previewImage}
+          />
         </div>
         <div className="name">
           <label>
@@ -46,21 +60,35 @@ export default function TaskForm({ addPet }) {
             />
           </label>
         </div>
-        <div className="date">
-          <label>
-            Upload photo
-            <input
-              type="text"
-              value={image}
-              onChange={(e) => setImage(e.target.value)}
-            />
-          </label>
-        </div>
         <SubmitButton text="Submit" />
         <p>*Mandatory Field</p>
       </Form>
     </>
   )
+
+  function handleImageUpload(event) {
+    const image = event.target.files[0]
+    const metadata = {
+      name: image.name,
+    }
+    const uploadTask = storage.ref(`images/${image.name}`).put(image, metadata)
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {},
+      (error) => {
+        alert('An error occurred, please try again.')
+      },
+      () => {
+        storage
+          .ref('images')
+          .child(image.name)
+          .getDownloadURL()
+          .then((url) => {
+            setPreviewImage({ imageUrl: url, imageName: image.name })
+          })
+      }
+    )
+  }
 }
 
 const Form = styled.form`
@@ -92,10 +120,6 @@ const Form = styled.form`
     border-bottom: 1px solid var(--primary);
   }
 
-  input[type='date']::selection {
-    background-color: var(--primary);
-  }
-
   .cancel {
     grid-row: 1/2;
     grid-column: 2/3;
@@ -108,7 +132,7 @@ const Form = styled.form`
     grid-column: span 2;
   }
 
-  .date {
+  .photo {
     grid-row: 3/4;
     grid-column: 1/2;
   }

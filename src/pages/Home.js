@@ -19,7 +19,7 @@ export default function Home({ pets, setPets }) {
         {pets.map((pet) => (
           <section key={pet.petId}>
             <div className="image">
-              <img src={pet.image} alt={pet.name} />
+              <img src={pet.imageSrc} alt={pet.name} />
             </div>
             <div className="name">
               <h1>{pet.name.toUpperCase()}</h1>
