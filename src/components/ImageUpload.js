@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components/macro'
+import AddButton from './AddButton'
 
 export default function ImageUpload({ onChange, previewImage }) {
   return (
@@ -12,7 +13,7 @@ export default function ImageUpload({ onChange, previewImage }) {
             <img src={process.env.PUBLIC_URL + '/images/taskpaw.png'} alt="" />
           </ImagePlaceholder>
         )}
-        <span className="file-input-label">Upload image</span>
+        <AddButton className="file-input-label" text="Upload photo" />
         <input
           type="file"
           name="imageSrc"
