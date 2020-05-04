@@ -12,7 +12,7 @@ export default function PetProfile({ todos, setTodos }) {
       <main>
         <ProfileBanner />
         <ButtonWrapper>
-          <AddButton />
+          <AddButton text="Add Task" />
         </ButtonWrapper>
         <TasksStyled todos={todos} setTodos={setTodos} />
       </main>

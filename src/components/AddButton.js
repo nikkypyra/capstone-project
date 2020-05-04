@@ -2,10 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-export default function AddButton({ addTodo }) {
+export default function AddButton({ addTodo, text }) {
   return (
     <LinkStyled to="/create-task">
-      <button>Add Task</button>
+      <button>{text}</button>
     </LinkStyled>
   )
 }

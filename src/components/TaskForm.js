@@ -20,7 +20,7 @@ export default function TaskForm({ addTodo }) {
       description,
       date,
       time,
-      person,
+      person: 'To be completed by: ' + person,
       complete: false,
       id: uniqueId,
     })
