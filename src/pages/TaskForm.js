@@ -13,7 +13,7 @@ export default function TaskForm({ addTodo }) {
   const [time, setTime] = useState('')
   const [person, setPerson] = useState('')
   const history = useHistory()
-  const uniqueId = uuidv4()
+  const uniqueTaskId = uuidv4()
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -23,7 +23,7 @@ export default function TaskForm({ addTodo }) {
       time,
       person: 'To be completed by: ' + person,
       complete: false,
-      id: uniqueId,
+      id: uniqueTaskId,
     })
     history.push('/pet-profile')
   }

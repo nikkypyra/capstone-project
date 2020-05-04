@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import GlobalStyles from './GlobalStyles'
+import Home from './pages/Home'
 import PetProfile from './pages/PetProfile'
 import TaskForm from './pages/TaskForm'
 import { loadFromLocal, saveToLocal } from './services'
@@ -16,6 +17,9 @@ export default function App() {
     <>
       <GlobalStyles />
       <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
         <Route exact path="/pet-profile">
           <PetProfile todos={todos} setTodos={setTodos} />
         </Route>

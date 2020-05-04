@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Fluffy",
+    "image": "./images/pet1.png",
+    "petId": "1"
+  },
+  {
+    "name": "Max",
+    "image": "./images/pet3.png",
+    "petId": "2"
+  }
+]
