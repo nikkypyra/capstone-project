@@ -1,8 +1,8 @@
 import React from 'react'
-import Header from './Header'
-import ProfileBanner from './ProfileBanner'
-import TasksStyled from './TasksStyled'
-import AddButton from './AddButton'
+import Header from '../components/Header'
+import ProfileBanner from '../components/ProfileBanner'
+import TasksStyled from '../components/TasksStyled'
+import AddButton from '../components/AddButton'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 

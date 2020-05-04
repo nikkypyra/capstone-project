@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import GlobalStyles from './GlobalStyles'
-import PetProfile from './components/PetProfile'
-import TaskForm from './components/TaskForm'
+import PetProfile from './pages/PetProfile'
+import TaskForm from './pages/TaskForm'
 import { loadFromLocal, saveToLocal } from './services'
 import Tasks from './tasks.json'
 
