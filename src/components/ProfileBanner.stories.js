@@ -1,6 +1,6 @@
 import React from 'react'
 import ProfileBanner from './ProfileBanner'
-import mobileWrapper from '../../.storybook/mobileWrapper'
+import mobileWrapper from '../../.storybook/preview'
 
 export default {
   title: 'Profile Banner',
