@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export default function AddButton({ addTodo, text, onClick }) {
+export default function AddButton({ text, onClick }) {
   return <Button onClick={onClick}>{text}</Button>
 }
 
