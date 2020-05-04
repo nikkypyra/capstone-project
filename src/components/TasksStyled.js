@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import Checkbox from './Checkbox'
 import DeleteButton from './DeleteButton'
+import { saveToLocal } from '../services'
 
 export default function TasksStyled({ todos, setTodos }) {
   return (
@@ -30,7 +31,7 @@ export default function TasksStyled({ todos, setTodos }) {
             ></Checkbox>
           </div>
           <div className="delete">
-            <DeleteButton />
+            <DeleteButton onClick={() => deleteTodo(todo)} />
           </div>
         </section>
       ))}
@@ -47,6 +48,13 @@ export default function TasksStyled({ todos, setTodos }) {
         }
       })
     )
+  }
+
+  function deleteTodo(todo) {
+    const index = todos.indexOf(todo)
+    const newTodos = [...todos.slice(0, index), ...todos.slice(index + 1)]
+    setTodos(newTodos)
+    saveToLocal(newTodos)
   }
 }
 
