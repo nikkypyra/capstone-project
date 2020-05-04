@@ -1,13 +1,8 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import PropTypes from 'prop-types'
+import Checkbox from './Checkbox'
 
-TasksStyled.propTypes = {
-  todos: PropTypes.array,
-  onDoneClick: PropTypes.func,
-}
-
-export default function TasksStyled({ todos, onDoneClick }) {
+export default function TasksStyled({ todos, setTodos }) {
   return (
     <TaskWrapper>
       {todos.map((todo) => (
@@ -17,20 +12,32 @@ export default function TasksStyled({ todos, onDoneClick }) {
           <h4>{todo.time}</h4>
           <p className="date">{todo.date}</p>
           <p className="person">{todo.person}</p>
-          <input
-            type="checkbox"
+          <Checkbox
+            className="status"
             checked={todo.complete}
-            onChange={() => onDoneClick(todo.id)}
-          ></input>
+            onChange={() => handleCheckbox(todo.id)}
+          ></Checkbox>
         </section>
       ))}
     </TaskWrapper>
   )
+
+  function handleCheckbox(id) {
+    setTodos(
+      todos.map((todo) => {
+        if (todo.id === id) {
+          return { ...todo, complete: !todo.complete }
+        } else {
+          return todo
+        }
+      })
+    )
+  }
 }
 
 const TaskWrapper = styled.main`
   section {
-    margin: 28px 0px;
+    margin: 24px 0px;
     display: grid;
     grid-template-columns: 1fr 1fr 3fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
@@ -66,22 +73,9 @@ const TaskWrapper = styled.main`
     grid-column: 2/4;
   }
 
-  input {
+  .status {
     grid-row: 2/3;
     grid-column: 4/5;
-    appearance: none;
-    display: inline-block;
-    width: 28px;
-    height: 28px;
-    padding: 4px;
-    background-clip: padding-box;
-    border: 1.5px solid #bbbbbb;
-    border-radius: 50%;
-
-    &:checked {
-      background-image: url(/images/checkmark.png);
-      background-position: center;
-    }
   }
 `
 

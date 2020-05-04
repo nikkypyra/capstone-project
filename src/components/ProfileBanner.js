@@ -1,17 +1,17 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 
-export default function ProfileHeader() {
+export default function ProfileBanner() {
   return (
-    <HeaderStyled>
+    <BannerStyled>
       <img src={process.env.PUBLIC_URL + '/images/pet1.png'} alt="" />
       <h1>FLUFFY</h1>
-    </HeaderStyled>
+    </BannerStyled>
   )
 }
 
-const HeaderStyled = styled.header`
-  margin-bottom: 28px;
+const BannerStyled = styled.section`
+  margin: 4px 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;

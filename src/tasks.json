@@ -1,7 +1,7 @@
 [
   {
     "description": "Feed kibble",
-    "date": "May 1, 2020",
+    "date": "2020-05-01",
     "time": "8:00",
     "person": "To be completed by: Samantha",
     "complete": true,
@@ -9,7 +9,7 @@
   },
   {
     "description": "Give insulin",
-    "date": "May 1, 2020",
+    "date": "2020-05-01",
     "time": "8:30",
     "person": "To be completed by: Joe",
     "complete": false,
@@ -17,7 +17,7 @@
   },
   {
     "description": "Playtime",
-    "date": "May 1, 2020",
+    "date": "2020-05-01",
     "time": "12:00",
     "person": "To be completed by: Mark",
     "complete": false,
@@ -25,7 +25,7 @@
   },
   {
     "description": "Vet appointment",
-    "date": "May 6, 2020",
+    "date": "2020-05-01",
     "time": "14:00",
     "person": "To be completed by: Bob",
     "complete": false,
