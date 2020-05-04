@@ -7,25 +7,20 @@ import { v4 as uuidv4 } from 'uuid'
 import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
-export default function TaskForm({ addTodo }) {
-  const [description, setDescription] = useState('')
-  const [date, setDate] = useState('')
-  const [time, setTime] = useState('')
-  const [person, setPerson] = useState('')
+export default function TaskForm({ addPet }) {
+  const [name, setName] = useState('')
+  const [image, setImage] = useState('')
   const history = useHistory()
-  const uniqueTaskId = uuidv4()
+  const uniquePetId = uuidv4()
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    addTodo({
-      description,
-      date,
-      time,
-      person: 'To be completed by: ' + person,
-      complete: false,
-      id: uniqueTaskId,
+    addPet({
+      name,
+      image,
+      petId: uniquePetId,
     })
-    history.push('/pet-profile')
+    history.push('/')
   }
 
   return (
@@ -33,19 +28,19 @@ export default function TaskForm({ addTodo }) {
       <Header />
       <Form onSubmit={handleSubmit}>
         <div className="cancel">
-          <Link to="/pet-profile">
+          <Link to="/">
             <CancelButton />
           </Link>
         </div>
-        <div className="description">
+        <div className="name">
           <label>
-            Description*
+            Name*
             <input
               type="text"
-              value={description}
+              value={name}
               maxLength="100"
-              placeholder="Insert description"
-              onChange={(e) => setDescription(e.target.value)}
+              placeholder="Insert pet name"
+              onChange={(e) => setName(e.target.value)}
               required
               autoFocus
             />
@@ -53,41 +48,16 @@ export default function TaskForm({ addTodo }) {
         </div>
         <div className="date">
           <label>
-            Date*
-            <input
-              type="date"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-              required
-            />
-          </label>
-        </div>
-        <div className="time">
-          <label>
-            Time*
-            <input
-              type="time"
-              value={time}
-              onChange={(e) => setTime(e.target.value)}
-              required
-            />
-          </label>
-        </div>
-        <div className="person">
-          <label>
-            To be completed by*
+            Upload photo
             <input
               type="text"
-              value={person}
-              maxLength="100"
-              placeholder="Insert person to complete task"
-              onChange={(e) => setPerson(e.target.value)}
-              required
+              value={image}
+              onChange={(e) => setImage(e.target.value)}
             />
           </label>
         </div>
         <SubmitButton text="Submit" />
-        <p>*Mandatory Fields</p>
+        <p>*Mandatory Field</p>
       </Form>
     </>
   )
@@ -96,7 +66,7 @@ export default function TaskForm({ addTodo }) {
 const Form = styled.form`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 3fr 3fr 3fr 3fr 1fr;
+  grid-template-rows: 1fr 3fr 3fr 3fr 1fr;
   align-items: center;
   color: var(--secondary);
   margin: 20px;
@@ -133,7 +103,7 @@ const Form = styled.form`
     justify-content: flex-end;
   }
 
-  .description {
+  .name {
     grid-row: 2/3;
     grid-column: span 2;
   }
@@ -143,23 +113,13 @@ const Form = styled.form`
     grid-column: 1/2;
   }
 
-  .time {
-    grid-row: 3/4;
-    grid-column: 2/3;
-  }
-
-  .person {
+  button {
     grid-row: 4/5;
     grid-column: span 2;
   }
 
-  button {
-    grid-row: 5/6;
-    grid-column: span 2;
-  }
-
   p {
-    grid-row: 6/7;
+    grid-row: 5/6;
     margin-top: 4px;
   }
 `
