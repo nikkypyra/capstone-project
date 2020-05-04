@@ -11,7 +11,7 @@ export default function ButtonCancel({ onClick }) {
 
 const ImageWrapper = styled.div`
   img {
-    height: 28px;
-    width: 28px;
+    height: 18px;
+    width: 18px;
   }
 `

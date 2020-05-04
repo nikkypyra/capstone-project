@@ -1,22 +1,37 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 import Checkbox from './Checkbox'
+import DeleteButton from './DeleteButton'
 
 export default function TasksStyled({ todos, setTodos }) {
   return (
     <TaskWrapper>
       {todos.map((todo) => (
         <section key={todo.id}>
-          <img src={process.env.PUBLIC_URL + '/images/taskpaw.png'} alt="" />
-          <h3>{todo.description}</h3>
-          <h4>{todo.time}</h4>
-          <p className="date">{todo.date}</p>
-          <p className="person">{todo.person}</p>
-          <Checkbox
-            className="status"
-            checked={todo.complete}
-            onChange={() => handleCheckbox(todo.id)}
-          ></Checkbox>
+          <div className="marker">
+            <img src={process.env.PUBLIC_URL + '/images/taskpaw.png'} alt="" />
+          </div>
+          <div className="description">
+            <h3>{todo.description}</h3>
+          </div>
+          <div className="time">
+            <h4>{todo.time}</h4>
+          </div>
+          <div className="date">
+            <p>{todo.date}</p>
+          </div>
+          <div className="person">
+            <p>{todo.person}</p>
+          </div>
+          <div className="status">
+            <Checkbox
+              checked={todo.complete}
+              onChange={() => handleCheckbox(todo.id)}
+            ></Checkbox>
+          </div>
+          <div className="delete">
+            <DeleteButton />
+          </div>
         </section>
       ))}
     </TaskWrapper>
@@ -37,32 +52,40 @@ export default function TasksStyled({ todos, setTodos }) {
 
 const TaskWrapper = styled.main`
   section {
-    margin: 24px 0px;
+    margin: 28px 0px;
     display: grid;
-    grid-template-columns: 1fr 1fr 3fr 1fr;
+    grid-template-columns: 1.4fr 2fr 3fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    align-items: center;
   }
 
-  img {
-    height: 40px;
-    width: 40px;
-    border: 4px solid var(--tertiary);
-    border-radius: 50%;
-    grid-row: span 3;
+  .marker {
+    grid-row: 1/3;
     grid-column: 1/2;
+
+    img {
+      height: 40px;
+      width: 40px;
+      border: 4px solid var(--tertiary);
+      border-radius: 50%;
+    }
   }
 
-  h3 {
+  .description {
     grid-row: 1/2;
-    grid-column: 2/4;
+    grid-column: 2/5;
   }
 
-  h4 {
+  .time {
     grid-row: 2/3;
     grid-column: 2/3;
   }
 
+  .delete {
+    grid-row: 1/2;
+    grid-column: 6/7;
+  }
   .date {
     grid-row: 2/3;
     grid-column: 3/4;
@@ -70,7 +93,7 @@ const TaskWrapper = styled.main`
 
   .person {
     grid-row: 3/4;
-    grid-column: 2/4;
+    grid-column: 2/6;
   }
 
   .status {
@@ -78,13 +101,3 @@ const TaskWrapper = styled.main`
     grid-column: 4/5;
   }
 `
-
-/*
-import { loadFromLocal, saveToLocal } from '../services'  
-
-const [checked, setChecked] = useState(loadFromLocal('checked'))
-
-  useEffect(() => {
-    saveToLocal('checked', checked)
-  }, [checked])
-*/

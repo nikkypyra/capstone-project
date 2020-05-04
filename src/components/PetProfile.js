@@ -27,4 +27,5 @@ const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   margin-right: 20px;
+  margin-bottom: 48px;
 `

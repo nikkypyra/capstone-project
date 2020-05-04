@@ -8,9 +8,8 @@ export default function Checkbox({ ...props }) {
 const CheckboxStyled = styled.input.attrs({ type: 'checkbox' })`
   appearance: none;
   display: inline-block;
-  width: 28px;
-  height: 28px;
-  padding: 4px;
+  width: 26px;
+  height: 26px;
   background-clip: padding-box;
   border: 1.5px solid #78858a;
   border-radius: 50%;
