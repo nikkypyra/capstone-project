@@ -4,21 +4,18 @@ import Header from '../components/Header'
 import SubmitButton from '../components/SubmitButton'
 import CancelButton from '../components/CancelButton'
 import { v4 as uuidv4 } from 'uuid'
-import { useHistory } from 'react-router-dom'
-import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
+import { useHistory, useParams, Link } from 'react-router-dom'
 
-TaskForm.propTypes = {
-  addTask: PropTypes.func.isRequired,
-}
-
-export default function TaskForm({ addTask }) {
+export default function TaskForm({ pets, setPets }) {
   const [description, setDescription] = useState('')
   const [date, setDate] = useState('')
   const [time, setTime] = useState('')
   const [person, setPerson] = useState('')
   const history = useHistory()
   const uniqueTaskId = uuidv4()
+  const params = useParams()
+  const pet = pets.find((pet) => pet.id === params.id)
+  const tasks = pet.tasks || []
 
   function handleSubmit(event) {
     event.preventDefault()
@@ -30,7 +27,13 @@ export default function TaskForm({ addTask }) {
       complete: false,
       id: uniqueTaskId,
     })
-    history.push('/pet-profile')
+    history.push(`/pet/${pet.id}`)
+  }
+
+  function addTask(task) {
+    const newTasks = [task, ...tasks]
+    pet.tasks = newTasks
+    setPets([...pets])
   }
 
   return (
@@ -38,7 +41,7 @@ export default function TaskForm({ addTask }) {
       <Header />
       <Form onSubmit={handleSubmit}>
         <div className="cancel">
-          <Link to="/pet-profile">
+          <Link to="/pet/:id">
             <CancelButton />
           </Link>
         </div>

@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 
-export default function ProfileBanner() {
+export default function ProfileBanner({ name, imgSrc }) {
   return (
     <BannerStyled>
-      <img src={process.env.PUBLIC_URL + '/images/pet1.png'} alt="" />
-      <h1>FLUFFY</h1>
+      <img src={imgSrc} alt="" />
+      <h1>{name.toUpperCase()}</h1>
     </BannerStyled>
   )
 }

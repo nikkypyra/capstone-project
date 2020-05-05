@@ -24,7 +24,7 @@ export default function Home({ pets, setPets }) {
       </ButtonWrapper>
       <PetWrapper>
         {pets.map((pet) => (
-          <section key={pet.petId}>
+          <section key={pet.id}>
             <div className="image">
               <img src={pet.imageSrc} alt={pet.name} />
             </div>

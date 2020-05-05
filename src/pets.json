@@ -2,11 +2,11 @@
   {
     "name": "Fluffy",
     "imageSrc": "./images/pet1.png",
-    "petId": "1"
+    "id": "1"
   },
   {
     "name": "Max",
     "imageSrc": "./images/pet3.png",
-    "petId": "2"
+    "id": "2"
   }
 ]

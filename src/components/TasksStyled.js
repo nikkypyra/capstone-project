@@ -2,15 +2,8 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import Checkbox from './Checkbox'
 import DeleteButton from './DeleteButton'
-import { saveToLocal } from '../services'
-import PropTypes from 'prop-types'
 
-TasksStyled.propTypes = {
-  tasks: PropTypes.array.isRequired,
-  setTasks: PropTypes.func.isRequired,
-}
-
-export default function TasksStyled({ tasks, setTasks }) {
+export default function TasksStyled({ tasks }) {
   return (
     <TaskWrapper>
       {tasks.map((task) => (
@@ -33,18 +26,18 @@ export default function TasksStyled({ tasks, setTasks }) {
           <div className="status">
             <Checkbox
               checked={task.complete}
-              onChange={() => handleCheckbox(task.id)}
+              //onChange={() => handleCheckbox(task.id)}
             ></Checkbox>
           </div>
           <div className="delete">
-            <DeleteButton onClick={() => deleteTask(task)} />
+            <DeleteButton /*onClick={() => deleteTask(task)}*/ />
           </div>
         </section>
       ))}
     </TaskWrapper>
   )
 
-  function handleCheckbox(id) {
+  /* function handleCheckbox(id) {
     setTasks(
       tasks.map((task) => {
         if (task.id === id) {
@@ -61,7 +54,7 @@ export default function TasksStyled({ tasks, setTasks }) {
     const newTasks = [...tasks.slice(0, index), ...tasks.slice(index + 1)]
     setTasks(newTasks)
     saveToLocal(newTasks)
-  }
+  } */
 }
 
 const TaskWrapper = styled.main`
