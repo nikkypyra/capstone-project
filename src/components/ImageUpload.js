@@ -5,15 +5,19 @@ import AddButton from './AddButton'
 export default function ImageUpload({ onChange, previewImage }) {
   return (
     <>
-      <ImageUploadStyled>
-        {previewImage.imageUrl ? (
+      {previewImage.imageUrl ? (
+        <ContainerWrapper>
           <ImageContainer src={previewImage.imageUrl} alt="" />
-        ) : (
-          <ImagePlaceholder>
-            <img src={process.env.PUBLIC_URL + '/images/taskpaw.png'} alt="" />
-          </ImagePlaceholder>
-        )}
-        <AddButton className="upload-button" text="Upload photo" />
+        </ContainerWrapper>
+      ) : (
+        <ImagePlaceholder>
+          <img src={process.env.PUBLIC_URL + '/images/taskpaw.png'} alt="" />
+        </ImagePlaceholder>
+      )}
+      <UploadWrapper>
+        <ImageUploadStyled for="imageSrc">
+          <AddButton className="upload-button" text="Upload photo" />
+        </ImageUploadStyled>
         <input
           type="file"
           name="imageSrc"
@@ -21,22 +25,21 @@ export default function ImageUpload({ onChange, previewImage }) {
           className="file-input"
           onChange={onChange}
         />
-      </ImageUploadStyled>
+      </UploadWrapper>
     </>
   )
 }
 
-const ImageUploadStyled = styled.label`
-  font-size: 18px;
-  margin-bottom: 15px;
+const UploadWrapper = styled.section`
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
-
   .file-input {
-    visibility: hidden;
+    opacity: 0;
+    position: absolute;
   }
 `
+const ImageUploadStyled = styled.label``
 
 const ImagePlaceholder = styled.div`
   text-align: center;
@@ -45,8 +48,10 @@ const ImagePlaceholder = styled.div`
     width: 240px;
     border: 8px solid var(--tertiary);
     border-radius: 50%;
-    margin-bottom: 12px;
   }
+`
+const ContainerWrapper = styled.section`
+  text-align: center;
 `
 const ImageContainer = styled.img`
   background: center url(${(props) => props.image});

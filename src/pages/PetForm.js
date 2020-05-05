@@ -95,7 +95,7 @@ export default function TaskForm({ addPet }) {
 const Form = styled.form`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 0.25fr 4fr 1fr 1fr 0.25fr;
+  grid-template-rows: auto auto auto auto auto;
   align-items: center;
   color: var(--secondary);
   margin: 20px;
