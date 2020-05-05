@@ -56,8 +56,8 @@ export default function TasksStyled({ tasks, setTasks }) {
     )
   }
 
-  function deleteTask(todo) {
-    const index = tasks.indexOf(todo)
+  function deleteTask(task) {
+    const index = tasks.indexOf(task)
     const newTasks = [...tasks.slice(0, index), ...tasks.slice(index + 1)]
     setTasks(newTasks)
     saveToLocal(newTasks)
