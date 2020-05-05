@@ -5,6 +5,12 @@ import TasksStyled from '../components/TasksStyled'
 import AddButton from '../components/AddButton'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
+
+PetProfile.propTypes = {
+  tasks: PropTypes.array.isRequired,
+  setTasks: PropTypes.func.isRequired,
+}
 
 export default function PetProfile({ tasks, setTasks }) {
   return (

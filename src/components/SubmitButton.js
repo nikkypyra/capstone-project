@@ -1,5 +1,11 @@
 import React from 'react'
 import styled from 'styled-components/macro'
+import PropTypes from 'prop-types'
+
+SubmitButton.propTypes = {
+  text: PropTypes.string,
+  onClick: PropTypes.func,
+}
 
 export default function SubmitButton({ text, onClick }) {
   return <Button onClick={onClick}>{text}</Button>

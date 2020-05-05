@@ -3,6 +3,12 @@ import styled from 'styled-components/macro'
 import Checkbox from './Checkbox'
 import DeleteButton from './DeleteButton'
 import { saveToLocal } from '../services'
+import PropTypes from 'prop-types'
+
+TasksStyled.propTypes = {
+  tasks: PropTypes.array.isRequired,
+  setTasks: PropTypes.func.isRequired,
+}
 
 export default function TasksStyled({ tasks, setTasks }) {
   return (

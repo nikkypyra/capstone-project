@@ -11,7 +11,7 @@ import { storage } from '../firebase'
 import PropTypes from 'prop-types'
 
 PetForm.propTypes = {
-  addPet: PropTypes.func,
+  addPet: PropTypes.func.isRequired,
 }
 
 export default function PetForm({ addPet }) {
@@ -22,7 +22,6 @@ export default function PetForm({ addPet }) {
   })
   const history = useHistory()
   const uniquePetId = uuidv4()
-
   const handleSubmit = (event) => {
     event.preventDefault()
     addPet({

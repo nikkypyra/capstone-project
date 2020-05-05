@@ -1,6 +1,12 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 import AddButton from './AddButton'
+import PropTypes from 'prop-types'
+
+ImageUpload.propTypes = {
+  previewImage: PropTypes.object,
+  onChange: PropTypes.func,
+}
 
 export default function ImageUpload({ onChange, previewImage }) {
   return (
@@ -15,7 +21,7 @@ export default function ImageUpload({ onChange, previewImage }) {
         </ImagePlaceholder>
       )}
       <UploadWrapper>
-        <ImageUploadStyled for="imageSrc">
+        <ImageUploadStyled htmlFor="imageSrc">
           <AddButton className="upload-button" text="Upload photo" />
         </ImageUploadStyled>
         <input

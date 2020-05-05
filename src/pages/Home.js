@@ -5,6 +5,12 @@ import AddButton from '../components/AddButton'
 import { Link } from 'react-router-dom'
 import { saveToLocal } from '../services'
 import DeleteButton from '../components/DeleteButton'
+import PropTypes from 'prop-types'
+
+Home.propTypes = {
+  pets: PropTypes.array.isRequired,
+  setPets: PropTypes.func.isRequired,
+}
 
 export default function Home({ pets, setPets }) {
   return (
