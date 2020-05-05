@@ -39,9 +39,10 @@ export default function TaskForm({ addPet }) {
             <CancelButton />
           </Link>
         </div>
-        <div className="photo">
+        <div className="photo-container">
           <ImageUpload
             name="imageSrc"
+            className="photo"
             onChange={handleImageUpload}
             previewImage={previewImage}
           />
@@ -94,7 +95,7 @@ export default function TaskForm({ addPet }) {
 const Form = styled.form`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 3fr 3fr 3fr 1fr;
+  grid-template-rows: 0.25fr 4fr 1fr 1fr 0.25fr;
   align-items: center;
   color: var(--secondary);
   margin: 20px;
@@ -127,14 +128,14 @@ const Form = styled.form`
     justify-content: flex-end;
   }
 
-  .name {
+  .photo-container {
     grid-row: 2/3;
     grid-column: span 2;
   }
 
-  .photo {
+  .name {
     grid-row: 3/4;
-    grid-column: 1/2;
+    grid-column: span 2;
   }
 
   button {

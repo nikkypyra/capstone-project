@@ -13,7 +13,7 @@ export default function ImageUpload({ onChange, previewImage }) {
             <img src={process.env.PUBLIC_URL + '/images/taskpaw.png'} alt="" />
           </ImagePlaceholder>
         )}
-        <AddButton className="file-input-label" text="Upload photo" />
+        <AddButton className="upload-button" text="Upload photo" />
         <input
           type="file"
           name="imageSrc"
@@ -29,6 +29,9 @@ export default function ImageUpload({ onChange, previewImage }) {
 const ImageUploadStyled = styled.label`
   font-size: 18px;
   margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   .file-input {
     visibility: hidden;
@@ -36,11 +39,13 @@ const ImageUploadStyled = styled.label`
 `
 
 const ImagePlaceholder = styled.div`
+  text-align: center;
   img {
     height: 240px;
     width: 240px;
     border: 8px solid var(--tertiary);
     border-radius: 50%;
+    margin-bottom: 12px;
   }
 `
 const ImageContainer = styled.img`
