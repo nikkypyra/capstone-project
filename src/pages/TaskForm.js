@@ -20,7 +20,7 @@ export default function TaskForm({ addTask }) {
   const history = useHistory()
   const uniqueTaskId = uuidv4()
 
-  const handleSubmit = (event) => {
+  function handleSubmit(event) {
     event.preventDefault()
     addTask({
       description,

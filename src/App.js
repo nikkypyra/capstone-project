@@ -14,7 +14,7 @@ export default function App() {
   useEffect(() => {
     saveToLocal('tasks', tasks)
   }, [tasks])
-  console.log(tasks)
+
   const [pets, setPets] = useState(loadFromLocal('pets') || Pets)
   useEffect(() => {
     saveToLocal('pets', pets)

@@ -22,7 +22,7 @@ export default function PetForm({ addPet }) {
   })
   const history = useHistory()
   const uniquePetId = uuidv4()
-  const handleSubmit = (event) => {
+  function handleSubmit(event) {
     event.preventDefault()
     addPet({
       name,
