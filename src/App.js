@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import GlobalStyles from './GlobalStyles'
 import Home from './pages/Home'
 import PetForm from './pages/PetForm'
@@ -21,21 +21,23 @@ export default function App() {
   }, [pets])
   return (
     <>
-      <GlobalStyles />
-      <Switch>
-        <Route exact path="/">
-          <Home pets={pets} setPets={setPets} />
-        </Route>
-        <Route exact path="/create-pet">
-          <PetForm addPet={addPet} />
-        </Route>
-        <Route exact path="/pet-profile">
-          <PetProfile tasks={tasks} setTasks={setTasks} />
-        </Route>
-        <Route exact path="/create-task">
-          <TaskForm addTask={addTask} />
-        </Route>
-      </Switch>
+      <Router>
+        <GlobalStyles />
+        <Switch>
+          <Route exact path="/">
+            <Home pets={pets} setPets={setPets} />
+          </Route>
+          <Route path="/create-pet">
+            <PetForm addPet={addPet} />
+          </Route>
+          <Route path="/pet-profile">
+            <PetProfile tasks={tasks} setTasks={setTasks} />
+          </Route>
+          <Route path="/create-task">
+            <TaskForm addTask={addTask} />
+          </Route>
+        </Switch>
+      </Router>
     </>
   )
   function addTask(task) {
