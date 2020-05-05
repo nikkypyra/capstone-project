@@ -22,8 +22,8 @@ export default function TaskForm({ addPet }) {
     event.preventDefault()
     addPet({
       name,
-      imageSrc: previewImage && previewImage.imageUrl,
-      imageTitle: previewImage && previewImage.imageName,
+      imageSrc: previewImage.imageUrl,
+      imageTitle: previewImage.imageName,
       petId: uniquePetId,
     })
     history.push('/')
@@ -69,10 +69,7 @@ export default function TaskForm({ addPet }) {
 
   function handleImageUpload(event) {
     const image = event.target.files[0]
-    const metadata = {
-      name: image.name,
-    }
-    const uploadTask = storage.ref(`images/${image.name}`).put(image, metadata)
+    const uploadTask = storage.ref(`images/${image.name}`).put(image)
     uploadTask.on(
       'state_changed',
       (snapshot) => {},
