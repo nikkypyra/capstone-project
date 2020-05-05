@@ -27,7 +27,7 @@ export default function PetForm({ addPet }) {
       name,
       imageSrc: previewImage.imageUrl,
       imageTitle: previewImage.imageName,
-      petId: uniquePetId,
+      id: uniquePetId,
     })
     history.push('/')
     setPreviewImage({ imageUrl: '', imageName: '' })

@@ -1,12 +1,12 @@
 [
   {
     "name": "Fluffy",
-    "imageSrc": "./images/pet1.png",
+    "imageSrc": "https://firebasestorage.googleapis.com/v0/b/pawlog-app.appspot.com/o/images%2Fpet1.png?alt=media&token=e82d302a-1b20-4322-b246-97ff0c454694",
     "id": "1"
   },
   {
     "name": "Max",
-    "imageSrc": "./images/pet3.png",
+    "imageSrc": "https://firebasestorage.googleapis.com/v0/b/pawlog-app.appspot.com/o/images%2Fpet3.png?alt=media&token=0a2c6d06-a308-41e2-938c-53dee8714bb4",
     "id": "2"
   }
 ]
