@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
-export default function TaskForm({ addTodo }) {
+export default function TaskForm({ addTask }) {
   const [description, setDescription] = useState('')
   const [date, setDate] = useState('')
   const [time, setTime] = useState('')
@@ -17,7 +17,7 @@ export default function TaskForm({ addTodo }) {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    addTodo({
+    addTask({
       description,
       date,
       time,

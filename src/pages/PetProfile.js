@@ -6,7 +6,7 @@ import AddButton from '../components/AddButton'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
-export default function PetProfile({ todos, setTodos }) {
+export default function PetProfile({ tasks, setTasks }) {
   return (
     <>
       <Header />
@@ -17,7 +17,7 @@ export default function PetProfile({ todos, setTodos }) {
             <AddButton text="Add Task" />
           </Link>
         </ButtonWrapper>
-        <TasksStyled todos={todos} setTodos={setTodos} />
+        <TasksStyled tasks={tasks} setTasks={setTasks} />
       </main>
     </>
   )

@@ -4,34 +4,34 @@ import Checkbox from './Checkbox'
 import DeleteButton from './DeleteButton'
 import { saveToLocal } from '../services'
 
-export default function TasksStyled({ todos, setTodos }) {
+export default function TasksStyled({ tasks, setTasks }) {
   return (
     <TaskWrapper>
-      {todos.map((todo) => (
-        <section key={todo.id}>
+      {tasks.map((task) => (
+        <section key={task.id}>
           <div className="marker">
             <img src={process.env.PUBLIC_URL + '/images/taskpaw.png'} alt="" />
           </div>
           <div className="description">
-            <h3>{todo.description}</h3>
+            <h3>{task.description}</h3>
           </div>
           <div className="time">
-            <h4>{todo.time}</h4>
+            <h4>{task.time}</h4>
           </div>
           <div className="date">
-            <p>{todo.date}</p>
+            <p>{task.date}</p>
           </div>
           <div className="person">
-            <p>{todo.person}</p>
+            <p>{task.person}</p>
           </div>
           <div className="status">
             <Checkbox
-              checked={todo.complete}
-              onChange={() => handleCheckbox(todo.id)}
+              checked={task.complete}
+              onChange={() => handleCheckbox(task.id)}
             ></Checkbox>
           </div>
           <div className="delete">
-            <DeleteButton onClick={() => deleteTodo(todo)} />
+            <DeleteButton onClick={() => deleteTask(task)} />
           </div>
         </section>
       ))}
@@ -39,22 +39,22 @@ export default function TasksStyled({ todos, setTodos }) {
   )
 
   function handleCheckbox(id) {
-    setTodos(
-      todos.map((todo) => {
-        if (todo.id === id) {
-          return { ...todo, complete: !todo.complete }
+    setTasks(
+      tasks.map((task) => {
+        if (task.id === id) {
+          return { ...task, complete: !task.complete }
         } else {
-          return todo
+          return task
         }
       })
     )
   }
 
-  function deleteTodo(todo) {
-    const index = todos.indexOf(todo)
-    const newTodos = [...todos.slice(0, index), ...todos.slice(index + 1)]
-    setTodos(newTodos)
-    saveToLocal(newTodos)
+  function deleteTask(todo) {
+    const index = tasks.indexOf(todo)
+    const newTasks = [...tasks.slice(0, index), ...tasks.slice(index + 1)]
+    setTasks(newTasks)
+    saveToLocal(newTasks)
   }
 }
 

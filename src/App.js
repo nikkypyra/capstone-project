@@ -10,14 +10,12 @@ import Tasks from './tasks.json'
 import Pets from './pets.json'
 
 export default function App() {
-  const tasks = Tasks || []
-  const [todos, setTodos] = useState(loadFromLocal('todos') || tasks)
+  const [tasks, setTasks] = useState(loadFromLocal('tasks') || Tasks)
   useEffect(() => {
-    saveToLocal('todos', todos)
-  }, [todos])
+    saveToLocal('tasks', tasks)
+  }, [tasks])
 
-  const animals = Pets || []
-  const [pets, setPets] = useState(loadFromLocal('pets') || animals)
+  const [pets, setPets] = useState(loadFromLocal('pets') || Pets)
   useEffect(() => {
     saveToLocal('pets', pets)
   }, [pets])
@@ -32,17 +30,17 @@ export default function App() {
           <PetForm addPet={addPet} />
         </Route>
         <Route exact path="/pet-profile">
-          <PetProfile todos={todos} setTodos={setTodos} />
+          <PetProfile tasks={tasks} setTasks={setTasks} />
         </Route>
         <Route exact path="/create-task">
-          <TaskForm addTodo={addTodo} />
+          <TaskForm addTask={addTask} />
         </Route>
       </Switch>
     </>
   )
-  function addTodo(todo) {
-    const newToDos = [todo, ...todos]
-    setTodos(newToDos)
+  function addTask(task) {
+    const newTasks = [task, ...tasks]
+    setTasks(newTasks)
   }
   function addPet(pet) {
     const newPets = [pet, ...pets]
