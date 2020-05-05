@@ -5,8 +5,14 @@ import TasksStyled from '../components/TasksStyled'
 import AddButton from '../components/AddButton'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
-export default function PetProfile({ todos, setTodos }) {
+PetProfile.propTypes = {
+  tasks: PropTypes.array.isRequired,
+  setTasks: PropTypes.func.isRequired,
+}
+
+export default function PetProfile({ tasks, setTasks }) {
   return (
     <>
       <Header />
@@ -17,7 +23,7 @@ export default function PetProfile({ todos, setTodos }) {
             <AddButton text="Add Task" />
           </Link>
         </ButtonWrapper>
-        <TasksStyled todos={todos} setTodos={setTodos} />
+        <TasksStyled tasks={tasks} setTasks={setTasks} />
       </main>
     </>
   )

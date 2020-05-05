@@ -6,8 +6,13 @@ import CancelButton from '../components/CancelButton'
 import { v4 as uuidv4 } from 'uuid'
 import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
-export default function TaskForm({ addTodo }) {
+TaskForm.propTypes = {
+  addTask: PropTypes.func.isRequired,
+}
+
+export default function TaskForm({ addTask }) {
   const [description, setDescription] = useState('')
   const [date, setDate] = useState('')
   const [time, setTime] = useState('')
@@ -15,9 +20,9 @@ export default function TaskForm({ addTodo }) {
   const history = useHistory()
   const uniqueTaskId = uuidv4()
 
-  const handleSubmit = (event) => {
+  function handleSubmit(event) {
     event.preventDefault()
-    addTodo({
+    addTask({
       description,
       date,
       time,
@@ -141,10 +146,6 @@ const Form = styled.form`
   .date {
     grid-row: 3/4;
     grid-column: 1/2;
-  }
-
-  .date::selection {
-    background: var(--primary);
   }
 
   .time {

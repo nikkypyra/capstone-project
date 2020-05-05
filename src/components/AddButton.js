@@ -1,5 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
+
+AddButton.propTypes = {
+  text: PropTypes.string,
+  onClick: PropTypes.func,
+}
 
 export default function AddButton({ text, onClick }) {
   return <Button onClick={onClick}>{text}</Button>
