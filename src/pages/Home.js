@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { saveToLocal } from '../services'
 import DeleteButton from '../components/DeleteButton'
 import PropTypes from 'prop-types'
+import { storage } from '../firebase'
 
 Home.propTypes = {
   pets: PropTypes.array.isRequired,
@@ -43,6 +44,8 @@ export default function Home({ pets, setPets }) {
     const newPets = [...pets.slice(0, index), ...pets.slice(index + 1)]
     setPets(newPets)
     saveToLocal(newPets)
+    const image = storage.ref(`images/${pet.imageTitle}`)
+    image.delete().catch((error) => {})
   }
 }
 
