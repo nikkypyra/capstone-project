@@ -136,6 +136,7 @@ const Form = styled.form`
   .name {
     grid-row: 3/4;
     grid-column: span 2;
+    margin: 20px 0;
   }
 
   button {
@@ -145,6 +146,6 @@ const Form = styled.form`
 
   p {
     grid-row: 5/6;
-    margin-top: 4px;
+    margin-top: 12px;
   }
 `

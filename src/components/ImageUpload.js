@@ -55,7 +55,6 @@ const ContainerWrapper = styled.section`
 `
 const ImageContainer = styled.img`
   background: center url(${(props) => props.image});
-  object-fit: cover;
   height: 240px;
   width: 240px;
   border: 8px solid var(--tertiary);
