@@ -8,8 +8,13 @@ import { v4 as uuidv4 } from 'uuid'
 import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { storage } from '../firebase'
+import PropTypes from 'prop-types'
 
-export default function TaskForm({ addPet }) {
+PetForm.propTypes = {
+  addPet: PropTypes.func,
+}
+
+export default function PetForm({ addPet }) {
   const [name, setName] = useState('')
   const [previewImage, setPreviewImage] = useState({
     imageUrl: '',
