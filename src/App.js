@@ -7,6 +7,7 @@ import PetProfile from './pages/PetProfile'
 import TaskForm from './pages/TaskForm'
 import { loadFromLocal, saveToLocal } from './services'
 import Pets from './pets.json'
+import Tasks from './tasks.json'
 
 export default function App() {
   const [pets, setPets] = useState(loadFromLocal('pets') || Pets)
@@ -14,7 +15,10 @@ export default function App() {
     saveToLocal('pets', pets)
   }, [pets])
 
-  const [tasks, setTasks] = useState(loadFromLocal('tasks'))
+  const [tasks, setTasks] = useState(loadFromLocal('tasks') || Tasks)
+  useEffect(() => {
+    saveToLocal('tasks', tasks)
+  }, [tasks])
 
   function addTask(task) {
     const newTasks = [task, ...tasks]
