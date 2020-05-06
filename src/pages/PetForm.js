@@ -65,7 +65,7 @@ export default function PetForm({ addPet }) {
           </label>
         </div>
         <SubmitButton text="Submit" />
-        <p>*Mandatory Field</p>
+        <p>*Mandatory Fields</p>
       </Form>
     </>
   )

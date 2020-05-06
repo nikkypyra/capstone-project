@@ -1,7 +1,7 @@
 [
   {
     "name": "Fluffy",
-    "imageSrc": "./images/pet1.png",
+    "imageSrc": "https://firebasestorage.googleapis.com/v0/b/pawlog-app.appspot.com/o/images%2Fpet1.png?alt=media&token=e82d302a-1b20-4322-b246-97ff0c454694",
     "id": "1"
   },
   {
