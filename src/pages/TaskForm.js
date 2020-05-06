@@ -41,7 +41,7 @@ export default function TaskForm({ pets, setPets }) {
       <Header />
       <Form onSubmit={handleSubmit}>
         <div className="cancel">
-          <Link to="/pet/:id">
+          <Link to={`/pet/${pet.id}`}>
             <CancelButton />
           </Link>
         </div>

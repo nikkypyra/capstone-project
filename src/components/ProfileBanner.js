@@ -2,9 +2,10 @@ import React from 'react'
 import styled from 'styled-components/macro'
 
 export default function ProfileBanner({ name, imageSrc }) {
+  console.log(imageSrc)
   return (
-    <BannerStyled imageSrc={imageSrc}>
-      <div className="image-container"></div>
+    <BannerStyled>
+      <img src={imageSrc} alt="" />
       <h1>{name.toUpperCase()}</h1>
     </BannerStyled>
   )
@@ -25,10 +26,7 @@ const BannerStyled = styled.section`
     grid-column: 2/3;
   }
 
-  .image-container {
-    background-image: url(${(props) =>
-      props.imageSrc ? props.imageSrc : './images/taskpaw.png'});
-    background-size: cover;
+  img {
     height: 180px;
     width: 180px;
     border: 8px solid var(--tertiary);
