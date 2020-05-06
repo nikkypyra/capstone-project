@@ -12,18 +12,12 @@ PetProfile.propTypes = {
   pets: PropTypes.array.isRequired,
 }
 
-export default function PetProfile({ pets }) {
+export default function PetProfile({ pets, tasks, setTasks }) {
   const params = useParams()
   const pet = pets.find((pet) => pet.id === params.id)
-  const [tasks, setTasks] = useState(loadFromLocal('tasks'))
   useEffect(() => {
     saveToLocal('tasks', pet.tasks)
   }, [pet.tasks])
-
-  function addTask(task) {
-    const newTasks = [task, ...tasks]
-    setTasks(newTasks)
-  }
 
   return (
     <>

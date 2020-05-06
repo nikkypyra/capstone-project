@@ -5,9 +5,8 @@ import SubmitButton from '../components/SubmitButton'
 import CancelButton from '../components/CancelButton'
 import { v4 as uuidv4 } from 'uuid'
 import { useHistory, useParams, Link } from 'react-router-dom'
-import { saveToLocal } from '../services'
 
-export default function TaskForm({ pets, tasks, setTasks }) {
+export default function TaskForm({ pets, addTask }) {
   const [description, setDescription] = useState('')
   const [date, setDate] = useState('')
   const [time, setTime] = useState('')
@@ -29,12 +28,6 @@ export default function TaskForm({ pets, tasks, setTasks }) {
       id: uniqueTaskId,
     })
     history.push(`/pet/${pet.id}`)
-  }
-
-  function addTask(task) {
-    const newTasks = [task, ...tasks]
-    setTasks(newTasks)
-    saveToLocal(newTasks)
   }
 
   return (
