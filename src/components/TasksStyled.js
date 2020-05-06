@@ -5,33 +5,34 @@ import DeleteButton from './DeleteButton'
 import { saveToLocal } from '../services'
 
 export default function TasksStyled({ tasks, setTasks }) {
+  const todos = tasks || []
   return (
     <TaskWrapper>
-      {tasks.map((task) => (
-        <section key={task.id}>
+      {todos.map((todo) => (
+        <section key={todo.id}>
           <div className="marker">
             <img src={process.env.PUBLIC_URL + '/images/taskpaw.png'} alt="" />
           </div>
           <div className="description">
-            <h3>{task.description}</h3>
+            <h3>{todo.description}</h3>
           </div>
           <div className="time">
-            <h4>{task.time}</h4>
+            <h4>{todo.time}</h4>
           </div>
           <div className="date">
-            <p>{task.date}</p>
+            <p>{todo.date}</p>
           </div>
           <div className="person">
-            <p>{task.person}</p>
+            <p>{todo.person}</p>
           </div>
           <div className="status">
             <Checkbox
-              checked={task.complete}
-              onChange={() => handleCheckbox(task.id)}
+              checked={todo.complete}
+              onChange={() => handleCheckbox(todo.id)}
             ></Checkbox>
           </div>
           <div className="delete">
-            <DeleteButton onClick={() => deleteTask(task)} />
+            <DeleteButton onClick={() => deleteTask(todo)} />
           </div>
         </section>
       ))}
