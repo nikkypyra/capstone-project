@@ -8,7 +8,7 @@ import TaskForm from './pages/TaskForm'
 import { loadFromLocal, saveToLocal } from './services'
 import Pets from './pets.json'
 
-export default function App() {
+export default function App({ tasks, setTasks }) {
   const [pets, setPets] = useState(loadFromLocal('pets') || Pets)
   useEffect(() => {
     saveToLocal('pets', pets)
@@ -25,10 +25,15 @@ export default function App() {
             <PetForm addPet={addPet} />
           </Route>
           <Route exact path="/pet/:id">
-            <PetProfile pets={pets} setPets={setPets} />
+            <PetProfile pets={pets} />
           </Route>
           <Route path="/pet/:id/create-task">
-            <TaskForm pets={pets} setPets={setPets} />
+            <TaskForm
+              pets={pets}
+              setPets={setPets}
+              tasks={tasks}
+              setTasks={setTasks}
+            />
           </Route>
         </Switch>
       </Router>

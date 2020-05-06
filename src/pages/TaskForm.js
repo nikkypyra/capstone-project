@@ -5,8 +5,9 @@ import SubmitButton from '../components/SubmitButton'
 import CancelButton from '../components/CancelButton'
 import { v4 as uuidv4 } from 'uuid'
 import { useHistory, useParams, Link } from 'react-router-dom'
+import { saveToLocal } from '../services'
 
-export default function TaskForm({ pets, setPets }) {
+export default function TaskForm({ pets, tasks, setTasks }) {
   const [description, setDescription] = useState('')
   const [date, setDate] = useState('')
   const [time, setTime] = useState('')
@@ -15,7 +16,7 @@ export default function TaskForm({ pets, setPets }) {
   const uniqueTaskId = uuidv4()
   const params = useParams()
   const pet = pets.find((pet) => pet.id === params.id)
-  const tasks = pet.tasks || []
+  //const todos = pet.todos || []
 
   function handleSubmit(event) {
     event.preventDefault()
@@ -32,8 +33,8 @@ export default function TaskForm({ pets, setPets }) {
 
   function addTask(task) {
     const newTasks = [task, ...tasks]
-    pet.tasks = newTasks
-    setPets([...pets])
+    setTasks(newTasks)
+    saveToLocal(newTasks)
   }
 
   return (

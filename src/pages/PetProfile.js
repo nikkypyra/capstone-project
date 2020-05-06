@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from '../components/Header'
 import ProfileBanner from '../components/ProfileBanner'
 import TasksStyled from '../components/TasksStyled'
@@ -6,6 +6,7 @@ import AddButton from '../components/AddButton'
 import styled from 'styled-components'
 import { Link, useParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import { loadFromLocal, saveToLocal } from '../services'
 
 PetProfile.propTypes = {
   pets: PropTypes.array.isRequired,
@@ -14,7 +15,15 @@ PetProfile.propTypes = {
 export default function PetProfile({ pets }) {
   const params = useParams()
   const pet = pets.find((pet) => pet.id === params.id)
-  const tasks = pet.tasks || []
+  const [tasks, setTasks] = useState(loadFromLocal('tasks'))
+  useEffect(() => {
+    saveToLocal('tasks', pet.tasks)
+  }, [pet.tasks])
+
+  function addTask(task) {
+    const newTasks = [task, ...tasks]
+    setTasks(newTasks)
+  }
 
   return (
     <>
@@ -26,7 +35,7 @@ export default function PetProfile({ pets }) {
             <AddButton text="Add Task" />
           </Link>
         </ButtonWrapper>
-        <TasksStyled tasks={tasks} />
+        <TasksStyled tasks={tasks} setTasks={setTasks} />
       </main>
     </>
   )
