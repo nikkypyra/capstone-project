@@ -55,10 +55,11 @@ export default function TasksStyled({ pets, setPets, tasks, setTasks }) {
     const pet = pets[index]
     const petsTasks = pet.tasks
     const taskIndex = petsTasks.findIndex((task) => task.id === id)
-    const updateTask = { ...taskIndex, complete: !taskIndex.complete }
+    const updatedTask = tasks[taskIndex]
+    const newTask = { ...updatedTask, complete: !updatedTask.complete }
     const newTaskList = [
       ...petsTasks.slice(0, taskIndex),
-      { ...updateTask },
+      { ...newTask },
       ...petsTasks.slice(taskIndex + 1),
     ]
     const updatedPet = { ...pet, tasks: newTaskList }
