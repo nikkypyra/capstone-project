@@ -10,7 +10,8 @@
         "time": "08:00",
         "person": "To be completed by: Samantha",
         "complete": true,
-        "id": "1"
+        "id": "1",
+        "petId": "1"
       },
       {
         "description": "Give insulin",
@@ -18,7 +19,8 @@
         "time": "08:30",
         "person": "To be completed by: Joe",
         "complete": false,
-        "id": "2"
+        "id": "2",
+        "petId": "1"
       }
     ]
   },
@@ -33,7 +35,8 @@
         "time": "12:00",
         "person": "To be completed by: Mark",
         "complete": false,
-        "id": "3"
+        "id": "3",
+        "petId": "2"
       },
       {
         "description": "Vet appointment",
@@ -41,7 +44,8 @@
         "time": "14:00",
         "person": "To be completed by: Bob",
         "complete": false,
-        "id": "4"
+        "id": "4",
+        "petId": "2"
       }
     ]
   }

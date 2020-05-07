@@ -11,7 +11,7 @@ PetProfile.propTypes = {
   pets: PropTypes.array.isRequired,
 }
 
-export default function PetProfile({ pets, setTasks }) {
+export default function PetProfile({ pets, setPets, setTasks }) {
   const params = useParams()
   const pet = pets.find((pet) => pet.id === params.id)
 
@@ -25,7 +25,12 @@ export default function PetProfile({ pets, setTasks }) {
             <AddButton text="Add Task" />
           </Link>
         </ButtonWrapper>
-        <TasksStyled tasks={pet.tasks} setTasks={setTasks} />
+        <TasksStyled
+          tasks={pet.tasks}
+          setTasks={setTasks}
+          pets={pets}
+          setPets={setPets}
+        />
       </main>
     </>
   )

@@ -14,17 +14,12 @@ export default function App() {
     saveToLocal('pets', pets)
   }, [pets])
 
-  /*  const [tasks, setTasks] = useState(loadFromLocal('tasks') || Tasks)
-  useEffect(() => {
-    saveToLocal('tasks', tasks)
-  }, [tasks]) */
-
   function addTask(task) {
-    const index = pets.findIndex((pet) => pet.task.id === pet.id)
+    const index = pets.findIndex((pet) => task.petId === pet.id)
     const pet = pets[index]
-    const petsTasks = pet.tasks
+    const petsTasks = pet.tasks || []
     const newTaskList = [...petsTasks, task]
-    const updatedPet = { ...pet, newTaskList }
+    const updatedPet = { ...pet, tasks: newTaskList }
     setPets([
       ...pets.slice(0, index),
       { ...updatedPet },
@@ -43,7 +38,7 @@ export default function App() {
             <PetForm addPet={addPet} />
           </Route>
           <Route exact path="/pet/:id">
-            <PetProfile pets={pets} setTasks={addTask} />
+            <PetProfile pets={pets} setPets={setPets} setTasks={addTask} />
           </Route>
           <Route path="/pet/:id/create-task">
             <TaskForm pets={pets} addTask={addTask} />

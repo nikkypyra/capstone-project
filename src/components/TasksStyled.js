@@ -2,9 +2,8 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import Checkbox from './Checkbox'
 import DeleteButton from './DeleteButton'
-import { saveToLocal } from '../services'
 
-export default function TasksStyled({ tasks, setTasks }) {
+export default function TasksStyled({ pets, setPets, tasks, setTasks }) {
   const todos = tasks || []
   return (
     <TaskWrapper>
@@ -28,18 +27,18 @@ export default function TasksStyled({ tasks, setTasks }) {
           <div className="status">
             <Checkbox
               checked={todo.complete}
-              onChange={() => handleCheckbox(todo.id)}
+              onChange={() => handleCheckbox(todo, todo.id)}
             ></Checkbox>
           </div>
           <div className="delete">
-            <DeleteButton onClick={() => deleteTask(todo)} />
+            <DeleteButton onClick={() => deleteTask(todo, todo.id)} />
           </div>
         </section>
       ))}
     </TaskWrapper>
   )
 
-  function handleCheckbox(id) {
+  /*function handleCheckbox(id) {
     setTasks(
       tasks.map((task) => {
         if (task.id === id) {
@@ -49,13 +48,42 @@ export default function TasksStyled({ tasks, setTasks }) {
         }
       })
     )
+  }*/
+
+  function handleCheckbox(task, id) {
+    const index = pets.findIndex((pet) => task.petId === pet.id)
+    const pet = pets[index]
+    const petsTasks = pet.tasks
+    const taskIndex = petsTasks.findIndex((task) => task.id === id)
+    const updateTask = { ...taskIndex, complete: !taskIndex.complete }
+    const newTaskList = [
+      ...petsTasks.slice(0, taskIndex),
+      { ...updateTask },
+      ...petsTasks.slice(taskIndex + 1),
+    ]
+    const updatedPet = { ...pet, tasks: newTaskList }
+    setPets([
+      ...pets.slice(0, index),
+      { ...updatedPet },
+      ...pets.slice(index + 1),
+    ])
   }
 
-  function deleteTask(task) {
-    const index = tasks.indexOf(task)
-    const newTasks = [...tasks.slice(0, index), ...tasks.slice(index + 1)]
-    setTasks(newTasks)
-    saveToLocal(newTasks)
+  function deleteTask(task, id) {
+    const index = pets.findIndex((pet) => task.petId === pet.id)
+    const pet = pets[index]
+    const petsTasks = pet.tasks
+    const taskIndex = petsTasks.findIndex((task) => task.id === id)
+    const newTaskList = [
+      ...petsTasks.slice(0, taskIndex),
+      ...petsTasks.slice(taskIndex + 1),
+    ]
+    const updatedPet = { ...pet, tasks: newTaskList }
+    setPets([
+      ...pets.slice(0, index),
+      { ...updatedPet },
+      ...pets.slice(index + 1),
+    ])
   }
 }
 
