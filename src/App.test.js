@@ -9,6 +9,6 @@ test('renders app', () => {
       <App />
     </MemoryRouter>
   )
-  const linkElement = getByText(/Add Pet/i)
+  const linkElement = getByText(/add pet/i)
   expect(linkElement).toBeInTheDocument()
 })
