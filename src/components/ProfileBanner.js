@@ -1,5 +1,11 @@
 import React from 'react'
 import styled from 'styled-components/macro'
+import PropTypes from 'prop-types'
+
+ProfileBanner.propTypes = {
+  name: PropTypes.string,
+  imageSrc: PropTypes.string,
+}
 
 export default function ProfileBanner({ name, imageSrc }) {
   console.log(imageSrc)

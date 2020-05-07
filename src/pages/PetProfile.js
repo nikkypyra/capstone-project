@@ -9,6 +9,8 @@ import PropTypes from 'prop-types'
 
 PetProfile.propTypes = {
   pets: PropTypes.array.isRequired,
+  setPets: PropTypes.func.isRequired,
+  setTasks: PropTypes.func.isRequired,
 }
 
 export default function PetProfile({ pets, setPets, setTasks }) {

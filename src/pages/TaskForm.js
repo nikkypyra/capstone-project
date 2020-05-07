@@ -5,6 +5,12 @@ import SubmitButton from '../components/SubmitButton'
 import CancelButton from '../components/CancelButton'
 import { v4 as uuidv4 } from 'uuid'
 import { useHistory, useParams, Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
+
+TaskForm.propTypes = {
+  pets: PropTypes.array.isRequired,
+  addTask: PropTypes.func.isRequired,
+}
 
 export default function TaskForm({ pets, addTask }) {
   const [description, setDescription] = useState('')
@@ -15,7 +21,6 @@ export default function TaskForm({ pets, addTask }) {
   const uniqueTaskId = uuidv4()
   const params = useParams()
   const pet = pets.find((pet) => pet.id === params.id)
-  //const todos = pet.todos || []
 
   function handleSubmit(event) {
     event.preventDefault()
