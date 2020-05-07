@@ -2,65 +2,84 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import Checkbox from './Checkbox'
 import DeleteButton from './DeleteButton'
-import { saveToLocal } from '../services'
 import PropTypes from 'prop-types'
 
 TasksStyled.propTypes = {
-  tasks: PropTypes.array.isRequired,
-  setTasks: PropTypes.func.isRequired,
+  pets: PropTypes.array.isRequired,
+  setPets: PropTypes.func.isRequired,
+  addTask: PropTypes.func.isRequired,
 }
 
-export default function TasksStyled({ tasks, setTasks }) {
+export default function TasksStyled({ pets, setPets, tasks }) {
+  const todos = tasks || []
   return (
     <TaskWrapper>
-      {tasks.map((task) => (
-        <section key={task.id}>
+      {todos.map((todo) => (
+        <section key={todo.id}>
           <div className="marker">
             <img src={process.env.PUBLIC_URL + '/images/taskpaw.png'} alt="" />
           </div>
           <div className="description">
-            <h3>{task.description}</h3>
+            <h3>{todo.description}</h3>
           </div>
           <div className="time">
-            <h4>{task.time}</h4>
+            <h4>{todo.time}</h4>
           </div>
           <div className="date">
-            <p>{task.date}</p>
+            <p>{todo.date}</p>
           </div>
           <div className="person">
-            <p>{task.person}</p>
+            <p>{todo.person}</p>
           </div>
           <div className="status">
             <Checkbox
-              checked={task.complete}
-              onChange={() => handleCheckbox(task.id)}
+              checked={todo.complete}
+              onChange={() => handleCheckbox(todo, todo.id)}
             ></Checkbox>
           </div>
           <div className="delete">
-            <DeleteButton onClick={() => deleteTask(task)} />
+            <DeleteButton onClick={() => deleteTask(todo, todo.id)} />
           </div>
         </section>
       ))}
     </TaskWrapper>
   )
 
-  function handleCheckbox(id) {
-    setTasks(
-      tasks.map((task) => {
-        if (task.id === id) {
-          return { ...task, complete: !task.complete }
-        } else {
-          return task
-        }
-      })
-    )
+  function handleCheckbox(task, id) {
+    const index = pets.findIndex((pet) => task.petId === pet.id)
+    const pet = pets[index]
+    const petsTasks = pet.tasks
+    const taskIndex = petsTasks.findIndex((task) => task.id === id)
+    const updatedTask = tasks[taskIndex]
+    const newTask = { ...updatedTask, complete: !updatedTask.complete }
+    const newTaskList = [
+      ...petsTasks.slice(0, taskIndex),
+      { ...newTask },
+      ...petsTasks.slice(taskIndex + 1),
+    ]
+    const updatedPet = { ...pet, tasks: newTaskList }
+    setPets([
+      ...pets.slice(0, index),
+      { ...updatedPet },
+      ...pets.slice(index + 1),
+    ])
   }
 
-  function deleteTask(todo) {
-    const index = tasks.indexOf(todo)
-    const newTasks = [...tasks.slice(0, index), ...tasks.slice(index + 1)]
-    setTasks(newTasks)
-    saveToLocal(newTasks)
+  function deleteTask(task, id) {
+    const index = pets.findIndex((pet) => task.petId === pet.id)
+    const pet = pets[index]
+    const petsTasks = pet.tasks
+    const taskIndex = petsTasks.findIndex((task) => task.id === id)
+    const newTaskList = [
+      ...petsTasks.slice(0, taskIndex),
+      ...petsTasks.slice(taskIndex + 1),
+    ]
+    const updatedPet = { ...pet, tasks: newTaskList }
+    setPets([
+      ...pets.slice(0, index),
+      { ...updatedPet },
+      ...pets.slice(index + 1),
+    ])
   }
 }
 

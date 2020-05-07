@@ -6,19 +6,26 @@ import PetForm from './pages/PetForm'
 import PetProfile from './pages/PetProfile'
 import TaskForm from './pages/TaskForm'
 import { loadFromLocal, saveToLocal } from './services'
-import Tasks from './tasks.json'
 import Pets from './pets.json'
 
 export default function App() {
-  const [tasks, setTasks] = useState(loadFromLocal('tasks') || Tasks)
-  useEffect(() => {
-    saveToLocal('tasks', tasks)
-  }, [tasks])
-
   const [pets, setPets] = useState(loadFromLocal('pets') || Pets)
   useEffect(() => {
     saveToLocal('pets', pets)
   }, [pets])
+
+  function addTask(task) {
+    const index = pets.findIndex((pet) => task.petId === pet.id)
+    const pet = pets[index]
+    const petsTasks = pet.tasks || []
+    const newTaskList = [...petsTasks, task]
+    const updatedPet = { ...pet, tasks: newTaskList }
+    setPets([
+      ...pets.slice(0, index),
+      { ...updatedPet },
+      ...pets.slice(index + 1),
+    ])
+  }
   return (
     <>
       <Router>
@@ -30,20 +37,17 @@ export default function App() {
           <Route path="/create-pet">
             <PetForm addPet={addPet} />
           </Route>
-          <Route path="/pet-profile">
-            <PetProfile tasks={tasks} setTasks={setTasks} />
+          <Route exact path="/pet/:id">
+            <PetProfile pets={pets} setPets={setPets} />
           </Route>
-          <Route path="/create-task">
-            <TaskForm addTask={addTask} />
+          <Route path="/pet/:id/create-task">
+            <TaskForm pets={pets} addTask={addTask} />
           </Route>
         </Switch>
       </Router>
     </>
   )
-  function addTask(task) {
-    const newTasks = [task, ...tasks]
-    setTasks(newTasks)
-  }
+
   function addPet(pet) {
     const newPets = [pet, ...pets]
     setPets(newPets)

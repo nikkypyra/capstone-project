@@ -1,11 +1,17 @@
 import React from 'react'
 import styled from 'styled-components/macro'
+import PropTypes from 'prop-types'
 
-export default function ProfileBanner() {
+ProfileBanner.propTypes = {
+  name: PropTypes.string,
+  imageSrc: PropTypes.string,
+}
+
+export default function ProfileBanner({ name, imageSrc }) {
   return (
     <BannerStyled>
-      <img src={process.env.PUBLIC_URL + '/images/pet1.png'} alt="" />
-      <h1>FLUFFY</h1>
+      <img src={imageSrc} alt="" />
+      <h1>{name.toUpperCase()}</h1>
     </BannerStyled>
   )
 }

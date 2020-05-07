@@ -22,7 +22,7 @@ export default function ImageUpload({ onChange, previewImage }) {
       )}
       <UploadWrapper>
         <ImageUploadStyled htmlFor="imageSrc">
-          <AddButton className="upload-button" text="Upload photo" />
+          <AddButton className="upload-button" text="Upload photo*" />
         </ImageUploadStyled>
         <input
           type="file"
@@ -30,6 +30,7 @@ export default function ImageUpload({ onChange, previewImage }) {
           accept="image/*"
           className="file-input"
           onChange={onChange}
+          required
         />
       </UploadWrapper>
     </>

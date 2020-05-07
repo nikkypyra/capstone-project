@@ -4,26 +4,29 @@ import ProfileBanner from '../components/ProfileBanner'
 import TasksStyled from '../components/TasksStyled'
 import AddButton from '../components/AddButton'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 PetProfile.propTypes = {
-  tasks: PropTypes.array.isRequired,
-  setTasks: PropTypes.func.isRequired,
+  pets: PropTypes.array.isRequired,
+  setPets: PropTypes.func.isRequired,
 }
 
-export default function PetProfile({ tasks, setTasks }) {
+export default function PetProfile({ pets, setPets }) {
+  const params = useParams()
+  const pet = pets.find((pet) => pet.id === params.id)
+
   return (
     <>
       <Header />
       <main>
-        <ProfileBanner />
+        <ProfileBanner imageSrc={pet.imageSrc} name={pet.name} />
         <ButtonWrapper>
-          <Link to="/create-task">
+          <Link to={`/pet/${pet.id}/create-task`}>
             <AddButton text="Add Task" />
           </Link>
         </ButtonWrapper>
-        <TasksStyled tasks={tasks} setTasks={setTasks} />
+        <TasksStyled tasks={pet.tasks} pets={pets} setPets={setPets} />
       </main>
     </>
   )

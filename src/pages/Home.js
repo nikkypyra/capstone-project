@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { saveToLocal } from '../services'
 import DeleteButton from '../components/DeleteButton'
 import PropTypes from 'prop-types'
+import { storage } from '../firebase'
 
 Home.propTypes = {
   pets: PropTypes.array.isRequired,
@@ -23,9 +24,11 @@ export default function Home({ pets, setPets }) {
       </ButtonWrapper>
       <PetWrapper>
         {pets.map((pet) => (
-          <section key={pet.petId}>
+          <section key={pet.id}>
             <div className="image">
-              <img src={pet.imageSrc} alt={pet.name} />
+              <Link to={`/pet/${pet.id}`} key={pet.id}>
+                <img src={pet.imageSrc} alt={pet.name} />
+              </Link>
             </div>
             <div className="name">
               <h1>{pet.name.toUpperCase()}</h1>
@@ -43,6 +46,8 @@ export default function Home({ pets, setPets }) {
     const newPets = [...pets.slice(0, index), ...pets.slice(index + 1)]
     setPets(newPets)
     saveToLocal(newPets)
+    const image = storage.ref(`images/${pet.imageTitle}`)
+    image.delete().catch((error) => {})
   }
 }
 

@@ -9,5 +9,5 @@ export default {
 }
 
 export const TestProfileBanner = () => {
-  return <ProfileBanner />
+  return <ProfileBanner name="name here" imageSrc={'./images/pet1.png'} />
 }

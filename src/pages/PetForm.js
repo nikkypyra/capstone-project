@@ -5,8 +5,7 @@ import SubmitButton from '../components/SubmitButton'
 import CancelButton from '../components/CancelButton'
 import ImageUpload from '../components/ImageUpload'
 import { v4 as uuidv4 } from 'uuid'
-import { useHistory } from 'react-router-dom'
-import { Link } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import { storage } from '../firebase'
 import PropTypes from 'prop-types'
 
@@ -28,7 +27,8 @@ export default function PetForm({ addPet }) {
       name,
       imageSrc: previewImage.imageUrl,
       imageTitle: previewImage.imageName,
-      petId: uniquePetId,
+      id: uniquePetId,
+      tasks: [],
     })
     history.push('/')
     setPreviewImage({ imageUrl: '', imageName: '' })
@@ -66,7 +66,7 @@ export default function PetForm({ addPet }) {
           </label>
         </div>
         <SubmitButton text="Submit" />
-        <p>*Mandatory Field</p>
+        <p>*Mandatory Fields</p>
       </Form>
     </>
   )

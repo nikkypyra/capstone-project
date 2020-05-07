@@ -1,10 +1,13 @@
 import React from 'react'
 import styled from 'styled-components/macro'
+import { Link } from 'react-router-dom'
 
 export default function Header() {
   return (
     <HeaderStyled>
-      <img src={process.env.PUBLIC_URL + '/images/pawlog.png'} alt="" />
+      <Link to="/">
+        <img src={process.env.PUBLIC_URL + '/images/pawlog.png'} alt="pawlog" />
+      </Link>
     </HeaderStyled>
   )
 }
