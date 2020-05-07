@@ -6,7 +6,7 @@ export default function Header() {
   return (
     <HeaderStyled>
       <Link to="/">
-        <img src={process.env.PUBLIC_URL + '/images/pawlog.png'} alt="" />
+        <img src={process.env.PUBLIC_URL + '/images/pawlog.png'} alt="pawlog" />
       </Link>
     </HeaderStyled>
   )

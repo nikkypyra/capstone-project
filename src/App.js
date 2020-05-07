@@ -38,7 +38,7 @@ export default function App() {
             <PetForm addPet={addPet} />
           </Route>
           <Route exact path="/pet/:id">
-            <PetProfile pets={pets} setPets={setPets} setTasks={addTask} />
+            <PetProfile pets={pets} setPets={setPets} />
           </Route>
           <Route path="/pet/:id/create-task">
             <TaskForm pets={pets} addTask={addTask} />

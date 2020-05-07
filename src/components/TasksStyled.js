@@ -2,8 +2,15 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import Checkbox from './Checkbox'
 import DeleteButton from './DeleteButton'
+import PropTypes from 'prop-types'
 
-export default function TasksStyled({ pets, setPets, tasks, setTasks }) {
+TasksStyled.propTypes = {
+  pets: PropTypes.array.isRequired,
+  setPets: PropTypes.func.isRequired,
+  addTask: PropTypes.func.isRequired,
+}
+
+export default function TasksStyled({ pets, setPets, tasks }) {
   const todos = tasks || []
   return (
     <TaskWrapper>
@@ -37,18 +44,6 @@ export default function TasksStyled({ pets, setPets, tasks, setTasks }) {
       ))}
     </TaskWrapper>
   )
-
-  /*function handleCheckbox(id) {
-    setTasks(
-      tasks.map((task) => {
-        if (task.id === id) {
-          return { ...task, complete: !task.complete }
-        } else {
-          return task
-        }
-      })
-    )
-  }*/
 
   function handleCheckbox(task, id) {
     const index = pets.findIndex((pet) => task.petId === pet.id)

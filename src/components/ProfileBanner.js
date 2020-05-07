@@ -8,7 +8,6 @@ ProfileBanner.propTypes = {
 }
 
 export default function ProfileBanner({ name, imageSrc }) {
-  console.log(imageSrc)
   return (
     <BannerStyled>
       <img src={imageSrc} alt="" />
