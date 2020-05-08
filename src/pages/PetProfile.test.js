@@ -9,14 +9,11 @@ const pet = pets.find((pet) => pet.id === '1')
 test('renders content of PetProfile', () => {
   const { getByText } = render(
     <MemoryRouter>
-      <PetProfile
-        pets={pets}
-        //match={{ params: { id: 1 } }}
-        imageSrc={pet.imageSrc}
-        name={pet.name}
-      />
+      <PetProfile pets={pets} imageSrc={pet.imageSrc} name={pet.name} />
     </MemoryRouter>
   )
 
   expect(getByText(/fluffy/i)).toBeInTheDocument()
 })
+
+//match={{ params: { id: 1 } }}

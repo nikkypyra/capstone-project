@@ -14,34 +14,41 @@ export default function TasksStyled({ pets, setPets, tasks }) {
   const todos = tasks || []
   return (
     <TaskWrapper>
-      {todos.map((todo) => (
-        <section key={todo.id}>
-          <div className="marker">
-            <img src={process.env.PUBLIC_URL + '/images/taskpaw.png'} alt="" />
-          </div>
-          <div className="description">
-            <h3>{todo.description}</h3>
-          </div>
-          <div className="time">
-            <h4>{todo.time}</h4>
-          </div>
-          <div className="date">
-            <p>{todo.date}</p>
-          </div>
-          <div className="person">
-            <p>{todo.person}</p>
-          </div>
-          <div className="status">
-            <Checkbox
-              checked={todo.complete}
-              onChange={() => handleCheckbox(todo, todo.id)}
-            ></Checkbox>
-          </div>
-          <div className="delete">
-            <DeleteButton onClick={() => deleteTask(todo, todo.id)} />
-          </div>
-        </section>
-      ))}
+      {todos
+        .slice()
+        .sort((taskA, taskB) => taskA.date > taskB.date)
+        .sort((taskA, taskB) => taskA.time > taskB.time)
+        .map((todo) => (
+          <section key={todo.id}>
+            <div className="marker">
+              <img
+                src={process.env.PUBLIC_URL + '/images/taskpaw.png'}
+                alt=""
+              />
+            </div>
+            <div className="description">
+              <h3>{todo.description}</h3>
+            </div>
+            <div className="time">
+              <h4>{todo.time}</h4>
+            </div>
+            <div className="date">
+              <p>{todo.date}</p>
+            </div>
+            <div className="person">
+              <p>{todo.person}</p>
+            </div>
+            <div className="status">
+              <Checkbox
+                checked={todo.complete}
+                onChange={() => handleCheckbox(todo, todo.id)}
+              ></Checkbox>
+            </div>
+            <div className="delete">
+              <DeleteButton onClick={() => deleteTask(todo, todo.id)} />
+            </div>
+          </section>
+        ))}
     </TaskWrapper>
   )
 
