@@ -9,13 +9,12 @@ import PropTypes from 'prop-types'
 
 PetProfile.propTypes = {
   pets: PropTypes.array.isRequired,
-  setPets: PropTypes.func.isRequired,
+  setPets: PropTypes.func,
 }
 
 export default function PetProfile({ pets, setPets }) {
   const params = useParams()
   const pet = pets.find((pet) => pet.id === params.id)
-
   return (
     <>
       <Header />
