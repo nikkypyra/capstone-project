@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import Header from '../components/Header'
 import SearchBar from '../components/SearchBar'
 import FilteredList from '../components/FilteredList'
-//import styled from 'styled-components/macro'
 
 export default function Filter({ pets, setPets }) {
   const [searchInput, setSearchInput] = useState('')

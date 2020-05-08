@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 import Checkbox from './Checkbox'
-import DeleteButton from './DeleteButton'
+import DeleteButton from './Buttons/DeleteButton'
 import PropTypes from 'prop-types'
 
 TasksStyled.propTypes = {
@@ -17,7 +17,7 @@ export default function TasksStyled({ pets, setPets, tasks }) {
       {todos
         .slice()
         .sort(
-          (taskA, taskB) => taskA.date > taskB.date || taskA.time > taskB.time
+          (taskA, taskB) => taskA.date > taskB.date && taskA.time > taskB.time
         )
         .map((todo) => (
           <section key={todo.id}>

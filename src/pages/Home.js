@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 import Header from '../components/Header'
-import AddButton from '../components/AddButton'
+import AddButton from '../components/Buttons/AddButton'
 import { Link } from 'react-router-dom'
 import { saveToLocal } from '../services'
-import DeleteButton from '../components/DeleteButton'
+import DeleteButton from '../components/Buttons/DeleteButton'
 import PropTypes from 'prop-types'
 import { storage } from '../firebase'
 

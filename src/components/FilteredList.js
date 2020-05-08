@@ -1,6 +1,6 @@
 import React from 'react'
 import Checkbox from './Checkbox'
-import DeleteButton from './DeleteButton'
+import DeleteButton from './Buttons/DeleteButton'
 import styled from 'styled-components/macro'
 
 export default function TaskList({ filteredTasks, pets, setPets }) {
@@ -9,7 +9,7 @@ export default function TaskList({ filteredTasks, pets, setPets }) {
       {filteredTasks
         .slice()
         .sort(
-          (taskA, taskB) => taskA.date > taskB.date || taskA.time > taskB.time
+          (taskA, taskB) => taskA.date > taskB.date && taskA.time > taskB.time
         )
         .map((todo) => (
           <section key={todo.id}>
