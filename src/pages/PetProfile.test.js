@@ -2,13 +2,21 @@ import React from 'react'
 import { MemoryRouter } from 'react-router-dom'
 import { render } from '@testing-library/react'
 import PetProfile from './PetProfile'
+import pets from '../pets.json'
 
-test('render pet profile page', () => {
+const pet = pets.find((pet) => pet.id === '1')
+
+test('renders content of PetProfile', () => {
   const { getByText } = render(
     <MemoryRouter>
-      <PetProfile />
+      <PetProfile
+        pets={pets}
+        //match={{ params: { id: 1 } }}
+        imageSrc={pet.imageSrc}
+        name={pet.name}
+      />
     </MemoryRouter>
   )
-  const linkElement = getByText(/add task/i)
-  expect(linkElement).toBeInTheDocument()
+
+  expect(getByText(/fluffy/i)).toBeInTheDocument()
 })
