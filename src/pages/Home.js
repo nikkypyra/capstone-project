@@ -14,7 +14,6 @@ Home.propTypes = {
 }
 
 export default function Home({ pets, setPets }) {
-  // const animals = pets || [] ...may need later
   return (
     <>
       <Header />

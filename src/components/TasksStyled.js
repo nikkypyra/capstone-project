@@ -16,8 +16,9 @@ export default function TasksStyled({ pets, setPets, tasks }) {
     <TaskWrapper>
       {todos
         .slice()
-        .sort((taskA, taskB) => taskA.date > taskB.date)
-        .sort((taskA, taskB) => taskA.time > taskB.time)
+        .sort(
+          (taskA, taskB) => taskA.date > taskB.date || taskA.time > taskB.time
+        )
         .map((todo) => (
           <section key={todo.id}>
             <div className="marker">
