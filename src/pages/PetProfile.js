@@ -15,7 +15,6 @@ PetProfile.propTypes = {
 export default function PetProfile({ pets, setPets }) {
   const params = useParams()
   const pet = pets.find((pet) => pet.id === params.id)
-
   return (
     <>
       <Header />

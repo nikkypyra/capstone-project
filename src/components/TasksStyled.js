@@ -51,7 +51,6 @@ export default function TasksStyled({ pets, setPets, tasks }) {
         ))}
     </TaskWrapper>
   )
-
   function handleCheckbox(task, id) {
     const index = pets.findIndex((pet) => task.petId === pet.id)
     const pet = pets[index]

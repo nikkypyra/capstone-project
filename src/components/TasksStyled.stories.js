@@ -12,4 +12,11 @@ export default {
 
 const pet = pets.find((pet) => pet.id === '1')
 
-export const taskList = () => <TasksStyled pets={pet} tasks={pet.tasks} />
+export const taskList = () => (
+  <TasksStyled
+    pets={pet}
+    tasks={pet.tasks}
+    onClick={action('onClick')}
+    onChange={action('onClick')}
+  />
+)
