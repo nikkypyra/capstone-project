@@ -28,10 +28,11 @@ export default function TaskForm({ pets, addTask }) {
       description,
       date,
       time,
-      person: 'To be completed by: ' + person,
+      person,
       complete: false,
       id: uniqueTaskId,
       petId: pet.id,
+      petName: pet.name,
     })
     history.push(`/pet/${pet.id}`)
   }

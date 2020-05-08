@@ -3,7 +3,7 @@ import Header from '../components/Header'
 import ProfileBanner from '../components/ProfileBanner'
 import TasksStyled from '../components/TasksStyled'
 import AddButton from '../components/AddButton'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import { Link, useParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
