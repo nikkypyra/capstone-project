@@ -92,7 +92,7 @@ export default function TasksStyled({ pets, setPets, tasks }) {
 
 const TaskWrapper = styled.main`
   section {
-    margin: 28px 0px;
+    margin: 16px 0px;
     display: grid;
     grid-template-columns: 1.4fr 2fr 3fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;

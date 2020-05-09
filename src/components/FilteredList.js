@@ -46,9 +46,9 @@ export default function TaskList({ filteredTasks }) {
 
 const TaskWrapper = styled.main`
   section {
-    margin: 28px 0px;
+    margin: 16px 0px;
     display: grid;
-    grid-template-columns: 1.4fr 2fr 3fr 1fr 1fr 1fr;
+    grid-template-columns: 1.4fr 2fr 3fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
     justify-content: space-evenly;
     align-items: center;
@@ -82,7 +82,7 @@ const TaskWrapper = styled.main`
 
   .person {
     grid-row: 3/4;
-    grid-column: 2/6;
+    grid-column: 2/5;
   }
 
   .status {
