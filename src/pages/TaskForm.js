@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import Header from '../components/Header'
-import SubmitButton from '../components/SubmitButton'
-import CancelButton from '../components/CancelButton'
+import SubmitButton from '../components/Buttons/SubmitButton'
+import CancelButton from '../components/Buttons/CancelButton'
 import { v4 as uuidv4 } from 'uuid'
 import { useHistory, useParams, Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
@@ -28,10 +28,11 @@ export default function TaskForm({ pets, addTask }) {
       description,
       date,
       time,
-      person: 'To be completed by: ' + person,
+      person,
       complete: false,
       id: uniqueTaskId,
       petId: pet.id,
+      petName: pet.name,
     })
     history.push(`/pet/${pet.id}`)
   }

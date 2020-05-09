@@ -1,20 +1,12 @@
 import React from 'react'
-import styled from 'styled-components/macro'
 import Checkbox from './Checkbox'
 import DeleteButton from './Buttons/DeleteButton'
-import PropTypes from 'prop-types'
+import styled from 'styled-components/macro'
 
-TasksStyled.propTypes = {
-  pets: PropTypes.array.isRequired,
-  setPets: PropTypes.func.isRequired,
-  addTask: PropTypes.func.isRequired,
-}
-
-export default function TasksStyled({ pets, setPets, tasks }) {
-  const todos = tasks || []
+export default function TaskList({ filteredTasks, pets, setPets }) {
   return (
     <TaskWrapper>
-      {todos
+      {filteredTasks
         .slice()
         .sort(
           (taskA, taskB) => taskA.date > taskB.date && taskA.time > taskB.time
@@ -39,6 +31,11 @@ export default function TasksStyled({ pets, setPets, tasks }) {
             <div className="person">
               <p>To be completed by: {todo.person}</p>
             </div>
+            <div className="pet-name">
+              <p>
+                For: <strong>{todo.petName}</strong>
+              </p>
+            </div>
             <div className="status">
               <Checkbox
                 checked={todo.complete}
@@ -57,7 +54,7 @@ export default function TasksStyled({ pets, setPets, tasks }) {
     const pet = pets[index]
     const petsTasks = pet.tasks
     const taskIndex = petsTasks.findIndex((task) => task.id === id)
-    const updatedTask = tasks[taskIndex]
+    const updatedTask = filteredTasks[taskIndex]
     const newTask = { ...updatedTask, complete: !updatedTask.complete }
     const newTaskList = [
       ...petsTasks.slice(0, taskIndex),
@@ -95,7 +92,7 @@ const TaskWrapper = styled.main`
     margin: 28px 0px;
     display: grid;
     grid-template-columns: 1.4fr 2fr 3fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
     justify-content: space-evenly;
     align-items: center;
   }
@@ -139,5 +136,9 @@ const TaskWrapper = styled.main`
   .status {
     grid-row: 2/3;
     grid-column: 4/5;
+  }
+  .pet-name {
+    grid-row: 4/5;
+    grid-column: 2/5;
   }
 `

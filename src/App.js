@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import PetForm from './pages/PetForm'
 import PetProfile from './pages/PetProfile'
 import TaskForm from './pages/TaskForm'
+import Filter from './pages/Filter'
 import { loadFromLocal, saveToLocal } from './services'
 import Pets from './pets.json'
 
@@ -42,6 +43,9 @@ export default function App() {
           </Route>
           <Route path="/pet/:id/create-task">
             <TaskForm pets={pets} addTask={addTask} />
+          </Route>
+          <Route path="/filter">
+            <Filter pets={pets} setPets={setPets} />
           </Route>
         </Switch>
       </Router>

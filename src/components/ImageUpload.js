@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import AddButton from './AddButton'
+import AddButton from './Buttons/AddButton'
 import PropTypes from 'prop-types'
 
 ImageUpload.propTypes = {
