@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import GlobalStyles from './GlobalStyles'
+import Header from './components/Header'
+import Navigation from './components/Navigation'
 import Home from './pages/Home'
 import PetForm from './pages/PetForm'
 import PetProfile from './pages/PetProfile'
@@ -31,6 +33,7 @@ export default function App() {
     <>
       <Router>
         <GlobalStyles />
+        <Header />
         <Switch>
           <Route exact path="/">
             <Home pets={pets} setPets={setPets} />
@@ -48,6 +51,7 @@ export default function App() {
             <Filter pets={pets} setPets={setPets} />
           </Route>
         </Switch>
+        <Navigation />
       </Router>
     </>
   )

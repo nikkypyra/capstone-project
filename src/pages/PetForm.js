@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
-import Header from '../components/Header'
 import SubmitButton from '../components/Buttons/SubmitButton'
 import CancelButton from '../components/Buttons/CancelButton'
 import ImageUpload from '../components/ImageUpload'
@@ -36,38 +35,39 @@ export default function PetForm({ addPet }) {
 
   return (
     <>
-      <Header />
-      <Form onSubmit={handleSubmit}>
-        <div className="cancel">
-          <Link to="/">
-            <CancelButton />
-          </Link>
-        </div>
-        <div className="photo-container">
-          <ImageUpload
-            name="imageSrc"
-            className="photo"
-            onChange={handleImageUpload}
-            previewImage={previewImage}
-          />
-        </div>
-        <div className="name">
-          <label>
-            Name*
-            <input
-              type="text"
-              value={name}
-              maxLength="100"
-              placeholder="Insert pet name"
-              onChange={(e) => setName(e.target.value)}
-              required
-              autoFocus
+      <main>
+        <Form onSubmit={handleSubmit}>
+          <div className="cancel">
+            <Link to="/">
+              <CancelButton />
+            </Link>
+          </div>
+          <div className="photo-container">
+            <ImageUpload
+              name="imageSrc"
+              className="photo"
+              onChange={handleImageUpload}
+              previewImage={previewImage}
             />
-          </label>
-        </div>
-        <SubmitButton text="Submit" />
-        <p>*Mandatory Fields</p>
-      </Form>
+          </div>
+          <div className="name">
+            <label>
+              Name*
+              <input
+                type="text"
+                value={name}
+                maxLength="100"
+                placeholder="Insert pet name"
+                onChange={(e) => setName(e.target.value)}
+                required
+                autoFocus
+              />
+            </label>
+          </div>
+          <SubmitButton text="Submit" />
+          <p>*Mandatory Fields</p>
+        </Form>
+      </main>
     </>
   )
 
