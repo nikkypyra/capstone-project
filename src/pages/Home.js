@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import Header from '../components/Header'
 import AddButton from '../components/Buttons/AddButton'
 import { Link } from 'react-router-dom'
 import { saveToLocal } from '../services'
@@ -16,7 +15,6 @@ Home.propTypes = {
 export default function Home({ pets, setPets }) {
   return (
     <>
-      <Header />
       <ButtonWrapper>
         <Link to="/create-pet">
           <AddButton text="Add Pet" />

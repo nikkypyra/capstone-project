@@ -1,9 +1,8 @@
 import React from 'react'
 import Checkbox from './Checkbox'
-import DeleteButton from './Buttons/DeleteButton'
 import styled from 'styled-components/macro'
 
-export default function TaskList({ filteredTasks, pets, setPets }) {
+export default function TaskList({ filteredTasks }) {
   return (
     <TaskWrapper>
       {filteredTasks
@@ -37,61 +36,19 @@ export default function TaskList({ filteredTasks, pets, setPets }) {
               </p>
             </div>
             <div className="status">
-              <Checkbox
-                checked={todo.complete}
-                onChange={() => handleCheckbox(todo, todo.id)}
-              ></Checkbox>
-            </div>
-            <div className="delete">
-              <DeleteButton onClick={() => deleteTask(todo, todo.id)} />
+              <Checkbox checked={todo.complete}></Checkbox>
             </div>
           </section>
         ))}
     </TaskWrapper>
   )
-  function handleCheckbox(task, id) {
-    const index = pets.findIndex((pet) => task.petId === pet.id)
-    const pet = pets[index]
-    const petsTasks = pet.tasks
-    const taskIndex = petsTasks.findIndex((task) => task.id === id)
-    const updatedTask = filteredTasks[taskIndex]
-    const newTask = { ...updatedTask, complete: !updatedTask.complete }
-    const newTaskList = [
-      ...petsTasks.slice(0, taskIndex),
-      { ...newTask },
-      ...petsTasks.slice(taskIndex + 1),
-    ]
-    const updatedPet = { ...pet, tasks: newTaskList }
-    setPets([
-      ...pets.slice(0, index),
-      { ...updatedPet },
-      ...pets.slice(index + 1),
-    ])
-  }
-
-  function deleteTask(task, id) {
-    const index = pets.findIndex((pet) => task.petId === pet.id)
-    const pet = pets[index]
-    const petsTasks = pet.tasks
-    const taskIndex = petsTasks.findIndex((task) => task.id === id)
-    const newTaskList = [
-      ...petsTasks.slice(0, taskIndex),
-      ...petsTasks.slice(taskIndex + 1),
-    ]
-    const updatedPet = { ...pet, tasks: newTaskList }
-    setPets([
-      ...pets.slice(0, index),
-      { ...updatedPet },
-      ...pets.slice(index + 1),
-    ])
-  }
 }
 
 const TaskWrapper = styled.main`
   section {
-    margin: 28px 0px;
+    margin: 16px 0px;
     display: grid;
-    grid-template-columns: 1.4fr 2fr 3fr 1fr 1fr 1fr;
+    grid-template-columns: 1.4fr 2fr 3fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
     justify-content: space-evenly;
     align-items: center;
@@ -118,11 +75,6 @@ const TaskWrapper = styled.main`
     grid-row: 2/3;
     grid-column: 2/3;
   }
-
-  .delete {
-    grid-row: 1/2;
-    grid-column: 6/7;
-  }
   .date {
     grid-row: 2/3;
     grid-column: 3/4;
@@ -130,7 +82,7 @@ const TaskWrapper = styled.main`
 
   .person {
     grid-row: 3/4;
-    grid-column: 2/6;
+    grid-column: 2/5;
   }
 
   .status {

@@ -15,12 +15,10 @@ export default function Header() {
 const HeaderStyled = styled.header`
   display: flex;
   justify-content: flex-start;
-  align-items: center;
-  margin-top: 28px;
-  margin-bottom: 24px;
-  margin-left: 8px;
-  margin-right: 8px;
+  height: 48px;
   img {
+    margin-left: 8px;
+    margin-top: 8px;
     height: 32px;
   }
 `

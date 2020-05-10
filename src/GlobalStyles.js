@@ -7,21 +7,17 @@ export default createGlobalStyle`
     padding: 0;
 }
 
-#root {
-    display: grid;
-    grid-template-rows: 48px auto;
-}
-
 body {
     color: var(--secondary);
     font-size: 16px;
     line-height: 1.4;
     font-family: sans-serif;
-   
 }
 
 main {
-    margin: 8px;
+    margin: 8px 8px 48px 8px;
+    display: grid;
+    overflow: scroll;
 }
 
 :root {

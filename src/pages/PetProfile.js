@@ -1,5 +1,4 @@
 import React from 'react'
-import Header from '../components/Header'
 import ProfileBanner from '../components/ProfileBanner'
 import TasksStyled from '../components/TasksStyled'
 import AddButton from '../components/Buttons/AddButton'
@@ -17,7 +16,6 @@ export default function PetProfile({ pets, setPets }) {
   const pet = pets.find((pet) => pet.id === params.id)
   return (
     <>
-      <Header />
       <main>
         <ProfileBanner imageSrc={pet.imageSrc} name={pet.name} />
         <ButtonWrapper>
@@ -35,5 +33,5 @@ const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   margin-right: 20px;
-  margin-bottom: 48px;
+  margin-bottom: 20px;
 `
