@@ -17,7 +17,9 @@ export default function TasksStyled({ pets, setPets, tasks }) {
       {todos
         .slice()
         .sort(
-          (taskA, taskB) => taskA.date > taskB.date && taskA.time > taskB.time
+          (taskA, taskB) =>
+            taskA.date.localeCompare(taskB.date) ||
+            taskA.time.localeCompare(taskB.time)
         )
         .map((todo) => (
           <section key={todo.id}>
