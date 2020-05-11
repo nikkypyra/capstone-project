@@ -10,5 +10,5 @@ export default {
 }
 
 export const TestCheckbox = () => {
-  return <Checkbox onClick={action('onChange')} />
+  return <Checkbox onClick={action('State of checkbox is changed')} />
 }

@@ -48,7 +48,7 @@ export default function App() {
             <TaskForm pets={pets} addTask={addTask} />
           </Route>
           <Route path="/filter">
-            <Filter pets={pets} setPets={setPets} />
+            <Filter pets={pets} />
           </Route>
         </Switch>
         <Navigation />
