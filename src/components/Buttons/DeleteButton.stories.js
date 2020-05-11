@@ -8,4 +8,6 @@ export default {
   component: DeleteButton,
   decorators: [mobileWrapper],
 }
-export const Button = () => <DeleteButton onClick={action('onClick')} />
+export const Button = () => (
+  <DeleteButton onClick={action('Button is clicked')} />
+)

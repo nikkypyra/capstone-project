@@ -9,12 +9,12 @@ export default {
   decorators: [mobileWrapper],
 }
 export const Simple = () => (
-  <SubmitButton text="Simple" onClick={action('onClick')} />
+  <SubmitButton text="Simple" onClick={action('Button is clicked')} />
 )
 
 export const LongText = () => (
   <SubmitButton
     text="This would be a very long button"
-    onClick={action('onClick')}
+    onClick={action('Button is clicked')}
   />
 )

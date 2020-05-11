@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 
-export default function SearchBar({ setSearchInput }) {
+export default function SearchBar({ filterResults }) {
   return (
     <>
       <SearchSection>
         <InputField
           type="search"
-          onChange={(event) => filterResults(event)}
+          onChange={filterResults}
           placeholder="Search for date or person..."
           autoFocus
         />
@@ -18,9 +18,6 @@ export default function SearchBar({ setSearchInput }) {
       </SearchSection>
     </>
   )
-  function filterResults(event) {
-    setSearchInput(event.target.value)
-  }
 }
 
 const SearchSection = styled.section`

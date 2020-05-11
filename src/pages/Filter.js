@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import SearchBar from '../components/SearchBar'
 import FilteredList from '../components/FilteredList'
 
-export default function Filter({ pets, setPets }) {
+export default function Filter({ pets }) {
   const [searchInput, setSearchInput] = useState('')
 
   const todos = pets.map((pet) => pet.tasks)
@@ -14,10 +14,14 @@ export default function Filter({ pets, setPets }) {
       task.person.toLowerCase().includes(searchInput.toLowerCase())
   )
 
+  function filterResults(event) {
+    setSearchInput(event.target.value)
+  }
+
   return (
     <>
       <main>
-        <SearchBar setSearchInput={setSearchInput} />
+        <SearchBar filterResults={filterResults} />
         {filteredTasks.length === 0 ? (
           <p>No results found.</p>
         ) : (

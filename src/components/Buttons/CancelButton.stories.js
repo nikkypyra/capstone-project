@@ -8,4 +8,6 @@ export default {
   component: CancelButton,
   decorators: [mobileWrapper],
 }
-export const Button = () => <CancelButton onClick={action('onClick')} />
+export const Button = () => (
+  <CancelButton onClick={action('Button is clicked')} />
+)
