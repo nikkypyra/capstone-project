@@ -44,7 +44,7 @@ export default function Home({ pets, setPets }) {
     const newPets = [...pets.slice(0, index), ...pets.slice(index + 1)]
     setPets(newPets)
     saveToLocal(newPets)
-    const image = storage.ref(`images/${pet.imageTitle}`)
+    const image = storage.ref(`images/${pet.imageUrl}`)
     image.delete().catch((error) => {})
   }
 }

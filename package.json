@@ -9,6 +9,8 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "express": "^4.17.1",
+    "firebase-admin": "^8.12.1",
+    "minimist": "^1.2.5",
     "moment": "^2.25.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",

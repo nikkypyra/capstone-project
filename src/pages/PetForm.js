@@ -7,30 +7,35 @@ import { v4 as uuidv4 } from 'uuid'
 import { useHistory, Link } from 'react-router-dom'
 import { storage } from '../firebase'
 import PropTypes from 'prop-types'
+import { db } from '../firebase'
 
 PetForm.propTypes = {
-  addPet: PropTypes.func.isRequired,
+  addPet: PropTypes.func,
 }
 
-export default function PetForm({ addPet }) {
+export default function PetForm() {
   const [name, setName] = useState('')
   const [previewImage, setPreviewImage] = useState({
     imageUrl: '',
-    imageName: '',
   })
-  const history = useHistory()
+  // const history = useHistory()
   const uniquePetId = uuidv4()
   function handleSubmit(event) {
     event.preventDefault()
-    addPet({
+    db.collection('pets').add({
       name,
       imageSrc: previewImage.imageUrl,
-      imageTitle: previewImage.imageName,
       id: uniquePetId,
       tasks: [],
     })
-    history.push('/')
-    setPreviewImage({ imageUrl: '', imageName: '' })
+    /*addPet({
+      name,
+      imageSrc: previewImage.imageUrl,
+      id: uniquePetId,
+      tasks: [],
+    })
+    setPreviewImage({ imageUrl: '' })
+    history.push('/')*/
   }
 
   return (
@@ -86,7 +91,7 @@ export default function PetForm({ addPet }) {
           .child(image.name)
           .getDownloadURL()
           .then((url) => {
-            setPreviewImage({ imageUrl: url, imageName: image.name })
+            setPreviewImage({ imageUrl: url })
           })
       }
     )
