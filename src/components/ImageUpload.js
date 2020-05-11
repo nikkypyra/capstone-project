@@ -8,28 +8,28 @@ ImageUpload.propTypes = {
   onChange: PropTypes.func,
 }
 
-export default function ImageUpload({ onChange, previewImage }) {
+export default function ImageUpload({ updateImage, previewImage }) {
   return (
     <>
       {previewImage.imageUrl ? (
-        <ContainerWrapper>
-          <ImageContainer src={previewImage.imageUrl} alt="" />
-        </ContainerWrapper>
+        <ImageWrapper>
+          <Image src={previewImage.imageUrl} alt="" />
+        </ImageWrapper>
       ) : (
-        <ImagePlaceholder>
-          <img src={process.env.PUBLIC_URL + '/images/taskpaw.png'} alt="" />
-        </ImagePlaceholder>
+        <ImageWrapper>
+          <Image src={process.env.PUBLIC_URL + '/images/taskpaw.png'} alt="" />
+        </ImageWrapper>
       )}
       <UploadWrapper>
-        <ImageUploadStyled htmlFor="imageSrc">
+        <label htmlFor="imageSrc">
           <AddButton className="upload-button" text="Upload photo*" />
-        </ImageUploadStyled>
+        </label>
         <input
           type="file"
           name="imageSrc"
           accept="image/*"
           className="file-input"
-          onChange={onChange}
+          onChange={updateImage}
           required
         />
       </UploadWrapper>
@@ -46,22 +46,12 @@ const UploadWrapper = styled.section`
     position: absolute;
   }
 `
-const ImageUploadStyled = styled.label``
 
-const ImagePlaceholder = styled.div`
-  text-align: center;
-  img {
-    height: 240px;
-    width: 240px;
-    border: 8px solid var(--tertiary);
-    border-radius: 50%;
-  }
-`
-const ContainerWrapper = styled.section`
+const ImageWrapper = styled.div`
   text-align: center;
 `
-const ImageContainer = styled.img`
-  background: center url(${(props) => props.image});
+
+const Image = styled.img`
   height: 240px;
   width: 240px;
   border: 8px solid var(--tertiary);

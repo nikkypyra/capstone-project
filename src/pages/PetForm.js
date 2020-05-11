@@ -46,7 +46,7 @@ export default function PetForm({ addPet }) {
             <ImageUpload
               name="imageSrc"
               className="photo"
-              onChange={handleImageUpload}
+              updateImage={handleImageUpload}
               previewImage={previewImage}
             />
           </div>
