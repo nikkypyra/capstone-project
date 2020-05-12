@@ -3,16 +3,16 @@ import styled from 'styled-components/macro'
 import AddButton from '../components/Buttons/AddButton'
 import { Link } from 'react-router-dom'
 //import { saveToLocal } from '../services'
-//import DeleteButton from '../components/Buttons/DeleteButton'
+import DeleteButton from '../components/Buttons/DeleteButton'
 import PropTypes from 'prop-types'
 //import { storage } from '../firebase'
+//import { db } from '../firebase'
 
 Home.propTypes = {
   pets: PropTypes.array.isRequired,
 }
 
 export default function Home({ pets }) {
-  console.log(pets)
   return (
     <>
       <ButtonWrapper>
@@ -31,12 +31,22 @@ export default function Home({ pets }) {
             <div className="name">
               <h1>{pet.name}</h1>
             </div>
-            <div className="delete"></div>
+            <div className="delete">
+              <DeleteButton /*onClick={deletePet(pet.id)}*/ />
+            </div>
           </section>
         ))}
       </PetWrapper>
     </>
   )
+  /*function deletePet(pet) {
+    const index = pets.indexOf(pet)
+    const newPets = [...pets.slice(0, index), ...pets.slice(index + 1)]
+    setPets(newPets)
+    db.collection('pets').doc(pet).set(pets)
+    const image = storage.ref(`images/${pet.imageUrl}`)
+    image.delete().catch((error) => {})
+  }*/
   /*function deletePet(pet) {
     const index = pets.indexOf(pet)
     const newPets = [...pets.slice(0, index), ...pets.slice(index + 1)]
