@@ -3,7 +3,7 @@ import styled from 'styled-components/macro'
 import SubmitButton from '../components/Buttons/SubmitButton'
 import CancelButton from '../components/Buttons/CancelButton'
 import ImageUpload from '../components/ImageUpload'
-import { v4 as uuidv4 } from 'uuid'
+//import { v4 as uuidv4 } from 'uuid'
 import { useHistory, Link } from 'react-router-dom'
 import { storage } from '../firebase'
 import PropTypes from 'prop-types'
@@ -18,15 +18,13 @@ export default function PetForm() {
   const [previewImage, setPreviewImage] = useState({
     imageUrl: '',
   })
-  // const history = useHistory()
-  const uniquePetId = uuidv4()
+  const history = useHistory()
+  //const uniquePetId = uuidv4()
   function handleSubmit(event) {
     event.preventDefault()
     db.collection('pets').add({
       name,
       imageSrc: previewImage.imageUrl,
-      id: uniquePetId,
-      tasks: [],
     })
     /*addPet({
       name,
@@ -34,8 +32,8 @@ export default function PetForm() {
       id: uniquePetId,
       tasks: [],
     })
-    setPreviewImage({ imageUrl: '' })
-    history.push('/')*/
+    setPreviewImage({ imageUrl: '' })*/
+    history.push('/')
   }
 
   return (

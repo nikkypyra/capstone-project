@@ -5,13 +5,16 @@ import DeleteButton from './Buttons/DeleteButton'
 import PropTypes from 'prop-types'
 
 TasksStyled.propTypes = {
-  pets: PropTypes.array.isRequired,
-  setPets: PropTypes.func.isRequired,
-  addTask: PropTypes.func.isRequired,
+  pets: PropTypes.array,
+  setPets: PropTypes.func,
 }
 
-export default function TasksStyled({ pets, setPets, tasks }) {
-  const todos = tasks || []
+export default function TasksStyled({ pet, pets, setPets, tasks, setTasks }) {
+  const todos = tasks.filter(function (task) {
+    return task.petId === pet.id
+  })
+  //const todos = tasks || []
+  console.log(pet)
   return (
     <TaskWrapper>
       {todos

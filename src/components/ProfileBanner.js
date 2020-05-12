@@ -11,7 +11,7 @@ export default function ProfileBanner({ name, imageSrc }) {
   return (
     <BannerStyled>
       <img src={imageSrc} alt="" />
-      <h1>{name.toUpperCase()}</h1>
+      <h1>{name}</h1>
     </BannerStyled>
   )
 }

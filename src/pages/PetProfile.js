@@ -7,11 +7,11 @@ import { Link, useParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 PetProfile.propTypes = {
-  pets: PropTypes.array.isRequired,
+  pets: PropTypes.array,
   setPets: PropTypes.func,
 }
 
-export default function PetProfile({ pets, setPets }) {
+export default function PetProfile({ pets, setPets, tasks, setTasks }) {
   const params = useParams()
   const pet = pets.find((pet) => pet.id === params.id)
   return (
@@ -23,7 +23,13 @@ export default function PetProfile({ pets, setPets }) {
             <AddButton text="Add Task" />
           </Link>
         </ButtonWrapper>
-        <TasksStyled tasks={pet.tasks} pets={pets} setPets={setPets} />
+        <TasksStyled
+          pet={pet}
+          tasks={tasks}
+          setTasks={setTasks}
+          pets={pets}
+          setPets={setPets}
+        />
       </main>
     </>
   )

@@ -2,17 +2,17 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import AddButton from '../components/Buttons/AddButton'
 import { Link } from 'react-router-dom'
-import { saveToLocal } from '../services'
-import DeleteButton from '../components/Buttons/DeleteButton'
+//import { saveToLocal } from '../services'
+//import DeleteButton from '../components/Buttons/DeleteButton'
 import PropTypes from 'prop-types'
-import { storage } from '../firebase'
+//import { storage } from '../firebase'
 
 Home.propTypes = {
   pets: PropTypes.array.isRequired,
-  setPets: PropTypes.func.isRequired,
 }
 
-export default function Home({ pets, setPets }) {
+export default function Home({ pets }) {
+  console.log(pets)
   return (
     <>
       <ButtonWrapper>
@@ -29,24 +29,27 @@ export default function Home({ pets, setPets }) {
               </Link>
             </div>
             <div className="name">
-              <h1>{pet.name.toUpperCase()}</h1>
+              <h1>{pet.name}</h1>
             </div>
-            <div className="delete">
-              <DeleteButton onClick={() => deletePet(pet)} />
-            </div>
+            <div className="delete"></div>
           </section>
         ))}
       </PetWrapper>
     </>
   )
-  function deletePet(pet) {
+  /*function deletePet(pet) {
     const index = pets.indexOf(pet)
     const newPets = [...pets.slice(0, index), ...pets.slice(index + 1)]
     setPets(newPets)
     saveToLocal(newPets)
     const image = storage.ref(`images/${pet.imageUrl}`)
     image.delete().catch((error) => {})
-  }
+
+
+    <DeleteButton  onClick={() => deletePet(pet)} />
+
+    had to remove toUpperCase() <h1>{pet.name.toUpperCase()}</h1>
+  }*/
 }
 
 const ButtonWrapper = styled.div`
