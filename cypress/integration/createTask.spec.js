@@ -1,6 +1,9 @@
 describe('Add task', () => {
+  beforeEach(() => {
+    cy.visit('/pet/makS69UINrJFuhAuCyui')
+    cy.get('a[href="/create-task"]').click()
+  })
   it('adds a new task', () => {
-    cy.visit('/create-task')
     cy.get('[data-cy=submit-button]').should('be.disabled')
     cy.get('input[name="description"]').type('Random task')
     cy.get('input[name="date"]').type('2020-05-29')
