@@ -9,6 +9,7 @@ import PetProfile from './pages/PetProfile'
 import TaskForm from './pages/TaskForm'
 import Filter from './pages/Filter'
 import { db } from './firebase'
+import { storage } from './firebase'
 
 export default function App() {
   const [pets, setPets] = useState([])
@@ -32,6 +33,33 @@ export default function App() {
     })
   }, [])
 
+  const [previewImage, setPreviewImage] = useState({
+    imageUrl:
+      'https://firebasestorage.googleapis.com/v0/b/pawlog-app.appspot.com/o/images%2Ftaskpaw.png?alt=media&token=7447258d-30c7-4914-aa87-1d99162c421d',
+    imageName: 'taskpaw.png',
+  })
+
+  function handleImageUpload(event) {
+    const image = event.target.files[0]
+    const uploadTask = storage.ref(`images/${image.name}`).put(image)
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {},
+      (error) => {
+        alert('An error occurred, please try again.')
+      },
+      () => {
+        storage
+          .ref('images')
+          .child(image.name)
+          .getDownloadURL()
+          .then((url) => {
+            setPreviewImage({ imageUrl: url, imageName: image.name })
+          })
+      }
+    )
+  }
+
   function handleCheckbox(todo) {
     db.collection('tasks').doc(todo.id).update({ complete: !todo.complete })
   }
@@ -50,7 +78,10 @@ export default function App() {
             <Home pets={pets} />
           </Route>
           <Route path="/create-pet">
-            <PetForm />
+            <PetForm
+              previewImage={previewImage}
+              handleImageUpload={handleImageUpload}
+            />
           </Route>
           <Route exact path="/pet/:id">
             <PetProfile

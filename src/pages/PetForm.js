@@ -4,7 +4,7 @@ import SubmitButton from '../components/Buttons/SubmitButton'
 import CancelButton from '../components/Buttons/CancelButton'
 import ImageUpload from '../components/ImageUpload'
 import { useHistory, Link } from 'react-router-dom'
-import { storage } from '../firebase'
+
 import PropTypes from 'prop-types'
 import { db } from '../firebase'
 
@@ -12,13 +12,10 @@ PetForm.propTypes = {
   addPet: PropTypes.func,
 }
 
-export default function PetForm() {
+export default function PetForm({ previewImage, handleImageUpload }) {
   const [name, setName] = useState('')
-  const [previewImage, setPreviewImage] = useState({
-    imageUrl: '',
-    imageName: '',
-  })
   const history = useHistory()
+
   function handleSubmit(event) {
     event.preventDefault()
     db.collection('pets').add({
@@ -42,7 +39,7 @@ export default function PetForm() {
             <ImageUpload
               name="imageSrc"
               className="photo"
-              updateImage={handleImageUpload}
+              handleImageUpload={handleImageUpload}
               previewImage={previewImage}
             />
           </div>
@@ -66,27 +63,6 @@ export default function PetForm() {
       </main>
     </>
   )
-
-  function handleImageUpload(event) {
-    const image = event.target.files[0]
-    const uploadTask = storage.ref(`images/${image.name}`).put(image)
-    uploadTask.on(
-      'state_changed',
-      (snapshot) => {},
-      (error) => {
-        alert('An error occurred, please try again.')
-      },
-      () => {
-        storage
-          .ref('images')
-          .child(image.name)
-          .getDownloadURL()
-          .then((url) => {
-            setPreviewImage({ imageUrl: url, imageName: image.name })
-          })
-      }
-    )
-  }
 }
 
 const Form = styled.form`
