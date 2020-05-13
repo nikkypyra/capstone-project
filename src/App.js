@@ -75,7 +75,7 @@ export default function App() {
             <TaskForm pets={pets} /*addTask={addTask}*/ />
           </Route>
           <Route path="/filter">
-            <Filter pets={pets} />
+            <Filter pets={pets} tasks={tasks} />
           </Route>
         </Switch>
         <Navigation />

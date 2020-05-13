@@ -2,7 +2,12 @@ import React from 'react'
 import Checkbox from './Checkbox'
 import styled from 'styled-components/macro'
 
-export default function TaskList({ filteredTasks }) {
+export default function TaskList({ filteredTasks, pets }) {
+  function petName(todo) {
+    const pet = pets.find((pet) => pet.id === todo.petId)
+    return pet.name
+  }
+
   return (
     <TaskWrapper>
       {filteredTasks
@@ -34,7 +39,7 @@ export default function TaskList({ filteredTasks }) {
             </div>
             <div className="pet-name">
               <p>
-                For: <strong>{todo.petName}</strong>
+                For: <strong>{petName(todo).toUpperCase()}</strong>
               </p>
             </div>
             <div className="status">
