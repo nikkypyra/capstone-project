@@ -11,6 +11,4 @@ export default {
 
 const pet = pets.find((pet) => pet.id === '1')
 
-export const staticTaskList = () => (
-  <TasksStyled pets={pets} tasks={pet.tasks} />
-)
+export const staticTaskList = () => <TasksStyled pet={pet} tasks={pet.tasks} />

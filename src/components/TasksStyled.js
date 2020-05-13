@@ -3,18 +3,18 @@ import styled from 'styled-components/macro'
 import Checkbox from './Checkbox'
 import DeleteButton from './Buttons/DeleteButton'
 import PropTypes from 'prop-types'
+import { db } from '../firebase'
 
 TasksStyled.propTypes = {
   pets: PropTypes.array,
   setPets: PropTypes.func,
 }
 
-export default function TasksStyled({ pet, pets, setPets, tasks, setTasks }) {
+export default function TasksStyled({ pet, tasks }) {
   const todos = tasks.filter(function (task) {
     return task.petId === pet.id
   })
   //const todos = tasks || []
-  console.log(pet)
   return (
     <TaskWrapper>
       {todos
@@ -47,17 +47,25 @@ export default function TasksStyled({ pet, pets, setPets, tasks, setTasks }) {
             <div className="status">
               <Checkbox
                 checked={todo.complete}
-                onChange={() => handleCheckbox(todo, todo.id)}
+                onChange={() => handleCheckbox(todo)}
               ></Checkbox>
             </div>
             <div className="delete">
-              <DeleteButton onClick={() => deleteTask(todo, todo.id)} />
+              <DeleteButton onClick={() => deleteTask(todo)} />
             </div>
           </section>
         ))}
     </TaskWrapper>
   )
-  function handleCheckbox(task, id) {
+  function handleCheckbox(todo) {
+    db.collection('tasks').doc(todo.id).update({ complete: !todo.complete })
+  }
+
+  function deleteTask(todo) {
+    db.collection('tasks').doc(todo.id).delete()
+  }
+
+  /* function handleCheckbox(task, id) {
     const index = pets.findIndex((pet) => task.petId === pet.id)
     const pet = pets[index]
     const petsTasks = pet.tasks
@@ -92,7 +100,7 @@ export default function TasksStyled({ pet, pets, setPets, tasks, setTasks }) {
       { ...updatedPet },
       ...pets.slice(index + 1),
     ])
-  }
+  } */
 }
 
 const TaskWrapper = styled.main`
