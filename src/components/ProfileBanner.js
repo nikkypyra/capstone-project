@@ -8,7 +8,6 @@ ProfileBanner.propTypes = {
 }
 
 export default function ProfileBanner({ name, imageSrc }) {
-  //const petName = name || {}
   return (
     <BannerStyled>
       <img src={imageSrc} alt="" />

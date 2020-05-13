@@ -2,11 +2,11 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import AddButton from '../components/Buttons/AddButton'
 import { Link } from 'react-router-dom'
-//import { saveToLocal } from '../services'
 import DeleteButton from '../components/Buttons/DeleteButton'
 import PropTypes from 'prop-types'
 //import { storage } from '../firebase'
-//import { db } from '../firebase'
+import { db } from '../firebase'
+import { storageRef } from '../firebase'
 
 Home.propTypes = {
   pets: PropTypes.array.isRequired,
@@ -32,39 +32,29 @@ export default function Home({ pets }) {
               <h1>{pet.name.toUpperCase()}</h1>
             </div>
             <div className="delete">
-              <DeleteButton /*onClick={deletePet(pet.id)}*/ />
+              <DeleteButton onClick={() => deletePet(pet)} />
             </div>
           </section>
         ))}
       </PetWrapper>
     </>
   )
-  /* function deleteData(dataRef, userId, documentId) {
-    return dataRef.doc(userId).collection('workouts').doc(documentId).delete()
-  }
-  
-  
   function deletePet(pet) {
-    const index = pets.indexOf(pet)
-    const newPets = [...pets.slice(0, index), ...pets.slice(index + 1)]
-    setPets(newPets)
-    db.collection('pets').doc(pet).set(pets)
-    const image = storage.ref(`images/${pet.imageUrl}`)
-    image.delete().catch((error) => {})
-  }*/
-  /*function deletePet(pet) {
-    const index = pets.indexOf(pet)
-    const newPets = [...pets.slice(0, index), ...pets.slice(index + 1)]
-    setPets(newPets)
-    saveToLocal(newPets)
-    const image = storage.ref(`images/${pet.imageUrl}`)
-    image.delete().catch((error) => {})
+    db.collection('pets').doc(pet.id).delete()
+    const image = storageRef.child(`images/${pet.imageUrl}`)
+    image
+      .delete()
+      .then(() => console.log('Success'))
+      .catch((error) => console.log('Failed'))
+  }
 
-
-    <DeleteButton  onClick={() => deletePet(pet)} />
-
-    had to remove toUpperCase() <h1>{pet.name.toUpperCase()}</h1>
-  }*/
+  /* var desertRef = storageRef.child('images/desert.jpg');
+// Delete the file
+desertRef.delete().then(function() {
+  // File deleted successfully
+}).catch(function(error) {
+  // Uh-oh, an error occurred!
+});*/
 }
 
 const ButtonWrapper = styled.div`

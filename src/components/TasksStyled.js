@@ -6,15 +6,14 @@ import PropTypes from 'prop-types'
 import { db } from '../firebase'
 
 TasksStyled.propTypes = {
-  pets: PropTypes.array,
-  setPets: PropTypes.func,
+  pet: PropTypes.object,
+  tasks: PropTypes.array,
 }
 
 export default function TasksStyled({ pet, tasks }) {
   const todos = tasks.filter(function (task) {
     return task.petId === pet.id
   })
-  //const todos = tasks || []
   return (
     <TaskWrapper>
       {todos
@@ -64,43 +63,6 @@ export default function TasksStyled({ pet, tasks }) {
   function deleteTask(todo) {
     db.collection('tasks').doc(todo.id).delete()
   }
-
-  /* function handleCheckbox(task, id) {
-    const index = pets.findIndex((pet) => task.petId === pet.id)
-    const pet = pets[index]
-    const petsTasks = pet.tasks
-    const taskIndex = petsTasks.findIndex((task) => task.id === id)
-    const updatedTask = tasks[taskIndex]
-    const newTask = { ...updatedTask, complete: !updatedTask.complete }
-    const newTaskList = [
-      ...petsTasks.slice(0, taskIndex),
-      { ...newTask },
-      ...petsTasks.slice(taskIndex + 1),
-    ]
-    const updatedPet = { ...pet, tasks: newTaskList }
-    setPets([
-      ...pets.slice(0, index),
-      { ...updatedPet },
-      ...pets.slice(index + 1),
-    ])
-  }
-
-  function deleteTask(task, id) {
-    const index = pets.findIndex((pet) => task.petId === pet.id)
-    const pet = pets[index]
-    const petsTasks = pet.tasks
-    const taskIndex = petsTasks.findIndex((task) => task.id === id)
-    const newTaskList = [
-      ...petsTasks.slice(0, taskIndex),
-      ...petsTasks.slice(taskIndex + 1),
-    ]
-    const updatedPet = { ...pet, tasks: newTaskList }
-    setPets([
-      ...pets.slice(0, index),
-      { ...updatedPet },
-      ...pets.slice(index + 1),
-    ])
-  } */
 }
 
 const TaskWrapper = styled.main`

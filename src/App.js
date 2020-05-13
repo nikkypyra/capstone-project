@@ -8,13 +8,10 @@ import PetForm from './pages/PetForm'
 import PetProfile from './pages/PetProfile'
 import TaskForm from './pages/TaskForm'
 import Filter from './pages/Filter'
-//import { loadFromLocal, saveToLocal } from './services'
-//import Pets from './pets.json'
 import { db } from './firebase'
 
 export default function App() {
   const [pets, setPets] = useState([])
-  //const [pets, setPets] = useState(loadFromLocal('pets') || Pets)
   useEffect(() => {
     db.collection('pets').onSnapshot((snapshot) => {
       const allPets = snapshot.docs.map((doc) => ({
@@ -35,22 +32,6 @@ export default function App() {
     })
   }, [])
 
-  /* useEffect(() => {
-    saveToLocal('pets', pets)
-  }, [pets])*/
-
-  /* function addTask(task) {
-    const index = pets.findIndex((pet) => task.petId === pet.id)
-    const pet = pets[index]
-    const petsTasks = pet.tasks || []
-    const newTaskList = [...petsTasks, task]
-    const updatedPet = { ...pet, tasks: newTaskList }
-    setPets([
-      ...pets.slice(0, index),
-      { ...updatedPet },
-      ...pets.slice(index + 1),
-    ])
-  }*/
   return (
     <>
       <Router>
@@ -58,10 +39,10 @@ export default function App() {
         <Header />
         <Switch>
           <Route exact path="/">
-            <Home pets={pets} /*setPets={setPets}*/ />
+            <Home pets={pets} />
           </Route>
           <Route path="/create-pet">
-            <PetForm /*addPet={addPet}*/ />
+            <PetForm />
           </Route>
           <Route exact path="/pet/:id">
             <PetProfile
@@ -72,7 +53,7 @@ export default function App() {
             />
           </Route>
           <Route path="/pet/:id/create-task">
-            <TaskForm pets={pets} /*addTask={addTask}*/ />
+            <TaskForm pets={pets} />
           </Route>
           <Route path="/filter">
             <Filter pets={pets} tasks={tasks} />
@@ -82,9 +63,4 @@ export default function App() {
       </Router>
     </>
   )
-
-  /*function addPet(pet) {
-    const newPets = [pet, ...pets]
-    setPets(newPets)
-  }*/
 }
