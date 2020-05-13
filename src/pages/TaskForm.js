@@ -33,7 +33,7 @@ export default function TaskForm({ pets }) {
   return (
     <>
       <main>
-        <Form onSubmit={handleSubmit} data-cy="create_task">
+        <Form onSubmit={handleSubmit} data-cy="create-task">
           <div className="cancel">
             <Link to={`/pet/${pet.id}`}>
               <CancelButton />
@@ -92,7 +92,7 @@ export default function TaskForm({ pets }) {
               />
             </label>
           </div>
-          <SubmitButton name="submit" text="Submit" />
+          <SubmitButton data-cy="submit-button" text="Submit" />
           <p>*Mandatory Fields</p>
         </Form>
       </main>

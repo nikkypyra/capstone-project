@@ -30,7 +30,7 @@ export default function PetForm({ previewImage, handleImageUpload }) {
   return (
     <>
       <main>
-        <Form onSubmit={handleSubmit} data-cy="create_pet">
+        <Form onSubmit={handleSubmit} data-cy="create-pet">
           <div className="cancel">
             <Link to="/">
               <CancelButton />
@@ -59,7 +59,7 @@ export default function PetForm({ previewImage, handleImageUpload }) {
               />
             </label>
           </div>
-          <SubmitButton text="Submit" />
+          <SubmitButton data-cy="submit-button" text="Submit" />
           <p>*Mandatory Field</p>
         </Form>
       </main>
