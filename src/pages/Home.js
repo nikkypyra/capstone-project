@@ -4,7 +4,7 @@ import AddButton from '../components/Buttons/AddButton'
 import { Link } from 'react-router-dom'
 import DeleteButton from '../components/Buttons/DeleteButton'
 import PropTypes from 'prop-types'
-//import { storage } from '../firebase'
+import { storage } from '../firebase'
 import { db } from '../firebase'
 import { storageRef } from '../firebase'
 
@@ -41,7 +41,7 @@ export default function Home({ pets }) {
   )
   function deletePet(pet) {
     db.collection('pets').doc(pet.id).delete()
-    const image = storageRef.child(`images/${pet.imageUrl}`)
+    const image = storage.ref(`images/${pet.imageName}`)
     image
       .delete()
       .then(() => console.log('Success'))
@@ -54,7 +54,10 @@ desertRef.delete().then(function() {
   // File deleted successfully
 }).catch(function(error) {
   // Uh-oh, an error occurred!
-});*/
+});
+
+  const image = storageRef.child(`images/${pet.imageUrl}`)
+*/
 }
 
 const ButtonWrapper = styled.div`

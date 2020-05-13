@@ -32,6 +32,14 @@ export default function App() {
     })
   }, [])
 
+  function handleCheckbox(todo) {
+    db.collection('tasks').doc(todo.id).update({ complete: !todo.complete })
+  }
+
+  function deleteTask(todo) {
+    db.collection('tasks').doc(todo.id).delete()
+  }
+
   return (
     <>
       <Router>
@@ -50,13 +58,20 @@ export default function App() {
               setPets={setPets}
               tasks={tasks}
               setTasks={setTasks}
+              handleCheckbox={handleCheckbox}
+              deleteTask={deleteTask}
             />
           </Route>
           <Route path="/pet/:id/create-task">
             <TaskForm pets={pets} />
           </Route>
           <Route path="/filter">
-            <Filter pets={pets} tasks={tasks} />
+            <Filter
+              pets={pets}
+              tasks={tasks}
+              handleCheckbox={handleCheckbox}
+              deleteTask={deleteTask}
+            />
           </Route>
         </Switch>
         <Navigation />

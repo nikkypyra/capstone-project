@@ -2,9 +2,20 @@ import React from 'react'
 import Checkbox from './Checkbox'
 import DeleteButton from './Buttons/DeleteButton'
 import styled from 'styled-components/macro'
-import { db } from '../firebase'
+import PropTypes from 'prop-types'
 
-export default function TaskList({ filteredTasks, pets }) {
+FilteredList.propTypes = {
+  pets: PropTypes.array.isRequired,
+  filteredTasks: PropTypes.array.isRequired,
+  handleCheckbox: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
+}
+export default function FilteredList({
+  filteredTasks,
+  pets,
+  handleCheckbox,
+  deleteTask,
+}) {
   function petName(todo) {
     const pet = pets.find((pet) => pet.id === todo.petId)
     return pet.name
@@ -57,13 +68,6 @@ export default function TaskList({ filteredTasks, pets }) {
         ))}
     </TaskWrapper>
   )
-  function handleCheckbox(todo) {
-    db.collection('tasks').doc(todo.id).update({ complete: !todo.complete })
-  }
-
-  function deleteTask(todo) {
-    db.collection('tasks').doc(todo.id).delete()
-  }
 }
 
 const TaskWrapper = styled.main`

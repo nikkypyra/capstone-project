@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { ReactComponent as Home } from '../icons/home.svg'
 import { ReactComponent as Filter } from '../icons/filter.svg'
 
-export default function Footer() {
+export default function Navigation() {
   return (
     <FooterStyled>
       <NavStyled exact to="/" activeClassName="chosen">

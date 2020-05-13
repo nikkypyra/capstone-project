@@ -11,7 +11,14 @@ PetProfile.propTypes = {
   setPets: PropTypes.func,
 }
 
-export default function PetProfile({ pets, setPets, tasks, setTasks }) {
+export default function PetProfile({
+  pets,
+  setPets,
+  tasks,
+  setTasks,
+  handleCheckbox,
+  deleteTask,
+}) {
   const params = useParams()
   const pet = pets.find((pet) => pet.id === params.id) || {}
   return (
@@ -29,6 +36,8 @@ export default function PetProfile({ pets, setPets, tasks, setTasks }) {
           setTasks={setTasks}
           pets={pets}
           setPets={setPets}
+          handleCheckbox={handleCheckbox}
+          deleteTask={deleteTask}
         />
       </main>
     </>
