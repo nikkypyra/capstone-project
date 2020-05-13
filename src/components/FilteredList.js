@@ -44,7 +44,7 @@ export default function FilteredList({
             <div className="time">
               <h4>{todo.time}</h4>
             </div>
-            <div className="date">
+            <div className="date" data-cy="date">
               <p>{todo.date}</p>
             </div>
             <div className="person" data-cy="owner_name">
