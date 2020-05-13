@@ -30,7 +30,7 @@ export default function PetForm({ previewImage, handleImageUpload }) {
   return (
     <>
       <main>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} data-cy="create_pet">
           <div className="cancel">
             <Link to="/">
               <CancelButton />
@@ -49,6 +49,7 @@ export default function PetForm({ previewImage, handleImageUpload }) {
               Name*
               <input
                 type="text"
+                name="name"
                 value={name}
                 maxLength="100"
                 placeholder="Insert pet name"
