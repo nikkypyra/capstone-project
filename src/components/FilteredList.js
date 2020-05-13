@@ -1,6 +1,8 @@
 import React from 'react'
 import Checkbox from './Checkbox'
+import DeleteButton from './Buttons/DeleteButton'
 import styled from 'styled-components/macro'
+import { db } from '../firebase'
 
 export default function TaskList({ filteredTasks, pets }) {
   function petName(todo) {
@@ -43,19 +45,32 @@ export default function TaskList({ filteredTasks, pets }) {
               </p>
             </div>
             <div className="status">
-              <Checkbox checked={todo.complete}></Checkbox>
+              <Checkbox
+                checked={todo.complete}
+                onChange={() => handleCheckbox(todo)}
+              ></Checkbox>
+            </div>
+            <div className="delete">
+              <DeleteButton onClick={() => deleteTask(todo)} />
             </div>
           </section>
         ))}
     </TaskWrapper>
   )
+  function handleCheckbox(todo) {
+    db.collection('tasks').doc(todo.id).update({ complete: !todo.complete })
+  }
+
+  function deleteTask(todo) {
+    db.collection('tasks').doc(todo.id).delete()
+  }
 }
 
 const TaskWrapper = styled.main`
   section {
     margin: 16px 0px;
     display: grid;
-    grid-template-columns: 1.4fr 2fr 3fr 1fr 1fr;
+    grid-template-columns: 1.4fr 2fr 3fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
     justify-content: space-evenly;
     align-items: center;
@@ -81,6 +96,10 @@ const TaskWrapper = styled.main`
   .time {
     grid-row: 2/3;
     grid-column: 2/3;
+  }
+  .delete {
+    grid-row: 1/2;
+    grid-column: 6/7;
   }
   .date {
     grid-row: 2/3;

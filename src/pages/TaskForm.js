@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import SubmitButton from '../components/Buttons/SubmitButton'
 import CancelButton from '../components/Buttons/CancelButton'
-//import { v4 as uuidv4 } from 'uuid'
 import { useHistory, useParams, Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { db } from '../firebase'
@@ -10,7 +9,6 @@ import { db } from '../firebase'
 
 TaskForm.propTypes = {
   pets: PropTypes.array.isRequired,
-  addTask: PropTypes.func,
 }
 
 export default function TaskForm({ pets }) {
@@ -19,7 +17,6 @@ export default function TaskForm({ pets }) {
   const [time, setTime] = useState('')
   const [person, setPerson] = useState('')
   const history = useHistory()
-  //const uniqueTaskId = uuidv4()
   const params = useParams()
   const pet = pets.find((pet) => pet.id === params.id)
   function handleSubmit(event) {
@@ -32,17 +29,6 @@ export default function TaskForm({ pets }) {
       complete: false,
       petId: pet.id,
     })
-
-    /* addTask({
-      description,
-      date,
-      time,
-      person,
-      complete: false,
-      id: uniqueTaskId,
-      petId: pet.id,
-      petName: pet.name,
-    }) */
     history.push(`/pet/${pet.id}`)
   }
 
