@@ -13,7 +13,7 @@ PetProfile.propTypes = {
 
 export default function PetProfile({ pets, setPets, tasks, setTasks }) {
   const params = useParams()
-  const pet = pets.find((pet) => pet.id === params.id)
+  const pet = pets.find((pet) => pet.id === params.id) || {}
   return (
     <>
       <main>

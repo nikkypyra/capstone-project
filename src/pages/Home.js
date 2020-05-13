@@ -29,7 +29,7 @@ export default function Home({ pets }) {
               </Link>
             </div>
             <div className="name">
-              <h1>{pet.name}</h1>
+              <h1>{pet.name.toUpperCase()}</h1>
             </div>
             <div className="delete">
               <DeleteButton /*onClick={deletePet(pet.id)}*/ />
@@ -39,7 +39,12 @@ export default function Home({ pets }) {
       </PetWrapper>
     </>
   )
-  /*function deletePet(pet) {
+  /* function deleteData(dataRef, userId, documentId) {
+    return dataRef.doc(userId).collection('workouts').doc(documentId).delete()
+  }
+  
+  
+  function deletePet(pet) {
     const index = pets.indexOf(pet)
     const newPets = [...pets.slice(0, index), ...pets.slice(index + 1)]
     setPets(newPets)
