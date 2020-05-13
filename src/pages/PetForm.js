@@ -58,7 +58,7 @@ export default function PetForm({ previewImage, handleImageUpload }) {
             </label>
           </div>
           <SubmitButton text="Submit" />
-          <p>*Mandatory Fields</p>
+          <p>*Mandatory Field</p>
         </Form>
       </main>
     </>

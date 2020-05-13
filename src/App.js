@@ -35,7 +35,7 @@ export default function App() {
 
   const [previewImage, setPreviewImage] = useState({
     imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/pawlog-app.appspot.com/o/images%2Ftaskpaw.png?alt=media&token=7447258d-30c7-4914-aa87-1d99162c421d',
+      'https://firebasestorage.googleapis.com/v0/b/pawlog-app.appspot.com/o/images%2Ftaskpaw.png?alt=media&token=8ad10974-93e4-4fd7-ae05-1567d049ad1f',
     imageName: 'taskpaw.png',
   })
 
@@ -68,6 +68,17 @@ export default function App() {
     db.collection('tasks').doc(todo.id).delete()
   }
 
+  function deletePet(pet) {
+    db.collection('pets').doc(pet.id).delete()
+    if (pet.imageTitle !== 'taskpaw.png') {
+      const image = storage.ref(`images/${pet.imageTitle}`)
+      image
+        .delete()
+        .then(() => console.log('Success'))
+        .catch((error) => console.log('Failed'))
+    }
+  }
+
   return (
     <>
       <Router>
@@ -75,7 +86,7 @@ export default function App() {
         <Header />
         <Switch>
           <Route exact path="/">
-            <Home pets={pets} />
+            <Home pets={pets} deletePet={deletePet} />
           </Route>
           <Route path="/create-pet">
             <PetForm

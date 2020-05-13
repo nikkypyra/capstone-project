@@ -4,14 +4,12 @@ import AddButton from '../components/Buttons/AddButton'
 import { Link } from 'react-router-dom'
 import DeleteButton from '../components/Buttons/DeleteButton'
 import PropTypes from 'prop-types'
-import { storage } from '../firebase'
-import { db } from '../firebase'
 
 Home.propTypes = {
   pets: PropTypes.array.isRequired,
 }
 
-export default function Home({ pets }) {
+export default function Home({ pets, deletePet }) {
   return (
     <>
       <ButtonWrapper>
@@ -38,14 +36,6 @@ export default function Home({ pets }) {
       </PetWrapper>
     </>
   )
-  function deletePet(pet) {
-    db.collection('pets').doc(pet.id).delete()
-    const image = storage.ref(`images/${pet.imageTitle}`)
-    image
-      .delete()
-      .then(() => console.log('Success'))
-      .catch((error) => console.log('Failed'))
-  }
 }
 
 const ButtonWrapper = styled.div`
