@@ -24,7 +24,7 @@ export default function PetForm() {
     db.collection('pets').add({
       name,
       imageSrc: previewImage.imageUrl,
-      imageName: previewImage.imageName,
+      imageTitle: previewImage.imageName,
     })
     history.push('/')
   }

@@ -6,7 +6,6 @@ import DeleteButton from '../components/Buttons/DeleteButton'
 import PropTypes from 'prop-types'
 import { storage } from '../firebase'
 import { db } from '../firebase'
-import { storageRef } from '../firebase'
 
 Home.propTypes = {
   pets: PropTypes.array.isRequired,
@@ -41,23 +40,12 @@ export default function Home({ pets }) {
   )
   function deletePet(pet) {
     db.collection('pets').doc(pet.id).delete()
-    const image = storage.ref(`images/${pet.imageName}`)
+    const image = storage.ref(`images/${pet.imageTitle}`)
     image
       .delete()
       .then(() => console.log('Success'))
       .catch((error) => console.log('Failed'))
   }
-
-  /* var desertRef = storageRef.child('images/desert.jpg');
-// Delete the file
-desertRef.delete().then(function() {
-  // File deleted successfully
-}).catch(function(error) {
-  // Uh-oh, an error occurred!
-});
-
-  const image = storageRef.child(`images/${pet.imageUrl}`)
-*/
 }
 
 const ButtonWrapper = styled.div`
