@@ -12,6 +12,7 @@ export default function SearchBar({ filterResults }) {
       <SearchSection>
         <InputField
           type="search"
+          name="search"
           onChange={filterResults}
           placeholder="Search for date or person..."
           autoFocus
