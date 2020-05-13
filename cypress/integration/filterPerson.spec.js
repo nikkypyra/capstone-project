@@ -13,6 +13,6 @@ describe('search for owner names in the tasks list', () => {
   })
 
   it('displays all when input is cleared', () => {
-    cy.get('input[name="search"]').clear()
+    cy.get('input[name="search"]').type('Martin').clear()
   })
 })
