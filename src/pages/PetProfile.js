@@ -7,8 +7,12 @@ import { Link, useParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 PetProfile.propTypes = {
-  pets: PropTypes.array,
-  setPets: PropTypes.func,
+  pets: PropTypes.array.isRequired,
+  setPets: PropTypes.func.isRequired,
+  tasks: PropTypes.array.isRequired,
+  setTasks: PropTypes.func.isRequired,
+  handleCheckbox: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
 }
 
 export default function PetProfile({

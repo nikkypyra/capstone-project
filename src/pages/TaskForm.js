@@ -5,7 +5,6 @@ import CancelButton from '../components/Buttons/CancelButton'
 import { useHistory, useParams, Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { db } from '../firebase'
-//import firebase from 'firebase/app'
 
 TaskForm.propTypes = {
   pets: PropTypes.array.isRequired,
@@ -31,7 +30,6 @@ export default function TaskForm({ pets }) {
     })
     history.push(`/pet/${pet.id}`)
   }
-
   return (
     <>
       <main>

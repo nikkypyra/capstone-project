@@ -42,6 +42,7 @@ const InputField = styled.input`
   padding: 4px 0 4px 4px;
   border-radius: 4px;
   border: 2px solid var(--quaternary);
+  cursor: auto;
 `
 
 const SearchIcon = styled.img`

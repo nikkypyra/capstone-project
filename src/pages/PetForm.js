@@ -9,7 +9,8 @@ import PropTypes from 'prop-types'
 import { db } from '../firebase'
 
 PetForm.propTypes = {
-  addPet: PropTypes.func,
+  handleImageUpload: PropTypes.func.isRequired,
+  previewImage: PropTypes.object.isRequired,
 }
 
 export default function PetForm({ previewImage, handleImageUpload }) {

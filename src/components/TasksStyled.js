@@ -5,8 +5,8 @@ import DeleteButton from './Buttons/DeleteButton'
 import PropTypes from 'prop-types'
 
 TasksStyled.propTypes = {
-  pet: PropTypes.object,
-  tasks: PropTypes.array,
+  pet: PropTypes.object.isRequired,
+  tasks: PropTypes.array.isRequired,
   handleCheckbox: PropTypes.func.isRequired,
   deleteTask: PropTypes.func.isRequired,
 }

@@ -7,6 +7,7 @@ import PropTypes from 'prop-types'
 
 Home.propTypes = {
   pets: PropTypes.array.isRequired,
+  deletePet: PropTypes.func.isRequired,
 }
 
 export default function Home({ pets, deletePet }) {

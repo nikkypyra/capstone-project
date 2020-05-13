@@ -1,6 +1,14 @@
 import React, { useState } from 'react'
 import SearchBar from '../components/SearchBar'
 import FilteredList from '../components/FilteredList'
+import PropTypes from 'prop-types'
+
+Filter.propTypes = {
+  pets: PropTypes.array.isRequired,
+  tasks: PropTypes.array.isRequired,
+  handleCheckbox: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
+}
 
 export default function Filter({ pets, tasks, handleCheckbox, deleteTask }) {
   const [searchInput, setSearchInput] = useState('')
