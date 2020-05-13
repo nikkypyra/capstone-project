@@ -33,7 +33,7 @@ export default function TaskForm({ pets }) {
   return (
     <>
       <main>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} data-cy="create_task">
           <div className="cancel">
             <Link to={`/pet/${pet.id}`}>
               <CancelButton />
@@ -44,6 +44,7 @@ export default function TaskForm({ pets }) {
               Description*
               <input
                 type="text"
+                name="description"
                 value={description}
                 maxLength="100"
                 placeholder="Insert description"
@@ -58,6 +59,7 @@ export default function TaskForm({ pets }) {
               Date*
               <input
                 type="date"
+                name="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
                 required
@@ -69,6 +71,7 @@ export default function TaskForm({ pets }) {
               Time*
               <input
                 type="time"
+                name="time"
                 value={time}
                 onChange={(e) => setTime(e.target.value)}
                 required
@@ -80,6 +83,7 @@ export default function TaskForm({ pets }) {
               To be completed by*
               <input
                 type="text"
+                name="person"
                 value={person}
                 maxLength="100"
                 placeholder="Insert person to complete task"
@@ -88,7 +92,7 @@ export default function TaskForm({ pets }) {
               />
             </label>
           </div>
-          <SubmitButton text="Submit" />
+          <SubmitButton name="submit" text="Submit" />
           <p>*Mandatory Fields</p>
         </Form>
       </main>
