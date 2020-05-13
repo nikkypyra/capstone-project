@@ -7,10 +7,10 @@ import { ReactComponent as Filter } from '../icons/filter.svg'
 export default function Navigation() {
   return (
     <FooterStyled>
-      <NavStyled exact to="/" activeClassName="chosen">
+      <NavStyled exact to="/" activeClassName="chosen" data-cy="home">
         <HomeStyled />
       </NavStyled>
-      <NavStyled to="/filter" activeClassName="chosen">
+      <NavStyled to="/filter" activeClassName="chosen" data-cy="filter">
         <FilterStyled />
       </NavStyled>
     </FooterStyled>
