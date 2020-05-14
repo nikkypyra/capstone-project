@@ -21,7 +21,7 @@ export default function Signup() {
               onChange={(e) => setName(e.target.value)}
               required
               autoFocus
-            />{' '}
+            />
           </div>
           <div className="email">
             <input
@@ -31,7 +31,6 @@ export default function Signup() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              autoFocus
             />
           </div>
           <div className="password">
@@ -85,7 +84,7 @@ const Form = styled.form`
   }
 
   div {
-    margin: 28px 0;
+    margin: 24px 0;
     width: 100%;
   }
 
