@@ -59,7 +59,7 @@ export default function PetForm({ previewImage, handleImageUpload }) {
               />
             </label>
           </div>
-          <SubmitButton data-cy="submit-button" text="Submit" />
+          <SubmitButton text="Submit" />
           <p>*Mandatory Field</p>
         </Form>
       </main>

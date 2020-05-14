@@ -92,7 +92,7 @@ export default function TaskForm({ pets }) {
               />
             </label>
           </div>
-          <SubmitButton data-cy="submit-button" text="Submit" />
+          <SubmitButton text="Submit" />
           <p>*Mandatory Fields</p>
         </Form>
       </main>
