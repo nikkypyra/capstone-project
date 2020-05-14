@@ -5,6 +5,7 @@ import AddButton from '../components/Buttons/AddButton'
 import styled from 'styled-components/macro'
 import { Link, useParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import Navigation from '../components/Navigation'
 
 PetProfile.propTypes = {
   pets: PropTypes.array.isRequired,
@@ -44,6 +45,7 @@ export default function PetProfile({
           deleteTask={deleteTask}
         />
       </main>
+      <Navigation />
     </>
   )
 }

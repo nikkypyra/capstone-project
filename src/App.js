@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import GlobalStyles from './GlobalStyles'
 import Header from './components/Header'
-import Navigation from './components/Navigation'
+import Login from './pages/Login'
 import Home from './pages/Home'
 import PetForm from './pages/PetForm'
 import PetProfile from './pages/PetProfile'
@@ -48,6 +48,9 @@ export default function App() {
           <Route exact path="/">
             <Home pets={pets} deletePet={deletePet} />
           </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
           <Route path="/create-pet">
             <PetForm
               previewImage={previewImage}
@@ -76,7 +79,6 @@ export default function App() {
             />
           </Route>
         </Switch>
-        <Navigation />
       </Router>
     </>
   )

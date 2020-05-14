@@ -16,8 +16,7 @@ const Button = styled.button`
   color: #ffffff;
   font-size: 18px;
   font-family: sans-serif;
-  border-radius: 8px;
+  border-radius: 12px;
   border: none;
   padding: 16px;
-  box-shadow: 0 5px 4px -2px var(tertiary);
 `

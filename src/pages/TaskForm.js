@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import SubmitButton from '../components/Buttons/SubmitButton'
 import CancelButton from '../components/Buttons/CancelButton'
+import Navigation from '../components/Navigation'
 import { useHistory, useParams, Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { db } from '../firebase'
@@ -96,6 +97,7 @@ export default function TaskForm({ pets }) {
           <p>*Mandatory Fields</p>
         </Form>
       </main>
+      <Navigation />
     </>
   )
 }
@@ -131,10 +133,6 @@ const Form = styled.form`
     font-family: sans-serif;
     border: none;
     border-bottom: 1px solid var(--primary);
-  }
-
-  input[type='date']::selection {
-    background-color: var(--primary);
   }
 
   .cancel {
