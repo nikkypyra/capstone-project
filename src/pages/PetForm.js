@@ -25,7 +25,7 @@ export default function PetForm({ previewImage, handleImageUpload }) {
       imageSrc: previewImage.imageUrl,
       imageTitle: previewImage.imageName,
     })
-    history.push('/')
+    history.push('/home')
   }
 
   return (

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import GlobalStyles from './GlobalStyles'
 import Header from './components/Header'
 import Login from './pages/Login'
@@ -9,6 +9,8 @@ import PetForm from './pages/PetForm'
 import PetProfile from './pages/PetProfile'
 import TaskForm from './pages/TaskForm'
 import Filter from './pages/Filter'
+import useUserServices from './components/Hooks/useUserServices'
+import AuthProvider, { AuthConsumer } from './components/AuthContext'
 import { db } from './firebase'
 import { storage } from './firebase'
 
@@ -40,50 +42,105 @@ export default function App() {
     imageName: 'taskpaw.png',
   })
 
+  const {
+    signUp,
+    logIn,
+    resetPassword,
+    profile,
+    setProfile,
+  } = useUserServices()
+
   return (
     <>
-      <Router>
-        <GlobalStyles />
-        <Header />
-        <Switch>
-          <Route exact path="/">
-            <Home pets={pets} deletePet={deletePet} />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/signup">
-            <Signup />
-          </Route>
-          <Route path="/create-pet">
-            <PetForm
-              previewImage={previewImage}
-              handleImageUpload={handleImageUpload}
-            />
-          </Route>
-          <Route exact path="/pet/:id">
-            <PetProfile
-              pets={pets}
-              setPets={setPets}
-              tasks={tasks}
-              setTasks={setTasks}
-              handleCheckbox={handleCheckbox}
-              deleteTask={deleteTask}
-            />
-          </Route>
-          <Route path="/pet/:id/create-task">
-            <TaskForm pets={pets} />
-          </Route>
-          <Route path="/filter">
-            <Filter
-              pets={pets}
-              tasks={tasks}
-              handleCheckbox={handleCheckbox}
-              deleteTask={deleteTask}
-            />
-          </Route>
-        </Switch>
-      </Router>
+      <GlobalStyles />
+      <Header />
+      <AuthProvider setProfile={setProfile}>
+        <AuthConsumer>
+          {({ user }) => (
+            <Switch>
+              <Redirect exact from="/" to="home" />
+              <Route path="/home">
+                {user && user.id ? (
+                  <Home pets={pets} deletePet={deletePet} />
+                ) : (
+                  <Login
+                    logIn={logIn}
+                    resetPassword={resetPassword}
+                    profile={profile}
+                    setProfile={setProfile}
+                  />
+                )}
+              </Route>
+              <Route path="/create-pet">
+                {user && user.id ? (
+                  <PetForm
+                    previewImage={previewImage}
+                    handleImageUpload={handleImageUpload}
+                  />
+                ) : (
+                  <Login
+                    logIn={logIn}
+                    resetPassword={resetPassword}
+                    profile={profile}
+                    setProfile={setProfile}
+                  />
+                )}
+              </Route>
+              <Route exact path="/pet/:id">
+                {user && user.id ? (
+                  <PetProfile
+                    pets={pets}
+                    setPets={setPets}
+                    tasks={tasks}
+                    setTasks={setTasks}
+                    handleCheckbox={handleCheckbox}
+                    deleteTask={deleteTask}
+                  />
+                ) : (
+                  <Login
+                    logIn={logIn}
+                    resetPassword={resetPassword}
+                    profile={profile}
+                    setProfile={setProfile}
+                  />
+                )}
+              </Route>
+              <Route path="/pet/:id/create-task">
+                {user && user.id ? (
+                  <TaskForm pets={pets} />
+                ) : (
+                  <Login
+                    logIn={logIn}
+                    resetPassword={resetPassword}
+                    profile={profile}
+                    setProfile={setProfile}
+                  />
+                )}
+              </Route>
+              <Route path="/filter">
+                {user && user.id ? (
+                  <Filter
+                    pets={pets}
+                    tasks={tasks}
+                    handleCheckbox={handleCheckbox}
+                    deleteTask={deleteTask}
+                  />
+                ) : (
+                  <Login
+                    logIn={logIn}
+                    resetPassword={resetPassword}
+                    profile={profile}
+                    setProfile={setProfile}
+                  />
+                )}
+              </Route>
+              <Route path="/signup">
+                <Signup signUp={signUp} setProfile={setProfile} />
+              </Route>
+            </Switch>
+          )}
+        </AuthConsumer>
+      </AuthProvider>
     </>
   )
 

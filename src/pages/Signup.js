@@ -1,56 +1,63 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components/macro'
 import SubmitButton from '../components/Buttons/SubmitButton'
 import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
 
-export default function Signup() {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+export default function SignUp({ setProfile, signUp }) {
+  const { register, handleSubmit, errors, setError } = useForm()
+  const history = useHistory()
+
+  function onSubmit(data) {
+    setProfile(data)
+    signUp(data)
+      .then((res) => {
+        if (res.code === 'auth/email-already-in-use') {
+          return setError('email', 'inUse', 'E-mail address already in use')
+        }
+        setTimeout(history.push('/'), 3000)
+      })
+      .catch((error) => {
+        console.log(
+          'Sorry, there was an error with the server. Please try again later.',
+          error
+        )
+      })
+  }
+
   return (
     <>
       <main>
-        <Form /*onSubmit={handleSubmit}*/ data-cy="login">
+        <Form onSubmit={handleSubmit(onSubmit)} data-cy="login">
           <div className="name">
             <input
               type="text"
+              placeholder="Name"
               name="name"
-              value={name}
-              maxLength="100"
-              placeholder="Enter your name"
-              onChange={(e) => setName(e.target.value)}
-              required
               autoFocus
+              ref={register({ required: true, maxLength: 80 })}
             />
           </div>
           <div className="email">
             <input
-              type="email"
+              type="text"
+              placeholder="Enter your Email"
               name="email"
-              placeholder="Enter your E-Mail"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
+              ref={register({
+                required: true,
+                pattern: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                minLength: 5,
+                maxLength: 50,
+              })}
             />
           </div>
           <div className="password">
             <input
+              ref={register({ required: true, minLength: 6 })}
               type="password"
               name="password"
               placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          <div className="confirm-password">
-            <input
-              type="password"
-              name="confirm-password"
-              placeholder="Confirm password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
             />
           </div>
           <div className="signup">
