@@ -79,6 +79,10 @@ const Form = styled.form`
   border-radius: 12px;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16);
 
+  input[type='text'] {
+    cursor: auto;
+  }
+
   label,
   input {
     margin: 8px 0;

@@ -39,46 +39,6 @@ export default function App() {
     imageName: 'taskpaw.png',
   })
 
-  function handleImageUpload(event) {
-    const image = event.target.files[0]
-    const uploadTask = storage.ref(`images/${image.name}`).put(image)
-    uploadTask.on(
-      'state_changed',
-      (snapshot) => {},
-      (error) => {
-        alert('An error occurred, please try again.')
-      },
-      () => {
-        storage
-          .ref('images')
-          .child(image.name)
-          .getDownloadURL()
-          .then((url) => {
-            setPreviewImage({ imageUrl: url, imageName: image.name })
-          })
-      }
-    )
-  }
-
-  function handleCheckbox(todo) {
-    db.collection('tasks').doc(todo.id).update({ complete: !todo.complete })
-  }
-
-  function deleteTask(todo) {
-    db.collection('tasks').doc(todo.id).delete()
-  }
-
-  function deletePet(pet) {
-    db.collection('pets').doc(pet.id).delete()
-    if (pet.imageTitle !== 'taskpaw.png') {
-      const image = storage.ref(`images/${pet.imageTitle}`)
-      image
-        .delete()
-        .then(() => console.log('Success'))
-        .catch((error) => console.log('Failed'))
-    }
-  }
-
   return (
     <>
       <Router>
@@ -120,4 +80,44 @@ export default function App() {
       </Router>
     </>
   )
+
+  function handleImageUpload(event) {
+    const image = event.target.files[0]
+    const uploadTask = storage.ref(`images/${image.name}`).put(image)
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {},
+      (error) => {
+        alert('An error occurred, please try again.')
+      },
+      () => {
+        storage
+          .ref('images')
+          .child(image.name)
+          .getDownloadURL()
+          .then((url) => {
+            setPreviewImage({ imageUrl: url, imageName: image.name })
+          })
+      }
+    )
+  }
+
+  function handleCheckbox(todo) {
+    db.collection('tasks').doc(todo.id).update({ complete: !todo.complete })
+  }
+
+  function deleteTask(todo) {
+    db.collection('tasks').doc(todo.id).delete()
+  }
+
+  function deletePet(pet) {
+    db.collection('pets').doc(pet.id).delete()
+    if (pet.imageTitle !== 'taskpaw.png') {
+      const image = storage.ref(`images/${pet.imageTitle}`)
+      image
+        .delete()
+        .then(() => console.log('Success'))
+        .catch((error) => console.log('Failed'))
+    }
+  }
 }
