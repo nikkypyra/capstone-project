@@ -1,8 +1,26 @@
 import React from 'react'
 import Checkbox from './Checkbox'
+import DeleteButton from './Buttons/DeleteButton'
 import styled from 'styled-components/macro'
+import PropTypes from 'prop-types'
 
-export default function TaskList({ filteredTasks }) {
+FilteredList.propTypes = {
+  pets: PropTypes.array.isRequired,
+  filteredTasks: PropTypes.array.isRequired,
+  handleCheckbox: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
+}
+export default function FilteredList({
+  filteredTasks,
+  pets,
+  handleCheckbox,
+  deleteTask,
+}) {
+  function petName(todo) {
+    const pet = pets.find((pet) => pet.id === todo.petId)
+    return pet.name
+  }
+
   return (
     <TaskWrapper>
       {filteredTasks
@@ -26,19 +44,25 @@ export default function TaskList({ filteredTasks }) {
             <div className="time">
               <h4>{todo.time}</h4>
             </div>
-            <div className="date">
+            <div className="date" data-cy="date">
               <p>{todo.date}</p>
             </div>
-            <div className="person">
+            <div className="person" data-cy="owner_name">
               <p>To be completed by: {todo.person}</p>
             </div>
             <div className="pet-name">
               <p>
-                For: <strong>{todo.petName}</strong>
+                For: <strong>{petName(todo).toUpperCase()}</strong>
               </p>
             </div>
             <div className="status">
-              <Checkbox checked={todo.complete}></Checkbox>
+              <Checkbox
+                checked={todo.complete}
+                onChange={() => handleCheckbox(todo)}
+              ></Checkbox>
+            </div>
+            <div className="delete">
+              <DeleteButton onClick={() => deleteTask(todo)} />
             </div>
           </section>
         ))}
@@ -50,7 +74,7 @@ const TaskWrapper = styled.main`
   section {
     margin: 16px 0px;
     display: grid;
-    grid-template-columns: 1.4fr 2fr 3fr 1fr 1fr;
+    grid-template-columns: 1.4fr 2fr 3fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
     justify-content: space-evenly;
     align-items: center;
@@ -76,6 +100,10 @@ const TaskWrapper = styled.main`
   .time {
     grid-row: 2/3;
     grid-column: 2/3;
+  }
+  .delete {
+    grid-row: 1/2;
+    grid-column: 6/7;
   }
   .date {
     grid-row: 2/3;

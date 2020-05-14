@@ -8,12 +8,23 @@ import PropTypes from 'prop-types'
 
 PetProfile.propTypes = {
   pets: PropTypes.array.isRequired,
-  setPets: PropTypes.func,
+  setPets: PropTypes.func.isRequired,
+  tasks: PropTypes.array.isRequired,
+  setTasks: PropTypes.func.isRequired,
+  handleCheckbox: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
 }
 
-export default function PetProfile({ pets, setPets }) {
+export default function PetProfile({
+  pets,
+  setPets,
+  tasks,
+  setTasks,
+  handleCheckbox,
+  deleteTask,
+}) {
   const params = useParams()
-  const pet = pets.find((pet) => pet.id === params.id)
+  const pet = pets.find((pet) => pet.id === params.id) || {}
   return (
     <>
       <main>
@@ -23,7 +34,15 @@ export default function PetProfile({ pets, setPets }) {
             <AddButton text="Add Task" />
           </Link>
         </ButtonWrapper>
-        <TasksStyled tasks={pet.tasks} pets={pets} setPets={setPets} />
+        <TasksStyled
+          pet={pet}
+          tasks={tasks}
+          setTasks={setTasks}
+          pets={pets}
+          setPets={setPets}
+          handleCheckbox={handleCheckbox}
+          deleteTask={deleteTask}
+        />
       </main>
     </>
   )

@@ -5,10 +5,10 @@ import PropTypes from 'prop-types'
 
 ImageUpload.propTypes = {
   previewImage: PropTypes.object,
-  onChange: PropTypes.func,
+  handleImageUpload: PropTypes.func,
 }
 
-export default function ImageUpload({ updateImage, previewImage }) {
+export default function ImageUpload({ previewImage, handleImageUpload }) {
   return (
     <>
       {previewImage.imageUrl ? (
@@ -22,15 +22,14 @@ export default function ImageUpload({ updateImage, previewImage }) {
       )}
       <UploadWrapper>
         <label htmlFor="imageSrc">
-          <AddButton className="upload-button" text="Upload photo*" />
+          <AddButton className="upload-button" text="Upload photo" />
         </label>
         <input
           type="file"
           name="imageSrc"
           accept="image/*"
           className="file-input"
-          onChange={updateImage}
-          required
+          onChange={handleImageUpload}
         />
       </UploadWrapper>
     </>

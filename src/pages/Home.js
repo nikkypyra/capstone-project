@@ -2,17 +2,15 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import AddButton from '../components/Buttons/AddButton'
 import { Link } from 'react-router-dom'
-import { saveToLocal } from '../services'
 import DeleteButton from '../components/Buttons/DeleteButton'
 import PropTypes from 'prop-types'
-import { storage } from '../firebase'
 
 Home.propTypes = {
   pets: PropTypes.array.isRequired,
-  setPets: PropTypes.func.isRequired,
+  deletePet: PropTypes.func.isRequired,
 }
 
-export default function Home({ pets, setPets }) {
+export default function Home({ pets, deletePet }) {
   return (
     <>
       <ButtonWrapper>
@@ -39,14 +37,6 @@ export default function Home({ pets, setPets }) {
       </PetWrapper>
     </>
   )
-  function deletePet(pet) {
-    const index = pets.indexOf(pet)
-    const newPets = [...pets.slice(0, index), ...pets.slice(index + 1)]
-    setPets(newPets)
-    saveToLocal(newPets)
-    const image = storage.ref(`images/${pet.imageTitle}`)
-    image.delete().catch((error) => {})
-  }
 }
 
 const ButtonWrapper = styled.div`

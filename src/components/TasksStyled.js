@@ -5,13 +5,21 @@ import DeleteButton from './Buttons/DeleteButton'
 import PropTypes from 'prop-types'
 
 TasksStyled.propTypes = {
-  pets: PropTypes.array.isRequired,
-  setPets: PropTypes.func.isRequired,
-  addTask: PropTypes.func.isRequired,
+  pet: PropTypes.object.isRequired,
+  tasks: PropTypes.array.isRequired,
+  handleCheckbox: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
 }
 
-export default function TasksStyled({ pets, setPets, tasks }) {
-  const todos = tasks || []
+export default function TasksStyled({
+  pet,
+  tasks,
+  handleCheckbox,
+  deleteTask,
+}) {
+  const todos = tasks.filter(function (task) {
+    return task.petId === pet.id
+  })
   return (
     <TaskWrapper>
       {todos
@@ -44,52 +52,16 @@ export default function TasksStyled({ pets, setPets, tasks }) {
             <div className="status">
               <Checkbox
                 checked={todo.complete}
-                onChange={() => handleCheckbox(todo, todo.id)}
+                onChange={() => handleCheckbox(todo)}
               ></Checkbox>
             </div>
             <div className="delete">
-              <DeleteButton onClick={() => deleteTask(todo, todo.id)} />
+              <DeleteButton onClick={() => deleteTask(todo)} />
             </div>
           </section>
         ))}
     </TaskWrapper>
   )
-  function handleCheckbox(task, id) {
-    const index = pets.findIndex((pet) => task.petId === pet.id)
-    const pet = pets[index]
-    const petsTasks = pet.tasks
-    const taskIndex = petsTasks.findIndex((task) => task.id === id)
-    const updatedTask = tasks[taskIndex]
-    const newTask = { ...updatedTask, complete: !updatedTask.complete }
-    const newTaskList = [
-      ...petsTasks.slice(0, taskIndex),
-      { ...newTask },
-      ...petsTasks.slice(taskIndex + 1),
-    ]
-    const updatedPet = { ...pet, tasks: newTaskList }
-    setPets([
-      ...pets.slice(0, index),
-      { ...updatedPet },
-      ...pets.slice(index + 1),
-    ])
-  }
-
-  function deleteTask(task, id) {
-    const index = pets.findIndex((pet) => task.petId === pet.id)
-    const pet = pets[index]
-    const petsTasks = pet.tasks
-    const taskIndex = petsTasks.findIndex((task) => task.id === id)
-    const newTaskList = [
-      ...petsTasks.slice(0, taskIndex),
-      ...petsTasks.slice(taskIndex + 1),
-    ]
-    const updatedPet = { ...pet, tasks: newTaskList }
-    setPets([
-      ...pets.slice(0, index),
-      { ...updatedPet },
-      ...pets.slice(index + 1),
-    ])
-  }
 }
 
 const TaskWrapper = styled.main`

@@ -2,44 +2,38 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import SubmitButton from '../components/Buttons/SubmitButton'
 import CancelButton from '../components/Buttons/CancelButton'
-import { v4 as uuidv4 } from 'uuid'
 import { useHistory, useParams, Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import { db } from '../firebase'
 
 TaskForm.propTypes = {
   pets: PropTypes.array.isRequired,
-  addTask: PropTypes.func.isRequired,
 }
 
-export default function TaskForm({ pets, addTask }) {
+export default function TaskForm({ pets }) {
   const [description, setDescription] = useState('')
   const [date, setDate] = useState('')
   const [time, setTime] = useState('')
   const [person, setPerson] = useState('')
   const history = useHistory()
-  const uniqueTaskId = uuidv4()
   const params = useParams()
   const pet = pets.find((pet) => pet.id === params.id)
-
   function handleSubmit(event) {
     event.preventDefault()
-    addTask({
+    db.collection('tasks').add({
       description,
       date,
       time,
       person,
       complete: false,
-      id: uniqueTaskId,
       petId: pet.id,
-      petName: pet.name,
     })
     history.push(`/pet/${pet.id}`)
   }
-
   return (
     <>
       <main>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} data-cy="create-task">
           <div className="cancel">
             <Link to={`/pet/${pet.id}`}>
               <CancelButton />
@@ -50,6 +44,7 @@ export default function TaskForm({ pets, addTask }) {
               Description*
               <input
                 type="text"
+                name="description"
                 value={description}
                 maxLength="100"
                 placeholder="Insert description"
@@ -64,6 +59,7 @@ export default function TaskForm({ pets, addTask }) {
               Date*
               <input
                 type="date"
+                name="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
                 required
@@ -75,6 +71,7 @@ export default function TaskForm({ pets, addTask }) {
               Time*
               <input
                 type="time"
+                name="time"
                 value={time}
                 onChange={(e) => setTime(e.target.value)}
                 required
@@ -86,6 +83,7 @@ export default function TaskForm({ pets, addTask }) {
               To be completed by*
               <input
                 type="text"
+                name="person"
                 value={person}
                 maxLength="100"
                 placeholder="Insert person to complete task"

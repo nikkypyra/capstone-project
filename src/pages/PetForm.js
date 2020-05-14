@@ -3,40 +3,34 @@ import styled from 'styled-components/macro'
 import SubmitButton from '../components/Buttons/SubmitButton'
 import CancelButton from '../components/Buttons/CancelButton'
 import ImageUpload from '../components/ImageUpload'
-import { v4 as uuidv4 } from 'uuid'
 import { useHistory, Link } from 'react-router-dom'
-import { storage } from '../firebase'
+
 import PropTypes from 'prop-types'
+import { db } from '../firebase'
 
 PetForm.propTypes = {
-  addPet: PropTypes.func.isRequired,
+  handleImageUpload: PropTypes.func.isRequired,
+  previewImage: PropTypes.object.isRequired,
 }
 
-export default function PetForm({ addPet }) {
+export default function PetForm({ previewImage, handleImageUpload }) {
   const [name, setName] = useState('')
-  const [previewImage, setPreviewImage] = useState({
-    imageUrl: '',
-    imageName: '',
-  })
   const history = useHistory()
-  const uniquePetId = uuidv4()
+
   function handleSubmit(event) {
     event.preventDefault()
-    addPet({
+    db.collection('pets').add({
       name,
       imageSrc: previewImage.imageUrl,
       imageTitle: previewImage.imageName,
-      id: uniquePetId,
-      tasks: [],
     })
     history.push('/')
-    setPreviewImage({ imageUrl: '', imageName: '' })
   }
 
   return (
     <>
       <main>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} data-cy="create-pet">
           <div className="cancel">
             <Link to="/">
               <CancelButton />
@@ -46,7 +40,7 @@ export default function PetForm({ addPet }) {
             <ImageUpload
               name="imageSrc"
               className="photo"
-              updateImage={handleImageUpload}
+              handleImageUpload={handleImageUpload}
               previewImage={previewImage}
             />
           </div>
@@ -55,6 +49,7 @@ export default function PetForm({ addPet }) {
               Name*
               <input
                 type="text"
+                name="name"
                 value={name}
                 maxLength="100"
                 placeholder="Insert pet name"
@@ -65,32 +60,11 @@ export default function PetForm({ addPet }) {
             </label>
           </div>
           <SubmitButton text="Submit" />
-          <p>*Mandatory Fields</p>
+          <p>*Mandatory Field</p>
         </Form>
       </main>
     </>
   )
-
-  function handleImageUpload(event) {
-    const image = event.target.files[0]
-    const uploadTask = storage.ref(`images/${image.name}`).put(image)
-    uploadTask.on(
-      'state_changed',
-      (snapshot) => {},
-      (error) => {
-        alert('An error occurred, please try again.')
-      },
-      () => {
-        storage
-          .ref('images')
-          .child(image.name)
-          .getDownloadURL()
-          .then((url) => {
-            setPreviewImage({ imageUrl: url, imageName: image.name })
-          })
-      }
-    )
-  }
 }
 
 const Form = styled.form`

@@ -1,0 +1,6 @@
+{
+  "collectionKey": "pets",
+  "importDataPath": "./src/pets.json",
+  "serviceAccountFilePath": "./serviceAccountKey.json",
+  "databaseURL": "https://pawlog-app.firebaseio.com"
+}

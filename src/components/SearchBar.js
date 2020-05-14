@@ -1,5 +1,10 @@
 import React from 'react'
 import styled from 'styled-components/macro'
+import PropTypes from 'prop-types'
+
+SearchBar.propTypes = {
+  filterResults: PropTypes.array.isRequired,
+}
 
 export default function SearchBar({ filterResults }) {
   return (
@@ -7,6 +12,7 @@ export default function SearchBar({ filterResults }) {
       <SearchSection>
         <InputField
           type="search"
+          name="search"
           onChange={filterResults}
           placeholder="Search for date or person..."
           autoFocus
@@ -37,6 +43,7 @@ const InputField = styled.input`
   padding: 4px 0 4px 4px;
   border-radius: 4px;
   border: 2px solid var(--quaternary);
+  cursor: auto;
 `
 
 const SearchIcon = styled.img`
