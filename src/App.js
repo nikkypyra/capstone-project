@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import GlobalStyles from './GlobalStyles'
 import Header from './components/Header'
 import Login from './pages/Login'
+import Signup from './pages/Signup'
 import Home from './pages/Home'
 import PetForm from './pages/PetForm'
 import PetProfile from './pages/PetProfile'
@@ -50,6 +51,9 @@ export default function App() {
           </Route>
           <Route path="/login">
             <Login />
+          </Route>
+          <Route path="/signup">
+            <Signup />
           </Route>
           <Route path="/create-pet">
             <PetForm

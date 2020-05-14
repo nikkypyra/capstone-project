@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import SubmitButton from '../components/Buttons/SubmitButton'
 import AddButton from '../components/Buttons/AddButton'
+import { Link } from 'react-router-dom'
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -9,49 +10,54 @@ export default function Login() {
   return (
     <>
       <main>
-        <Form /*onSubmit={handleSubmit}*/ data-cy="login">
-          <div className="email">
-            <input
-              type="email"
-              name="email"
-              placeholder="Enter your E-Mail"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              autoFocus
-            />
-          </div>
-          <div className="password">
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          <div className="forgot">
-            <p>Forgot password?</p>
-          </div>
-          <section>
+        <WrapperStyled>
+          <form /*onSubmit={handleSubmit}*/ data-cy="login">
+            <div className="email">
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter your E-Mail"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                autoFocus
+              />
+            </div>
+            <div className="password">
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <div className="forgot">
+              <p>Forgot password?</p>
+            </div>
+
             <div className="login">
               <SubmitButton text="Log in" className="login" />
             </div>
+          </form>
+          <section>
             <div>
               <p>or</p>
             </div>
             <div className="signup">
-              <AddButton text="Sign up" />
+              <Link to="/signup">
+                <AddButton text="Sign up" />
+              </Link>
             </div>
           </section>
-        </Form>
+        </WrapperStyled>
       </main>
     </>
   )
 }
 
-const Form = styled.form`
+const WrapperStyled = styled.section`
   display: flex;
   flex-direction: column;
   color: var(--secondary);
@@ -73,11 +79,13 @@ const Form = styled.form`
   }
 
   .forgot {
-    margin-top: -8px;
+    margin-top: -4px;
   }
 
   .login {
+    margin-top: 40px;
     margin-bottom: -8px;
+    text-align: center;
     button {
       padding: 16px 60px;
     }
