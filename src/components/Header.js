@@ -4,7 +4,10 @@ import styled from 'styled-components/macro'
 export default function Header() {
   return (
     <HeaderStyled>
-      <img src={process.env.PUBLIC_URL + '/images/pawlog.png'} alt="pawlog" />
+      <img
+        src="https://firebasestorage.googleapis.com/v0/b/pawlog-app.appspot.com/o/images%2Fpawlog.png?alt=media&token=40a2b3d4-ec7d-4822-a67d-717495ece203"
+        alt="pawlog"
+      />
     </HeaderStyled>
   )
 }

@@ -4,16 +4,19 @@ import SubmitButton from '../components/Buttons/SubmitButton'
 import CancelButton from '../components/Buttons/CancelButton'
 import ImageUpload from '../components/ImageUpload'
 import { useHistory, Link } from 'react-router-dom'
+import Navigation from '../components/Navigation'
 
 import PropTypes from 'prop-types'
 import { db } from '../firebase'
+import UserHeader from '../components/UserHeader'
 
 PetForm.propTypes = {
   handleImageUpload: PropTypes.func.isRequired,
   previewImage: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
 }
 
-export default function PetForm({ previewImage, handleImageUpload }) {
+export default function PetForm({ previewImage, handleImageUpload, user }) {
   const [name, setName] = useState('')
   const history = useHistory()
 
@@ -23,12 +26,14 @@ export default function PetForm({ previewImage, handleImageUpload }) {
       name,
       imageSrc: previewImage.imageUrl,
       imageTitle: previewImage.imageName,
+      userId: user.id,
     })
     history.push('/home')
   }
 
   return (
     <>
+      <UserHeader />
       <main>
         <Form onSubmit={handleSubmit} data-cy="create-pet">
           <div className="cancel">
@@ -63,6 +68,7 @@ export default function PetForm({ previewImage, handleImageUpload }) {
           <p>*Mandatory Field</p>
         </Form>
       </main>
+      <Navigation />
     </>
   )
 }

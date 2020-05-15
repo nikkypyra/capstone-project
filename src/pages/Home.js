@@ -3,23 +3,31 @@ import styled from 'styled-components/macro'
 import AddButton from '../components/Buttons/AddButton'
 import { Link } from 'react-router-dom'
 import DeleteButton from '../components/Buttons/DeleteButton'
+import UserHeader from '../components/UserHeader'
+import Navigation from '../components/Navigation'
 import PropTypes from 'prop-types'
 
 Home.propTypes = {
   pets: PropTypes.array.isRequired,
   deletePet: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
 }
 
-export default function Home({ pets, deletePet }) {
+export default function Home({ pets, deletePet, user }) {
+  const userPets = pets.filter((pet) => {
+    return pet.userId === user.id
+  })
+
   return (
     <>
+      <UserHeader />
       <ButtonWrapper>
         <Link to="/create-pet">
           <AddButton text="Add Pet" />
         </Link>
       </ButtonWrapper>
       <PetWrapper>
-        {pets.map((pet) => (
+        {userPets.map((pet) => (
           <section key={pet.id}>
             <div className="image">
               <Link to={`/pet/${pet.id}`} key={pet.id}>
@@ -35,6 +43,7 @@ export default function Home({ pets, deletePet }) {
           </section>
         ))}
       </PetWrapper>
+      <Navigation />
     </>
   )
 }
@@ -42,7 +51,7 @@ export default function Home({ pets, deletePet }) {
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
-  margin-right: 20px;
+  margin: 20px 20px 0 0;
 `
 const PetWrapper = styled.main`
   margin-top: 40px;

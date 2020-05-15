@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import SubmitButton from '../components/Buttons/SubmitButton'
 import AddButton from '../components/Buttons/AddButton'
+import UserHeader from '../components/UserHeader'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 
@@ -10,6 +11,7 @@ export default function Login({ logIn, resetPassword, profile, setProfile }) {
   const [loginCounter, setLoginCounter] = useState(0)
   return (
     <>
+      <UserHeader />
       <main>
         <WrapperStyled>
           <form onSubmit={handleSubmit(onSubmit)} data-cy="login">
@@ -69,14 +71,18 @@ export default function Login({ logIn, resetPassword, profile, setProfile }) {
     logIn(data)
       .then((res) => {
         if (res.code === 'auth/user-not-found') {
-          return setError('email', 'notFound', 'E-mail address not found')
+          return setError(
+            'email',
+            'notFound',
+            'The email or password you entered did not match our records. Please double-check and try again.'
+          )
         }
         if (res.code === 'auth/wrong-password' && loginCounter <= 3) {
           setLoginCounter(loginCounter + 1)
           return setError(
             'password',
             'reset',
-            'The password you entered is incorrect. You may try again or  '
+            'The email or password you entered did not match our records. You may try again or  '
           )
         }
         if (res.code === 'auth/too-many-requests') {

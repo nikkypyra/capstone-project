@@ -2,15 +2,18 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import SubmitButton from '../components/Buttons/SubmitButton'
 import CancelButton from '../components/Buttons/CancelButton'
+import Navigation from '../components/Navigation'
 import { useHistory, useParams, Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { db } from '../firebase'
+import UserHeader from '../components/UserHeader'
 
 TaskForm.propTypes = {
   pets: PropTypes.array.isRequired,
+  user: PropTypes.object.isRequired,
 }
 
-export default function TaskForm({ pets }) {
+export default function TaskForm({ pets, user }) {
   const [description, setDescription] = useState('')
   const [date, setDate] = useState('')
   const [time, setTime] = useState('')
@@ -27,11 +30,13 @@ export default function TaskForm({ pets }) {
       person,
       complete: false,
       petId: pet.id,
+      userId: user.id,
     })
     history.push(`/pet/${pet.id}`)
   }
   return (
     <>
+      <UserHeader />
       <main>
         <Form onSubmit={handleSubmit} data-cy="create-task">
           <div className="cancel">
@@ -96,6 +101,7 @@ export default function TaskForm({ pets }) {
           <p>*Mandatory Fields</p>
         </Form>
       </main>
+      <Navigation />
     </>
   )
 }

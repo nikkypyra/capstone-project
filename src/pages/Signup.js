@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 import SubmitButton from '../components/Buttons/SubmitButton'
+import UserHeader from '../components/UserHeader'
 import { Link, useHistory } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 
@@ -27,6 +28,7 @@ export default function SignUp({ setProfile, signUp }) {
 
   return (
     <>
+      <UserHeader />
       <main>
         <Form onSubmit={handleSubmit(onSubmit)} data-cy="login">
           <div className="email">
@@ -64,7 +66,7 @@ export default function SignUp({ setProfile, signUp }) {
             <SubmitButton text="Sign up" />
           </div>
           <div>
-            <Link to="/login">
+            <Link to="/">
               <p>Back</p>
             </Link>
           </div>

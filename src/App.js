@@ -1,7 +1,6 @@
 import React from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import GlobalStyles from './GlobalStyles'
-import Header from './components/Header'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Home from './pages/Home'
@@ -9,7 +8,6 @@ import PetForm from './pages/PetForm'
 import PetProfile from './pages/PetProfile'
 import TaskForm from './pages/TaskForm'
 import Filter from './pages/Filter'
-import Navigation from './components/Navigation'
 import useUserServices from './components/Hooks/useUserServices'
 import usePets from './components/Hooks/usePets'
 import useTasks from './components/Hooks/useTasks'
@@ -31,7 +29,6 @@ export default function App() {
   return (
     <>
       <GlobalStyles />
-      <Header />
       <AuthProvider setProfile={setProfile}>
         <AuthConsumer>
           {({ user }) => (
@@ -39,7 +36,7 @@ export default function App() {
               <Redirect exact from="/" to="home" />
               <Route path="/home">
                 {user && user.id ? (
-                  <Home pets={pets} deletePet={deletePet} />
+                  <Home pets={pets} deletePet={deletePet} user={user} />
                 ) : (
                   <Login
                     logIn={logIn}
@@ -54,6 +51,7 @@ export default function App() {
                   <PetForm
                     previewImage={previewImage}
                     handleImageUpload={handleImageUpload}
+                    user={user}
                   />
                 ) : (
                   <Login
@@ -85,7 +83,7 @@ export default function App() {
               </Route>
               <Route path="/pet/:id/create-task">
                 {user && user.id ? (
-                  <TaskForm pets={pets} />
+                  <TaskForm pets={pets} user={user} />
                 ) : (
                   <Login
                     logIn={logIn}
@@ -102,6 +100,7 @@ export default function App() {
                     tasks={tasks}
                     handleCheckbox={handleCheckbox}
                     deleteTask={deleteTask}
+                    user={user}
                   />
                 ) : (
                   <Login
@@ -112,7 +111,6 @@ export default function App() {
                   />
                 )}
               </Route>
-              {user && user.id && <Navigation />}
               <Route path="/signup">
                 <Signup signUp={signUp} setProfile={setProfile} />
               </Route>

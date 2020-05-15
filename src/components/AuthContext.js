@@ -18,7 +18,6 @@ function AuthProvider({ children, setProfile }) {
         })
         window.localStorage.setItem('uid', user.uid)
         getUserInformation()
-        // fetchPets().then(setPets)
       } else {
         setUser({})
         setProfile({ email: '', password: '', id: '' })
@@ -43,21 +42,6 @@ function AuthProvider({ children, setProfile }) {
         console.error('Error writing document: ', error)
       })
   }
-
-  /* function fetchPets() {
-    return db
-      .collection('users')
-      .doc(auth.currentUser.uid)
-      .collection('pets')
-      .get()
-      .then((querySnapshot) => {
-        const data = []
-        querySnapshot.docs.forEach((doc) => {
-          data.push(doc.data())
-        })
-        return data
-      })
-  } */
 
   async function logOut(event) {
     try {

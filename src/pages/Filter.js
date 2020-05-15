@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import SearchBar from '../components/SearchBar'
 import FilteredList from '../components/FilteredList'
+import UserHeader from '../components/UserHeader'
+import Navigation from '../components/Navigation'
 import PropTypes from 'prop-types'
 
 Filter.propTypes = {
@@ -8,12 +10,22 @@ Filter.propTypes = {
   tasks: PropTypes.array.isRequired,
   handleCheckbox: PropTypes.func.isRequired,
   deleteTask: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
 }
 
-export default function Filter({ pets, tasks, handleCheckbox, deleteTask }) {
+export default function Filter({
+  pets,
+  tasks,
+  handleCheckbox,
+  deleteTask,
+  user,
+}) {
   const [searchInput, setSearchInput] = useState('')
+  const userTasks = tasks.filter((task) => {
+    return task.userId === user.id
+  })
 
-  let filteredTasks = tasks.filter(
+  let filteredTasks = userTasks.filter(
     (task) =>
       task.date.includes(searchInput) ||
       task.person.toLowerCase().includes(searchInput.toLowerCase())
@@ -25,6 +37,7 @@ export default function Filter({ pets, tasks, handleCheckbox, deleteTask }) {
 
   return (
     <>
+      <UserHeader />
       <main>
         <SearchBar filterResults={filterResults} />
         {filteredTasks.length === 0 ? (
@@ -38,6 +51,7 @@ export default function Filter({ pets, tasks, handleCheckbox, deleteTask }) {
           />
         )}
       </main>
+      <Navigation />
     </>
   )
 }
