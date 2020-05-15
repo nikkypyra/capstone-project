@@ -110,7 +110,7 @@ const WrapperStyled = styled.section`
   display: flex;
   flex-direction: column;
   color: var(--secondary);
-  margin: 40px 20px 20px 20px;
+  margin: 100px 20px 20px 20px;
 
   input {
     cursor: auto;
@@ -132,7 +132,7 @@ const WrapperStyled = styled.section`
   }
 
   .login {
-    margin-top: 56px;
+    margin-top: 64px;
     margin-bottom: -8px;
     text-align: center;
     button {

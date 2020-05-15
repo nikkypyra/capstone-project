@@ -36,12 +36,7 @@ export default function SignUp({ setProfile, signUp }) {
               type="text"
               placeholder="Enter your E-mail"
               name="email"
-              ref={register({
-                required: true,
-                pattern: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-                minLength: 5,
-                maxLength: 50,
-              })}
+              ref={register({ required: true, pattern: /^\S+@\S+$/i })}
             />
             {((errors.email && errors.email.type === 'required') ||
               (errors.email && errors.email.type === 'pattern')) && (
@@ -80,7 +75,7 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   color: var(--secondary);
-  margin: 40px 20px 20px 20px;
+  margin: 100px 20px 20px 20px;
 
   input {
     cursor: auto;
@@ -102,6 +97,7 @@ const Form = styled.form`
   }
 
   .signup {
+    margin-top: 44px;
     text-align: center;
     button {
       padding: 16px 60px;
