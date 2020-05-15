@@ -3,10 +3,9 @@ import { useState } from 'react'
 
 export default function useUserServices() {
   const [profile, setProfile] = useState({
-    name: '',
     email: '',
     password: '',
-    _id: '',
+    id: '',
   })
 
   async function signUp({ email, password }) {
@@ -16,7 +15,7 @@ export default function useUserServices() {
         addUserToDB(res.user)
         return res
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.error('Error creating new user: ', error)
         return error
       })
@@ -25,12 +24,12 @@ export default function useUserServices() {
   async function addUserToDB(user) {
     return await db
       .collection('users')
-      .add({
-        _id: user.uid,
-        name: user.name,
+      .doc(user.uid)
+      .set({
+        id: user.uid,
         email: user.email,
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.error('Error writing document: ', error)
       })
   }

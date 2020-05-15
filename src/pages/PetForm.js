@@ -3,7 +3,6 @@ import styled from 'styled-components/macro'
 import SubmitButton from '../components/Buttons/SubmitButton'
 import CancelButton from '../components/Buttons/CancelButton'
 import ImageUpload from '../components/ImageUpload'
-import Navigation from '../components/Navigation'
 import { useHistory, Link } from 'react-router-dom'
 
 import PropTypes from 'prop-types'
@@ -64,7 +63,6 @@ export default function PetForm({ previewImage, handleImageUpload }) {
           <p>*Mandatory Field</p>
         </Form>
       </main>
-      <Navigation />
     </>
   )
 }

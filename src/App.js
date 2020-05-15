@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import GlobalStyles from './GlobalStyles'
 import Header from './components/Header'
@@ -9,39 +9,14 @@ import PetForm from './pages/PetForm'
 import PetProfile from './pages/PetProfile'
 import TaskForm from './pages/TaskForm'
 import Filter from './pages/Filter'
+import Navigation from './components/Navigation'
 import useUserServices from './components/Hooks/useUserServices'
+import usePets from './components/Hooks/usePets'
+import useTasks from './components/Hooks/useTasks'
+import usePhoto from './components/Hooks/usePhoto'
 import AuthProvider, { AuthConsumer } from './components/AuthContext'
-import { db } from './firebase'
-import { storage } from './firebase'
 
 export default function App() {
-  const [pets, setPets] = useState([])
-  useEffect(() => {
-    db.collection('pets').onSnapshot((snapshot) => {
-      const allPets = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }))
-      setPets(allPets)
-    })
-  }, [])
-  const [tasks, setTasks] = useState([])
-  useEffect(() => {
-    db.collection('tasks').onSnapshot((snapshot) => {
-      const allTasks = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }))
-      setTasks(allTasks)
-    })
-  }, [])
-
-  const [previewImage, setPreviewImage] = useState({
-    imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/pawlog-app.appspot.com/o/images%2Ftaskpaw.png?alt=media&token=8ad10974-93e4-4fd7-ae05-1567d049ad1f',
-    imageName: 'taskpaw.png',
-  })
-
   const {
     signUp,
     logIn,
@@ -49,6 +24,9 @@ export default function App() {
     profile,
     setProfile,
   } = useUserServices()
+  const { pets, setPets, deletePet } = usePets()
+  const { tasks, setTasks, deleteTask, handleCheckbox } = useTasks()
+  const { previewImage, handleImageUpload } = usePhoto()
 
   return (
     <>
@@ -134,6 +112,7 @@ export default function App() {
                   />
                 )}
               </Route>
+              {user && user.id && <Navigation />}
               <Route path="/signup">
                 <Signup signUp={signUp} setProfile={setProfile} />
               </Route>
@@ -143,44 +122,4 @@ export default function App() {
       </AuthProvider>
     </>
   )
-
-  function handleImageUpload(event) {
-    const image = event.target.files[0]
-    const uploadTask = storage.ref(`images/${image.name}`).put(image)
-    uploadTask.on(
-      'state_changed',
-      (snapshot) => {},
-      (error) => {
-        alert('An error occurred, please try again.')
-      },
-      () => {
-        storage
-          .ref('images')
-          .child(image.name)
-          .getDownloadURL()
-          .then((url) => {
-            setPreviewImage({ imageUrl: url, imageName: image.name })
-          })
-      }
-    )
-  }
-
-  function handleCheckbox(todo) {
-    db.collection('tasks').doc(todo.id).update({ complete: !todo.complete })
-  }
-
-  function deleteTask(todo) {
-    db.collection('tasks').doc(todo.id).delete()
-  }
-
-  function deletePet(pet) {
-    db.collection('pets').doc(pet.id).delete()
-    if (pet.imageTitle !== 'taskpaw.png') {
-      const image = storage.ref(`images/${pet.imageTitle}`)
-      image
-        .delete()
-        .then(() => console.log('Success'))
-        .catch((error) => console.log('Failed'))
-    }
-  }
 }

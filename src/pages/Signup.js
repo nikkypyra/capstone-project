@@ -1,8 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 import SubmitButton from '../components/Buttons/SubmitButton'
-import { Link } from 'react-router-dom'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 
 export default function SignUp({ setProfile, signUp }) {
@@ -30,15 +29,6 @@ export default function SignUp({ setProfile, signUp }) {
     <>
       <main>
         <Form onSubmit={handleSubmit(onSubmit)} data-cy="login">
-          <div className="name">
-            <input
-              type="text"
-              placeholder="Name"
-              name="name"
-              autoFocus
-              ref={register({ required: true, maxLength: 80 })}
-            />
-          </div>
           <div className="email">
             <input
               type="text"
@@ -51,6 +41,13 @@ export default function SignUp({ setProfile, signUp }) {
                 maxLength: 50,
               })}
             />
+            {((errors.email && errors.email.type === 'required') ||
+              (errors.email && errors.email.type === 'pattern')) && (
+              <p>Please enter a valid e-mail address.</p>
+            )}
+            {errors.email && errors.email.type === 'inUse' && (
+              <p>{errors.email.message}</p>
+            )}
           </div>
           <div className="password">
             <input
@@ -59,6 +56,9 @@ export default function SignUp({ setProfile, signUp }) {
               name="password"
               placeholder="Password"
             />
+            {errors.password && (
+              <p>Password must be at least 6 characters long.</p>
+            )}
           </div>
           <div className="signup">
             <SubmitButton text="Sign up" />

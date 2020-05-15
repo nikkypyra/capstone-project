@@ -3,38 +3,46 @@ import styled from 'styled-components/macro'
 import SubmitButton from '../components/Buttons/SubmitButton'
 import AddButton from '../components/Buttons/AddButton'
 import { Link } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
 
-export default function Login() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+export default function Login({ logIn, resetPassword, profile, setProfile }) {
+  const { register, handleSubmit, errors, setError } = useForm()
+  const [loginCounter, setLoginCounter] = useState(0)
   return (
     <>
       <main>
         <WrapperStyled>
-          <form /*onSubmit={handleSubmit}*/ data-cy="login">
+          <form onSubmit={handleSubmit(onSubmit)} data-cy="login">
             <div className="email">
               <input
+                ref={register}
                 type="email"
                 name="email"
                 placeholder="Enter your E-Mail"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
                 required
                 autoFocus
               />
+              {errors.email && errors.email.type === 'notFound' && (
+                <p>{errors.email.message}</p>
+              )}
             </div>
             <div className="password">
               <input
+                ref={register}
                 type="password"
                 name="password"
                 placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
                 required
               />
-            </div>
-            <div className="forgot">
-              <p>Forgot password?</p>
+              {errors.password && errors.password.type === 'reset' && (
+                <p>
+                  {errors.password.message}
+                  <span onClick={handleReset}> reset your password.</span>
+                </p>
+              )}
+              {errors.password && errors.password.type === 'tooMany' && (
+                <p>{errors.password.message}</p>
+              )}
             </div>
 
             <div className="login">
@@ -55,6 +63,41 @@ export default function Login() {
       </main>
     </>
   )
+
+  function onSubmit(data) {
+    setProfile(data)
+    logIn(data)
+      .then((res) => {
+        if (res.code === 'auth/user-not-found') {
+          return setError('email', 'notFound', 'E-mail address not found')
+        }
+        if (res.code === 'auth/wrong-password' && loginCounter <= 3) {
+          setLoginCounter(loginCounter + 1)
+          return setError(
+            'password',
+            'reset',
+            'The password you entered is incorrect. You may try again or  '
+          )
+        }
+        if (res.code === 'auth/too-many-requests') {
+          return setError(
+            'password',
+            'tooMany',
+            'Too many attempts, please try again later.'
+          )
+        }
+      })
+      .catch((error) => {
+        console.log(
+          'Sorry, there was an error with the server. Please try again later.',
+          error
+        )
+      })
+  }
+
+  function handleReset() {
+    resetPassword(profile)
+  }
 }
 
 const WrapperStyled = styled.section`
@@ -76,10 +119,6 @@ const WrapperStyled = styled.section`
   div {
     margin: 28px 0;
     width: 100%;
-  }
-
-  .forgot {
-    margin-top: -4px;
   }
 
   .login {

@@ -17,17 +17,18 @@ function AuthProvider({ children, setProfile }) {
           email: user.email,
         })
         window.localStorage.setItem('uid', user.uid)
-        // getUserInformation()
-        //fetchPets().then(setPets)
+        getUserInformation()
+        // fetchPets().then(setPets)
       } else {
         setUser({})
-        setProfile({ name: '', email: '', password: '', _id: '' })
+        setProfile({ email: '', password: '', id: '' })
         window.localStorage.removeItem('uid')
       }
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  /* async function getUserInformation() {
+  async function getUserInformation() {
     await db
       .collection('users')
       .doc(auth.currentUser.uid)
@@ -43,7 +44,7 @@ function AuthProvider({ children, setProfile }) {
       })
   }
 
-  function fetchPets() {
+  /* function fetchPets() {
     return db
       .collection('users')
       .doc(auth.currentUser.uid)
@@ -63,7 +64,7 @@ function AuthProvider({ children, setProfile }) {
       event.preventDefault()
       auth.signOut()
       setUser({})
-      setProfile({ name: '', email: '', password: '', _id: '' })
+      setProfile({ email: '', password: '', id: '' })
       history.push('/')
     } catch (err) {}
   }

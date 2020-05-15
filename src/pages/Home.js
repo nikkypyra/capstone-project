@@ -3,7 +3,6 @@ import styled from 'styled-components/macro'
 import AddButton from '../components/Buttons/AddButton'
 import { Link } from 'react-router-dom'
 import DeleteButton from '../components/Buttons/DeleteButton'
-import Navigation from '../components/Navigation'
 import PropTypes from 'prop-types'
 
 Home.propTypes = {
@@ -36,7 +35,6 @@ export default function Home({ pets, deletePet }) {
           </section>
         ))}
       </PetWrapper>
-      <Navigation />
     </>
   )
 }
