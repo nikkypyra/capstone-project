@@ -35,7 +35,7 @@ export default function App() {
             <Switch>
               <Redirect exact from="/" to="home" />
               <Route path="/home">
-                {user && user.id ? (
+                {user.id ? (
                   <Home deletePet={deletePet} pets={pets} />
                 ) : (
                   <Login
@@ -47,7 +47,7 @@ export default function App() {
                 )}
               </Route>
               <Route path="/create-pet">
-                {user && user.id ? (
+                {user.id ? (
                   <PetForm
                     previewImage={previewImage}
                     handleImageUpload={handleImageUpload}
@@ -63,7 +63,7 @@ export default function App() {
                 )}
               </Route>
               <Route exact path="/pet/:id">
-                {user && user.id ? (
+                {user.id ? (
                   <PetProfile
                     pets={pets}
                     setPets={setPets}
@@ -82,7 +82,7 @@ export default function App() {
                 )}
               </Route>
               <Route path="/pet/:id/create-task">
-                {user && user.id ? (
+                {user.id ? (
                   <TaskForm pets={pets} user={user} />
                 ) : (
                   <Login
@@ -94,7 +94,7 @@ export default function App() {
                 )}
               </Route>
               <Route path="/filter">
-                {user && user.id ? (
+                {user.id ? (
                   <Filter
                     pets={pets}
                     tasks={tasks}

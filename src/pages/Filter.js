@@ -14,9 +14,6 @@ Filter.propTypes = {
 
 export default function Filter({ pets, tasks, handleCheckbox, deleteTask }) {
   const [searchInput, setSearchInput] = useState('')
-  /* const userTasks = tasks.filter((task) => {
-    return task.userId === user.id
-  })*/
 
   let filteredTasks = tasks.filter(
     (task) =>
