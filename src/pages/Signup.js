@@ -34,7 +34,7 @@ export default function SignUp({ setProfile, signUp }) {
           <div className="email">
             <input
               type="text"
-              placeholder="Enter your Email"
+              placeholder="Enter your E-mail"
               name="email"
               ref={register({
                 required: true,

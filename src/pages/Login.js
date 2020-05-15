@@ -20,9 +20,8 @@ export default function Login({ logIn, resetPassword, profile, setProfile }) {
                 ref={register}
                 type="email"
                 name="email"
-                placeholder="Enter your E-Mail"
+                placeholder="Enter your E-mail"
                 required
-                autoFocus
               />
               {errors.email && errors.email.type === 'notFound' && (
                 <Error>{errors.email.message}</Error>
@@ -102,6 +101,7 @@ export default function Login({ logIn, resetPassword, profile, setProfile }) {
   }
 
   function handleReset() {
+    alert('Please check your email for password reset instructions.')
     resetPassword(profile)
   }
 }
@@ -123,12 +123,16 @@ const WrapperStyled = styled.section`
   }
 
   div {
-    margin: 28px 0;
+    margin: 24px 0;
     width: 100%;
   }
 
+  .email {
+    margin-bottom: 44px;
+  }
+
   .login {
-    margin-top: 40px;
+    margin-top: 56px;
     margin-bottom: -8px;
     text-align: center;
     button {
