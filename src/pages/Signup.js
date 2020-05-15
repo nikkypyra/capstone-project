@@ -45,10 +45,10 @@ export default function SignUp({ setProfile, signUp }) {
             />
             {((errors.email && errors.email.type === 'required') ||
               (errors.email && errors.email.type === 'pattern')) && (
-              <p>Please enter a valid e-mail address.</p>
+              <Error>Please enter a valid e-mail address.</Error>
             )}
             {errors.email && errors.email.type === 'inUse' && (
-              <p>{errors.email.message}</p>
+              <Error>{errors.email.message}</Error>
             )}
           </div>
           <div className="password">
@@ -59,7 +59,7 @@ export default function SignUp({ setProfile, signUp }) {
               placeholder="Password"
             />
             {errors.password && (
-              <p>Password must be at least 6 characters long.</p>
+              <Error>Password must be at least 6 characters long.</Error>
             )}
           </div>
           <div className="signup">
@@ -107,4 +107,7 @@ const Form = styled.form`
       padding: 16px 60px;
     }
   }
+`
+const Error = styled.p`
+  color: red;
 `

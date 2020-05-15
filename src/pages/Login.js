@@ -25,7 +25,7 @@ export default function Login({ logIn, resetPassword, profile, setProfile }) {
                 autoFocus
               />
               {errors.email && errors.email.type === 'notFound' && (
-                <p>{errors.email.message}</p>
+                <Error>{errors.email.message}</Error>
               )}
             </div>
             <div className="password">
@@ -37,13 +37,13 @@ export default function Login({ logIn, resetPassword, profile, setProfile }) {
                 required
               />
               {errors.password && errors.password.type === 'reset' && (
-                <p>
+                <Error>
                   {errors.password.message}
                   <span onClick={handleReset}> reset your password.</span>
-                </p>
+                </Error>
               )}
               {errors.password && errors.password.type === 'tooMany' && (
-                <p>{errors.password.message}</p>
+                <Error>{errors.password.message}</Error>
               )}
             </div>
 
@@ -148,4 +148,12 @@ const WrapperStyled = styled.section`
     flex-direction: column;
     text-align: center;
   }
+
+  span {
+    color: var(--primary);
+  }
+`
+
+const Error = styled.p`
+  color: red;
 `

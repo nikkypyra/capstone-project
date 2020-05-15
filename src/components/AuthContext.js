@@ -5,7 +5,7 @@ import { auth, db } from '../firebase'
 
 const AuthContext = React.createContext()
 
-function AuthProvider({ children, setProfile }) {
+function AuthProvider({ children, setProfile, setTasks, setPets }) {
   const [user, setUser] = useState({})
   const history = useHistory()
 
@@ -46,7 +46,6 @@ function AuthProvider({ children, setProfile }) {
       })
   }
 
-  const [pets, setPets] = useState([])
   function getPets(user) {
     db.collection('pets').onSnapshot((snapshot) => {
       const allPets = snapshot.docs.map((doc) => ({
@@ -60,7 +59,6 @@ function AuthProvider({ children, setProfile }) {
     })
   }
 
-  const [tasks, setTasks] = useState([])
   function getTasks(user) {
     db.collection('tasks').onSnapshot((snapshot) => {
       const allTasks = snapshot.docs.map((doc) => ({
@@ -88,10 +86,6 @@ function AuthProvider({ children, setProfile }) {
       value={{
         user,
         logOut,
-        pets,
-        setPets,
-        tasks,
-        setTasks,
       }}
     >
       {children}

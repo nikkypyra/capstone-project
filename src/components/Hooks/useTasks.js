@@ -1,6 +1,9 @@
+import { useState } from 'react'
 import { db } from '../../firebase'
 
 export default function useTasks() {
+  const [tasks, setTasks] = useState([])
+
   function handleCheckbox(todo) {
     db.collection('tasks').doc(todo.id).update({ complete: !todo.complete })
   }
@@ -9,5 +12,5 @@ export default function useTasks() {
     db.collection('tasks').doc(todo.id).delete()
   }
 
-  return { deleteTask, handleCheckbox }
+  return { deleteTask, handleCheckbox, tasks, setTasks }
 }

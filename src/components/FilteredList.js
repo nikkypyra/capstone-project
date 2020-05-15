@@ -20,7 +20,6 @@ export default function FilteredList({
     const pet = pets.find((pet) => pet.id === todo.petId)
     return pet.name
   }
-
   return (
     <TaskWrapper>
       {filteredTasks

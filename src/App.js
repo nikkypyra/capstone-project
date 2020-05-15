@@ -22,16 +22,20 @@ export default function App() {
     profile,
     setProfile,
   } = useUserServices()
-  const { deletePet } = usePets()
-  const { deleteTask, handleCheckbox } = useTasks()
-  const { previewImage, handleImageUpload } = usePhoto()
+  const { deletePet, pets, setPets } = usePets()
+  const { deleteTask, handleCheckbox, tasks, setTasks } = useTasks()
+  const { previewImage, setPreviewImage, handleImageUpload } = usePhoto()
 
   return (
     <>
       <GlobalStyles />
-      <AuthProvider setProfile={setProfile}>
+      <AuthProvider
+        setProfile={setProfile}
+        setPets={setPets}
+        setTasks={setTasks}
+      >
         <AuthConsumer>
-          {({ user, pets, setPets, tasks, setTasks }) => (
+          {({ user }) => (
             <Switch>
               <Redirect exact from="/" to="home" />
               <Route path="/home">
@@ -50,6 +54,7 @@ export default function App() {
                 {user.id ? (
                   <PetForm
                     previewImage={previewImage}
+                    setPreviewImage={setPreviewImage}
                     handleImageUpload={handleImageUpload}
                     user={user}
                   />

@@ -16,7 +16,12 @@ PetForm.propTypes = {
   user: PropTypes.object.isRequired,
 }
 
-export default function PetForm({ previewImage, handleImageUpload, user }) {
+export default function PetForm({
+  previewImage,
+  setPreviewImage,
+  handleImageUpload,
+  user,
+}) {
   const [name, setName] = useState('')
   const history = useHistory()
 
@@ -27,6 +32,12 @@ export default function PetForm({ previewImage, handleImageUpload, user }) {
       imageSrc: previewImage.imageUrl,
       imageTitle: previewImage.imageName,
       userId: user.id,
+    })
+    setName({ name: '' })
+    setPreviewImage({
+      imageUrl:
+        'https://firebasestorage.googleapis.com/v0/b/pawlog-app.appspot.com/o/images%2Ftaskpaw.png?alt=media&token=8ad10974-93e4-4fd7-ae05-1567d049ad1f',
+      imageName: 'taskpaw.png',
     })
     history.push('/home')
   }

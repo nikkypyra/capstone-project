@@ -32,6 +32,10 @@ export default function TaskForm({ pets, user }) {
       petId: pet.id,
       userId: user.id,
     })
+    setDescription({ description: '' })
+    setDate({ date: '' })
+    setTime({ time: '' })
+    setPerson({ person: '' })
     history.push(`/pet/${pet.id}`)
   }
   return (

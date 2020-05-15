@@ -29,5 +29,5 @@ export default function usePhoto() {
     )
   }
 
-  return { previewImage, handleImageUpload }
+  return { previewImage, setPreviewImage, handleImageUpload }
 }
