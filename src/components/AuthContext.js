@@ -18,6 +18,9 @@ function AuthProvider({ children, setProfile }) {
         })
         window.localStorage.setItem('uid', user.uid)
         getUserInformation()
+        const currentUser = auth.currentUser.uid
+        getPets(currentUser)
+        getTasks(currentUser)
       } else {
         setUser({})
         setProfile({ email: '', password: '', id: '' })
@@ -43,6 +46,34 @@ function AuthProvider({ children, setProfile }) {
       })
   }
 
+  const [pets, setPets] = useState([])
+  function getPets(user) {
+    db.collection('pets').onSnapshot((snapshot) => {
+      const allPets = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }))
+      const userPets = allPets.filter((pet) => {
+        return pet.userId === user
+      })
+      setPets(userPets)
+    })
+  }
+
+  const [tasks, setTasks] = useState([])
+  function getTasks(user) {
+    db.collection('tasks').onSnapshot((snapshot) => {
+      const allTasks = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }))
+      const userTasks = allTasks.filter((task) => {
+        return task.userId === user
+      })
+      setTasks(userTasks)
+    })
+  }
+
   async function logOut(event) {
     try {
       event.preventDefault()
@@ -57,6 +88,10 @@ function AuthProvider({ children, setProfile }) {
       value={{
         user,
         logOut,
+        pets,
+        setPets,
+        tasks,
+        setTasks,
       }}
     >
       {children}

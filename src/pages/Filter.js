@@ -10,22 +10,15 @@ Filter.propTypes = {
   tasks: PropTypes.array.isRequired,
   handleCheckbox: PropTypes.func.isRequired,
   deleteTask: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired,
 }
 
-export default function Filter({
-  pets,
-  tasks,
-  handleCheckbox,
-  deleteTask,
-  user,
-}) {
+export default function Filter({ pets, tasks, handleCheckbox, deleteTask }) {
   const [searchInput, setSearchInput] = useState('')
-  const userTasks = tasks.filter((task) => {
+  /* const userTasks = tasks.filter((task) => {
     return task.userId === user.id
-  })
+  })*/
 
-  let filteredTasks = userTasks.filter(
+  let filteredTasks = tasks.filter(
     (task) =>
       task.date.includes(searchInput) ||
       task.person.toLowerCase().includes(searchInput.toLowerCase())

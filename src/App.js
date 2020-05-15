@@ -8,10 +8,10 @@ import PetForm from './pages/PetForm'
 import PetProfile from './pages/PetProfile'
 import TaskForm from './pages/TaskForm'
 import Filter from './pages/Filter'
-import useUserServices from './components/Hooks/useUserServices'
-import usePets from './components/Hooks/usePets'
-import useTasks from './components/Hooks/useTasks'
-import usePhoto from './components/Hooks/usePhoto'
+import useUserServices from './components/hooks/useUserServices'
+import usePets from './components/hooks/usePets'
+import useTasks from './components/hooks/useTasks'
+import usePhoto from './components/hooks/usePhoto'
 import AuthProvider, { AuthConsumer } from './components/AuthContext'
 
 export default function App() {
@@ -22,8 +22,8 @@ export default function App() {
     profile,
     setProfile,
   } = useUserServices()
-  const { pets, setPets, deletePet } = usePets()
-  const { tasks, setTasks, deleteTask, handleCheckbox } = useTasks()
+  const { deletePet } = usePets()
+  const { deleteTask, handleCheckbox } = useTasks()
   const { previewImage, handleImageUpload } = usePhoto()
 
   return (
@@ -31,12 +31,12 @@ export default function App() {
       <GlobalStyles />
       <AuthProvider setProfile={setProfile}>
         <AuthConsumer>
-          {({ user }) => (
+          {({ user, pets, setPets, tasks, setTasks }) => (
             <Switch>
               <Redirect exact from="/" to="home" />
               <Route path="/home">
                 {user && user.id ? (
-                  <Home pets={pets} deletePet={deletePet} user={user} />
+                  <Home deletePet={deletePet} pets={pets} />
                 ) : (
                   <Login
                     logIn={logIn}
@@ -100,7 +100,6 @@ export default function App() {
                     tasks={tasks}
                     handleCheckbox={handleCheckbox}
                     deleteTask={deleteTask}
-                    user={user}
                   />
                 ) : (
                   <Login

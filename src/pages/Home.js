@@ -10,14 +10,9 @@ import PropTypes from 'prop-types'
 Home.propTypes = {
   pets: PropTypes.array.isRequired,
   deletePet: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired,
 }
 
-export default function Home({ pets, deletePet, user }) {
-  const userPets = pets.filter((pet) => {
-    return pet.userId === user.id
-  })
-
+export default function Home({ deletePet, pets }) {
   return (
     <>
       <UserHeader />
@@ -27,7 +22,7 @@ export default function Home({ pets, deletePet, user }) {
         </Link>
       </ButtonWrapper>
       <PetWrapper>
-        {userPets.map((pet) => (
+        {pets.map((pet) => (
           <section key={pet.id}>
             <div className="image">
               <Link to={`/pet/${pet.id}`} key={pet.id}>
