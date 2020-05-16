@@ -8,20 +8,14 @@ import PetForm from './pages/PetForm'
 import PetProfile from './pages/PetProfile'
 import TaskForm from './pages/TaskForm'
 import Filter from './pages/Filter'
-import useUserServices from './components/hooks/useUserServices'
+import useServices from './components/hooks/useServices'
 import usePets from './components/hooks/usePets'
 import useTasks from './components/hooks/useTasks'
 import usePhoto from './components/hooks/usePhoto'
 import AuthProvider, { AuthConsumer } from './components/AuthContext'
 
 export default function App() {
-  const {
-    signUp,
-    logIn,
-    resetPassword,
-    profile,
-    setProfile,
-  } = useUserServices()
+  const { signUp, logIn, resetPassword, profile, setProfile } = useServices()
   const { deletePet, pets, setPets } = usePets()
   const { deleteTask, handleCheckbox, tasks, setTasks } = useTasks()
   const { previewImage, setPreviewImage, handleImageUpload } = usePhoto()

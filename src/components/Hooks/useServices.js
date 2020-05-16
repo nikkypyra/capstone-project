@@ -1,7 +1,7 @@
 import { db, auth } from '../../firebase'
 import { useState } from 'react'
 
-export default function useUserServices() {
+export default function useServices() {
   const [profile, setProfile] = useState({
     email: '',
     password: '',
