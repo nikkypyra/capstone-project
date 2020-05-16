@@ -67,7 +67,7 @@ export default function PetForm({
                 type="text"
                 name="name"
                 value={name}
-                maxLength="100"
+                maxLength="9"
                 placeholder="Insert pet name"
                 onChange={(e) => setName(e.target.value)}
                 required
