@@ -22,21 +22,25 @@ export default function Home({ deletePet, pets }) {
         </Link>
       </ButtonWrapper>
       <PetWrapper>
-        {pets.map((pet) => (
-          <section key={pet.id}>
-            <div className="image">
-              <Link to={`/pet/${pet.id}`} key={pet.id}>
-                <img src={pet.imageSrc} alt={pet.name} />
-              </Link>
-            </div>
-            <div className="name">
-              <h1>{pet.name.toUpperCase()}</h1>
-            </div>
-            <div className="delete">
-              <DeleteButton onClick={() => deletePet(pet)} />
-            </div>
-          </section>
-        ))}
+        {pets.length !== 0 ? (
+          pets.map((pet) => (
+            <section key={pet.id}>
+              <div className="image">
+                <Link to={`/pet/${pet.id}`} key={pet.id}>
+                  <img src={pet.imageSrc} alt={pet.name} />
+                </Link>
+              </div>
+              <div className="name">
+                <h1>{pet.name.toUpperCase()}</h1>
+              </div>
+              <div className="delete">
+                <DeleteButton onClick={() => deletePet(pet)} />
+              </div>
+            </section>
+          ))
+        ) : (
+          <TextStyled>You have not added any pets yet.</TextStyled>
+        )}
       </PetWrapper>
       <Navigation />
     </>
@@ -80,4 +84,9 @@ const PetWrapper = styled.main`
     grid-row: 1/2;
     grid-column: 3/4;
   }
+`
+const TextStyled = styled.h3`
+  text-align: center;
+  margin-top: 60px;
+  color: var(--primary);
 `

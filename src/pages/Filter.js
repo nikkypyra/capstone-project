@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import styled from 'styled-components/macro'
 import SearchBar from '../components/SearchBar'
 import FilteredList from '../components/FilteredList'
 import UserHeader from '../components/UserHeader'
@@ -31,7 +32,7 @@ export default function Filter({ pets, tasks, handleCheckbox, deleteTask }) {
       <main>
         <SearchBar filterResults={filterResults} />
         {filteredTasks.length === 0 ? (
-          <p>No results found.</p>
+          <TextStyled>No results found.</TextStyled>
         ) : (
           <FilteredList
             filteredTasks={filteredTasks}
@@ -45,3 +46,7 @@ export default function Filter({ pets, tasks, handleCheckbox, deleteTask }) {
     </>
   )
 }
+
+const TextStyled = styled.p`
+  color: var(--primary);
+`
