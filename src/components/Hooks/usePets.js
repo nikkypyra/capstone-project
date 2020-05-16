@@ -10,7 +10,6 @@ export default function usePets() {
   function deletePet(pet) {
     swal({
       text: 'Are you sure you want to delete this pet?',
-      icon: 'warning',
       buttons: true,
       dangerMode: true,
     }).then((willDelete) => {

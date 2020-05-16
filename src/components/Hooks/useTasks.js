@@ -12,7 +12,6 @@ export default function useTasks() {
   function deleteTask(todo) {
     swal({
       text: 'Are you sure you want to delete this task?',
-      icon: 'warning',
       buttons: true,
       dangerMode: true,
     }).then((willDelete) => {
