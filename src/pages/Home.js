@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import AddButton from '../components/Buttons/AddButton'
+import AddButton from '../components/buttons/AddButton'
 import { Link } from 'react-router-dom'
-import DeleteButton from '../components/Buttons/DeleteButton'
+import DeleteButton from '../components/buttons/DeleteButton'
 import UserHeader from '../components/UserHeader'
 import Navigation from '../components/Navigation'
 import PropTypes from 'prop-types'
@@ -60,6 +60,7 @@ const PetWrapper = styled.main`
   .image {
     grid-row: 1/2;
     grid-column: 2/3;
+    text-align: center;
     img {
       height: 240px;
       width: 240px;

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 
 SubmitButton.propTypes = {
   text: PropTypes.string,
+  clicked: PropTypes.bool,
   onClick: PropTypes.func,
 }
 

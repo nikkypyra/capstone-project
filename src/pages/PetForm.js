@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
-import SubmitButton from '../components/Buttons/SubmitButton'
-import CancelButton from '../components/Buttons/CancelButton'
+import SubmitButton from '../components/buttons/SubmitButton'
+import CancelButton from '../components/buttons/CancelButton'
 import ImageUpload from '../components/ImageUpload'
 import { useHistory, Link } from 'react-router-dom'
 import Navigation from '../components/Navigation'
-
 import PropTypes from 'prop-types'
 import { db } from '../firebase'
 import UserHeader from '../components/UserHeader'

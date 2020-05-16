@@ -1,6 +1,6 @@
 import React from 'react'
 import Checkbox from './Checkbox'
-import DeleteButton from './Buttons/DeleteButton'
+import DeleteButton from './buttons/DeleteButton'
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 
