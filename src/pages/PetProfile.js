@@ -4,6 +4,8 @@ import TasksStyled from '../components/TasksStyled'
 import AddButton from '../components/Buttons/AddButton'
 import styled from 'styled-components/macro'
 import { Link, useParams } from 'react-router-dom'
+import UserHeader from '../components/UserHeader'
+import Navigation from '../components/Navigation'
 import PropTypes from 'prop-types'
 
 PetProfile.propTypes = {
@@ -27,6 +29,7 @@ export default function PetProfile({
   const pet = pets.find((pet) => pet.id === params.id) || {}
   return (
     <>
+      <UserHeader />
       <main>
         <ProfileBanner imageSrc={pet.imageSrc} name={pet.name} />
         <ButtonWrapper>
@@ -44,6 +47,7 @@ export default function PetProfile({
           deleteTask={deleteTask}
         />
       </main>
+      <Navigation />
     </>
   )
 }

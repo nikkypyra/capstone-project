@@ -4,16 +4,24 @@ import SubmitButton from '../components/Buttons/SubmitButton'
 import CancelButton from '../components/Buttons/CancelButton'
 import ImageUpload from '../components/ImageUpload'
 import { useHistory, Link } from 'react-router-dom'
+import Navigation from '../components/Navigation'
 
 import PropTypes from 'prop-types'
 import { db } from '../firebase'
+import UserHeader from '../components/UserHeader'
 
 PetForm.propTypes = {
   handleImageUpload: PropTypes.func.isRequired,
   previewImage: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
 }
 
-export default function PetForm({ previewImage, handleImageUpload }) {
+export default function PetForm({
+  previewImage,
+  setPreviewImage,
+  handleImageUpload,
+  user,
+}) {
   const [name, setName] = useState('')
   const history = useHistory()
 
@@ -23,12 +31,20 @@ export default function PetForm({ previewImage, handleImageUpload }) {
       name,
       imageSrc: previewImage.imageUrl,
       imageTitle: previewImage.imageName,
+      userId: user.id,
     })
-    history.push('/')
+    setName({ name: '' })
+    setPreviewImage({
+      imageUrl:
+        'https://firebasestorage.googleapis.com/v0/b/pawlog-app.appspot.com/o/images%2Ftaskpaw.png?alt=media&token=8ad10974-93e4-4fd7-ae05-1567d049ad1f',
+      imageName: 'taskpaw.png',
+    })
+    history.push('/home')
   }
 
   return (
     <>
+      <UserHeader />
       <main>
         <Form onSubmit={handleSubmit} data-cy="create-pet">
           <div className="cancel">
@@ -63,6 +79,7 @@ export default function PetForm({ previewImage, handleImageUpload }) {
           <p>*Mandatory Field</p>
         </Form>
       </main>
+      <Navigation />
     </>
   )
 }
@@ -78,6 +95,10 @@ const Form = styled.form`
   border: 4px solid var(--tertiary);
   border-radius: 12px;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16);
+
+  input[type='text'] {
+    cursor: auto;
+  }
 
   label,
   input {

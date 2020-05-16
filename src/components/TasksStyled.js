@@ -17,7 +17,7 @@ export default function TasksStyled({
   handleCheckbox,
   deleteTask,
 }) {
-  const todos = tasks.filter(function (task) {
+  const todos = tasks.filter((task) => {
     return task.petId === pet.id
   })
   return (

@@ -3,7 +3,7 @@ import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 
 SearchBar.propTypes = {
-  filterResults: PropTypes.array.isRequired,
+  filterResults: PropTypes.func.isRequired,
 }
 
 export default function SearchBar({ filterResults }) {

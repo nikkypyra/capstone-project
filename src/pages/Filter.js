@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import SearchBar from '../components/SearchBar'
 import FilteredList from '../components/FilteredList'
+import UserHeader from '../components/UserHeader'
+import Navigation from '../components/Navigation'
 import PropTypes from 'prop-types'
 
 Filter.propTypes = {
@@ -25,6 +27,7 @@ export default function Filter({ pets, tasks, handleCheckbox, deleteTask }) {
 
   return (
     <>
+      <UserHeader />
       <main>
         <SearchBar filterResults={filterResults} />
         {filteredTasks.length === 0 ? (
@@ -38,6 +41,7 @@ export default function Filter({ pets, tasks, handleCheckbox, deleteTask }) {
           />
         )}
       </main>
+      <Navigation />
     </>
   )
 }
