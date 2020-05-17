@@ -55,7 +55,7 @@ export default function Login({ logIn, resetPassword, profile, setProfile }) {
             </div>
 
             <div className="login">
-              <SubmitButton text="Log in" className="login" />
+              <SubmitButton text="Log in" className="login" type="submit" />
             </div>
           </form>
           <section>
