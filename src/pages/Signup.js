@@ -64,7 +64,7 @@ export default function SignUp({ setProfile, signUp }) {
             )}
           </div>
           <div className="signup">
-            <SubmitButton text="Sign up" />
+            <SubmitButton text="Sign up" type="submit" />
           </div>
           <div>
             <Link to="/">

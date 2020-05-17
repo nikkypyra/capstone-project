@@ -18,6 +18,11 @@ export default function TaskForm({ pets, user }) {
   const [date, setDate] = useState('')
   const [time, setTime] = useState('')
   const [person, setPerson] = useState('')
+  const disabled =
+    description.length === 0 ||
+    date.length === 0 ||
+    time.length === 0 ||
+    person.length === 0
   const history = useHistory()
   const params = useParams()
   const pet = pets.find((pet) => pet.id === params.id)
@@ -101,7 +106,7 @@ export default function TaskForm({ pets, user }) {
               />
             </label>
           </div>
-          <SubmitButton text="Submit" />
+          <SubmitButton text="Submit" disabled={disabled} type="submit" />
           <p>*Mandatory Fields</p>
         </Form>
       </main>

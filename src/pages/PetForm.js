@@ -23,6 +23,7 @@ export default function PetForm({
 }) {
   const [name, setName] = useState('')
   const history = useHistory()
+  const disabled = name.length === 0
 
   function handleSubmit(event) {
     event.preventDefault()
@@ -74,7 +75,7 @@ export default function PetForm({
               />
             </label>
           </div>
-          <SubmitButton text="Submit" />
+          <SubmitButton text="Submit" type="submit" disabled={disabled} />
           <p>*Mandatory Field</p>
         </Form>
       </main>
