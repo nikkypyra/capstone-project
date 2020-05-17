@@ -1,24 +1,34 @@
 import { useState } from 'react'
 import { db, storage } from '../../firebase'
 import swal from 'sweetalert'
-//import useTasks from './useTasks'
 
 export default function usePets() {
   const [pets, setPets] = useState([])
-  //const { deleteTask, tasks } = useTasks()
+  const [tasks, setTasks] = useState([])
 
   function deletePet(pet) {
+    let filteredTasks = tasks.filter((task) => task.petId === pet.id)
+
     swal({
       text: 'Are you sure you want to delete this pet?',
       buttons: true,
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        db.collection('pets').doc(pet.id).delete()
-        /* let filteredTasks = tasks.filter((task) => task.petId === pet.id)
-    filteredTasks.forEach((task) => {
-      return deleteTask(task)
-    }) */
+        db.collection('pets')
+          .doc(pet.id)
+          .delete()
+          .then(() => console.log('Success'))
+          .catch((error) => console.log('Failed'))
+
+        filteredTasks.forEach((task) =>
+          db
+            .collection('tasks')
+            .doc(task.id)
+            .delete()
+            .then(() => console.log('Success'))
+            .catch((error) => console.log('Failed'))
+        )
         if (pet.imageTitle !== 'taskpaw.png') {
           const image = storage.ref(`images/${pet.imageTitle}`)
           image
@@ -30,9 +40,29 @@ export default function usePets() {
     })
   }
 
+  function handleCheckbox(todo) {
+    db.collection('tasks').doc(todo.id).update({ complete: !todo.complete })
+  }
+
+  function deleteTask(todo) {
+    swal({
+      text: 'Are you sure you want to delete this task?',
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        db.collection('tasks').doc(todo.id).delete()
+      }
+    })
+  }
+
   return {
     deletePet,
     pets,
     setPets,
+    deleteTask,
+    handleCheckbox,
+    tasks,
+    setTasks,
   }
 }

@@ -4,11 +4,16 @@ import PropTypes from 'prop-types'
 
 SubmitButton.propTypes = {
   text: PropTypes.string,
+  disabled: PropTypes.bool,
   onClick: PropTypes.func,
 }
 
-export default function SubmitButton({ text, onClick }) {
-  return <Button onClick={onClick}>{text}</Button>
+export default function SubmitButton({ text, onClick, disabled }) {
+  return (
+    <Button onClick={onClick} disabled={disabled}>
+      {text}
+    </Button>
+  )
 }
 
 const Button = styled.button`
@@ -19,4 +24,7 @@ const Button = styled.button`
   border-radius: 12px;
   border: none;
   padding: 16px;
+  &:disabled {
+    opacity: 0.7;
+  }
 `

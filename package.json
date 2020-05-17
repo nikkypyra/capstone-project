@@ -3,26 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@datepicker-react/hooks": "^2.3.1",
     "@storybook/addon-knobs": "^5.3.18",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "express": "^4.17.1",
     "firebase-admin": "^8.12.1",
-    "minimist": "^1.2.5",
-    "moment": "^2.25.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hook-form": "^5.6.1",
-    "react-moment": "^0.9.7",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
     "react-test-renderer": "^16.13.1",
     "styled-components": "^5.1.0",
-    "sweetalert": "^2.1.2",
-    "uuid": "^8.0.0"
+    "sweetalert": "^2.1.2"
   },
   "scripts": {
     "start": "react-scripts start",

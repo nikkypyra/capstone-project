@@ -8,8 +8,8 @@ export default function useServices() {
     id: '',
   })
 
-  async function signUp({ email, password }) {
-    return await auth
+  function signUp({ email, password }) {
+    return auth
       .createUserWithEmailAndPassword(email, password)
       .then((res) => {
         addUserToDB(res.user)
@@ -17,12 +17,11 @@ export default function useServices() {
       })
       .catch((error) => {
         console.error('Error creating new user: ', error)
-        return error
       })
   }
 
-  async function addUserToDB(user) {
-    return await db
+  function addUserToDB(user) {
+    return db
       .collection('users')
       .doc(user.uid)
       .set({
@@ -34,8 +33,8 @@ export default function useServices() {
       })
   }
 
-  async function logIn({ email, password }) {
-    return await auth
+  function logIn({ email, password }) {
+    return auth
       .signInWithEmailAndPassword(email, password)
       .then((res) => res)
       .catch((error) => error)

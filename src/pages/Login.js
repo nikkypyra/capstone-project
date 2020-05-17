@@ -1,10 +1,18 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
-import SubmitButton from '../components/Buttons/SubmitButton'
-import AddButton from '../components/Buttons/AddButton'
+import SubmitButton from '../components/buttons/SubmitButton'
+import AddButton from '../components/buttons/AddButton'
 import UserHeader from '../components/UserHeader'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
+import PropTypes from 'prop-types'
+
+Login.propTypes = {
+  profile: PropTypes.object.isRequired,
+  logIn: PropTypes.func.isRequired,
+  resetPassword: PropTypes.func.isRequired,
+  setProfile: PropTypes.func.isRequired,
+}
 
 export default function Login({ logIn, resetPassword, profile, setProfile }) {
   const { register, handleSubmit, errors, setError } = useForm()
@@ -47,7 +55,7 @@ export default function Login({ logIn, resetPassword, profile, setProfile }) {
             </div>
 
             <div className="login">
-              <SubmitButton text="Log in" className="login" />
+              <SubmitButton text="Log in" className="login" type="submit" />
             </div>
           </form>
           <section>

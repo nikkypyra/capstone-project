@@ -30,16 +30,15 @@ function AuthProvider({ children, setProfile, setTasks, setPets }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  async function getUserInformation() {
-    await db
-      .collection('users')
+  function getUserInformation() {
+    db.collection('users')
       .doc(auth.currentUser.uid)
       .get()
       .then((doc) => {
         return doc.exists && doc.data()
       })
-      .then(async (data) => {
-        await setProfile({ ...data })
+      .then((data) => {
+        setProfile({ ...data })
       })
       .catch((error) => {
         console.error('Error writing document: ', error)
@@ -72,7 +71,7 @@ function AuthProvider({ children, setProfile, setTasks, setPets }) {
     })
   }
 
-  async function logOut(event) {
+  function logOut(event) {
     try {
       event.preventDefault()
       auth.signOut()

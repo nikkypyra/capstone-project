@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
-import SubmitButton from '../components/Buttons/SubmitButton'
-import CancelButton from '../components/Buttons/CancelButton'
+import SubmitButton from '../components/buttons/SubmitButton'
+import CancelButton from '../components/buttons/CancelButton'
 import ImageUpload from '../components/ImageUpload'
 import { useHistory, Link } from 'react-router-dom'
 import Navigation from '../components/Navigation'
-
 import PropTypes from 'prop-types'
 import { db } from '../firebase'
 import UserHeader from '../components/UserHeader'
@@ -24,6 +23,7 @@ export default function PetForm({
 }) {
   const [name, setName] = useState('')
   const history = useHistory()
+  const disabled = name.length === 0
 
   function handleSubmit(event) {
     event.preventDefault()
@@ -67,7 +67,7 @@ export default function PetForm({
                 type="text"
                 name="name"
                 value={name}
-                maxLength="100"
+                maxLength="9"
                 placeholder="Insert pet name"
                 onChange={(e) => setName(e.target.value)}
                 required
@@ -75,7 +75,7 @@ export default function PetForm({
               />
             </label>
           </div>
-          <SubmitButton text="Submit" />
+          <SubmitButton text="Submit" type="submit" disabled={disabled} />
           <p>*Mandatory Field</p>
         </Form>
       </main>
