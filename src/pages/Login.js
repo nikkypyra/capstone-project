@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form'
 import PropTypes from 'prop-types'
 
 Login.propTypes = {
-  profile: PropTypes.array.isRequired,
+  profile: PropTypes.object.isRequired,
   logIn: PropTypes.func.isRequired,
   resetPassword: PropTypes.func.isRequired,
   setProfile: PropTypes.func.isRequired,

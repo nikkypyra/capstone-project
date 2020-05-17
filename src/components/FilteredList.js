@@ -16,10 +16,6 @@ export default function FilteredList({
   handleCheckbox,
   deleteTask,
 }) {
-  function petName(todo) {
-    const pet = pets.find((pet) => pet.id === todo.petId)
-    return pet.name
-  }
   return (
     <TaskWrapper>
       {filteredTasks
@@ -67,6 +63,10 @@ export default function FilteredList({
         ))}
     </TaskWrapper>
   )
+  function petName(todo) {
+    const pet = pets.find((pet) => pet.id === todo.petId)
+    return pet.name
+  }
 }
 
 const TaskWrapper = styled.main`

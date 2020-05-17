@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import DeleteButton from '../components/buttons/DeleteButton'
 import UserHeader from '../components/UserHeader'
 import Navigation from '../components/Navigation'
+
 import PropTypes from 'prop-types'
 
 Home.propTypes = {

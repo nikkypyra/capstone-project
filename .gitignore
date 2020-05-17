@@ -26,3 +26,5 @@ yarn-error.log*
 #firebase
 serviceAccountKey.json
 firebase.js
+# Firebase cache
+.firebase/
