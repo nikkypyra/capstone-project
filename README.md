@@ -24,19 +24,19 @@ Please switch your browser to iPhone 6/7/8 mode, as this app was developed and o
 
 
 ## Setup Instructions
-1. Clone this repository
+1. Clone this repository  
 ```
 git@github.com:nikkypyra/capstone-project.git
 ```
-cd capstone-project
-2. Install dependencies
+
+2. Install dependencies   
  `npm install`
-3. Run the application with
+3. Run the application with  
  `npm start`
-4. Run Storybook with
+4. Run Storybook with  
  `npm run storybook`
-5. Run Cypress with
+5. Run Cypress with  
  `npm run cypress`
-6. Run React Testing Library & Jest with
+6. Run React Testing Library & Jest with  
  `npm test`
 
