@@ -28,15 +28,15 @@ Please switch your browser to iPhone 6/7/8 mode, as this app was developed and o
 ```
 git@github.com:nikkypyra/capstone-project.git
 ```
-- cd capstone-project
+cd capstone-project
 2. Install dependencies
-- `npm install`
+ `npm install`
 3. Run the application with
-- `npm start`
+ `npm start`
 4. Run Storybook with
-- `npm run storybook`
+ `npm run storybook`
 5. Run Cypress with
-- `npm run cypress`
+ `npm run cypress`
 6. Run React Testing Library & Jest with
-- `npm test`
+ `npm test`
 
