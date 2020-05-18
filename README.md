@@ -17,7 +17,7 @@ Pawlog is an app to organize the daily needs of your furry companions.🐱 It wa
 Pawlog was developed as my capstone project during the final three weeks of the [neuefische](https://www.neuefische.de) Web Developer Bootcamp in May, 2020.
 
 
-When viewing this app, please switch your browser to iPhone 6/7/8 mode, as pawlog was developed and optimized for mobile use.
+When viewing this app, please switch your browser to iPhone 6/7/8 mode, as it was developed and optimized for mobile use.
 
 ## Tech stack
 
