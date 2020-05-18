@@ -1,5 +1,7 @@
 {
   "name": "capstone-project",
+  "description": "pawlog is an an app to organize your pets' daily needs and was created as my capstone project for the neuefische coding bootcamp.",
+  "author": "Nicole Pyra",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
