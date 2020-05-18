@@ -2,6 +2,9 @@
 <div align="center">
 <img src="public/images/pawlog.png">
 </div>
+
+---
+
 Pawlog is an app to organize the daily needs of your furry companions.🐱  
 
 - Create individualized pet profiles including photos  
