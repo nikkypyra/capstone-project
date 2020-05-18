@@ -8,6 +8,7 @@ Pawlog is an app to organize the daily needs of your furry companions.🐱 It wa
 
 - Create individualized pet profiles including photos
 - Assign each pet their own task list
+- Designate tasks to members of your family
 - Edit and delete pets and tasks as needed
 - Search for tasks by date or person responsible
 - A secure login ensures your information will be private
@@ -27,10 +28,10 @@ When viewing this app, please switch your browser to iPhone 6/7/8 mode, as it wa
 - Storybook
 - styled-components
 - react-router-dom
+- prop-types
+- cypress
 - testing-library
 - jest
-- cypress
-- prop-types
 - react-hook-form
 
 ## Setup Instructions
