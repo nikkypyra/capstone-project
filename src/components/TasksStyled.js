@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import Checkbox from './Checkbox'
 import DeleteButton from './buttons/DeleteButton'
-import { Link } from 'react-router-dom'
+//import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 TasksStyled.propTypes = {

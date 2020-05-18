@@ -25,6 +25,7 @@ export default function TaskForm({ pets, user }) {
     person.length === 0
   const history = useHistory()
   const params = useParams()
+
   const pet = pets.find((pet) => pet.id === params.id)
   function handleSubmit(event) {
     event.preventDefault()

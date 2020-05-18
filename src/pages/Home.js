@@ -36,6 +36,9 @@ export default function Home({ deletePet, pets }) {
               <div className="delete">
                 <DeleteButton onClick={() => deletePet(pet)} />
               </div>
+              <Link to={`/pet/${pet.id}/update-pet`}>
+                <div className="edit">Edit</div>
+              </Link>
             </section>
           ))
         ) : (

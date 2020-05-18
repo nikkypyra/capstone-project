@@ -3,7 +3,7 @@ import styled from 'styled-components/macro'
 import SubmitButton from '../components/buttons/SubmitButton'
 import CancelButton from '../components/buttons/CancelButton'
 import ImageUpload from '../components/ImageUpload'
-import { useHistory, Link } from 'react-router-dom'
+import { useHistory, useParams, Link } from 'react-router-dom'
 import Navigation from '../components/Navigation'
 import PropTypes from 'prop-types'
 import { db } from '../firebase'
@@ -12,24 +12,32 @@ import UserHeader from '../components/UserHeader'
 EditPetForm.propTypes = {
   handleImageUpload: PropTypes.func.isRequired,
   previewImage: PropTypes.object.isRequired,
+  setPreviewImage: PropTypes.func.isRequired,
+  pets: PropTypes.array.isRequired,
 }
 
 export default function EditPetForm({
   previewImage,
   setPreviewImage,
   handleImageUpload,
+  pets,
 }) {
-  const [name, setName] = useState('')
   const history = useHistory()
+  const params = useParams()
+  const pet = pets.find((pet) => pet.id === params.id)
+
+  const [name, setName] = useState({ name: pet.name })
+
   const disabled = name.length === 0
+
+  console.log(pet)
 
   function handleSubmit(event) {
     event.preventDefault()
-    db.collection('pets').add({
+    db.collection('pets').doc('pet.id').update({
       name,
       imageSrc: previewImage.imageUrl,
       imageTitle: previewImage.imageName,
-      userId: user.id,
     })
     setName({ name: '' })
     setPreviewImage({
@@ -64,7 +72,7 @@ export default function EditPetForm({
               <input
                 type="text"
                 name="name"
-                value={name}
+                defaultValue={name}
                 maxLength="9"
                 placeholder="Insert pet name"
                 onChange={(e) => setName(e.target.value)}
