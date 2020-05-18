@@ -5,8 +5,10 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Home from './pages/Home'
 import PetForm from './pages/PetForm'
+import EditPetForm from './pages/EditPetForm'
 import PetProfile from './pages/PetProfile'
 import TaskForm from './pages/TaskForm'
+import EditTaskForm from './pages/EditTaskForm'
 import Filter from './pages/Filter'
 import useServices from './components/hooks/useServices'
 import usePets from './components/hooks/usePets'
@@ -69,6 +71,22 @@ export default function App() {
                   />
                 )}
               </Route>
+              <Route path="/update-pet">
+                {user.id ? (
+                  <EditPetForm
+                    previewImage={previewImage}
+                    setPreviewImage={setPreviewImage}
+                    handleImageUpload={handleImageUpload}
+                  />
+                ) : (
+                  <Login
+                    logIn={logIn}
+                    resetPassword={resetPassword}
+                    profile={profile}
+                    setProfile={setProfile}
+                  />
+                )}
+              </Route>
               <Route exact path="/pet/:id">
                 {user.id ? (
                   <PetProfile
@@ -91,6 +109,18 @@ export default function App() {
               <Route path="/pet/:id/create-task">
                 {user.id ? (
                   <TaskForm pets={pets} user={user} />
+                ) : (
+                  <Login
+                    logIn={logIn}
+                    resetPassword={resetPassword}
+                    profile={profile}
+                    setProfile={setProfile}
+                  />
+                )}
+              </Route>
+              <Route path="/pet/:id/update-task">
+                {user.id ? (
+                  <EditTaskForm pets={pets} user={user} />
                 ) : (
                   <Login
                     logIn={logIn}

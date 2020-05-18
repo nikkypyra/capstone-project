@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import Checkbox from './Checkbox'
 import DeleteButton from './buttons/DeleteButton'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 TasksStyled.propTypes = {
@@ -20,6 +21,22 @@ export default function TasksStyled({
   const todos = tasks.filter((task) => {
     return task.petId === pet.id
   })
+  /* const newTo = {
+    pathname: `/pet/${pet.id}/update-task`,
+    param: { todo },
+  }
+  
+  
+    <Link
+              to={{
+                pathname: `/pet/${pet.id}/update-task`,
+                todo: { todo: todo },
+              }}
+            >
+              <div className="edit">Edit</div>
+            </Link>
+  
+  */
   return (
     <TaskWrapper>
       {todos

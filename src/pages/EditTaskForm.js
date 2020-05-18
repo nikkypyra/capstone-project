@@ -1,4 +1,4 @@
-/* import React, { useState } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import SubmitButton from '../components/buttons/SubmitButton'
 import CancelButton from '../components/buttons/CancelButton'
@@ -8,30 +8,34 @@ import PropTypes from 'prop-types'
 import { db } from '../firebase'
 import UserHeader from '../components/UserHeader'
 
-TaskForm.propTypes = {
+EditTaskForm.propTypes = {
   pets: PropTypes.array.isRequired,
-  user: PropTypes.object.isRequired,
+  todo: PropTypes.object,
 }
 
-export default function TaskForm({ pets, user }) {
+export default function EditTaskForm({ pets, todo }) {
+  const [description, setDescription] = useState({
+    description: todo.description,
+  })
+  const [date, setDate] = useState({ date: todo.date })
+  const [time, setTime] = useState({ time: todo.time })
+  const [person, setPerson] = useState({ peraon: todo.person })
+  const disabled =
+    description.length === 0 ||
+    date.length === 0 ||
+    time.length === 0 ||
+    person.length === 0
   const history = useHistory()
   const params = useParams()
   const pet = pets.find((pet) => pet.id === params.id)
   function handleSubmit(event) {
     event.preventDefault()
-    db.collection('tasks').add({
+    db.collection('tasks').doc('todo.id').update({
       description,
       date,
       time,
       person,
-      complete: false,
-      petId: pet.id,
-      userId: user.id,
     })
-    setDescription({ description: '' })
-    setDate({ date: '' })
-    setTime({ time: '' })
-    setPerson({ person: '' })
     history.push(`/pet/${pet.id}`)
   }
   return (
@@ -50,7 +54,7 @@ export default function TaskForm({ pets, user }) {
               <input
                 type="text"
                 name="description"
-                value={description}
+                defaultValue={description}
                 maxLength="100"
                 placeholder="Insert description"
                 onChange={(e) => setDescription(e.target.value)}
@@ -65,7 +69,7 @@ export default function TaskForm({ pets, user }) {
               <input
                 type="date"
                 name="date"
-                value={date}
+                defaultValue={date}
                 onChange={(e) => setDate(e.target.value)}
                 required
               />
@@ -77,7 +81,7 @@ export default function TaskForm({ pets, user }) {
               <input
                 type="time"
                 name="time"
-                value={time}
+                defaultValue={time}
                 onChange={(e) => setTime(e.target.value)}
                 required
               />
@@ -89,7 +93,7 @@ export default function TaskForm({ pets, user }) {
               <input
                 type="text"
                 name="person"
-                value={person}
+                defaultValue={person}
                 maxLength="100"
                 placeholder="Insert person to complete task"
                 onChange={(e) => setPerson(e.target.value)}
@@ -176,4 +180,3 @@ const Form = styled.form`
     margin-top: 4px;
   }
 `
-*/
