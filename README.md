@@ -1,4 +1,3 @@
-# pawlog
 
 <div align="center">
 <img src="public/images/pawlog.png">
