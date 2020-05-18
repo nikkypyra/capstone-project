@@ -25,10 +25,7 @@ Please switch your browser to iPhone 6/7/8 mode, as this app was developed and o
 
 ## Setup Instructions
 1. Clone this repository  
-```
-git@github.com:nikkypyra/capstone-project.git
-```
-
+`git@github.com:nikkypyra/capstone-project.git`
 2. Install dependencies   
  `npm install`
 3. Run the application with  
