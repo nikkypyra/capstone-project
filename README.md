@@ -1,7 +1,7 @@
 # pawlog
 
 <div align="center">
-<img src="public/images/pawlog.png"  width="200" height="100">
+<img src="public/images/pawlog.png">
 </div>
 
 
