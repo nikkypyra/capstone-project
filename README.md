@@ -2,6 +2,9 @@
 <div align="center">
 <img src="public/images/pawlog.png">
 </div>
+🐾pawlog was developed as my capstone project during the final three weeks of the [neuefische](https://www.neuefische.de) Web Developer Bootcamp in May, 2020.
+
+🐾pawlog was made with [Create React App](https://github.com/facebook/create-react-app) and a [Firebase](https://firebase.google.com/) backend. 
 
 Please switch your browser to iPhone 6/7/8 mode, as this app was developed and optimized for mobile use.
 
