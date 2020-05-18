@@ -3,10 +3,10 @@
 <img src="public/images/pawlog.png">
 </div>
 Pawlog is an app to organize the daily needs of your furry companions.🐱  
-- Create individualized pet profiles including photos
-- Assign each pet their own task list
-- Edit and delete pets and tasks as needed
-- Search for tasks by date or person responsible
+- Create individualized pet profiles including photos  
+- Assign each pet their own task list  
+- Edit and delete pets and tasks as needed  
+- Search for tasks by date or person responsible  
 - A secure login ensures your information will be private
 
 Pawlog was made with [Create React App](https://github.com/facebook/create-react-app) and a [Firebase](https://firebase.google.com/) backend.  
