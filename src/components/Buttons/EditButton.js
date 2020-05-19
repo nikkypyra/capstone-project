@@ -9,7 +9,7 @@ EditButton.propTypes = {
 export default function EditButton({ onClick }) {
   return (
     <ImageWrapper onClick={onClick}>
-      <img src={process.env.PUBLIC_URL + '/images/edit1.png'} alt="" />
+      <img src={process.env.PUBLIC_URL + '/images/edit.png'} alt="" />
     </ImageWrapper>
   )
 }
