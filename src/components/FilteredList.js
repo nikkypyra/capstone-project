@@ -1,6 +1,5 @@
 import React from 'react'
 import Checkbox from './Checkbox'
-import DeleteButton from './buttons/DeleteButton'
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 
@@ -10,12 +9,7 @@ FilteredList.propTypes = {
   handleCheckbox: PropTypes.func.isRequired,
   deleteTask: PropTypes.func.isRequired,
 }
-export default function FilteredList({
-  filteredTasks,
-  pets,
-  handleCheckbox,
-  deleteTask,
-}) {
+export default function FilteredList({ filteredTasks, pets, handleCheckbox }) {
   return (
     <TaskWrapper>
       {filteredTasks
@@ -56,9 +50,6 @@ export default function FilteredList({
                 onChange={() => handleCheckbox(todo)}
               ></Checkbox>
             </div>
-            <div className="delete">
-              <DeleteButton onClick={() => deleteTask(todo)} />
-            </div>
           </section>
         ))}
     </TaskWrapper>
@@ -73,7 +64,7 @@ const TaskWrapper = styled.main`
   section {
     margin: 16px 0px;
     display: grid;
-    grid-template-columns: 1.4fr 2fr 3fr 1fr 1fr 1fr;
+    grid-template-columns: 1.4fr 2fr 3fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
     justify-content: space-evenly;
     align-items: center;
@@ -100,10 +91,7 @@ const TaskWrapper = styled.main`
     grid-row: 2/3;
     grid-column: 2/3;
   }
-  .delete {
-    grid-row: 1/2;
-    grid-column: 6/7;
-  }
+
   .date {
     grid-row: 2/3;
     grid-column: 3/4;
