@@ -25,6 +25,27 @@ main {
     margin: 8px 8px 48px 8px;
     display: grid;
     overflow: scroll;
+
+    input[type='text'] {
+        cursor: auto;
+      }
+    
+      label,
+      input {
+        margin: 8px 0;
+      }
+    
+      label {
+        font-size: 18px;
+      }
+      
+      input {
+        width: 100%;
+        height: 2rem;
+        font-size: 16px;
+        border: none;
+        border-bottom: 1px solid var(--primary);
+      }  
 }
 
 :root {

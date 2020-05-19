@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
-import SubmitButton from '../components/buttons/SubmitButton'
-import CancelButton from '../components/buttons/CancelButton'
-import CreateImageUpload from '../components/pets/CreateImageUpload'
-import { useHistory, Link } from 'react-router-dom'
-import UserLayout from '../components/general/UserLayout'
 import PropTypes from 'prop-types'
 import { db } from '../firebase'
+import { useHistory } from 'react-router-dom'
+import UserLayout from '../components/general/UserLayout'
+import PetForm from '../components/pets/PetForm'
+import CreateImageUpload from '../components/pets/CreateImageUpload'
 
 CreatePet.propTypes = {
   handleImageUpload: PropTypes.func.isRequired,
   previewImage: PropTypes.object.isRequired,
+  setPreviewImage: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
 }
 
@@ -23,7 +23,24 @@ export default function CreatePet({
   const [name, setName] = useState('')
   const history = useHistory()
   const disabled = name.length === 0
-
+  return (
+    <>
+      <UserLayout>
+        <Form onSubmit={handleSubmit} data-cy="create-pet">
+          <PetForm name={name} setName={setName} disabled={disabled} />
+          <PhotoContainer>
+            <CreateImageUpload
+              name="imageSrc"
+              className="photo"
+              handleImageUpload={handleImageUpload}
+              previewImage={previewImage}
+            />
+          </PhotoContainer>
+          <Rules>*Mandatory Field</Rules>
+        </Form>
+      </UserLayout>
+    </>
+  )
   function handleSubmit(event) {
     event.preventDefault()
     db.collection('pets').add({
@@ -40,45 +57,6 @@ export default function CreatePet({
     })
     history.push('/home')
   }
-
-  return (
-    <>
-      <UserLayout>
-        <Form onSubmit={handleSubmit} data-cy="create-pet">
-          <div className="cancel">
-            <Link to="/">
-              <CancelButton />
-            </Link>
-          </div>
-          <div className="photo-container">
-            <CreateImageUpload
-              name="imageSrc"
-              className="photo"
-              handleImageUpload={handleImageUpload}
-              previewImage={previewImage}
-            />
-          </div>
-          <div className="name">
-            <label>
-              Name*
-              <input
-                type="text"
-                name="name"
-                value={name}
-                maxLength="9"
-                placeholder="Insert pet name"
-                onChange={(e) => setName(e.target.value)}
-                required
-                autoFocus
-              />
-            </label>
-          </div>
-          <SubmitButton text="Submit" type="submit" disabled={disabled} />
-          <p>*Mandatory Field</p>
-        </Form>
-      </UserLayout>
-    </>
-  )
 }
 
 const Form = styled.form`
@@ -91,53 +69,13 @@ const Form = styled.form`
   padding: 12px;
   border: 4px solid var(--tertiary);
   border-radius: 12px;
+`
 
-  input[type='text'] {
-    cursor: auto;
-  }
-
-  label,
-  input {
-    margin: 8px 0;
-  }
-
-  label {
-    font-size: 18px;
-  }
-  input {
-    width: 100%;
-    height: 2rem;
-    font-size: 16px;
-    font-family: sans-serif;
-    border: none;
-    border-bottom: 1px solid var(--primary);
-  }
-
-  .cancel {
-    grid-row: 1/2;
-    grid-column: 2/3;
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .photo-container {
-    grid-row: 2/3;
-    grid-column: span 2;
-  }
-
-  .name {
-    grid-row: 3/4;
-    grid-column: span 2;
-    margin: 20px 0;
-  }
-
-  button {
-    grid-row: 4/5;
-    grid-column: span 2;
-  }
-
-  p {
-    grid-row: 5/6;
-    margin-top: 12px;
-  }
+const PhotoContainer = styled.div`
+  grid-row: 2/3;
+  grid-column: span 2;
+`
+const Rules = styled.div`
+  grid-row: 5/6;
+  margin-top: 12px;
 `
