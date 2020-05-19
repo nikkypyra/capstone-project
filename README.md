@@ -48,3 +48,4 @@ When viewing this app, please switch your browser to iPhone 6/7/8 mode, as it wa
    `npm run cypress`
 6. Run React Testing Library & Jest with  
    `npm test`
+
