@@ -122,7 +122,7 @@ export default function EditTaskForm({ pets, tasks, deleteTask }) {
 const Form = styled.form`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 3fr 3fr 3fr 3fr 1fr;
+  grid-template-rows: 1fr 2fr 2fr 2fr 2fr 1fr;
   align-items: center;
   color: var(--secondary);
   margin: 20px;
