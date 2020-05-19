@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import SubmitButton from '../components/buttons/SubmitButton'
 import CancelButton from '../components/buttons/CancelButton'
+import DeleteButton from '../components/buttons/DeleteButton'
 import Navigation from '../components/Navigation'
 import { useHistory, useParams, Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
@@ -10,27 +11,28 @@ import UserHeader from '../components/UserHeader'
 
 EditTaskForm.propTypes = {
   pets: PropTypes.array.isRequired,
-  todo: PropTypes.object,
+  tasks: PropTypes.array.isRequired,
+  deleteTask: PropTypes.func.isRequired,
 }
 
-export default function EditTaskForm({ pets, todo }) {
-  const [description, setDescription] = useState({
-    description: todo.description,
-  })
-  const [date, setDate] = useState({ date: todo.date })
-  const [time, setTime] = useState({ time: todo.time })
-  const [person, setPerson] = useState({ peraon: todo.person })
+export default function EditTaskForm({ pets, tasks, deleteTask }) {
+  const history = useHistory()
+  const params = useParams()
+  const pet = pets.find((pet) => pet.id === params.id)
+  const task = tasks.find((task) => task.id === params.taskid)
+  const [description, setDescription] = useState(task.description)
+  const [date, setDate] = useState(task.date)
+  const [time, setTime] = useState(task.time)
+  const [person, setPerson] = useState(task.person)
   const disabled =
     description.length === 0 ||
     date.length === 0 ||
     time.length === 0 ||
     person.length === 0
-  const history = useHistory()
-  const params = useParams()
-  const pet = pets.find((pet) => pet.id === params.id)
+
   function handleSubmit(event) {
     event.preventDefault()
-    db.collection('tasks').doc('todo.id').update({
+    db.collection('tasks').doc(task.id).update({
       description,
       date,
       time,
@@ -102,7 +104,14 @@ export default function EditTaskForm({ pets, todo }) {
             </label>
           </div>
           <SubmitButton text="Submit" disabled={disabled} type="submit" />
-          <p>*Mandatory Fields</p>
+          <div className="delete">
+            <Link to={`/pet/${pet.id}`}>
+              <DeleteButton
+                onClick={() => deleteTask(task)}
+                text="Delete this task"
+              />
+            </Link>
+          </div>
         </Form>
       </main>
       <Navigation />
@@ -175,8 +184,10 @@ const Form = styled.form`
     grid-column: span 2;
   }
 
-  p {
+  .delete {
     grid-row: 6/7;
-    margin-top: 4px;
+    grid-column: span 2;
+    margin-top: 24px;
+    text-align: center;
   }
 `

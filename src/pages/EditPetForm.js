@@ -18,7 +18,7 @@ EditPetForm.propTypes = {
 export default function EditPetForm({ pets, deletePet }) {
   const history = useHistory()
   const params = useParams()
-  const pet = pets.find((pet) => pet.id === params.id) || {}
+  const pet = pets.find((pet) => pet.id === params.id)
 
   const [name, setName] = useState(pet.name)
   const [petImage, setPetImage] = useState({

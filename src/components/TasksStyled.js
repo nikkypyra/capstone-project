@@ -1,42 +1,21 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 import Checkbox from './Checkbox'
-import DeleteButton from './buttons/DeleteButton'
-//import { Link } from 'react-router-dom'
+import EditButton from './buttons/EditButton'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 TasksStyled.propTypes = {
   pet: PropTypes.object.isRequired,
   tasks: PropTypes.array.isRequired,
   handleCheckbox: PropTypes.func.isRequired,
-  deleteTask: PropTypes.func.isRequired,
 }
 
-export default function TasksStyled({
-  pet,
-  tasks,
-  handleCheckbox,
-  deleteTask,
-}) {
+export default function TasksStyled({ pet, tasks, handleCheckbox }) {
   const todos = tasks.filter((task) => {
     return task.petId === pet.id
   })
-  /* const newTo = {
-    pathname: `/pet/${pet.id}/update-task`,
-    param: { todo },
-  }
-  
-  
-    <Link
-              to={{
-                pathname: `/pet/${pet.id}/update-task`,
-                todo: { todo: todo },
-              }}
-            >
-              <div className="edit">Edit</div>
-            </Link>
-  
-  */
+
   return (
     <TaskWrapper>
       {todos
@@ -72,8 +51,10 @@ export default function TasksStyled({
                 onChange={() => handleCheckbox(todo)}
               ></Checkbox>
             </div>
-            <div className="delete">
-              <DeleteButton onClick={() => deleteTask(todo)} />
+            <div className="edit">
+              <Link to={`/pet/${pet.id}/${todo.id}/update-task`}>
+                <EditButton />
+              </Link>
             </div>
           </section>
         ))}
@@ -113,7 +94,7 @@ const TaskWrapper = styled.main`
     grid-column: 2/3;
   }
 
-  .delete {
+  .edit {
     grid-row: 1/2;
     grid-column: 6/7;
   }

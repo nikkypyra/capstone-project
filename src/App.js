@@ -114,9 +114,13 @@ export default function App() {
                   />
                 )}
               </Route>
-              <Route path="/pet/:id/update-task">
+              <Route path="/pet/:id/:taskid/update-task">
                 {user.id ? (
-                  <EditTaskForm pets={pets} user={user} />
+                  <EditTaskForm
+                    pets={pets}
+                    tasks={tasks}
+                    deleteTask={deleteTask}
+                  />
                 ) : (
                   <Login
                     logIn={logIn}
