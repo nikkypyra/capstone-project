@@ -8,13 +8,13 @@ import UserLayout from '../components/general/UserLayout'
 import PropTypes from 'prop-types'
 import { db } from '../firebase'
 
-PetForm.propTypes = {
+CreatePet.propTypes = {
   handleImageUpload: PropTypes.func.isRequired,
   previewImage: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
 }
 
-export default function PetForm({
+export default function CreatePet({
   previewImage,
   setPreviewImage,
   handleImageUpload,

@@ -1,6 +1,6 @@
 import React from 'react'
 import ProfileBanner from '../components/pets/ProfileBanner'
-import TasksStyled from '../components/tasks/TasksStyled'
+import ProfileTaskList from '../components/tasks/ProfileTaskList'
 import AddButton from '../components/buttons/AddButton'
 import styled from 'styled-components/macro'
 import { Link, useParams } from 'react-router-dom'
@@ -33,7 +33,7 @@ export default function PetProfile({
             <AddButton text="Add Task" />
           </Link>
         </ButtonWrapper>
-        <TasksStyled
+        <ProfileTaskList
           pet={pet}
           tasks={tasks}
           setTasks={setTasks}

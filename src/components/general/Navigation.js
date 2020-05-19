@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components/macro'
+import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
 import { ReactComponent as Home } from './icons/home.svg'
 import { ReactComponent as Filter } from './icons/filter.svg'
-import PropTypes from 'prop-types'
 
 Navigation.propTypes = {
   onClick: PropTypes.func,

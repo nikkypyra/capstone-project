@@ -1,7 +1,7 @@
 import React from 'react'
-import SubmitButton from './SubmitButton'
 import { action } from '@storybook/addon-actions'
 import mobileWrapper from '../../../.storybook/preview'
+import SubmitButton from './SubmitButton'
 
 export default {
   title: 'Submit Button',

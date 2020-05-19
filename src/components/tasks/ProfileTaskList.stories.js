@@ -1,11 +1,11 @@
 import React from 'react'
-import TasksStyled from './TasksStyled'
 import { action } from '@storybook/addon-actions'
 import mobileWrapper from '../../../.storybook/preview'
+import ProfileTaskList from './ProfileTaskList'
 
 export default {
-  title: 'TasksStyled',
-  component: TasksStyled,
+  title: 'Styled Task List',
+  component: ProfileTaskList,
   decorators: [mobileWrapper],
 }
 
@@ -27,10 +27,11 @@ const tasks = [
   },
 ]
 
-export const TaskList = () => (
-  <TasksStyled
+export const TaskListPreview = () => (
+  <ProfileTaskList
     pet={pet}
     tasks={tasks}
     handleCheckbox={action('State of checkbox is changed')}
+    onClick={action('Clicking here leads to the update task page')}
   />
 )

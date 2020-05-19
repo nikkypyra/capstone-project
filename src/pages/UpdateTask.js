@@ -8,13 +8,13 @@ import PropTypes from 'prop-types'
 import { db } from '../firebase'
 import UserLayout from '../components/general/UserLayout'
 
-EditTaskForm.propTypes = {
+UpdateTask.propTypes = {
   pets: PropTypes.array.isRequired,
   tasks: PropTypes.array.isRequired,
   deleteTask: PropTypes.func.isRequired,
 }
 
-export default function EditTaskForm({ pets, tasks, deleteTask }) {
+export default function UpdateTask({ pets, tasks, deleteTask }) {
   const history = useHistory()
   const params = useParams()
   const pet = pets.find((pet) => pet.id === params.id)

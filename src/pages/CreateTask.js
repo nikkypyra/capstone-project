@@ -7,12 +7,12 @@ import { useHistory, useParams, Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { db } from '../firebase'
 
-TaskForm.propTypes = {
+CreateTask.propTypes = {
   pets: PropTypes.array.isRequired,
   user: PropTypes.object.isRequired,
 }
 
-export default function TaskForm({ pets, user }) {
+export default function CreateTask({ pets, user }) {
   const [description, setDescription] = useState('')
   const [date, setDate] = useState('')
   const [time, setTime] = useState('')

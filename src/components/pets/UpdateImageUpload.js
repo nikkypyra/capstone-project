@@ -3,13 +3,13 @@ import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import AddButton from '../buttons/AddButton'
 
-ImageUpload.propTypes = {
-  petImage: PropTypes.object,
-  handleUpload: PropTypes.func,
+UpdateImageUpload.propTypes = {
+  petImage: PropTypes.object.isRequired,
+  handleUpload: PropTypes.func.isRequired,
   onClick: PropTypes.func,
 }
 
-export default function ImageUpload({ petImage, handleUpload, onClick }) {
+export default function UpdateImageUpload({ petImage, handleUpload, onClick }) {
   return (
     <>
       <ImageWrapper>

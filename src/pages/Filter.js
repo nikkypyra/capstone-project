@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import SearchBar from '../components/filter/SearchBar'
-import FilteredList from '../components/filter/FilteredList'
+import FilteredTaskList from '../components/filter/FilteredTaskList'
 import UserLayout from '../components/general/UserLayout'
 import PropTypes from 'prop-types'
 
@@ -32,7 +32,7 @@ export default function Filter({ pets, tasks, handleCheckbox, deleteTask }) {
         {filteredTasks.length === 0 ? (
           <TextStyled>No results found.</TextStyled>
         ) : (
-          <FilteredList
+          <FilteredTaskList
             filteredTasks={filteredTasks}
             pets={pets}
             handleCheckbox={handleCheckbox}

@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import AddButton from '../buttons/AddButton'
 import PropTypes from 'prop-types'
+import AddButton from '../buttons/AddButton'
 
-ImageUpload.propTypes = {
-  previewImage: PropTypes.object,
-  handleImageUpload: PropTypes.func,
+CreateImageUpload.propTypes = {
+  previewImage: PropTypes.object.isRequired,
+  handleImageUpload: PropTypes.func.isRequired,
 }
 
-export default function ImageUpload({ previewImage, handleImageUpload }) {
+export default function CreateImageUpload({ previewImage, handleImageUpload }) {
   return (
     <>
       {previewImage.imageUrl ? (

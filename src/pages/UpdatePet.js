@@ -14,7 +14,7 @@ UpdatePet.propTypes = {
   deletePet: PropTypes.func.isRequired,
 }
 
-export default function EditPetForm({ pets, deletePet }) {
+export default function UpdatePet({ pets, deletePet }) {
   const history = useHistory()
   const params = useParams()
   const pet = pets.find((pet) => pet.id === params.id)

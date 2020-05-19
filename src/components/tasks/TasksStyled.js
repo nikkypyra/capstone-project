@@ -1,115 +1,74 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import Checkbox from './Checkbox'
-import EditButton from '../buttons/EditButton'
-import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import Checkbox from './Checkbox'
 
 TasksStyled.propTypes = {
-  pet: PropTypes.object.isRequired,
-  tasks: PropTypes.array.isRequired,
+  todo: PropTypes.object,
   handleCheckbox: PropTypes.func.isRequired,
 }
 
-export default function TasksStyled({ pet, tasks, handleCheckbox }) {
-  const todos = tasks.filter((task) => {
-    return task.petId === pet.id
-  })
-
+export default function TasksStyled({ todo, handleCheckbox }) {
   return (
-    <TaskWrapper>
-      {todos
-        .slice()
-        .sort(
-          (taskA, taskB) =>
-            taskA.date.localeCompare(taskB.date) ||
-            taskA.time.localeCompare(taskB.time)
-        )
-        .map((todo) => (
-          <section key={todo.id}>
-            <div className="marker">
-              <img
-                src={process.env.PUBLIC_URL + '/images/taskpaw.png'}
-                alt=""
-              />
-            </div>
-            <div className="description">
-              <h3>{todo.description}</h3>
-            </div>
-            <div className="time">
-              <h4>{todo.time}</h4>
-            </div>
-            <div className="date">
-              <p>{todo.date}</p>
-            </div>
-            <div className="person">
-              <p>To be completed by: {todo.person}</p>
-            </div>
-            <div className="status">
-              <Checkbox
-                checked={todo.complete}
-                onChange={() => handleCheckbox(todo)}
-              ></Checkbox>
-            </div>
-            <div className="edit">
-              <Link to={`/pet/${pet.id}/${todo.id}/update-task`}>
-                <EditButton />
-              </Link>
-            </div>
-          </section>
-        ))}
-    </TaskWrapper>
+    <>
+      <Marker>
+        <img src={process.env.PUBLIC_URL + '/images/taskpaw.png'} alt="" />
+      </Marker>
+      <Description>
+        <h3>{todo.description}</h3>
+      </Description>
+      <Time>
+        <h4>{todo.time}</h4>
+      </Time>
+      <Date data-cy="date">
+        <p>{todo.date}</p>
+      </Date>
+      <Person data-cy="owner_name">
+        <p>To be completed by: {todo.person}</p>
+      </Person>
+      <Status>
+        <Checkbox
+          checked={todo.complete}
+          onChange={() => handleCheckbox(todo)}
+        ></Checkbox>
+      </Status>
+    </>
   )
 }
 
-const TaskWrapper = styled.main`
-  section {
-    margin: 16px 0px;
-    display: grid;
-    grid-template-columns: 1.4fr 2fr 3fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    justify-content: space-evenly;
-    align-items: center;
-  }
+const Marker = styled.div`
+  grid-row: 1/3;
+  grid-column: 1/2;
 
-  .marker {
-    grid-row: 1/3;
-    grid-column: 1/2;
+  img {
+    height: 40px;
+    width: 40px;
+    border: 4px solid var(--tertiary);
+    border-radius: 50%;
+  }
+`
 
-    img {
-      height: 40px;
-      width: 40px;
-      border: 4px solid var(--tertiary);
-      border-radius: 50%;
-    }
-  }
+const Description = styled.div`
+  grid-row: 1/2;
+  grid-column: 2/5;
+`
 
-  .description {
-    grid-row: 1/2;
-    grid-column: 2/5;
-  }
+const Time = styled.div`
+  grid-row: 2/3;
+  grid-column: 2/3;
+`
 
-  .time {
-    grid-row: 2/3;
-    grid-column: 2/3;
-  }
+const Date = styled.div`
+  grid-row: 2/3;
+  grid-column: 3/4;
+`
 
-  .edit {
-    grid-row: 1/2;
-    grid-column: 6/7;
-  }
-  .date {
-    grid-row: 2/3;
-    grid-column: 3/4;
-  }
+const Person = styled.div`
+  grid-row: 3/4;
+  grid-column: 2/6;
+`
 
-  .person {
-    grid-row: 3/4;
-    grid-column: 2/6;
-  }
-
-  .status {
-    grid-row: 2/3;
-    grid-column: 4/5;
-  }
+const Status = styled.div`
+  grid-row: 2/3;
+  grid-column: 4/5;
 `

@@ -3,8 +3,8 @@ import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 
 ProfileBanner.propTypes = {
-  name: PropTypes.string,
-  imageSrc: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  imageSrc: PropTypes.string.isRequired,
 }
 
 export default function ProfileBanner({ name, imageSrc }) {
