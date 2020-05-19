@@ -1,24 +1,18 @@
 import React from 'react'
+import Checkbox from '../tasks/Checkbox'
 import styled from 'styled-components/macro'
-import Checkbox from './Checkbox'
-import EditButton from './buttons/EditButton'
-import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-TasksStyled.propTypes = {
-  pet: PropTypes.object.isRequired,
-  tasks: PropTypes.array.isRequired,
+FilteredList.propTypes = {
+  pets: PropTypes.array.isRequired,
+  filteredTasks: PropTypes.array.isRequired,
   handleCheckbox: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
 }
-
-export default function TasksStyled({ pet, tasks, handleCheckbox }) {
-  const todos = tasks.filter((task) => {
-    return task.petId === pet.id
-  })
-
+export default function FilteredList({ filteredTasks, pets, handleCheckbox }) {
   return (
     <TaskWrapper>
-      {todos
+      {filteredTasks
         .slice()
         .sort(
           (taskA, taskB) =>
@@ -39,11 +33,16 @@ export default function TasksStyled({ pet, tasks, handleCheckbox }) {
             <div className="time">
               <h4>{todo.time}</h4>
             </div>
-            <div className="date">
+            <div className="date" data-cy="date">
               <p>{todo.date}</p>
             </div>
-            <div className="person">
+            <div className="person" data-cy="owner_name">
               <p>To be completed by: {todo.person}</p>
+            </div>
+            <div className="pet-name">
+              <p>
+                For: <strong>{petName(todo).toUpperCase()}</strong>
+              </p>
             </div>
             <div className="status">
               <Checkbox
@@ -51,23 +50,22 @@ export default function TasksStyled({ pet, tasks, handleCheckbox }) {
                 onChange={() => handleCheckbox(todo)}
               ></Checkbox>
             </div>
-            <div className="edit">
-              <Link to={`/pet/${pet.id}/${todo.id}/update-task`}>
-                <EditButton />
-              </Link>
-            </div>
           </section>
         ))}
     </TaskWrapper>
   )
+  function petName(todo) {
+    const pet = pets.find((pet) => pet.id === todo.petId)
+    return pet.name
+  }
 }
 
 const TaskWrapper = styled.main`
   section {
     margin: 16px 0px;
     display: grid;
-    grid-template-columns: 1.4fr 2fr 3fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1.4fr 2fr 3fr 1fr 1fr;
+    grid-template-rows: auto;
     justify-content: space-evenly;
     align-items: center;
   }
@@ -94,10 +92,6 @@ const TaskWrapper = styled.main`
     grid-column: 2/3;
   }
 
-  .edit {
-    grid-row: 1/2;
-    grid-column: 6/7;
-  }
   .date {
     grid-row: 2/3;
     grid-column: 3/4;
@@ -105,11 +99,15 @@ const TaskWrapper = styled.main`
 
   .person {
     grid-row: 3/4;
-    grid-column: 2/6;
+    grid-column: 2/5;
   }
 
   .status {
     grid-row: 2/3;
     grid-column: 4/5;
+  }
+  .pet-name {
+    grid-row: 4/5;
+    grid-column: 2/5;
   }
 `

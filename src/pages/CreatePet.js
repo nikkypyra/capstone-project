@@ -2,37 +2,41 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import SubmitButton from '../components/buttons/SubmitButton'
 import CancelButton from '../components/buttons/CancelButton'
-import DeleteButton from '../components/buttons/DeleteButton'
-import EditImageUpload from '../components/EditImageUpload'
-import { useHistory, useParams, Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
-import { db, storage } from '../firebase'
+import ImageUpload from '../components/pets/ImageUpload'
+import { useHistory, Link } from 'react-router-dom'
 import UserLayout from '../components/general/UserLayout'
+import PropTypes from 'prop-types'
+import { db } from '../firebase'
 
-EditPetForm.propTypes = {
-  pets: PropTypes.array.isRequired,
-  deletePet: PropTypes.func.isRequired,
+PetForm.propTypes = {
+  handleImageUpload: PropTypes.func.isRequired,
+  previewImage: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
 }
 
-export default function EditPetForm({ pets, deletePet }) {
+export default function PetForm({
+  previewImage,
+  setPreviewImage,
+  handleImageUpload,
+  user,
+}) {
+  const [name, setName] = useState('')
   const history = useHistory()
-  const params = useParams()
-  const pet = pets.find((pet) => pet.id === params.id)
-
-  const [name, setName] = useState(pet.name)
-  const [petImage, setPetImage] = useState({
-    imageUrl: pet.imageSrc,
-    imageName: pet.imageTitle,
-  })
-
   const disabled = name.length === 0
 
   function handleSubmit(event) {
     event.preventDefault()
-    db.collection('pets').doc(pet.id).update({
+    db.collection('pets').add({
       name,
-      imageSrc: petImage.imageUrl,
-      imageTitle: petImage.imageName,
+      imageSrc: previewImage.imageUrl,
+      imageTitle: previewImage.imageName,
+      userId: user.id,
+    })
+    setName({ name: '' })
+    setPreviewImage({
+      imageUrl:
+        'https://firebasestorage.googleapis.com/v0/b/pawlog-app.appspot.com/o/images%2Ftaskpaw.png?alt=media&token=8ad10974-93e4-4fd7-ae05-1567d049ad1f',
+      imageName: 'taskpaw.png',
     })
     history.push('/home')
   }
@@ -47,11 +51,11 @@ export default function EditPetForm({ pets, deletePet }) {
             </Link>
           </div>
           <div className="photo-container">
-            <EditImageUpload
+            <ImageUpload
               name="imageSrc"
               className="photo"
-              handleUpload={handleUpload}
-              petImage={petImage}
+              handleImageUpload={handleImageUpload}
+              previewImage={previewImage}
             />
           </div>
           <div className="name">
@@ -70,38 +74,11 @@ export default function EditPetForm({ pets, deletePet }) {
             </label>
           </div>
           <SubmitButton text="Submit" type="submit" disabled={disabled} />
-          <div className="delete">
-            <Link to="/">
-              <DeleteButton
-                onClick={() => deletePet(pet)}
-                text="Delete this pet"
-              />
-            </Link>
-          </div>
+          <p>*Mandatory Field</p>
         </Form>
       </UserLayout>
     </>
   )
-  function handleUpload(event) {
-    const image = event.target.files[0]
-    const uploadTask = storage.ref(`images/${image.name}`).put(image)
-    uploadTask.on(
-      'state_changed',
-      (snapshot) => {},
-      (error) => {
-        alert('An error occurred, please try again.')
-      },
-      () => {
-        storage
-          .ref('images')
-          .child(image.name)
-          .getDownloadURL()
-          .then((url) => {
-            setPetImage({ imageUrl: url, imageName: image.name })
-          })
-      }
-    )
-  }
 }
 
 const Form = styled.form`
@@ -159,10 +136,8 @@ const Form = styled.form`
     grid-column: span 2;
   }
 
-  .delete {
+  p {
     grid-row: 5/6;
-    grid-column: span 2;
-    margin-top: 24px;
-    text-align: center;
+    margin-top: 12px;
   }
 `

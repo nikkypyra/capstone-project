@@ -4,11 +4,11 @@ import GlobalStyles from './GlobalStyles'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Home from './pages/Home'
-import PetForm from './pages/PetForm'
-import EditPetForm from './pages/EditPetForm'
+import CreatePet from './pages/CreatePet'
+import UpdatePet from './pages/UpdatePet'
 import PetProfile from './pages/PetProfile'
-import TaskForm from './pages/TaskForm'
-import EditTaskForm from './pages/EditTaskForm'
+import CreateTask from './pages/CreateTask'
+import UpdateTask from './pages/UpdateTask'
 import Filter from './pages/Filter'
 import useServices from './components/hooks/useServices'
 import usePets from './components/hooks/usePets'
@@ -56,7 +56,7 @@ export default function App() {
               </Route>
               <Route path="/create-pet">
                 {user.id ? (
-                  <PetForm
+                  <CreatePet
                     previewImage={previewImage}
                     setPreviewImage={setPreviewImage}
                     handleImageUpload={handleImageUpload}
@@ -73,7 +73,7 @@ export default function App() {
               </Route>
               <Route path="/pet/:id/update-pet">
                 {user.id ? (
-                  <EditPetForm pets={pets} deletePet={deletePet} />
+                  <UpdatePet pets={pets} deletePet={deletePet} />
                 ) : (
                   <Login
                     logIn={logIn}
@@ -104,7 +104,7 @@ export default function App() {
               </Route>
               <Route path="/pet/:id/create-task">
                 {user.id ? (
-                  <TaskForm pets={pets} user={user} />
+                  <CreateTask pets={pets} user={user} />
                 ) : (
                   <Login
                     logIn={logIn}
@@ -116,7 +116,7 @@ export default function App() {
               </Route>
               <Route path="/pet/:id/:taskid/update-task">
                 {user.id ? (
-                  <EditTaskForm
+                  <UpdateTask
                     pets={pets}
                     tasks={tasks}
                     deleteTask={deleteTask}

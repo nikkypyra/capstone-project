@@ -1,6 +1,6 @@
 import React from 'react'
-import ProfileBanner from '../components/ProfileBanner'
-import TasksStyled from '../components/TasksStyled'
+import ProfileBanner from '../components/pets/ProfileBanner'
+import TasksStyled from '../components/tasks/TasksStyled'
 import AddButton from '../components/buttons/AddButton'
 import styled from 'styled-components/macro'
 import { Link, useParams } from 'react-router-dom'

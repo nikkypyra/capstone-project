@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
-import SearchBar from '../components/SearchBar'
-import FilteredList from '../components/FilteredList'
+import SearchBar from '../components/filter/SearchBar'
+import FilteredList from '../components/filter/FilteredList'
 import UserLayout from '../components/general/UserLayout'
 import PropTypes from 'prop-types'
 

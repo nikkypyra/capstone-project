@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions'
 import React from 'react'
 import Checkbox from './Checkbox'
-import mobileWrapper from '../../.storybook/preview'
+import mobileWrapper from '../../../.storybook/preview'
 
 export default {
   title: 'Checkbox',
