@@ -4,10 +4,9 @@ import SubmitButton from '../components/buttons/SubmitButton'
 import CancelButton from '../components/buttons/CancelButton'
 import ImageUpload from '../components/ImageUpload'
 import { useHistory, Link } from 'react-router-dom'
-import Navigation from '../components/Navigation'
+import UserLayout from '../components/general/UserLayout'
 import PropTypes from 'prop-types'
 import { db } from '../firebase'
-import UserHeader from '../components/UserHeader'
 
 PetForm.propTypes = {
   handleImageUpload: PropTypes.func.isRequired,
@@ -44,8 +43,7 @@ export default function PetForm({
 
   return (
     <>
-      <UserHeader />
-      <main>
+      <UserLayout>
         <Form onSubmit={handleSubmit} data-cy="create-pet">
           <div className="cancel">
             <Link to="/">
@@ -78,8 +76,7 @@ export default function PetForm({
           <SubmitButton text="Submit" type="submit" disabled={disabled} />
           <p>*Mandatory Field</p>
         </Form>
-      </main>
-      <Navigation />
+      </UserLayout>
     </>
   )
 }

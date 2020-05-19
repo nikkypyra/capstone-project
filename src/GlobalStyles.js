@@ -6,6 +6,7 @@ export default createGlobalStyle`
     margin: 0; 
     padding: 0;
     cursor: default;
+    
 
     a {
         color: var(--primary);

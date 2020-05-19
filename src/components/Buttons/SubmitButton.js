@@ -20,7 +20,6 @@ const Button = styled.button`
   background: var(--primary);
   color: #ffffff;
   font-size: 18px;
-  font-family: sans-serif;
   border-radius: 12px;
   border: none;
   padding: 16px;

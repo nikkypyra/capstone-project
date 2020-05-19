@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import SearchBar from '../components/SearchBar'
 import FilteredList from '../components/FilteredList'
-import UserHeader from '../components/UserHeader'
-import Navigation from '../components/Navigation'
+import UserLayout from '../components/general/UserLayout'
 import PropTypes from 'prop-types'
 
 Filter.propTypes = {
@@ -28,8 +27,7 @@ export default function Filter({ pets, tasks, handleCheckbox, deleteTask }) {
 
   return (
     <>
-      <UserHeader />
-      <main>
+      <UserLayout>
         <SearchBar filterResults={filterResults} />
         {filteredTasks.length === 0 ? (
           <TextStyled>No results found.</TextStyled>
@@ -41,8 +39,7 @@ export default function Filter({ pets, tasks, handleCheckbox, deleteTask }) {
             deleteTask={deleteTask}
           />
         )}
-      </main>
-      <Navigation />
+      </UserLayout>
     </>
   )
 }

@@ -8,13 +8,17 @@ export default {
   component: SubmitButton,
   decorators: [mobileWrapper],
 }
-export const Simple = () => (
+export const ActiveSimple = () => (
   <SubmitButton text="Simple" onClick={action('Button is clicked')} />
 )
 
-export const LongText = () => (
+export const ActiveLongText = () => (
   <SubmitButton
     text="This would be a very long button"
     onClick={action('Button is clicked')}
   />
+)
+
+export const DisabledSimple = () => (
+  <SubmitButton text="This button cannot be clicked" disabled={true} />
 )

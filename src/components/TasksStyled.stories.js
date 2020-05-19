@@ -32,6 +32,5 @@ export const TaskList = () => (
     pet={pet}
     tasks={tasks}
     handleCheckbox={action('State of checkbox is changed')}
-    deleteTask={action('Task is deleted')}
   />
 )

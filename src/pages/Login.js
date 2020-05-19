@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import SubmitButton from '../components/buttons/SubmitButton'
 import AddButton from '../components/buttons/AddButton'
-import UserHeader from '../components/UserHeader'
+import NonUserLayout from '../components/general/NonUserLayout'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import PropTypes from 'prop-types'
@@ -19,8 +19,7 @@ export default function Login({ logIn, resetPassword, profile, setProfile }) {
   const [loginCounter, setLoginCounter] = useState(0)
   return (
     <>
-      <UserHeader />
-      <main>
+      <NonUserLayout>
         <WrapperStyled>
           <form onSubmit={handleSubmit(onSubmit)} data-cy="login">
             <div className="email">
@@ -69,7 +68,7 @@ export default function Login({ logIn, resetPassword, profile, setProfile }) {
             </div>
           </section>
         </WrapperStyled>
-      </main>
+      </NonUserLayout>
     </>
   )
 

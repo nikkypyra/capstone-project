@@ -10,13 +10,14 @@ DeleteButton.propTypes = {
 export default function DeleteButton({ onClick, text }) {
   return (
     <Button onClick={onClick}>
-      <img src={process.env.PUBLIC_URL + '/images/delete.png'} alt="" />
+      <img src={process.env.PUBLIC_URL + '/images/delete.png'} alt="delete" />
       {text}
     </Button>
   )
 }
 
 const Button = styled.div`
+  color: var(--primary);
   img {
     height: 18px;
     width: 18px;

@@ -2,11 +2,10 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import SubmitButton from '../components/buttons/SubmitButton'
 import CancelButton from '../components/buttons/CancelButton'
-import Navigation from '../components/Navigation'
+import UserLayout from '../components/general/UserLayout'
 import { useHistory, useParams, Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { db } from '../firebase'
-import UserHeader from '../components/UserHeader'
 
 TaskForm.propTypes = {
   pets: PropTypes.array.isRequired,
@@ -46,8 +45,7 @@ export default function TaskForm({ pets, user }) {
   }
   return (
     <>
-      <UserHeader />
-      <main>
+      <UserLayout>
         <Form onSubmit={handleSubmit} data-cy="create-task">
           <div className="cancel">
             <Link to={`/pet/${pet.id}`}>
@@ -110,8 +108,7 @@ export default function TaskForm({ pets, user }) {
           <SubmitButton text="Submit" disabled={disabled} type="submit" />
           <p>*Mandatory Fields</p>
         </Form>
-      </main>
-      <Navigation />
+      </UserLayout>
     </>
   )
 }

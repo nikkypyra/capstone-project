@@ -5,10 +5,9 @@ import CancelButton from '../components/buttons/CancelButton'
 import DeleteButton from '../components/buttons/DeleteButton'
 import EditImageUpload from '../components/EditImageUpload'
 import { useHistory, useParams, Link } from 'react-router-dom'
-import Navigation from '../components/Navigation'
 import PropTypes from 'prop-types'
 import { db, storage } from '../firebase'
-import UserHeader from '../components/UserHeader'
+import UserLayout from '../components/general/UserLayout'
 
 EditPetForm.propTypes = {
   pets: PropTypes.array.isRequired,
@@ -40,8 +39,7 @@ export default function EditPetForm({ pets, deletePet }) {
 
   return (
     <>
-      <UserHeader />
-      <main>
+      <UserLayout>
         <Form onSubmit={handleSubmit} data-cy="create-pet">
           <div className="cancel">
             <Link to="/">
@@ -81,8 +79,7 @@ export default function EditPetForm({ pets, deletePet }) {
             </Link>
           </div>
         </Form>
-      </main>
-      <Navigation />
+      </UserLayout>
     </>
   )
   function handleUpload(event) {

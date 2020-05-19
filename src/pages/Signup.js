@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 import SubmitButton from '../components/buttons/SubmitButton'
-import UserHeader from '../components/UserHeader'
+import NonUserLayout from '../components/general/NonUserLayout'
 import { Link, useHistory } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import PropTypes from 'prop-types'
@@ -51,8 +51,7 @@ export default function SignUp({ setProfile, signUp }) {
 
   return (
     <>
-      <UserHeader />
-      <main>
+      <NonUserLayout>
         <Form onSubmit={handleSubmit(onSubmit)} data-cy="login">
           <div className="email">
             <input
@@ -107,7 +106,7 @@ export default function SignUp({ setProfile, signUp }) {
             </Link>
           </div>
         </Form>
-      </main>
+      </NonUserLayout>
     </>
   )
 }

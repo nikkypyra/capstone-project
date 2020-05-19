@@ -3,11 +3,10 @@ import styled from 'styled-components/macro'
 import SubmitButton from '../components/buttons/SubmitButton'
 import CancelButton from '../components/buttons/CancelButton'
 import DeleteButton from '../components/buttons/DeleteButton'
-import Navigation from '../components/Navigation'
 import { useHistory, useParams, Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { db } from '../firebase'
-import UserHeader from '../components/UserHeader'
+import UserLayout from '../components/general/UserLayout'
 
 EditTaskForm.propTypes = {
   pets: PropTypes.array.isRequired,
@@ -42,8 +41,7 @@ export default function EditTaskForm({ pets, tasks, deleteTask }) {
   }
   return (
     <>
-      <UserHeader />
-      <main>
+      <UserLayout>
         <Form onSubmit={handleSubmit} data-cy="create-task">
           <div className="cancel">
             <Link to={`/pet/${pet.id}`}>
@@ -113,8 +111,7 @@ export default function EditTaskForm({ pets, tasks, deleteTask }) {
             </Link>
           </div>
         </Form>
-      </main>
-      <Navigation />
+      </UserLayout>
     </>
   )
 }

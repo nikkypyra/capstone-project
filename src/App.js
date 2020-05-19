@@ -13,7 +13,7 @@ import Filter from './pages/Filter'
 import useServices from './components/hooks/useServices'
 import usePets from './components/hooks/usePets'
 import usePhoto from './components/hooks/usePhoto'
-import AuthProvider, { AuthConsumer } from './components/AuthContext'
+import AuthProvider, { AuthConsumer } from './components/general/AuthContext'
 
 export default function App() {
   const { signUp, logIn, resetPassword, profile, setProfile } = useServices()
