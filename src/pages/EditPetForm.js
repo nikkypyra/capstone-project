@@ -109,15 +109,14 @@ export default function EditPetForm({ pets, deletePet }) {
 
 const Form = styled.form`
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto auto auto auto;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
   align-items: center;
   color: var(--secondary);
   margin: 20px;
   padding: 12px;
   border: 4px solid var(--tertiary);
   border-radius: 12px;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16);
 
   input[type='text'] {
     cursor: auto;

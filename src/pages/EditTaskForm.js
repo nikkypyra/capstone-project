@@ -121,7 +121,7 @@ export default function EditTaskForm({ pets, tasks, deleteTask }) {
 
 const Form = styled.form`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: auto;
   grid-template-rows: 1fr 2fr 2fr 2fr 2fr 1fr;
   align-items: center;
   color: var(--secondary);
@@ -129,7 +129,6 @@ const Form = styled.form`
   padding: 12px;
   border: 4px solid var(--tertiary);
   border-radius: 12px;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16);
 
   input[type='text'] {
     cursor: auto;
