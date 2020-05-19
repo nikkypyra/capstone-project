@@ -71,7 +71,7 @@ export default function App() {
                   />
                 )}
               </Route>
-              <Route path="pet/:id/update-pet">
+              <Route path="/pet/:id/update-pet">
                 {user.id ? (
                   <EditPetForm
                     previewImage={previewImage}

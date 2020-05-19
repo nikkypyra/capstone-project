@@ -24,17 +24,15 @@ export default function EditPetForm({
 }) {
   const history = useHistory()
   const params = useParams()
-  const pet = pets.find((pet) => pet.id === params.id)
+  const pet = pets.find((pet) => pet.id === params.id) || {}
 
-  const [name, setName] = useState({ name: pet.name })
+  const [name, setName] = useState(pet.name)
 
   const disabled = name.length === 0
 
-  console.log(pet)
-
   function handleSubmit(event) {
     event.preventDefault()
-    db.collection('pets').doc('pet.id').update({
+    db.collection('pets').doc(pet.id).update({
       name,
       imageSrc: previewImage.imageUrl,
       imageTitle: previewImage.imageName,
@@ -72,7 +70,7 @@ export default function EditPetForm({
               <input
                 type="text"
                 name="name"
-                defaultValue={name}
+                value={name}
                 maxLength="9"
                 placeholder="Insert pet name"
                 onChange={(e) => setName(e.target.value)}
