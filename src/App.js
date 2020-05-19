@@ -73,12 +73,7 @@ export default function App() {
               </Route>
               <Route path="/pet/:id/update-pet">
                 {user.id ? (
-                  <EditPetForm
-                    previewImage={previewImage}
-                    setPreviewImage={setPreviewImage}
-                    handleImageUpload={handleImageUpload}
-                    pets={pets}
-                  />
+                  <EditPetForm pets={pets} />
                 ) : (
                   <Login
                     logIn={logIn}

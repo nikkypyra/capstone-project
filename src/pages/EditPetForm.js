@@ -2,31 +2,27 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import SubmitButton from '../components/buttons/SubmitButton'
 import CancelButton from '../components/buttons/CancelButton'
-import ImageUpload from '../components/ImageUpload'
+import EditImageUpload from '../components/EditImageUpload'
 import { useHistory, useParams, Link } from 'react-router-dom'
 import Navigation from '../components/Navigation'
 import PropTypes from 'prop-types'
-import { db } from '../firebase'
+import { db, storage } from '../firebase'
 import UserHeader from '../components/UserHeader'
 
 EditPetForm.propTypes = {
-  handleImageUpload: PropTypes.func.isRequired,
-  previewImage: PropTypes.object.isRequired,
-  setPreviewImage: PropTypes.func.isRequired,
   pets: PropTypes.array.isRequired,
 }
 
-export default function EditPetForm({
-  previewImage,
-  setPreviewImage,
-  handleImageUpload,
-  pets,
-}) {
+export default function EditPetForm({ pets }) {
   const history = useHistory()
   const params = useParams()
   const pet = pets.find((pet) => pet.id === params.id) || {}
 
   const [name, setName] = useState(pet.name)
+  const [petImage, setPetImage] = useState({
+    imageUrl: pet.imageSrc,
+    imageName: pet.imageTitle,
+  })
 
   const disabled = name.length === 0
 
@@ -34,14 +30,8 @@ export default function EditPetForm({
     event.preventDefault()
     db.collection('pets').doc(pet.id).update({
       name,
-      imageSrc: previewImage.imageUrl,
-      imageTitle: previewImage.imageName,
-    })
-    setName({ name: '' })
-    setPreviewImage({
-      imageUrl:
-        'https://firebasestorage.googleapis.com/v0/b/pawlog-app.appspot.com/o/images%2Ftaskpaw.png?alt=media&token=8ad10974-93e4-4fd7-ae05-1567d049ad1f',
-      imageName: 'taskpaw.png',
+      imageSrc: petImage.imageUrl,
+      imageTitle: petImage.imageName,
     })
     history.push('/home')
   }
@@ -57,11 +47,11 @@ export default function EditPetForm({
             </Link>
           </div>
           <div className="photo-container">
-            <ImageUpload
+            <EditImageUpload
               name="imageSrc"
               className="photo"
-              handleImageUpload={handleImageUpload}
-              previewImage={previewImage}
+              handleUpload={handleUpload}
+              petImage={petImage}
             />
           </div>
           <div className="name">
@@ -86,6 +76,26 @@ export default function EditPetForm({
       <Navigation />
     </>
   )
+  function handleUpload(event) {
+    const image = event.target.files[0]
+    const uploadTask = storage.ref(`images/${image.name}`).put(image)
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {},
+      (error) => {
+        alert('An error occurred, please try again.')
+      },
+      () => {
+        storage
+          .ref('images')
+          .child(image.name)
+          .getDownloadURL()
+          .then((url) => {
+            setPetImage({ imageUrl: url, imageName: image.name })
+          })
+      }
+    )
+  }
 }
 
 const Form = styled.form`
