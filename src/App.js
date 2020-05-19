@@ -43,7 +43,7 @@ export default function App() {
               <Route path="/home">
                 {user.id ? (
                   <>
-                    <Home deletePet={deletePet} pets={pets} />
+                    <Home pets={pets} />
                   </>
                 ) : (
                   <Login
@@ -73,7 +73,7 @@ export default function App() {
               </Route>
               <Route path="/pet/:id/update-pet">
                 {user.id ? (
-                  <EditPetForm pets={pets} />
+                  <EditPetForm pets={pets} deletePet={deletePet} />
                 ) : (
                   <Login
                     logIn={logIn}

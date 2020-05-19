@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import SubmitButton from '../components/buttons/SubmitButton'
 import CancelButton from '../components/buttons/CancelButton'
+import DeleteButton from '../components/buttons/DeleteButton'
 import EditImageUpload from '../components/EditImageUpload'
 import { useHistory, useParams, Link } from 'react-router-dom'
 import Navigation from '../components/Navigation'
@@ -11,9 +12,10 @@ import UserHeader from '../components/UserHeader'
 
 EditPetForm.propTypes = {
   pets: PropTypes.array.isRequired,
+  deletePet: PropTypes.func.isRequired,
 }
 
-export default function EditPetForm({ pets }) {
+export default function EditPetForm({ pets, deletePet }) {
   const history = useHistory()
   const params = useParams()
   const pet = pets.find((pet) => pet.id === params.id) || {}
@@ -70,7 +72,14 @@ export default function EditPetForm({ pets }) {
             </label>
           </div>
           <SubmitButton text="Submit" type="submit" disabled={disabled} />
-          <p>*Mandatory Field</p>
+          <div className="delete">
+            <Link to="/">
+              <DeleteButton
+                onClick={() => deletePet(pet)}
+                text="Delete this pet"
+              />
+            </Link>
+          </div>
         </Form>
       </main>
       <Navigation />
@@ -154,8 +163,10 @@ const Form = styled.form`
     grid-column: span 2;
   }
 
-  p {
+  .delete {
     grid-row: 5/6;
-    margin-top: 12px;
+    grid-column: span 2;
+    margin-top: 24px;
+    text-align: center;
   }
 `

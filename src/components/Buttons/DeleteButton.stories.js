@@ -9,5 +9,8 @@ export default {
   decorators: [mobileWrapper],
 }
 export const Button = () => (
-  <DeleteButton onClick={action('Button is clicked')} />
+  <DeleteButton
+    onClick={action('Button is clicked')}
+    text="Delete pet or task"
+  />
 )

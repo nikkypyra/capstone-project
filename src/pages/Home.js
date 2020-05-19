@@ -2,17 +2,16 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import AddButton from '../components/buttons/AddButton'
 import { Link } from 'react-router-dom'
-import DeleteButton from '../components/buttons/DeleteButton'
+import EditButton from '../components/buttons/EditButton'
 import UserHeader from '../components/UserHeader'
 import Navigation from '../components/Navigation'
 import PropTypes from 'prop-types'
 
 Home.propTypes = {
   pets: PropTypes.array.isRequired,
-  deletePet: PropTypes.func.isRequired,
 }
 
-export default function Home({ deletePet, pets }) {
+export default function Home({ pets }) {
   return (
     <>
       <UserHeader />
@@ -33,12 +32,11 @@ export default function Home({ deletePet, pets }) {
               <div className="name">
                 <h1>{pet.name.toUpperCase()}</h1>
               </div>
-              <div className="delete">
-                <DeleteButton onClick={() => deletePet(pet)} />
+              <div className="edit">
+                <Link to={`/pet/${pet.id}/update-pet`}>
+                  <EditButton />
+                </Link>
               </div>
-              <Link to={`/pet/${pet.id}/update-pet`}>
-                <div className="edit">Edit</div>
-              </Link>
             </section>
           ))
         ) : (
@@ -83,7 +81,7 @@ const PetWrapper = styled.main`
     color: var(--primary);
   }
 
-  .delete {
+  .edit {
     grid-row: 1/2;
     grid-column: 3/4;
   }
