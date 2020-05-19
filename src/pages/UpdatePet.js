@@ -3,13 +3,13 @@ import styled from 'styled-components/macro'
 import SubmitButton from '../components/buttons/SubmitButton'
 import CancelButton from '../components/buttons/CancelButton'
 import DeleteButton from '../components/buttons/DeleteButton'
-import EditImageUpload from '../components/pets/EditImageUpload'
+import UpdateImageUpload from '../components/pets/UpdateImageUpload'
 import { useHistory, useParams, Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { db, storage } from '../firebase'
 import UserLayout from '../components/general/UserLayout'
 
-EditPetForm.propTypes = {
+UpdatePet.propTypes = {
   pets: PropTypes.array.isRequired,
   deletePet: PropTypes.func.isRequired,
 }
@@ -47,7 +47,7 @@ export default function EditPetForm({ pets, deletePet }) {
             </Link>
           </div>
           <div className="photo-container">
-            <EditImageUpload
+            <UpdateImageUpload
               name="imageSrc"
               className="photo"
               handleUpload={handleUpload}

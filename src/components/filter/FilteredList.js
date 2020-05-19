@@ -1,17 +1,16 @@
 import React from 'react'
-import Checkbox from '../tasks/Checkbox'
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
+import Checkbox from '../tasks/Checkbox'
 
 FilteredList.propTypes = {
   pets: PropTypes.array.isRequired,
   filteredTasks: PropTypes.array.isRequired,
   handleCheckbox: PropTypes.func.isRequired,
-  deleteTask: PropTypes.func.isRequired,
 }
 export default function FilteredList({ filteredTasks, pets, handleCheckbox }) {
   return (
-    <TaskWrapper>
+    <>
       {filteredTasks
         .slice()
         .sort(
@@ -20,7 +19,7 @@ export default function FilteredList({ filteredTasks, pets, handleCheckbox }) {
             taskA.time.localeCompare(taskB.time)
         )
         .map((todo) => (
-          <section key={todo.id}>
+          <TaskWrapper key={todo.id}>
             <div className="marker">
               <img
                 src={process.env.PUBLIC_URL + '/images/taskpaw.png'}
@@ -50,9 +49,9 @@ export default function FilteredList({ filteredTasks, pets, handleCheckbox }) {
                 onChange={() => handleCheckbox(todo)}
               ></Checkbox>
             </div>
-          </section>
+          </TaskWrapper>
         ))}
-    </TaskWrapper>
+    </>
   )
   function petName(todo) {
     const pet = pets.find((pet) => pet.id === todo.petId)
@@ -60,15 +59,13 @@ export default function FilteredList({ filteredTasks, pets, handleCheckbox }) {
   }
 }
 
-const TaskWrapper = styled.main`
-  section {
-    margin: 16px 0px;
-    display: grid;
-    grid-template-columns: 1.4fr 2fr 3fr 1fr 1fr;
-    grid-template-rows: auto;
-    justify-content: space-evenly;
-    align-items: center;
-  }
+const TaskWrapper = styled.section`
+  margin: 16px 0px;
+  display: grid;
+  grid-template-columns: 1.5fr 2fr 3fr 1fr 1fr;
+  grid-template-rows: auto;
+  justify-content: space-evenly;
+  align-items: center;
 
   .marker {
     grid-row: 1/3;

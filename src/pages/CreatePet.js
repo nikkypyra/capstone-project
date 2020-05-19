@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import SubmitButton from '../components/buttons/SubmitButton'
 import CancelButton from '../components/buttons/CancelButton'
-import ImageUpload from '../components/pets/ImageUpload'
+import CreateImageUpload from '../components/pets/CreateImageUpload'
 import { useHistory, Link } from 'react-router-dom'
 import UserLayout from '../components/general/UserLayout'
 import PropTypes from 'prop-types'
@@ -51,7 +51,7 @@ export default function PetForm({
             </Link>
           </div>
           <div className="photo-container">
-            <ImageUpload
+            <CreateImageUpload
               name="imageSrc"
               className="photo"
               handleImageUpload={handleImageUpload}

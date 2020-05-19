@@ -19,14 +19,14 @@ export default function ProfileBanner({ name, imageSrc }) {
 const BannerStyled = styled.section`
   margin-top: 4px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  align-items: center;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
   justify-items: center;
+
   h1 {
     display: inline;
     color: var(--primary);
-    font-size: 2em;
+    font-size: 1.9em;
     grid-row: 2/3;
     grid-column: 2/3;
   }

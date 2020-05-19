@@ -6,6 +6,7 @@ export default createGlobalStyle`
     margin: 0; 
     padding: 0;
     cursor: default;
+    font-family: sans-serif;
     
 
     a {
@@ -18,7 +19,6 @@ body {
     color: var(--secondary);
     font-size: 16px;
     line-height: 1.4;
-    font-family: sans-serif;
 }
 
 main {

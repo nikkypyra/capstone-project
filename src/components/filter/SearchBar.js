@@ -9,7 +9,7 @@ SearchBar.propTypes = {
 export default function SearchBar({ filterResults }) {
   return (
     <>
-      <SearchSection>
+      <SearchWrapper>
         <InputField
           type="search"
           name="search"
@@ -21,24 +21,22 @@ export default function SearchBar({ filterResults }) {
           src={process.env.PUBLIC_URL + '/images/search.png'}
           alt="search"
         />
-      </SearchSection>
+      </SearchWrapper>
     </>
   )
 }
 
-const SearchSection = styled.section`
+const SearchWrapper = styled.section`
   display: grid;
-  grid-template-columns: 9fr 1fr;
-  width: 100%;
+  grid-template-columns: 10fr 1fr;
+  width: 99%;
   margin: 8px 0;
 `
 
 const InputField = styled.input`
   grid-column: 1 / 3;
   grid-row: 1;
-  width: 100%;
   height: 28px;
-  font-family: sans-serif;
   font-size: 18px;
   padding: 4px 0 4px 4px;
   border-radius: 4px;

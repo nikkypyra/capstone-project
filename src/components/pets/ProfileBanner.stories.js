@@ -8,6 +8,6 @@ export default {
   decorators: [mobileWrapper],
 }
 
-export const TestProfileBanner = () => {
-  return <ProfileBanner name="name here" imageSrc={'./images/pet1.png'} />
+export const ProfileBannerPreview = () => {
+  return <ProfileBanner name="fluffy" imageSrc={'./images/pet1.png'} />
 }
