@@ -14,7 +14,6 @@ PetProfile.propTypes = {
   tasks: PropTypes.array.isRequired,
   setTasks: PropTypes.func.isRequired,
   handleCheckbox: PropTypes.func.isRequired,
-  deleteTask: PropTypes.func.isRequired,
 }
 
 export default function PetProfile({
@@ -23,7 +22,6 @@ export default function PetProfile({
   tasks,
   setTasks,
   handleCheckbox,
-  deleteTask,
 }) {
   const params = useParams()
   const pet = pets.find((pet) => pet.id === params.id) || {}
@@ -44,7 +42,6 @@ export default function PetProfile({
           pets={pets}
           setPets={setPets}
           handleCheckbox={handleCheckbox}
-          deleteTask={deleteTask}
         />
       </main>
       <Navigation />

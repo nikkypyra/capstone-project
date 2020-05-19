@@ -12,7 +12,24 @@ SignUp.propTypes = {
 }
 
 export default function SignUp({ setProfile, signUp }) {
-  const { register, handleSubmit, errors, setError } = useForm()
+  const {
+    register,
+    handleSubmit,
+    errors,
+    setError,
+    triggerValidation,
+    getValues,
+    formState,
+  } = useForm()
+
+  const repeatVal = (passwordRepeat) =>
+    passwordRepeat === getValues().password || 'Passwords do not match'
+  const validateRepeat = () => {
+    if (formState.isSubmitted) {
+      triggerValidation({ name: 'passwordRepeat' })
+    }
+  }
+
   const history = useHistory()
 
   function onSubmit(data) {
@@ -54,13 +71,31 @@ export default function SignUp({ setProfile, signUp }) {
           </div>
           <div className="password">
             <input
-              ref={register({ required: true, minLength: 6 })}
+              ref={register({
+                required: true,
+                minLength: {
+                  value: 8,
+                  message: 'Password must have at least 8 characters',
+                },
+              })}
+              onChange={validateRepeat}
               type="password"
               name="password"
               placeholder="Password"
             />
             {errors.password && (
-              <Error>Password must be at least 6 characters long.</Error>
+              <Error>Password must be at least 8 characters long.</Error>
+            )}
+          </div>
+          <div>
+            <input
+              name="passwordRepeat"
+              type="password"
+              placeholder="Confirm password"
+              ref={register({ required: true, validate: repeatVal })}
+            />
+            {errors.passwordRepeat && (
+              <Error>{errors.passwordRepeat.message}</Error>
             )}
           </div>
           <div className="signup">

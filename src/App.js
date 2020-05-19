@@ -5,8 +5,10 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Home from './pages/Home'
 import PetForm from './pages/PetForm'
+import EditPetForm from './pages/EditPetForm'
 import PetProfile from './pages/PetProfile'
 import TaskForm from './pages/TaskForm'
+import EditTaskForm from './pages/EditTaskForm'
 import Filter from './pages/Filter'
 import useServices from './components/hooks/useServices'
 import usePets from './components/hooks/usePets'
@@ -41,7 +43,7 @@ export default function App() {
               <Route path="/home">
                 {user.id ? (
                   <>
-                    <Home deletePet={deletePet} pets={pets} />
+                    <Home pets={pets} />
                   </>
                 ) : (
                   <Login
@@ -60,6 +62,18 @@ export default function App() {
                     handleImageUpload={handleImageUpload}
                     user={user}
                   />
+                ) : (
+                  <Login
+                    logIn={logIn}
+                    resetPassword={resetPassword}
+                    profile={profile}
+                    setProfile={setProfile}
+                  />
+                )}
+              </Route>
+              <Route path="/pet/:id/update-pet">
+                {user.id ? (
+                  <EditPetForm pets={pets} deletePet={deletePet} />
                 ) : (
                   <Login
                     logIn={logIn}
@@ -91,6 +105,22 @@ export default function App() {
               <Route path="/pet/:id/create-task">
                 {user.id ? (
                   <TaskForm pets={pets} user={user} />
+                ) : (
+                  <Login
+                    logIn={logIn}
+                    resetPassword={resetPassword}
+                    profile={profile}
+                    setProfile={setProfile}
+                  />
+                )}
+              </Route>
+              <Route path="/pet/:id/:taskid/update-task">
+                {user.id ? (
+                  <EditTaskForm
+                    pets={pets}
+                    tasks={tasks}
+                    deleteTask={deleteTask}
+                  />
                 ) : (
                   <Login
                     logIn={logIn}

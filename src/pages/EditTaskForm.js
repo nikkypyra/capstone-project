@@ -2,46 +2,42 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import SubmitButton from '../components/buttons/SubmitButton'
 import CancelButton from '../components/buttons/CancelButton'
+import DeleteButton from '../components/buttons/DeleteButton'
 import Navigation from '../components/Navigation'
 import { useHistory, useParams, Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { db } from '../firebase'
 import UserHeader from '../components/UserHeader'
 
-TaskForm.propTypes = {
+EditTaskForm.propTypes = {
   pets: PropTypes.array.isRequired,
-  user: PropTypes.object.isRequired,
+  tasks: PropTypes.array.isRequired,
+  deleteTask: PropTypes.func.isRequired,
 }
 
-export default function TaskForm({ pets, user }) {
-  const [description, setDescription] = useState('')
-  const [date, setDate] = useState('')
-  const [time, setTime] = useState('')
-  const [person, setPerson] = useState('')
+export default function EditTaskForm({ pets, tasks, deleteTask }) {
+  const history = useHistory()
+  const params = useParams()
+  const pet = pets.find((pet) => pet.id === params.id)
+  const task = tasks.find((task) => task.id === params.taskid)
+  const [description, setDescription] = useState(task.description)
+  const [date, setDate] = useState(task.date)
+  const [time, setTime] = useState(task.time)
+  const [person, setPerson] = useState(task.person)
   const disabled =
     description.length === 0 ||
     date.length === 0 ||
     time.length === 0 ||
     person.length === 0
-  const history = useHistory()
-  const params = useParams()
 
-  const pet = pets.find((pet) => pet.id === params.id)
   function handleSubmit(event) {
     event.preventDefault()
-    db.collection('tasks').add({
+    db.collection('tasks').doc(task.id).update({
       description,
       date,
       time,
       person,
-      complete: false,
-      petId: pet.id,
-      userId: user.id,
     })
-    setDescription({ description: '' })
-    setDate({ date: '' })
-    setTime({ time: '' })
-    setPerson({ person: '' })
     history.push(`/pet/${pet.id}`)
   }
   return (
@@ -60,7 +56,7 @@ export default function TaskForm({ pets, user }) {
               <input
                 type="text"
                 name="description"
-                value={description}
+                defaultValue={description}
                 maxLength="100"
                 placeholder="Insert description"
                 onChange={(e) => setDescription(e.target.value)}
@@ -75,7 +71,7 @@ export default function TaskForm({ pets, user }) {
               <input
                 type="date"
                 name="date"
-                value={date}
+                defaultValue={date}
                 onChange={(e) => setDate(e.target.value)}
                 required
               />
@@ -87,7 +83,7 @@ export default function TaskForm({ pets, user }) {
               <input
                 type="time"
                 name="time"
-                value={time}
+                defaultValue={time}
                 onChange={(e) => setTime(e.target.value)}
                 required
               />
@@ -99,7 +95,7 @@ export default function TaskForm({ pets, user }) {
               <input
                 type="text"
                 name="person"
-                value={person}
+                defaultValue={person}
                 maxLength="100"
                 placeholder="Insert person to complete task"
                 onChange={(e) => setPerson(e.target.value)}
@@ -108,7 +104,14 @@ export default function TaskForm({ pets, user }) {
             </label>
           </div>
           <SubmitButton text="Submit" disabled={disabled} type="submit" />
-          <p>*Mandatory Fields</p>
+          <div className="delete">
+            <Link to={`/pet/${pet.id}`}>
+              <DeleteButton
+                onClick={() => deleteTask(task)}
+                text="Delete this task"
+              />
+            </Link>
+          </div>
         </Form>
       </main>
       <Navigation />
@@ -119,7 +122,7 @@ export default function TaskForm({ pets, user }) {
 const Form = styled.form`
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 1fr 3fr 3fr 3fr 3fr 1fr;
+  grid-template-rows: 1fr 2fr 2fr 2fr 2fr 1fr;
   align-items: center;
   color: var(--secondary);
   margin: 20px;
@@ -180,8 +183,10 @@ const Form = styled.form`
     grid-column: span 2;
   }
 
-  p {
+  .delete {
     grid-row: 6/7;
-    margin-top: 4px;
+    grid-column: span 2;
+    margin-top: 24px;
+    text-align: center;
   }
 `
