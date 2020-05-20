@@ -16,7 +16,7 @@ export default function useServices() {
         return res
       })
       .catch(function (error) {
-        console.error('Error creating new user: ', error)
+        console.error(error)
         return error
       })
   }
