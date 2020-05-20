@@ -98,10 +98,7 @@ export default function Login({ logIn, resetPassword, profile, setProfile }) {
         }
       })
       .catch((error) => {
-        console.log(
-          'Sorry, there was an error with the server. Please try again later.',
-          error
-        )
+        console.log(error)
       })
   }
 
