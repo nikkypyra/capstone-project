@@ -1,11 +1,10 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import AddButton from '../components/buttons/AddButton'
-import { Link } from 'react-router-dom'
-import EditButton from '../components/buttons/EditButton'
-import UserHeader from '../components/UserHeader'
-import Navigation from '../components/Navigation'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
+import UserLayout from '../components/general/UserLayout'
+import AddButton from '../components/buttons/AddButton'
+import EditButton from '../components/buttons/EditButton'
 
 Home.propTypes = {
   pets: PropTypes.array.isRequired,
@@ -14,16 +13,13 @@ Home.propTypes = {
 export default function Home({ pets }) {
   return (
     <>
-      <UserHeader />
-      <ButtonWrapper>
-        <Link to="/create-pet">
+      <UserLayout>
+        <AddLink to="/create-pet">
           <AddButton text="Add Pet" />
-        </Link>
-      </ButtonWrapper>
-      <PetWrapper>
+        </AddLink>
         {pets.length !== 0 ? (
           pets.map((pet) => (
-            <section key={pet.id}>
+            <PetWrapper key={pet.id}>
               <div className="image">
                 <Link to={`/pet/${pet.id}`} key={pet.id}>
                   <img src={pet.imageSrc} alt={pet.name} />
@@ -37,30 +33,26 @@ export default function Home({ pets }) {
                   <EditButton />
                 </Link>
               </div>
-            </section>
+            </PetWrapper>
           ))
         ) : (
           <TextStyled>You have not added any pets yet.</TextStyled>
         )}
-      </PetWrapper>
-      <Navigation />
+      </UserLayout>
     </>
   )
 }
 
-const ButtonWrapper = styled.div`
+const AddLink = styled(Link)`
   display: flex;
   justify-content: flex-end;
-  margin: 20px 20px 0 0;
+  margin: 20px 16px 20px 0;
 `
-const PetWrapper = styled.main`
-  margin-top: 40px;
-  section {
-    margin: 20px 0;
-    display: grid;
-    grid-template-columns: 1fr 4fr 1fr;
-    grid-template-rows: 4fr 1fr;
-  }
+const PetWrapper = styled.section`
+  margin: 16px 0;
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-rows: 4fr 1fr;
 
   .image {
     grid-row: 1/2;

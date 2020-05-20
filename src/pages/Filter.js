@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
-import SearchBar from '../components/SearchBar'
-import FilteredList from '../components/FilteredList'
-import UserHeader from '../components/UserHeader'
-import Navigation from '../components/Navigation'
 import PropTypes from 'prop-types'
+import UserLayout from '../components/general/UserLayout'
+import FilteredTaskList from '../components/filter/FilteredTaskList'
+import SearchBar from '../components/filter/SearchBar'
 
 Filter.propTypes = {
   pets: PropTypes.array.isRequired,
@@ -15,36 +14,31 @@ Filter.propTypes = {
 
 export default function Filter({ pets, tasks, handleCheckbox, deleteTask }) {
   const [searchInput, setSearchInput] = useState('')
-
-  let filteredTasks = tasks.filter(
+  const filteredTasks = tasks.filter(
     (task) =>
       task.date.includes(searchInput) ||
       task.person.toLowerCase().includes(searchInput.toLowerCase())
   )
-
-  function filterResults(event) {
-    setSearchInput(event.target.value)
-  }
-
   return (
     <>
-      <UserHeader />
-      <main>
+      <UserLayout>
         <SearchBar filterResults={filterResults} />
         {filteredTasks.length === 0 ? (
           <TextStyled>No results found.</TextStyled>
         ) : (
-          <FilteredList
+          <FilteredTaskList
             filteredTasks={filteredTasks}
             pets={pets}
             handleCheckbox={handleCheckbox}
             deleteTask={deleteTask}
           />
         )}
-      </main>
-      <Navigation />
+      </UserLayout>
     </>
   )
+  function filterResults(event) {
+    setSearchInput(event.target.value)
+  }
 }
 
 const TextStyled = styled.p`

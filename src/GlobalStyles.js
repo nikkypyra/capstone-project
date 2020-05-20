@@ -6,6 +6,8 @@ export default createGlobalStyle`
     margin: 0; 
     padding: 0;
     cursor: default;
+    font-family: sans-serif;
+    
 
     a {
         color: var(--primary);
@@ -17,13 +19,33 @@ body {
     color: var(--secondary);
     font-size: 16px;
     line-height: 1.4;
-    font-family: sans-serif;
 }
 
 main {
     margin: 8px 8px 48px 8px;
     display: grid;
     overflow: scroll;
+
+    input[type='text'] {
+        cursor: auto;
+      }
+    
+      label,
+      input {
+        margin: 8px 0;
+      }
+    
+      label {
+        font-size: 18px;
+      }
+      
+      input {
+        width: 100%;
+        height: 2rem;
+        font-size: 16px;
+        border: none;
+        border-bottom: 1px solid var(--primary);
+      }  
 }
 
 :root {

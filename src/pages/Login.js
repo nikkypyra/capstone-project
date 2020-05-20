@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
-import SubmitButton from '../components/buttons/SubmitButton'
-import AddButton from '../components/buttons/AddButton'
-import UserHeader from '../components/UserHeader'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import PropTypes from 'prop-types'
+import NonUserLayout from '../components/general/NonUserLayout'
+import AddButton from '../components/buttons/AddButton'
+import SubmitButton from '../components/buttons/SubmitButton'
 
 Login.propTypes = {
   profile: PropTypes.object.isRequired,
@@ -18,59 +18,56 @@ export default function Login({ logIn, resetPassword, profile, setProfile }) {
   const { register, handleSubmit, errors, setError } = useForm()
   const [loginCounter, setLoginCounter] = useState(0)
   return (
-    <>
-      <UserHeader />
-      <main>
-        <WrapperStyled>
-          <form onSubmit={handleSubmit(onSubmit)} data-cy="login">
-            <div className="email">
-              <input
-                ref={register}
-                type="email"
-                name="email"
-                placeholder="Enter your E-mail"
-                required
-              />
-              {errors.email && errors.email.type === 'notFound' && (
-                <Error>{errors.email.message}</Error>
-              )}
-            </div>
-            <div className="password">
-              <input
-                ref={register}
-                type="password"
-                name="password"
-                placeholder="Password"
-                required
-              />
-              {errors.password && errors.password.type === 'reset' && (
-                <Error>
-                  {errors.password.message}
-                  <span onClick={handleReset}> reset your password.</span>
-                </Error>
-              )}
-              {errors.password && errors.password.type === 'tooMany' && (
-                <Error>{errors.password.message}</Error>
-              )}
-            </div>
+    <NonUserLayout>
+      <FormWrapper>
+        <form onSubmit={handleSubmit(onSubmit)} data-cy="login">
+          <div className="email">
+            <input
+              ref={register}
+              type="email"
+              name="email"
+              placeholder="Enter your E-mail"
+              required
+            />
+            {errors.email && errors.email.type === 'notFound' && (
+              <Error>{errors.email.message}</Error>
+            )}
+          </div>
+          <div className="password">
+            <input
+              ref={register}
+              type="password"
+              name="password"
+              placeholder="Password"
+              required
+            />
+            {errors.password && errors.password.type === 'reset' && (
+              <Error>
+                {errors.password.message}
+                <span onClick={handleReset}> reset your password.</span>
+              </Error>
+            )}
+            {errors.password && errors.password.type === 'tooMany' && (
+              <Error>{errors.password.message}</Error>
+            )}
+          </div>
 
-            <div className="login">
-              <SubmitButton text="Log in" className="login" type="submit" />
-            </div>
-          </form>
-          <section>
-            <div>
-              <p>or</p>
-            </div>
-            <div className="signup">
-              <Link to="/signup">
-                <AddButton text="Sign up" />
-              </Link>
-            </div>
-          </section>
-        </WrapperStyled>
-      </main>
-    </>
+          <div className="login">
+            <SubmitButton text="Log in" className="login" type="submit" />
+          </div>
+        </form>
+        <section>
+          <div>
+            <p>or</p>
+          </div>
+          <div className="signup">
+            <Link to="/signup">
+              <AddButton text="Sign up" />
+            </Link>
+          </div>
+        </section>
+      </FormWrapper>
+    </NonUserLayout>
   )
 
   function onSubmit(data) {
@@ -114,21 +111,10 @@ export default function Login({ logIn, resetPassword, profile, setProfile }) {
   }
 }
 
-const WrapperStyled = styled.section`
+const FormWrapper = styled.section`
   display: flex;
   flex-direction: column;
-  color: var(--secondary);
   margin: 100px 20px 20px 20px;
-
-  input {
-    cursor: auto;
-    width: 100%;
-    height: 2.5rem;
-    font-size: 16px;
-    font-family: sans-serif;
-    border: none;
-    border-bottom: 1px solid var(--primary);
-  }
 
   div {
     margin: 24px 0;

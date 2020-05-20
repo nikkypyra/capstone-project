@@ -1,32 +1,29 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import AddButton from './buttons/AddButton'
 import PropTypes from 'prop-types'
+import AddButton from '../buttons/AddButton'
 
-ImageUpload.propTypes = {
-  previewImage: PropTypes.object,
-  handleImageUpload: PropTypes.func,
+CreateImageUpload.propTypes = {
+  previewImage: PropTypes.object.isRequired,
+  handleImageUpload: PropTypes.func.isRequired,
 }
 
-export default function ImageUpload({ previewImage, handleImageUpload }) {
+export default function CreateImageUpload({ previewImage, handleImageUpload }) {
   return (
     <>
       {previewImage.imageUrl ? (
         <ImageWrapper>
-          <Image src={previewImage.imageUrl} alt="" />
+          <img src={previewImage.imageUrl} alt="pet" />
         </ImageWrapper>
       ) : (
         <ImageWrapper>
-          <Image src={process.env.PUBLIC_URL + '/images/taskpaw.png'} alt="" />
+          <img src={process.env.PUBLIC_URL + '/images/taskpaw.png'} alt="pet" />
         </ImageWrapper>
       )}
       <UploadWrapper>
-        <label htmlFor="imageSrc">
-          <AddButton className="upload-button" text="Upload photo" />
-        </label>
+        <AddButton className="upload-button" text="Upload photo" />
         <input
           type="file"
-          name="imageSrc"
           accept="image/*"
           className="file-input"
           onChange={handleImageUpload}
@@ -44,15 +41,17 @@ const UploadWrapper = styled.section`
     opacity: 0;
     position: absolute;
   }
+  button {
+    margin-top: 8px;
+  }
 `
 
 const ImageWrapper = styled.div`
   text-align: center;
-`
-
-const Image = styled.img`
-  height: 240px;
-  width: 240px;
-  border: 8px solid var(--tertiary);
-  border-radius: 50%;
+  img {
+    height: 200px;
+    width: 200px;
+    border: 8px solid var(--tertiary);
+    border-radius: 50%;
+  }
 `

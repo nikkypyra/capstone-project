@@ -9,7 +9,7 @@ CancelButton.propTypes = {
 export default function CancelButton({ onClick }) {
   return (
     <ImageWrapper onClick={onClick}>
-      <img src={process.env.PUBLIC_URL + '/images/cancel.png'} alt="" />
+      <img src={process.env.PUBLIC_URL + '/images/cancel.png'} alt="cancel" />
     </ImageWrapper>
   )
 }

@@ -1,8 +1,8 @@
 import React from 'react'
-import { AuthConsumer } from './AuthContext'
 import styled from 'styled-components/macro'
+import { AuthConsumer } from './AuthContext'
 
-export default function UserHeader() {
+export default function Header() {
   return (
     <AuthConsumer>
       {({ user, logOut }) => (

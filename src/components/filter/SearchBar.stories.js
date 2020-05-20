@@ -1,14 +1,14 @@
 import React from 'react'
-import SearchBar from './SearchBar'
 import { action } from '@storybook/addon-actions'
-import mobileWrapper from '../../.storybook/preview'
+import mobileWrapper from '../../../.storybook/preview'
+import SearchBar from './SearchBar'
 
 export default {
-  title: 'SearchBar',
+  title: 'Search Bar',
   component: SearchBar,
   decorators: [mobileWrapper],
 }
 
-export const searchBar = () => (
+export const SearchBarPreview = () => (
   <SearchBar filterResults={action('Search will filter')} />
 )

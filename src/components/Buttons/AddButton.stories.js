@@ -1,7 +1,7 @@
 import React from 'react'
-import AddButton from './AddButton'
 import { action } from '@storybook/addon-actions'
 import mobileWrapper from '../../../.storybook/preview'
+import AddButton from './AddButton'
 
 export default {
   title: 'Add Button',

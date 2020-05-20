@@ -1,27 +1,28 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import AddButton from './buttons/AddButton'
 import PropTypes from 'prop-types'
+import AddButton from '../buttons/AddButton'
 
-ImageUpload.propTypes = {
-  petImage: PropTypes.object,
-  handleUpload: PropTypes.func,
+UpdateImageUpload.propTypes = {
+  petImage: PropTypes.object.isRequired,
+  handleUpload: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 }
 
-export default function ImageUpload({ petImage, handleUpload }) {
+export default function UpdateImageUpload({ petImage, handleUpload, onClick }) {
   return (
     <>
       <ImageWrapper>
-        <Image src={petImage.imageUrl} alt="" />
+        <img src={petImage.imageUrl} alt="" />
       </ImageWrapper>
-
       <UploadWrapper>
-        <label htmlFor="imageSrc">
-          <AddButton className="upload-button" text="Upload photo" />
-        </label>
+        <AddButton
+          className="upload-button"
+          text="Upload photo"
+          onClick={onClick}
+        />
         <input
           type="file"
-          name="imageSrc"
           accept="image/*"
           className="file-input"
           onChange={handleUpload}
@@ -39,15 +40,17 @@ const UploadWrapper = styled.section`
     opacity: 0;
     position: absolute;
   }
+  button {
+    margin-top: 8px;
+  }
 `
 
 const ImageWrapper = styled.div`
   text-align: center;
-`
-
-const Image = styled.img`
-  height: 240px;
-  width: 240px;
-  border: 8px solid var(--tertiary);
-  border-radius: 50%;
+  img {
+    height: 200px;
+    width: 200px;
+    border: 8px solid var(--tertiary);
+    border-radius: 50%;
+  }
 `

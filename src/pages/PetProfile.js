@@ -1,12 +1,11 @@
 import React from 'react'
-import ProfileBanner from '../components/ProfileBanner'
-import TasksStyled from '../components/TasksStyled'
-import AddButton from '../components/buttons/AddButton'
 import styled from 'styled-components/macro'
-import { Link, useParams } from 'react-router-dom'
-import UserHeader from '../components/UserHeader'
-import Navigation from '../components/Navigation'
 import PropTypes from 'prop-types'
+import { Link, useParams } from 'react-router-dom'
+import UserLayout from '../components/general/UserLayout'
+import ProfileBanner from '../components/pets/ProfileBanner'
+import ProfileTaskList from '../components/tasks/ProfileTaskList'
+import AddButton from '../components/buttons/AddButton'
 
 PetProfile.propTypes = {
   pets: PropTypes.array.isRequired,
@@ -27,15 +26,12 @@ export default function PetProfile({
   const pet = pets.find((pet) => pet.id === params.id) || {}
   return (
     <>
-      <UserHeader />
-      <main>
+      <UserLayout>
         <ProfileBanner imageSrc={pet.imageSrc} name={pet.name} />
-        <ButtonWrapper>
-          <Link to={`/pet/${pet.id}/create-task`}>
-            <AddButton text="Add Task" />
-          </Link>
-        </ButtonWrapper>
-        <TasksStyled
+        <AddLink to={`/pet/${pet.id}/create-task`}>
+          <AddButton text="Add Task" />
+        </AddLink>
+        <ProfileTaskList
           pet={pet}
           tasks={tasks}
           setTasks={setTasks}
@@ -43,13 +39,12 @@ export default function PetProfile({
           setPets={setPets}
           handleCheckbox={handleCheckbox}
         />
-      </main>
-      <Navigation />
+      </UserLayout>
     </>
   )
 }
 
-const ButtonWrapper = styled.div`
+const AddLink = styled(Link)`
   display: flex;
   justify-content: flex-end;
   margin-right: 20px;
