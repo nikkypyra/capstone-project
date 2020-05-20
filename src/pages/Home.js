@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import AddButton from '../components/buttons/AddButton'
-import { Link } from 'react-router-dom'
-import EditButton from '../components/buttons/EditButton'
-import UserLayout from '../components/general/UserLayout'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
+import UserLayout from '../components/general/UserLayout'
+import AddButton from '../components/buttons/AddButton'
+import EditButton from '../components/buttons/EditButton'
 
 Home.propTypes = {
   pets: PropTypes.array.isRequired,

@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import SubmitButton from '../components/buttons/SubmitButton'
-import NonUserLayout from '../components/general/NonUserLayout'
+import PropTypes from 'prop-types'
 import { Link, useHistory } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import PropTypes from 'prop-types'
+import NonUserLayout from '../components/general/NonUserLayout'
+import SubmitButton from '../components/buttons/SubmitButton'
 
 SignUp.propTypes = {
   signUp: PropTypes.func.isRequired,
@@ -21,7 +21,6 @@ export default function SignUp({ setProfile, signUp }) {
     getValues,
     formState,
   } = useForm()
-
   const repeatVal = (passwordRepeat) =>
     passwordRepeat === getValues().password || 'Passwords do not match'
   const validateRepeat = () => {
@@ -29,9 +28,65 @@ export default function SignUp({ setProfile, signUp }) {
       triggerValidation({ name: 'passwordRepeat' })
     }
   }
-
   const history = useHistory()
-
+  return (
+    <NonUserLayout>
+      <Form onSubmit={handleSubmit(onSubmit)} data-cy="login">
+        <div className="email">
+          <input
+            type="text"
+            placeholder="Enter your E-mail"
+            name="email"
+            ref={register({ required: true, pattern: /^\S+@\S+$/i })}
+          />
+          {((errors.email && errors.email.type === 'required') ||
+            (errors.email && errors.email.type === 'pattern')) && (
+            <Error>Please enter a valid e-mail address.</Error>
+          )}
+          {errors.email && errors.email.type === 'inUse' && (
+            <Error>{errors.email.message}</Error>
+          )}
+        </div>
+        <div className="password">
+          <input
+            ref={register({
+              required: true,
+              minLength: {
+                value: 8,
+                message: 'Password must have at least 8 characters',
+              },
+            })}
+            onChange={validateRepeat}
+            type="password"
+            name="password"
+            placeholder="Password"
+          />
+          {errors.password && (
+            <Error>Password must be at least 8 characters long.</Error>
+          )}
+        </div>
+        <div>
+          <input
+            name="passwordRepeat"
+            type="password"
+            placeholder="Confirm password"
+            ref={register({ required: true, validate: repeatVal })}
+          />
+          {errors.passwordRepeat && (
+            <Error>{errors.passwordRepeat.message}</Error>
+          )}
+        </div>
+        <div className="signup">
+          <SubmitButton text="Sign up" type="submit" />
+        </div>
+        <div>
+          <Link to="/">
+            <p>Back</p>
+          </Link>
+        </div>
+      </Form>
+    </NonUserLayout>
+  )
   function onSubmit(data) {
     setProfile(data)
     signUp(data)
@@ -48,84 +103,12 @@ export default function SignUp({ setProfile, signUp }) {
         )
       })
   }
-
-  return (
-    <>
-      <NonUserLayout>
-        <Form onSubmit={handleSubmit(onSubmit)} data-cy="login">
-          <div className="email">
-            <input
-              type="text"
-              placeholder="Enter your E-mail"
-              name="email"
-              ref={register({ required: true, pattern: /^\S+@\S+$/i })}
-            />
-            {((errors.email && errors.email.type === 'required') ||
-              (errors.email && errors.email.type === 'pattern')) && (
-              <Error>Please enter a valid e-mail address.</Error>
-            )}
-            {errors.email && errors.email.type === 'inUse' && (
-              <Error>{errors.email.message}</Error>
-            )}
-          </div>
-          <div className="password">
-            <input
-              ref={register({
-                required: true,
-                minLength: {
-                  value: 8,
-                  message: 'Password must have at least 8 characters',
-                },
-              })}
-              onChange={validateRepeat}
-              type="password"
-              name="password"
-              placeholder="Password"
-            />
-            {errors.password && (
-              <Error>Password must be at least 8 characters long.</Error>
-            )}
-          </div>
-          <div>
-            <input
-              name="passwordRepeat"
-              type="password"
-              placeholder="Confirm password"
-              ref={register({ required: true, validate: repeatVal })}
-            />
-            {errors.passwordRepeat && (
-              <Error>{errors.passwordRepeat.message}</Error>
-            )}
-          </div>
-          <div className="signup">
-            <SubmitButton text="Sign up" type="submit" />
-          </div>
-          <div>
-            <Link to="/">
-              <p>Back</p>
-            </Link>
-          </div>
-        </Form>
-      </NonUserLayout>
-    </>
-  )
 }
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  color: var(--secondary);
-  margin: 100px 20px 20px 20px;
-
-  input {
-    cursor: auto;
-    width: 100%;
-    height: 2.5rem;
-    font-size: 16px;
-    font-family: sans-serif;
-    border: none;
-    border-bottom: 1px solid var(--primary);
-  }
+  margin: 60px 20px 20px 20px;
 
   div {
     margin: 24px 0;

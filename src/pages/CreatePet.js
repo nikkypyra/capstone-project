@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { db } from '../firebase'
 import { useHistory } from 'react-router-dom'
 import UserLayout from '../components/general/UserLayout'
+import PetFormLayout from '../components/pets/PetFormLayout'
 import PetForm from '../components/pets/PetForm'
 import CreateImageUpload from '../components/pets/CreateImageUpload'
 
@@ -26,7 +27,7 @@ export default function CreatePet({
   return (
     <>
       <UserLayout>
-        <Form onSubmit={handleSubmit} data-cy="create-pet">
+        <PetFormLayout onSubmit={handleSubmit} data-cy="create-pet">
           <PetForm name={name} setName={setName} disabled={disabled} />
           <PhotoContainer>
             <CreateImageUpload
@@ -37,7 +38,7 @@ export default function CreatePet({
             />
           </PhotoContainer>
           <Rules>*Mandatory Field</Rules>
-        </Form>
+        </PetFormLayout>
       </UserLayout>
     </>
   )
@@ -58,19 +59,6 @@ export default function CreatePet({
     history.push('/home')
   }
 }
-
-const Form = styled.form`
-  display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: auto;
-  align-items: center;
-  color: var(--secondary);
-  margin: 20px;
-  padding: 12px;
-  border: 4px solid var(--tertiary);
-  border-radius: 12px;
-`
-
 const PhotoContainer = styled.div`
   grid-row: 2/3;
   grid-column: span 2;

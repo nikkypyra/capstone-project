@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { db, storage } from '../firebase'
 import { useHistory, useParams, Link } from 'react-router-dom'
 import UserLayout from '../components/general/UserLayout'
+import PetFormLayout from '../components/pets/PetFormLayout'
 import PetForm from '../components/pets/PetForm'
 import UpdateImageUpload from '../components/pets/UpdateImageUpload'
 import DeleteButton from '../components/buttons/DeleteButton'
@@ -26,7 +27,7 @@ export default function UpdatePet({ pets, deletePet }) {
   return (
     <>
       <UserLayout>
-        <Form onSubmit={handleSubmit} data-cy="create-pet">
+        <PetFormLayout onSubmit={handleSubmit} data-cy="create-pet">
           <PetForm name={name} setName={setName} disabled={disabled} />
           <PhotoContainer>
             <UpdateImageUpload
@@ -44,7 +45,7 @@ export default function UpdatePet({ pets, deletePet }) {
               />
             </Link>
           </Delete>
-        </Form>
+        </PetFormLayout>
       </UserLayout>
     </>
   )
@@ -80,17 +81,6 @@ export default function UpdatePet({ pets, deletePet }) {
   }
 }
 
-const Form = styled.form`
-  display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: auto;
-  align-items: center;
-  color: var(--secondary);
-  margin: 20px;
-  padding: 12px;
-  border: 4px solid var(--tertiary);
-  border-radius: 12px;
-`
 const PhotoContainer = styled.div`
   grid-row: 2/3;
   grid-column: span 2;

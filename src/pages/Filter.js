@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
-import SearchBar from '../components/filter/SearchBar'
-import FilteredTaskList from '../components/filter/FilteredTaskList'
-import UserLayout from '../components/general/UserLayout'
 import PropTypes from 'prop-types'
+import UserLayout from '../components/general/UserLayout'
+import FilteredTaskList from '../components/filter/FilteredTaskList'
+import SearchBar from '../components/filter/SearchBar'
 
 Filter.propTypes = {
   pets: PropTypes.array.isRequired,
@@ -14,17 +14,11 @@ Filter.propTypes = {
 
 export default function Filter({ pets, tasks, handleCheckbox, deleteTask }) {
   const [searchInput, setSearchInput] = useState('')
-
-  let filteredTasks = tasks.filter(
+  const filteredTasks = tasks.filter(
     (task) =>
       task.date.includes(searchInput) ||
       task.person.toLowerCase().includes(searchInput.toLowerCase())
   )
-
-  function filterResults(event) {
-    setSearchInput(event.target.value)
-  }
-
   return (
     <>
       <UserLayout>
@@ -42,6 +36,9 @@ export default function Filter({ pets, tasks, handleCheckbox, deleteTask }) {
       </UserLayout>
     </>
   )
+  function filterResults(event) {
+    setSearchInput(event.target.value)
+  }
 }
 
 const TextStyled = styled.p`

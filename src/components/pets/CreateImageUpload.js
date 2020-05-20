@@ -49,8 +49,8 @@ const UploadWrapper = styled.section`
 const ImageWrapper = styled.div`
   text-align: center;
   img {
-    height: 240px;
-    width: 240px;
+    height: 200px;
+    width: 200px;
     border: 8px solid var(--tertiary);
     border-radius: 50%;
   }
