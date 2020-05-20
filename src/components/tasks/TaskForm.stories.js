@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components/macro'
 import { action } from '@storybook/addon-actions'
 import mobileWrapper from '../../../.storybook/preview'
 import TaskForm from './TaskForm'
@@ -22,7 +21,6 @@ export const TaskFormPreview = () => (
       setTime={action('inputting time')}
       setPerson={action('inputting person')}
       disabled={true}
-      pet={chosenPet}
     />
   </TaskFormLayout>
 )
