@@ -39,7 +39,8 @@ export default function UpdateTask({ pets, tasks, deleteTask }) {
             setDate={setDate}
             time={time}
             setTime={setTime}
-            person={setPerson}
+            person={person}
+            setPerson={setPerson}
             disabled={disabled}
             pet={pet}
           />

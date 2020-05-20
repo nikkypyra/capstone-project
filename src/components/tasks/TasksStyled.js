@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import Checkbox from './Checkbox'
+import pawSrc from '../../images/taskpaw.png'
 
 TasksStyled.propTypes = {
   todo: PropTypes.object,
@@ -12,7 +13,7 @@ export default function TasksStyled({ todo, handleCheckbox }) {
   return (
     <>
       <Marker>
-        <img src={process.env.PUBLIC_URL + '/images/taskpaw.png'} alt="" />
+        <img src={pawSrc} alt="" />
       </Marker>
       <Description>
         <h3>{todo.description}</h3>

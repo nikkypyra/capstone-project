@@ -1,10 +1,10 @@
 import { storage } from '../../firebase'
 import { useState } from 'react'
+import pawSrc from '../../images/taskpaw.png'
 
 export default function usePhoto() {
   const [previewImage, setPreviewImage] = useState({
-    imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/pawlog-app.appspot.com/o/images%2Ftaskpaw.png?alt=media&token=8ad10974-93e4-4fd7-ae05-1567d049ad1f',
+    imageUrl: pawSrc,
     imageName: 'taskpaw.png',
   })
 

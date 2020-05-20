@@ -1,11 +1,11 @@
 import React from 'react'
-import Header from './Header'
+import UserHeader from './UserHeader'
 import Navigation from './Navigation'
 
 export default function UserLayout({ children }) {
   return (
     <>
-      <Header />
+      <UserHeader />
       <main>{children}</main>
       <Navigation />
     </>
