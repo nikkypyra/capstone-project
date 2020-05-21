@@ -48,7 +48,7 @@ export default function usePets() {
     db.collection('tasks').doc(todo.id).update({ complete: !todo.complete })
   }
 
-  function deleteTask(todo) {
+  function deleteTask(todo, pet) {
     swal({
       text: 'Are you sure you want to delete this task?',
       buttons: true,
@@ -56,6 +56,7 @@ export default function usePets() {
     }).then((willDelete) => {
       if (willDelete) {
         db.collection('tasks').doc(todo.id).delete()
+        history.push(`/pet/${pet.id}`)
       }
     })
   }

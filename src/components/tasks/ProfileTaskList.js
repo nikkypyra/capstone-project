@@ -34,7 +34,10 @@ export default function ProfileTaskList({
           <TaskWrapper key={todo.id}>
             <TasksStyled todo={todo} handleCheckbox={handleCheckbox} />
             <Update>
-              <Link to={`/pet/${pet.id}/${todo.id}/update-task`}>
+              <Link
+                to={`/pet/${pet.id}/${todo.id}/update-task`}
+                data-cy="edit-task"
+              >
                 <EditButton onClick={onClick} />
               </Link>
             </Update>

@@ -9,13 +9,13 @@ describe('Add a new pet and then delete this pet', () => {
 
   it('creates a new pet on submit', () => {
     cy.get('[data-cy=create-pet]')
-    cy.get('input[name="name"]').type('DELETEME')
+    cy.get('input[name="name"]').type('DELETE ME')
     cy.get('[data-cy=create-pet]').submit()
-    cy.contains('DELETEME').should('exist')
+    cy.contains('DELETE ME').should('exist')
   })
 
   it('deletes the created pet when ok is clicked', () => {
-    cy.contains('DELETEME')
+    cy.contains('DELETE ME')
       .parent('div')
       .parent('section')
       .within(() => {
@@ -23,6 +23,9 @@ describe('Add a new pet and then delete this pet', () => {
       })
     cy.contains('Delete').click({ force: true })
     cy.contains('OK').click()
-    cy.contains('DELETEME').should('not.exist')
+  })
+
+  it('checks that the pet has been deleted', () => {
+    cy.contains('DELETE ME').should('not.exist')
   })
 })
