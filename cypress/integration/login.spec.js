@@ -5,4 +5,9 @@ describe('Login', () => {
     cy.get('input[type="password"]').type('12345678')
     cy.get('[data-cy=login]').submit()
   })
+
+  it('logs out of the account', () => {
+    cy.contains('Log Out').click()
+    cy.contains('Log in').should('exist')
+  })
 })

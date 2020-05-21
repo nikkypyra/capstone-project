@@ -1,6 +1,19 @@
 describe('Add a new task and then delete this task', () => {
+  before(() => {
+    cy.login()
+  })
+
+  after(() => {
+    cy.logout()
+  })
+
   it('goes to the create task page from the pet page', () => {
-    cy.visit('/pet/1YNhFhOW02GO4x7oN4Dq')
+    cy.contains('FLUFFY')
+      .parent('div')
+      .parent('section')
+      .within(() => {
+        cy.get('[data-cy=pet]').click({ force: true })
+      })
     cy.get('a[href="/pet/1YNhFhOW02GO4x7oN4Dq/create-task"]').click()
     cy.location().should((loc) => {
       expect(loc.pathname).to.equal('/pet/1YNhFhOW02GO4x7oN4Dq/create-task')

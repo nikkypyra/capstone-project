@@ -1,8 +1,15 @@
 const testPetName = 'TEST' + Math.floor(Math.random() * Math.floor(10))
 
 describe('Add pet', () => {
+  before(() => {
+    cy.login()
+  })
+
+  after(() => {
+    cy.logout()
+  })
+
   it('goes to the create pet page', () => {
-    cy.visit('/home')
     cy.get('a[href="/create-pet"]').click()
     cy.location().should((loc) => {
       expect(loc.pathname).to.equal('/create-pet')

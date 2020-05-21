@@ -22,7 +22,7 @@ export default function Home({ pets }) {
             <PetWrapper key={pet.id}>
               <div className="image">
                 <Link to={`/pet/${pet.id}`} key={pet.id}>
-                  <img src={pet.imageSrc} alt={pet.name} />
+                  <img src={pet.imageSrc} alt={pet.name} data-cy="pet" />
                 </Link>
               </div>
               <div className="name">
