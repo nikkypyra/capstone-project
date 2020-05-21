@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import AddButton from '../buttons/AddButton'
+import pawSrc from '../../images/taskpaw.png'
 
 CreateImageUpload.propTypes = {
   previewImage: PropTypes.object.isRequired,
@@ -13,11 +14,11 @@ export default function CreateImageUpload({ previewImage, handleImageUpload }) {
     <>
       {previewImage.imageUrl ? (
         <ImageWrapper>
-          <img src={previewImage.imageUrl} alt="pet" />
+          <img src={previewImage.imageUrl} alt="" />
         </ImageWrapper>
       ) : (
         <ImageWrapper>
-          <img src={process.env.PUBLIC_URL + '/images/taskpaw.png'} alt="pet" />
+          <img src={pawSrc} alt="" />
         </ImageWrapper>
       )}
       <UploadWrapper>

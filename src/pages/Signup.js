@@ -62,7 +62,7 @@ export default function SignUp({ setProfile, signUp }) {
             placeholder="Password"
           />
           {errors.password && (
-            <Error>Password must be at least 8 characters long.</Error>
+            <Error>Password must be at least 8 characters.</Error>
           )}
         </div>
         <div>

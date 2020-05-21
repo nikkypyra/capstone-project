@@ -2,6 +2,7 @@ import React from 'react'
 import { action } from '@storybook/addon-actions'
 import mobileWrapper from '../../../.storybook/preview'
 import UpdateImageUpload from './UpdateImageUpload'
+import petSrc from '../../images/pet3.png'
 
 export default {
   title: 'Image Upload',
@@ -10,8 +11,7 @@ export default {
 }
 
 const image = {
-  imageUrl:
-    'https://firebasestorage.googleapis.com/v0/b/pawlog-app.appspot.com/o/images%2Fpet3.png?alt=media&token=9d4e0d88-892c-4926-928a-5391da4dfecc',
+  imageUrl: petSrc,
   imageName: 'pet3',
 }
 

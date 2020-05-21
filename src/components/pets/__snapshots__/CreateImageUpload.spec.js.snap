@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CreateImageUpload /> should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="CreateImageUpload__ImageWrapper-dfo38w-1 cLeDVg"
+  >
+    <img
+      alt=""
+      src="taskpaw.png"
+    />
+  </div>
+  <section
+    class="CreateImageUpload__UploadWrapper-dfo38w-0 fRfjjl"
+  >
+    <button
+      class="sc-AxjAm kbegFI"
+    >
+      Upload photo
+    </button>
+    <input
+      accept="image/*"
+      class="file-input"
+      type="file"
+    />
+  </section>
+</DocumentFragment>
+`;

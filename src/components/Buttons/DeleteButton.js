@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import deleteSrc from '../../images/delete.png'
 
 DeleteButton.propTypes = {
   text: PropTypes.string,
@@ -10,7 +11,7 @@ DeleteButton.propTypes = {
 export default function DeleteButton({ onClick, text }) {
   return (
     <Button onClick={onClick}>
-      <img src={process.env.PUBLIC_URL + '/images/delete.png'} alt="delete" />
+      <img src={deleteSrc} alt="delete" />
       {text}
     </Button>
   )

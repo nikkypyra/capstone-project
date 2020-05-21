@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import editSrc from '../../images/edit.png'
 
 EditButton.propTypes = {
   onClick: PropTypes.func,
@@ -9,7 +10,7 @@ EditButton.propTypes = {
 export default function EditButton({ onClick }) {
   return (
     <ImageWrapper onClick={onClick}>
-      <img src={process.env.PUBLIC_URL + '/images/edit.png'} alt="edit" />
+      <img src={editSrc} alt="edit" />
     </ImageWrapper>
   )
 }

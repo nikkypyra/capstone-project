@@ -21,7 +21,6 @@ When viewing this app, please switch your browser to iPhone 6/7/8 mode, as it wa
 
 - React
 - Firebase (Authentication, Database, Storage and Hosting)
-- Node.js
 
 ## Additional dependencies
 
@@ -42,10 +41,12 @@ When viewing this app, please switch your browser to iPhone 6/7/8 mode, as it wa
    `npm install`
 3. Run the application with  
    `npm start`
-4. Run Storybook with  
+4. Install and initialize Firebase CLI. For more information check out the [firebase CLI documentation](https://firebase.google.com/docs/cli/).  
+   `npm install -g firebase-tools`
+5. Run Storybook with  
    `npm run storybook`
-5. Run Cypress with  
+6. Run Cypress with  
    `npm run cypress`
-6. Run React Testing Library & Jest with  
+7. Run React Testing Library & Jest with  
    `npm test`
 

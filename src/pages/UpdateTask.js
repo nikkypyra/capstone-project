@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import { db } from '../firebase'
-import { useHistory, useParams, Link } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import UserLayout from '../components/general/UserLayout'
 import TaskFormLayout from '../components/tasks/TaskFormLayout'
 import TaskForm from '../components/tasks/TaskForm'
@@ -31,7 +31,7 @@ export default function UpdateTask({ pets, tasks, deleteTask }) {
   return (
     <>
       <UserLayout>
-        <TaskFormLayout onSubmit={handleSubmit} data-cy="create-task">
+        <TaskFormLayout onSubmit={handleSubmit} data-cy="update-task">
           <TaskForm
             description={description}
             setDescription={setDescription}
@@ -39,17 +39,16 @@ export default function UpdateTask({ pets, tasks, deleteTask }) {
             setDate={setDate}
             time={time}
             setTime={setTime}
-            person={setPerson}
+            person={person}
+            setPerson={setPerson}
             disabled={disabled}
             pet={pet}
           />
           <Delete>
-            <Link to={`/pet/${pet.id}`}>
-              <DeleteButton
-                onClick={() => deleteTask(task)}
-                text="Delete this task"
-              />
-            </Link>
+            <DeleteButton
+              onClick={() => deleteTask(task, pet)}
+              text="Delete this task"
+            />
           </Delete>
         </TaskFormLayout>
       </UserLayout>

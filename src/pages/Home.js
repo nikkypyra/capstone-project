@@ -22,14 +22,14 @@ export default function Home({ pets }) {
             <PetWrapper key={pet.id}>
               <div className="image">
                 <Link to={`/pet/${pet.id}`} key={pet.id}>
-                  <img src={pet.imageSrc} alt={pet.name} />
+                  <img src={pet.imageSrc} alt={pet.name} data-cy="pet" />
                 </Link>
               </div>
               <div className="name">
                 <h1>{pet.name.toUpperCase()}</h1>
               </div>
               <div className="edit">
-                <Link to={`/pet/${pet.id}/update-pet`}>
+                <Link to={`/pet/${pet.id}/update-pet`} data-cy="edit-pet">
                   <EditButton />
                 </Link>
               </div>

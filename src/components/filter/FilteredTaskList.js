@@ -41,7 +41,7 @@ export default function FilteredTaskList({
 }
 
 const TaskWrapper = styled.section`
-  margin: 16px 0px;
+  margin: 20px 0px;
   display: grid;
   grid-template-columns: 1.5fr 2fr 3fr 1fr 1fr;
   grid-template-rows: auto;
@@ -51,4 +51,5 @@ const TaskWrapper = styled.section`
 const PetName = styled.div`
   grid-row: 4/5;
   grid-column: 2/5;
+  margin-top: 12px;
 `

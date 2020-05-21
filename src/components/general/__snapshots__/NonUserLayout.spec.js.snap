@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NonUserLayout /> should render correctly 1`] = `
+<DocumentFragment>
+  <header
+    class="Header__HeaderStyled-ex8xpx-0 imCsBQ"
+  >
+    <img
+      alt="pawlog"
+      src="pawlog.png"
+    />
+  </header>
+  <main />
+</DocumentFragment>
+`;

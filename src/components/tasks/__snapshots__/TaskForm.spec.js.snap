@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TaskForm /> should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="TaskForm__Cancel-sc-2ywoyi-0 gdkiwY"
+  >
+    <a
+      href="/pet/undefined"
+    >
+      <div
+        class="sc-AxjAm juTgyb"
+      >
+        <img
+          alt="cancel"
+          src="cancel.png"
+        />
+      </div>
+    </a>
+  </div>
+  <div
+    class="TaskForm__Description-sc-2ywoyi-1 cSeoRp"
+  >
+    <label>
+      Description*
+      <input
+        maxlength="100"
+        name="description"
+        placeholder="Insert description"
+        required=""
+        type="text"
+        value="[object Object]"
+      />
+    </label>
+  </div>
+  <div
+    class="TaskForm__Date-sc-2ywoyi-2 bUpfGE"
+  >
+    <label>
+      Date*
+      <input
+        name="date"
+        required=""
+        type="date"
+        value="[object Object]"
+      />
+    </label>
+  </div>
+  <div
+    class="TaskForm__Time-sc-2ywoyi-3 jIICJW"
+  >
+    <label>
+      Time*
+      <input
+        name="time"
+        required=""
+        type="time"
+        value="[object Object]"
+      />
+    </label>
+  </div>
+  <div
+    class="TaskForm__Person-sc-2ywoyi-4 iEaioL"
+  >
+    <label>
+      To be completed by*
+      <input
+        maxlength="100"
+        name="person"
+        placeholder="Insert person to complete task"
+        required=""
+        type="text"
+        value="[object Object]"
+      />
+    </label>
+  </div>
+  <div
+    class="TaskForm__ButtonWrapper-sc-2ywoyi-5 dHbYv"
+  >
+    <button
+      class="SubmitButton__Button-sc-1s0oo90-0 beZJxO"
+      disabled=""
+    >
+      Submit
+    </button>
+  </div>
+</DocumentFragment>
+`;

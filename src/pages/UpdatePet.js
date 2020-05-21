@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import { db, storage } from '../firebase'
-import { useHistory, useParams, Link } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import UserLayout from '../components/general/UserLayout'
 import PetFormLayout from '../components/pets/PetFormLayout'
 import PetForm from '../components/pets/PetForm'
@@ -27,7 +27,7 @@ export default function UpdatePet({ pets, deletePet }) {
   return (
     <>
       <UserLayout>
-        <PetFormLayout onSubmit={handleSubmit} data-cy="create-pet">
+        <PetFormLayout onSubmit={handleSubmit} data-cy="update-pet">
           <PetForm name={name} setName={setName} disabled={disabled} />
           <PhotoContainer>
             <UpdateImageUpload
@@ -38,12 +38,10 @@ export default function UpdatePet({ pets, deletePet }) {
             />
           </PhotoContainer>
           <Delete>
-            <Link to="/">
-              <DeleteButton
-                onClick={() => deletePet(pet)}
-                text="Delete this pet"
-              />
-            </Link>
+            <DeleteButton
+              onClick={() => deletePet(pet)}
+              text="Delete this pet"
+            />
           </Delete>
         </PetFormLayout>
       </UserLayout>

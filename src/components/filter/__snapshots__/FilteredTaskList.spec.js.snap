@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FilteredTaskList /> should render correctly 1`] = `
+<DocumentFragment>
+  <section
+    class="FilteredTaskList__TaskWrapper-sc-172fr29-0 iQDROY"
+  >
+    <div
+      class="TasksStyled__Marker-j2i96a-0 kTppzS"
+    >
+      <img
+        alt=""
+        src="taskpaw.png"
+      />
+    </div>
+    <div
+      class="TasksStyled__Description-j2i96a-1 dAkghC"
+    >
+      <h3 />
+    </div>
+    <div
+      class="TasksStyled__Time-j2i96a-2 DoAZa"
+    >
+      <h4 />
+    </div>
+    <div
+      class="TasksStyled__Date-j2i96a-3 kHFcCQ"
+      data-cy="date"
+    >
+      <p />
+    </div>
+    <div
+      class="TasksStyled__Person-j2i96a-4 jToTCz"
+      data-cy="owner_name"
+    >
+      <p>
+        To be completed by: 
+      </p>
+    </div>
+    <div
+      class="TasksStyled__Status-j2i96a-5 fCOCIY"
+    >
+      <input
+        checked=""
+        class="Checkbox__CheckboxStyled-sc-1blqffb-0 dULaaG"
+        type="checkbox"
+      />
+    </div>
+    <div
+      class="FilteredTaskList__PetName-sc-172fr29-1 fIDhRg"
+    >
+      <p>
+        For: 
+        <strong>
+          FLUFFY
+        </strong>
+      </p>
+    </div>
+  </section>
+</DocumentFragment>
+`;

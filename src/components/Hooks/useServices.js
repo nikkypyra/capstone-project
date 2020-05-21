@@ -8,15 +8,16 @@ export default function useServices() {
     id: '',
   })
 
-  function signUp({ email, password }) {
-    return auth
+  async function signUp({ email, password }) {
+    return await auth
       .createUserWithEmailAndPassword(email, password)
       .then((res) => {
         addUserToDB(res.user)
         return res
       })
-      .catch((error) => {
-        console.error('Error creating new user: ', error)
+      .catch(function (error) {
+        console.error(error)
+        return error
       })
   }
 
@@ -28,9 +29,7 @@ export default function useServices() {
         id: user.uid,
         email: user.email,
       })
-      .catch((error) => {
-        console.error('Error writing document: ', error)
-      })
+      .catch((error) => error)
   }
 
   function logIn({ email, password }) {
