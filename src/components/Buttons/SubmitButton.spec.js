@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 import SubmitButton from './SubmitButton'
 
 it('renders text in SubmitButton', () => {
@@ -12,4 +12,11 @@ test('SubmitButton is disabled', () => {
     <SubmitButton text="Submit me" disabled={true} />
   )
   expect(getByText(/submit me/i).closest('button')).toBeDisabled()
+})
+
+test('calls correct function on click', () => {
+  const onClick = jest.fn()
+  const { getByText } = render(<SubmitButton text="Submit" onClick={onClick} />)
+  fireEvent.click(getByText(/submit/i))
+  expect(onClick).toHaveBeenCalled()
 })
