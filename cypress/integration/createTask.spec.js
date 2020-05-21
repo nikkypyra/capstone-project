@@ -28,7 +28,7 @@ describe('Add task', () => {
     cy.get('[data-cy=create-task]').submit()
   })
 
-  it('checks that this pet exists', () => {
+  it('checks that this task exists', () => {
     cy.contains('Random task').should('exist')
   })
 })

@@ -21,7 +21,6 @@ When viewing this app, please switch your browser to iPhone 6/7/8 mode, as it wa
 
 - React
 - Firebase (Authentication, Database, Storage and Hosting)
-- Node.js
 
 ## Additional dependencies
 
