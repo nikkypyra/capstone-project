@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PetForm /> should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="PetForm__Cancel-pq7cv9-0 coGRsk"
+  >
+    <a
+      href="/"
+    >
+      <div
+        class="sc-AxjAm juTgyb"
+      >
+        <img
+          alt="cancel"
+          src="cancel.png"
+        />
+      </div>
+    </a>
+  </div>
+  <div
+    class="PetForm__Name-pq7cv9-1 hocJNf"
+  >
+    <label>
+      Name*
+      <input
+        maxlength="9"
+        name="name"
+        placeholder="Insert pet name"
+        required=""
+        type="text"
+        value="[object Object]"
+      />
+    </label>
+  </div>
+  <div
+    class="PetForm__ButtonWrapper-pq7cv9-2 ggURZu"
+  >
+    <button
+      class="SubmitButton__Button-sc-1s0oo90-0 beZJxO"
+      disabled=""
+    >
+      Submit
+    </button>
+  </div>
+</DocumentFragment>
+`;
