@@ -15,7 +15,12 @@ export default function Navigation({ onClick }) {
       <NavStyled exact to="/home" activeClassName="selected" data-cy="home">
         <Home onClick={onClick} />
       </NavStyled>
-      <NavStyled to="/filter" activeClassName="selected" data-cy="filter">
+      <NavStyled
+        to="/filter"
+        activeClassName="selected"
+        data-cy="filter"
+        data-testid="filter"
+      >
         <Filter onClick={onClick} />
       </NavStyled>
     </FooterStyled>
