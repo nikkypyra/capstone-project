@@ -29,7 +29,7 @@ export default function Home({ pets }) {
                 <h1>{pet.name.toUpperCase()}</h1>
               </div>
               <div className="edit">
-                <Link to={`/pet/${pet.id}/update-pet`}>
+                <Link to={`/pet/${pet.id}/update-pet`} data-cy="edit-pet">
                   <EditButton />
                 </Link>
               </div>

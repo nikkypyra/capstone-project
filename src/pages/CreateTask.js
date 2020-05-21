@@ -36,7 +36,8 @@ export default function CreateTask({ pets, user }) {
             setDate={setDate}
             time={time}
             setTime={setTime}
-            person={setPerson}
+            person={person}
+            setPerson={setPerson}
             disabled={disabled}
             pet={pet}
           />

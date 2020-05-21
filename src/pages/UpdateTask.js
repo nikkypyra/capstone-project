@@ -31,7 +31,7 @@ export default function UpdateTask({ pets, tasks, deleteTask }) {
   return (
     <>
       <UserLayout>
-        <TaskFormLayout onSubmit={handleSubmit} data-cy="create-task">
+        <TaskFormLayout onSubmit={handleSubmit} data-cy="update-task">
           <TaskForm
             description={description}
             setDescription={setDescription}

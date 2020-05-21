@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { db, storage } from '../../firebase'
+import { useHistory } from 'react-router-dom'
 import swal from 'sweetalert'
 
 export default function usePets() {
   const [pets, setPets] = useState([])
   const [tasks, setTasks] = useState([])
+  const history = useHistory()
 
   function deletePet(pet) {
     let filteredTasks = tasks.filter((task) => task.petId === pet.id)
@@ -20,6 +22,8 @@ export default function usePets() {
           .delete()
           .then(() => console.log('Success'))
           .catch((error) => console.log('Failed'))
+
+        history.push('/home')
 
         filteredTasks.forEach((task) =>
           db
