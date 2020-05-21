@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Navigation /> should render correctly 1`] = `
+<DocumentFragment>
+  <footer
+    class="Navigation__FooterStyled-ug5o82-0 ggQCvf"
+  >
+    <a
+      class="Navigation__NavStyled-ug5o82-1 euePKm"
+      data-cy="home"
+      href="/home"
+    >
+      <svg>
+        home.svg
+      </svg>
+    </a>
+    <a
+      class="Navigation__NavStyled-ug5o82-1 euePKm"
+      data-cy="filter"
+      data-testid="filter"
+      href="/filter"
+    >
+      <svg>
+        filter.svg
+      </svg>
+    </a>
+  </footer>
+</DocumentFragment>
+`;
