@@ -11,6 +11,7 @@ import CreateTask from './pages/CreateTask'
 import UpdateTask from './pages/UpdateTask'
 import Filter from './pages/Filter'
 import Settings from './pages/Settings'
+import JoinFamily from './pages/JoinFamily'
 import useServices from './components/hooks/useServices'
 import usePets from './components/hooks/usePets'
 import usePhoto from './components/hooks/usePhoto'
@@ -151,6 +152,18 @@ export default function App() {
               <Route path="/settings">
                 {user && user.id ? (
                   <Settings user={user} />
+                ) : (
+                  <Login
+                    logIn={logIn}
+                    resetPassword={resetPassword}
+                    profile={profile}
+                    setProfile={setProfile}
+                  />
+                )}
+              </Route>
+              <Route path="/add-family">
+                {user && user.id ? (
+                  <JoinFamily user={user} />
                 ) : (
                   <Login
                     logIn={logIn}

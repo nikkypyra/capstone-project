@@ -86,6 +86,6 @@ const PhotoContainer = styled.div`
 const Delete = styled.div`
   grid-row: 5/6;
   grid-column: span 2;
-  margin-top: 24px;
+  margin-top: 28px;
   text-align: center;
 `
