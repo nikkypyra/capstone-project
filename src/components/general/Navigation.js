@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
 import { ReactComponent as Home } from '../../images/home.svg'
 import { ReactComponent as Filter } from '../../images/filter.svg'
+import { ReactComponent as Settings } from '../../images/settings.svg'
 
 Navigation.propTypes = {
   onClick: PropTypes.func,
@@ -12,9 +13,6 @@ Navigation.propTypes = {
 export default function Navigation({ onClick }) {
   return (
     <FooterStyled>
-      <NavStyled exact to="/home" activeClassName="selected" data-cy="home">
-        <Home onClick={onClick} />
-      </NavStyled>
       <NavStyled
         to="/filter"
         activeClassName="selected"
@@ -22,6 +20,17 @@ export default function Navigation({ onClick }) {
         data-testid="filter"
       >
         <Filter onClick={onClick} />
+      </NavStyled>
+      <NavStyled exact to="/home" activeClassName="selected" data-cy="home">
+        <Home onClick={onClick} />
+      </NavStyled>
+      <NavStyled
+        to="/settings"
+        activeClassName="selected"
+        data-cy="settings"
+        data-testid="settings"
+      >
+        <Settings onClick={onClick} />
       </NavStyled>
     </FooterStyled>
   )
