@@ -8,15 +8,17 @@ import AddButton from '../components/buttons/AddButton'
 
 Settings.propTypes = {
   user: PropTypes.object.isRequired,
+  allUsers: PropTypes.array.isRequired,
+  deleteFamily: PropTypes.func.isRequired,
 }
 
-export default function Settings({ user }) {
+export default function Settings({ user, allUsers, deleteFamily }) {
   return (
     <UserLayout>
       <AddLink to="/add-family">
         <AddButton text="Add Family" />
       </AddLink>
-      <FamilyList user={user} />
+      <FamilyList user={user} allUsers={allUsers} deleteFamily={deleteFamily} />
     </UserLayout>
   )
 }

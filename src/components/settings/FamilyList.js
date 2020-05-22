@@ -1,28 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styled from 'styled-components/macro'
-import { db } from '../../firebase'
 import PropTypes from 'prop-types'
 import DeleteButton from '../buttons/DeleteButton'
 
 FamilyList.propTypes = {
   user: PropTypes.object.isRequired,
+  allUsers: PropTypes.array.isRequired,
+  deleteFamily: PropTypes.func.isRequired,
 }
 
-export default function FamilyList({ user }) {
-  const [allUsers, setAllUsers] = useState([])
+export default function FamilyList({ user, allUsers, deleteFamily }) {
   const chosenUser =
     allUsers.find((individual) => individual.id === user.id) || {}
   const familyMembers = chosenUser.family || []
-  useEffect(() => {
-    db.collection('users').onSnapshot((snapshot) => {
-      const allUsers = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }))
-      setAllUsers(allUsers)
-    })
-  }, [])
-
   return (
     <>
       <Title>Family Members</Title>
@@ -33,7 +23,7 @@ export default function FamilyList({ user }) {
               <p>{person}</p>
             </div>
             <div className="delete">
-              <DeleteButton />
+              <DeleteButton onClick={() => deleteFamily(user, person)} />
             </div>
           </FamilyWrapper>
         ))
@@ -55,6 +45,6 @@ const Title = styled.h2`
   margin-top: 20px;
 `
 
-const Text = styled.h3`
+const Text = styled.p`
   margin-top: 40px;
 `

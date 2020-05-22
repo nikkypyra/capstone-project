@@ -15,6 +15,7 @@ import JoinFamily from './pages/JoinFamily'
 import useServices from './components/hooks/useServices'
 import usePets from './components/hooks/usePets'
 import usePhoto from './components/hooks/usePhoto'
+import useFamily from './components/hooks/useFamily'
 import AuthProvider, { AuthConsumer } from './components/general/AuthContext'
 
 export default function App() {
@@ -29,6 +30,7 @@ export default function App() {
     setTasks,
   } = usePets()
   const { previewImage, setPreviewImage, handleImageUpload } = usePhoto()
+  const { allUsers, deleteFamily } = useFamily()
 
   return (
     <>
@@ -151,7 +153,11 @@ export default function App() {
               </Route>
               <Route path="/settings">
                 {user && user.id ? (
-                  <Settings user={user} />
+                  <Settings
+                    user={user}
+                    allUsers={allUsers}
+                    deleteFamily={deleteFamily}
+                  />
                 ) : (
                   <Login
                     logIn={logIn}
