@@ -28,6 +28,7 @@ export default function useServices() {
       .set({
         id: user.uid,
         email: user.email,
+        family: [],
       })
       .catch((error) => error)
   }

@@ -10,6 +10,7 @@ import PetProfile from './pages/PetProfile'
 import CreateTask from './pages/CreateTask'
 import UpdateTask from './pages/UpdateTask'
 import Filter from './pages/Filter'
+import JoinFamily from './pages/JoinFamily'
 import useServices from './components/hooks/useServices'
 import usePets from './components/hooks/usePets'
 import usePhoto from './components/hooks/usePhoto'
@@ -138,6 +139,18 @@ export default function App() {
                     handleCheckbox={handleCheckbox}
                     deleteTask={deleteTask}
                   />
+                ) : (
+                  <Login
+                    logIn={logIn}
+                    resetPassword={resetPassword}
+                    profile={profile}
+                    setProfile={setProfile}
+                  />
+                )}
+              </Route>
+              <Route path="/join-family">
+                {user.id ? (
+                  <JoinFamily user={user} />
                 ) : (
                   <Login
                     logIn={logIn}
