@@ -6,7 +6,7 @@ export default styled.form`
   grid-template-rows: 1fr 3fr 3fr 3fr 3fr 1fr;
   align-items: center;
   color: var(--secondary);
-  margin: 20px;
+  margin: 12px;
   padding: 12px;
   border: 4px solid var(--tertiary);
   border-radius: 12px;

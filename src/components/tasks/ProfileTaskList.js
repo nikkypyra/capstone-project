@@ -48,7 +48,7 @@ export default function ProfileTaskList({
 }
 
 const TaskWrapper = styled.section`
-  margin: 16px 0px;
+  margin: 20px 0px;
   display: grid;
   grid-template-columns: 1.4fr 2fr 3fr 1fr 1fr 1fr;
   grid-template-rows: auto;

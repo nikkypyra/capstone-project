@@ -5,7 +5,13 @@ import { auth, db } from '../../firebase'
 
 const AuthContext = React.createContext()
 
-function AuthProvider({ children, setProfile, setTasks, setPets }) {
+function AuthProvider({
+  children,
+  setProfile,
+  setTasks,
+  setPets,
+  setAllUsers,
+}) {
   const [user, setUser] = useState({})
   const history = useHistory()
 
@@ -19,8 +25,10 @@ function AuthProvider({ children, setProfile, setTasks, setPets }) {
         window.localStorage.setItem('uid', user.uid)
         getUserInformation()
         const currentUser = auth.currentUser.uid
-        getPets(currentUser)
-        getTasks(currentUser)
+        const currentUserEmail = auth.currentUser.email
+        getPets(currentUser, currentUserEmail)
+        getTasks(currentUser, currentUserEmail)
+        getAllUsers()
       } else {
         setUser({})
         setProfile({ email: '', password: '', id: '' })
@@ -45,7 +53,7 @@ function AuthProvider({ children, setProfile, setTasks, setPets }) {
       })
   }
 
-  function getPets(user) {
+  function getPets(user, email) {
     db.collection('pets').onSnapshot((snapshot) => {
       const allPets = snapshot.docs.map((doc) => ({
         id: doc.id,
@@ -54,11 +62,27 @@ function AuthProvider({ children, setProfile, setTasks, setPets }) {
       const userPets = allPets.filter((pet) => {
         return pet.userId === user
       })
-      setPets(userPets)
+      db.collection('users').onSnapshot((snapshot) => {
+        const allUsers = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }))
+        const familyUsers = allUsers.filter((user) => {
+          return user.family.includes(email)
+        })
+        const familyIds = familyUsers.map((user) => {
+          return user.id
+        })
+        const familyPets = allPets.filter((pet) => {
+          return familyIds.includes(pet.userId)
+        })
+        const petList = userPets.concat(familyPets)
+        setPets(petList)
+      })
     })
   }
 
-  function getTasks(user) {
+  function getTasks(user, email) {
     db.collection('tasks').onSnapshot((snapshot) => {
       const allTasks = snapshot.docs.map((doc) => ({
         id: doc.id,
@@ -67,7 +91,34 @@ function AuthProvider({ children, setProfile, setTasks, setPets }) {
       const userTasks = allTasks.filter((task) => {
         return task.userId === user
       })
-      setTasks(userTasks)
+
+      db.collection('users').onSnapshot((snapshot) => {
+        const allUsers = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }))
+        const familyUsers = allUsers.filter((user) => {
+          return user.family.includes(email)
+        })
+        const familyIds = familyUsers.map((user) => {
+          return user.id
+        })
+        const familyTasks = allTasks.filter((task) => {
+          return familyIds.includes(task.userId)
+        })
+        const taskList = userTasks.concat(familyTasks)
+        setTasks(taskList)
+      })
+    })
+  }
+
+  function getAllUsers() {
+    db.collection('users').onSnapshot((snapshot) => {
+      const allUsers = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }))
+      setAllUsers(allUsers)
     })
   }
 

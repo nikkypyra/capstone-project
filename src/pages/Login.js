@@ -111,7 +111,7 @@ export default function Login({ logIn, resetPassword, profile, setProfile }) {
 const FormWrapper = styled.section`
   display: flex;
   flex-direction: column;
-  margin: 100px 20px 20px 20px;
+  margin: 100px 20px 20px;
 
   div {
     margin: 24px 0;

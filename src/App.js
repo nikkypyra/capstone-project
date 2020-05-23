@@ -10,9 +10,12 @@ import PetProfile from './pages/PetProfile'
 import CreateTask from './pages/CreateTask'
 import UpdateTask from './pages/UpdateTask'
 import Filter from './pages/Filter'
+import Settings from './pages/Settings'
+import JoinFamily from './pages/JoinFamily'
 import useServices from './components/hooks/useServices'
 import usePets from './components/hooks/usePets'
 import usePhoto from './components/hooks/usePhoto'
+import useFamily from './components/hooks/useFamily'
 import AuthProvider, { AuthConsumer } from './components/general/AuthContext'
 
 export default function App() {
@@ -27,6 +30,7 @@ export default function App() {
     setTasks,
   } = usePets()
   const { previewImage, setPreviewImage, handleImageUpload } = usePhoto()
+  const { allUsers, setAllUsers, deleteFamily } = useFamily()
 
   return (
     <>
@@ -35,13 +39,14 @@ export default function App() {
         setProfile={setProfile}
         setPets={setPets}
         setTasks={setTasks}
+        setAllUsers={setAllUsers}
       >
         <AuthConsumer>
           {({ user }) => (
             <Switch>
               <Redirect exact from="/" to="home" />
               <Route path="/home">
-                {user.id ? (
+                {user && user.id ? (
                   <>
                     <Home pets={pets} />
                   </>
@@ -55,7 +60,7 @@ export default function App() {
                 )}
               </Route>
               <Route path="/create-pet">
-                {user.id ? (
+                {user && user.id ? (
                   <CreatePet
                     previewImage={previewImage}
                     setPreviewImage={setPreviewImage}
@@ -72,7 +77,7 @@ export default function App() {
                 )}
               </Route>
               <Route path="/pet/:id/update-pet">
-                {user.id ? (
+                {user && user.id ? (
                   <UpdatePet pets={pets} deletePet={deletePet} />
                 ) : (
                   <Login
@@ -84,7 +89,7 @@ export default function App() {
                 )}
               </Route>
               <Route exact path="/pet/:id">
-                {user.id ? (
+                {user && user.id ? (
                   <PetProfile
                     pets={pets}
                     setPets={setPets}
@@ -103,7 +108,7 @@ export default function App() {
                 )}
               </Route>
               <Route path="/pet/:id/create-task">
-                {user.id ? (
+                {user && user.id ? (
                   <CreateTask pets={pets} user={user} />
                 ) : (
                   <Login
@@ -115,7 +120,7 @@ export default function App() {
                 )}
               </Route>
               <Route path="/pet/:id/:taskid/update-task">
-                {user.id ? (
+                {user && user.id ? (
                   <UpdateTask
                     pets={pets}
                     tasks={tasks}
@@ -131,13 +136,41 @@ export default function App() {
                 )}
               </Route>
               <Route path="/filter">
-                {user.id ? (
+                {user && user.id ? (
                   <Filter
                     pets={pets}
                     tasks={tasks}
                     handleCheckbox={handleCheckbox}
                     deleteTask={deleteTask}
                   />
+                ) : (
+                  <Login
+                    logIn={logIn}
+                    resetPassword={resetPassword}
+                    profile={profile}
+                    setProfile={setProfile}
+                  />
+                )}
+              </Route>
+              <Route path="/settings">
+                {user && user.id ? (
+                  <Settings
+                    user={user}
+                    allUsers={allUsers}
+                    deleteFamily={deleteFamily}
+                  />
+                ) : (
+                  <Login
+                    logIn={logIn}
+                    resetPassword={resetPassword}
+                    profile={profile}
+                    setProfile={setProfile}
+                  />
+                )}
+              </Route>
+              <Route path="/add-family">
+                {user && user.id ? (
+                  <JoinFamily user={user} />
                 ) : (
                   <Login
                     logIn={logIn}
