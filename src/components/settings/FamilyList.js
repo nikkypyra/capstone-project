@@ -26,7 +26,7 @@ export default function FamilyList({ user, allUsers, deleteFamily }) {
             <div className="person">
               <h4>{person}</h4>
             </div>
-            <div className="delete">
+            <div className="delete" data-cy="delete-family">
               <DeleteButton onClick={() => deleteFamily(user, person)} />
             </div>
           </FamilyWrapper>

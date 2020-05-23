@@ -12,6 +12,11 @@ describe('navigates to another url', () => {
     cy.url().should('include', '/filter')
   })
 
+  it('clicking settings icon navigates to a new url', () => {
+    cy.get('[data-cy=settings]').click()
+    cy.url().should('include', '/settings')
+  })
+
   it('clicking home icon navigates to a new url', () => {
     cy.visit('/filter')
     cy.get('[data-cy=home]').click()

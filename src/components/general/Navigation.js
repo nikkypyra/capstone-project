@@ -13,23 +13,13 @@ Navigation.propTypes = {
 export default function Navigation({ onClick }) {
   return (
     <FooterStyled>
-      <NavStyled
-        to="/filter"
-        activeClassName="selected"
-        data-cy="filter"
-        data-testid="filter"
-      >
+      <NavStyled to="/filter" activeClassName="selected" data-cy="filter">
         <Filter onClick={onClick} />
       </NavStyled>
       <NavStyled exact to="/home" activeClassName="selected" data-cy="home">
         <Home onClick={onClick} />
       </NavStyled>
-      <NavStyled
-        to="/settings"
-        activeClassName="selected"
-        data-cy="settings"
-        data-testid="settings"
-      >
+      <NavStyled to="/settings" activeClassName="selected" data-cy="settings">
         <Settings onClick={onClick} />
       </NavStyled>
     </FooterStyled>

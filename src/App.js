@@ -30,7 +30,7 @@ export default function App() {
     setTasks,
   } = usePets()
   const { previewImage, setPreviewImage, handleImageUpload } = usePhoto()
-  const { allUsers, deleteFamily } = useFamily()
+  const { allUsers, setAllUsers, deleteFamily } = useFamily()
 
   return (
     <>
@@ -39,6 +39,7 @@ export default function App() {
         setProfile={setProfile}
         setPets={setPets}
         setTasks={setTasks}
+        setAllUsers={setAllUsers}
       >
         <AuthConsumer>
           {({ user }) => (

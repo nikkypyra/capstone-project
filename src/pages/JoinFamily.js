@@ -20,7 +20,7 @@ export default function JoinFamily({ user }) {
   return (
     <>
       <UserLayout>
-        <PetFormLayout onSubmit={handleSubmit}>
+        <PetFormLayout onSubmit={handleSubmit} data-cy="add-family">
           <Cancel>
             <Link to="/settings">
               <CancelButton />
@@ -42,7 +42,8 @@ export default function JoinFamily({ user }) {
           </ButtonWrapper>
           <Rules>
             *If the user does not already have an account, they can sign up for
-            free.
+            free. By adding a member to your family, you are agreeing to share
+            your pets' data with them.
           </Rules>
         </PetFormLayout>
       </UserLayout>

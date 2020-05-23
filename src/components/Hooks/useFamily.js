@@ -1,18 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { db, fb } from '../../firebase'
 import swal from 'sweetalert'
 
 export default function useFamily() {
   const [allUsers, setAllUsers] = useState([])
-  useEffect(() => {
-    db.collection('users').onSnapshot((snapshot) => {
-      const allUsers = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }))
-      setAllUsers(allUsers)
-    })
-  }, [])
 
   function deleteFamily(user, person) {
     swal({
@@ -34,6 +25,7 @@ export default function useFamily() {
 
   return {
     allUsers,
+    setAllUsers,
     deleteFamily,
   }
 }

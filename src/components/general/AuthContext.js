@@ -5,7 +5,13 @@ import { auth, db } from '../../firebase'
 
 const AuthContext = React.createContext()
 
-function AuthProvider({ children, setProfile, setTasks, setPets }) {
+function AuthProvider({
+  children,
+  setProfile,
+  setTasks,
+  setPets,
+  setAllUsers,
+}) {
   const [user, setUser] = useState({})
   const history = useHistory()
 
@@ -22,6 +28,7 @@ function AuthProvider({ children, setProfile, setTasks, setPets }) {
         const currentUserEmail = auth.currentUser.email
         getPets(currentUser, currentUserEmail)
         getTasks(currentUser, currentUserEmail)
+        getAllUsers()
       } else {
         setUser({})
         setProfile({ email: '', password: '', id: '' })
@@ -102,6 +109,16 @@ function AuthProvider({ children, setProfile, setTasks, setPets }) {
         const taskList = userTasks.concat(familyTasks)
         setTasks(taskList)
       })
+    })
+  }
+
+  function getAllUsers() {
+    db.collection('users').onSnapshot((snapshot) => {
+      const allUsers = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }))
+      setAllUsers(allUsers)
     })
   }
 
