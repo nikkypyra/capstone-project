@@ -7,6 +7,15 @@ exports[`<Navigation /> should render correctly 1`] = `
   >
     <a
       class="Navigation__NavStyled-ug5o82-1 euePKm"
+      data-cy="filter"
+      href="/filter"
+    >
+      <svg>
+        filter.svg
+      </svg>
+    </a>
+    <a
+      class="Navigation__NavStyled-ug5o82-1 euePKm"
       data-cy="home"
       href="/home"
     >
@@ -16,12 +25,11 @@ exports[`<Navigation /> should render correctly 1`] = `
     </a>
     <a
       class="Navigation__NavStyled-ug5o82-1 euePKm"
-      data-cy="filter"
-      data-testid="filter"
-      href="/filter"
+      data-cy="settings"
+      href="/settings"
     >
       <svg>
-        filter.svg
+        settings.svg
       </svg>
     </a>
   </footer>

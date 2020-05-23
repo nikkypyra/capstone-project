@@ -3,7 +3,7 @@
 exports[`<ProfileTaskList /> should render correctly 1`] = `
 <DocumentFragment>
   <section
-    class="ProfileTaskList__TaskWrapper-sc-1n7pogt-0 fmTSjs"
+    class="ProfileTaskList__TaskWrapper-sc-1n7pogt-0 fFwAB"
   >
     <div
       class="TasksStyled__Marker-j2i96a-0 kTppzS"
