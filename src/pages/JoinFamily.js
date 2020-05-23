@@ -69,7 +69,7 @@ const Cancel = styled.div`
 `
 
 const Title = styled.h2`
-  margin: 60px 0 40px 0;
+  margin: 60px 0 40px;
   grid-row: 2/3;
   color: var(--primary);
 `
@@ -79,7 +79,7 @@ const Email = styled.div`
   grid-column: span 2;
 `
 const ButtonWrapper = styled.div`
-  margin: 40px 0 40px 0;
+  margin: 40px 0 40px;
   grid-row: 4/5;
   grid-column: span 2;
   button {
