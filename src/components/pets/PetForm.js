@@ -6,7 +6,7 @@ import SubmitButton from '../buttons/SubmitButton'
 import CancelButton from '../buttons/CancelButton'
 
 PetForm.propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.object.isRequired,
   setName: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
 }
