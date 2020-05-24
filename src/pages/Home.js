@@ -20,12 +20,12 @@ export default function Home({ pets }) {
         {pets.length !== 0 ? (
           pets.map((pet) => (
             <PetWrapper key={pet.id}>
-              <div className="image">
+              <div className="image animation">
                 <Link to={`/pet/${pet.id}`} key={pet.id}>
                   <img src={pet.imageSrc} alt={pet.name} data-cy="pet" />
                 </Link>
               </div>
-              <div className="name">
+              <div className="name animation">
                 <h1>{pet.name.toUpperCase()}</h1>
               </div>
               <div className="edit">
@@ -53,6 +53,18 @@ const PetWrapper = styled.section`
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
   grid-template-rows: 4fr 1fr;
+
+  .animation {
+    animation: fadein 1.5s;
+    @keyframes fadein {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 100;
+      }
+    }
+  }
 
   .image {
     grid-row: 1/2;

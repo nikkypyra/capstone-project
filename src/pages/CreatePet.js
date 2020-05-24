@@ -59,6 +59,7 @@ export default function CreatePet({
     history.push('/home')
   }
 }
+
 const PhotoContainer = styled.div`
   grid-row: 2/3;
   grid-column: span 2;

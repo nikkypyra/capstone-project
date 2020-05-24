@@ -17,5 +17,17 @@ const CheckboxStyled = styled.input.attrs({ type: 'checkbox' })`
   &:checked {
     background-image: url(/images/checkmark.png);
     background-position: center;
+    animation: pulse 1s;
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.3);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
   }
 `
