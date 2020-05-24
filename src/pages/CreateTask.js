@@ -55,12 +55,11 @@ export default function CreateTask({ pets, user }) {
       person,
       complete: false,
       petId: pet.id,
-      userId: user.id,
     })
-    setDescription({ description: '' })
-    setDate({ date: '' })
-    setTime({ time: '' })
-    setPerson({ person: '' })
+    setDescription('')
+    setDate('')
+    setTime('')
+    setPerson('')
     history.push(`/pet/${pet.id}`)
   }
 }

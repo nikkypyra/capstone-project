@@ -50,7 +50,7 @@ export default function CreatePet({
       imageTitle: previewImage.imageName,
       userId: user.id,
     })
-    setName({ name: '' })
+    setName('')
     setPreviewImage({
       imageUrl:
         'https://firebasestorage.googleapis.com/v0/b/pawlog-app.appspot.com/o/images%2Ftaskpaw.png?alt=media&token=8ad10974-93e4-4fd7-ae05-1567d049ad1f',

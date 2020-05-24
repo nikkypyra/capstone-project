@@ -6,13 +6,13 @@ import SubmitButton from '../buttons/SubmitButton'
 import CancelButton from '../buttons/CancelButton'
 
 TaskForm.propTypes = {
-  description: PropTypes.object.isRequired,
+  description: PropTypes.string.isRequired,
   setDescription: PropTypes.func.isRequired,
-  date: PropTypes.object.isRequired,
+  date: PropTypes.string.isRequired,
   setDate: PropTypes.func.isRequired,
-  time: PropTypes.object.isRequired,
+  time: PropTypes.string.isRequired,
   setTime: PropTypes.func.isRequired,
-  person: PropTypes.object.isRequired,
+  person: PropTypes.string.isRequired,
   setPerson: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
   pet: PropTypes.object.isRequired,
