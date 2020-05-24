@@ -28,23 +28,21 @@ export default function CreateTask({ pets, user }) {
   return (
     <>
       <UserLayout>
-        <Animation>
-          <TaskFormLayout onSubmit={handleSubmit} data-cy="create-task">
-            <TaskForm
-              description={description}
-              setDescription={setDescription}
-              date={date}
-              setDate={setDate}
-              time={time}
-              setTime={setTime}
-              person={person}
-              setPerson={setPerson}
-              disabled={disabled}
-              pet={pet}
-            />
-            <Rules>*Mandatory Fields</Rules>
-          </TaskFormLayout>
-        </Animation>
+        <TaskFormLayout onSubmit={handleSubmit} data-cy="create-task">
+          <TaskForm
+            description={description}
+            setDescription={setDescription}
+            date={date}
+            setDate={setDate}
+            time={time}
+            setTime={setTime}
+            person={person}
+            setPerson={setPerson}
+            disabled={disabled}
+            pet={pet}
+          />
+          <Rules>*Mandatory Fields</Rules>
+        </TaskFormLayout>
       </UserLayout>
     </>
   )
@@ -69,24 +67,4 @@ export default function CreateTask({ pets, user }) {
 const Rules = styled.p`
   grid-row: 6/7;
   margin-top: 4px;
-`
-
-const Animation = styled.section`
-  animation: bounceInDown 1.5s;
-  @keyframes bounceInDown {
-    0% {
-      opacity: 0;
-      transform: translateY(-2000px);
-    }
-    60% {
-      opacity: 1;
-      transform: translateY(30px);
-    }
-    80% {
-      transform: translateY(-10px);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
 `

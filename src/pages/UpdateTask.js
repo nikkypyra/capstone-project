@@ -31,28 +31,26 @@ export default function UpdateTask({ pets, tasks, deleteTask }) {
   return (
     <>
       <UserLayout>
-        <Animation>
-          <TaskFormLayout onSubmit={handleSubmit} data-cy="update-task">
-            <TaskForm
-              description={description}
-              setDescription={setDescription}
-              date={date}
-              setDate={setDate}
-              time={time}
-              setTime={setTime}
-              person={person}
-              setPerson={setPerson}
-              disabled={disabled}
-              pet={pet}
+        <TaskFormLayout onSubmit={handleSubmit} data-cy="update-task">
+          <TaskForm
+            description={description}
+            setDescription={setDescription}
+            date={date}
+            setDate={setDate}
+            time={time}
+            setTime={setTime}
+            person={person}
+            setPerson={setPerson}
+            disabled={disabled}
+            pet={pet}
+          />
+          <Delete>
+            <DeleteButton
+              onClick={() => deleteTask(task, pet)}
+              text="Delete this task"
             />
-            <Delete>
-              <DeleteButton
-                onClick={() => deleteTask(task, pet)}
-                text="Delete this task"
-              />
-            </Delete>
-          </TaskFormLayout>
-        </Animation>
+          </Delete>
+        </TaskFormLayout>
       </UserLayout>
     </>
   )
@@ -73,24 +71,4 @@ const Delete = styled.div`
   grid-column: span 2;
   margin-top: 4px;
   text-align: center;
-`
-
-const Animation = styled.section`
-  animation: bounceInDown 1.5s;
-  @keyframes bounceInDown {
-    0% {
-      opacity: 0;
-      transform: translateY(-2000px);
-    }
-    60% {
-      opacity: 1;
-      transform: translateY(30px);
-    }
-    80% {
-      transform: translateY(-10px);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
 `

@@ -27,20 +27,18 @@ export default function CreatePet({
   return (
     <>
       <UserLayout>
-        <Animation>
-          <PetFormLayout onSubmit={handleSubmit} data-cy="create-pet">
-            <PetForm name={name} setName={setName} disabled={disabled} />
-            <PhotoContainer>
-              <CreateImageUpload
-                name="imageSrc"
-                className="photo"
-                handleImageUpload={handleImageUpload}
-                previewImage={previewImage}
-              />
-            </PhotoContainer>
-            <Rules>*Mandatory Field</Rules>
-          </PetFormLayout>
-        </Animation>
+        <PetFormLayout onSubmit={handleSubmit} data-cy="create-pet">
+          <PetForm name={name} setName={setName} disabled={disabled} />
+          <PhotoContainer>
+            <CreateImageUpload
+              name="imageSrc"
+              className="photo"
+              handleImageUpload={handleImageUpload}
+              previewImage={previewImage}
+            />
+          </PhotoContainer>
+          <Rules>*Mandatory Field</Rules>
+        </PetFormLayout>
       </UserLayout>
     </>
   )
@@ -61,26 +59,6 @@ export default function CreatePet({
     history.push('/home')
   }
 }
-
-const Animation = styled.section`
-  animation: bounceInDown 1.5s;
-  @keyframes bounceInDown {
-    0% {
-      opacity: 0;
-      transform: translateY(-2000px);
-    }
-    60% {
-      opacity: 1;
-      transform: translateY(30px);
-    }
-    80% {
-      transform: translateY(-10px);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
-`
 
 const PhotoContainer = styled.div`
   grid-row: 2/3;

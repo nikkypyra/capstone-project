@@ -55,7 +55,7 @@ const PetWrapper = styled.section`
   grid-template-rows: 4fr 1fr;
 
   .animation {
-    animation: fadein 2s;
+    animation: fadein 1.5s;
     @keyframes fadein {
       from {
         opacity: 0;

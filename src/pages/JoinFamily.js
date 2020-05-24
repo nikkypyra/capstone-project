@@ -20,34 +20,32 @@ export default function JoinFamily({ user }) {
   return (
     <>
       <UserLayout>
-        <Animation>
-          <PetFormLayout onSubmit={handleSubmit} data-cy="add-family">
-            <Cancel>
-              <Link to="/settings">
-                <CancelButton />
-              </Link>
-            </Cancel>
-            <Title>Add a family member</Title>
-            <Email>
-              <input
-                type="email"
-                name="email"
-                value={email}
-                placeholder="Insert family member's email"
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </Email>
-            <ButtonWrapper>
-              <SubmitButton text="Submit" type="submit" disabled={disabled} />
-            </ButtonWrapper>
-            <Rules>
-              *If the user does not already have an account, they can sign up
-              for free. By adding a member to your family, you are agreeing to
-              share your pets' data with them.
-            </Rules>
-          </PetFormLayout>
-        </Animation>
+        <PetFormLayout onSubmit={handleSubmit} data-cy="add-family">
+          <Cancel>
+            <Link to="/settings">
+              <CancelButton />
+            </Link>
+          </Cancel>
+          <Title>Add a family member</Title>
+          <Email>
+            <input
+              type="email"
+              name="email"
+              value={email}
+              placeholder="Insert family member's email"
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </Email>
+          <ButtonWrapper>
+            <SubmitButton text="Submit" type="submit" disabled={disabled} />
+          </ButtonWrapper>
+          <Rules>
+            *If the user does not already have an account, they can sign up for
+            free. By adding a member to your family, you are agreeing to share
+            your pets' data with them.
+          </Rules>
+        </PetFormLayout>
       </UserLayout>
     </>
   )
@@ -90,23 +88,4 @@ const ButtonWrapper = styled.div`
 `
 const Rules = styled.div`
   grid-row: 5/6;
-`
-const Animation = styled.section`
-  animation: bounceInDown 1.5s;
-  @keyframes bounceInDown {
-    0% {
-      opacity: 0;
-      transform: translateY(-2000px);
-    }
-    60% {
-      opacity: 1;
-      transform: translateY(30px);
-    }
-    80% {
-      transform: translateY(-10px);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
 `
