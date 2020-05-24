@@ -16,24 +16,26 @@ export default function FamilyList({ user, allUsers, deleteFamily }) {
   const familyMembers = chosenUser.family || []
   return (
     <>
-      <Title>Family Members</Title>
-      {familyMembers.length !== 0 ? (
-        familyMembers.map((person, index) => (
-          <FamilyWrapper key={index}>
-            <Marker>
-              <img src={userSrc} alt="" />
-            </Marker>
-            <div className="person">
-              <h4>{person}</h4>
-            </div>
-            <div className="delete" data-cy="delete-family">
-              <DeleteButton onClick={() => deleteFamily(user, person)} />
-            </div>
-          </FamilyWrapper>
-        ))
-      ) : (
-        <Text>You have not added any family members yet.</Text>
-      )}
+      <Animation>
+        <Title>Family Members</Title>
+        {familyMembers.length !== 0 ? (
+          familyMembers.map((person, index) => (
+            <FamilyWrapper key={index}>
+              <Marker>
+                <img src={userSrc} alt="" />
+              </Marker>
+              <div className="person">
+                <h4>{person}</h4>
+              </div>
+              <div className="delete" data-cy="delete-family">
+                <DeleteButton onClick={() => deleteFamily(user, person)} />
+              </div>
+            </FamilyWrapper>
+          ))
+        ) : (
+          <Text>You have not added any family members yet.</Text>
+        )}
+      </Animation>
     </>
   )
 }
@@ -62,4 +64,16 @@ const Marker = styled.div`
 
 const Text = styled.p`
   margin-top: 40px;
+`
+
+const Animation = styled.section`
+  animation: fadein 1s;
+  @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 100;
+    }
+  }
 `

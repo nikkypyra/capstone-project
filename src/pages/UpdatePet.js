@@ -27,23 +27,25 @@ export default function UpdatePet({ pets, deletePet }) {
   return (
     <>
       <UserLayout>
-        <PetFormLayout onSubmit={handleSubmit} data-cy="update-pet">
-          <PetForm name={name} setName={setName} disabled={disabled} />
-          <PhotoContainer>
-            <UpdateImageUpload
-              name="imageSrc"
-              className="photo"
-              handleUpload={handleUpload}
-              petImage={petImage}
-            />
-          </PhotoContainer>
-          <Delete>
-            <DeleteButton
-              onClick={() => deletePet(pet)}
-              text="Delete this pet"
-            />
-          </Delete>
-        </PetFormLayout>
+        <Animation>
+          <PetFormLayout onSubmit={handleSubmit} data-cy="update-pet">
+            <PetForm name={name} setName={setName} disabled={disabled} />
+            <PhotoContainer>
+              <UpdateImageUpload
+                name="imageSrc"
+                className="photo"
+                handleUpload={handleUpload}
+                petImage={petImage}
+              />
+            </PhotoContainer>
+            <Delete>
+              <DeleteButton
+                onClick={() => deletePet(pet)}
+                text="Delete this pet"
+              />
+            </Delete>
+          </PetFormLayout>
+        </Animation>
       </UserLayout>
     </>
   )
@@ -88,4 +90,23 @@ const Delete = styled.div`
   grid-column: span 2;
   margin-top: 28px;
   text-align: center;
+`
+const Animation = styled.section`
+  animation: bounceInDown 1.5s;
+  @keyframes bounceInDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-2000px);
+    }
+    60% {
+      opacity: 1;
+      transform: translateY(30px);
+    }
+    80% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
 `

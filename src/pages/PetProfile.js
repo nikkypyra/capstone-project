@@ -27,18 +27,20 @@ export default function PetProfile({
   return (
     <>
       <UserLayout>
-        <ProfileBanner imageSrc={pet.imageSrc} name={pet.name} />
-        <AddLink to={`/pet/${pet.id}/create-task`}>
-          <AddButton text="Add Task" />
-        </AddLink>
-        <ProfileTaskList
-          pet={pet}
-          tasks={tasks}
-          setTasks={setTasks}
-          pets={pets}
-          setPets={setPets}
-          handleCheckbox={handleCheckbox}
-        />
+        <Animation>
+          <ProfileBanner imageSrc={pet.imageSrc} name={pet.name} />
+          <AddLink to={`/pet/${pet.id}/create-task`}>
+            <AddButton text="Add Task" />
+          </AddLink>
+          <ProfileTaskList
+            pet={pet}
+            tasks={tasks}
+            setTasks={setTasks}
+            pets={pets}
+            setPets={setPets}
+            handleCheckbox={handleCheckbox}
+          />
+        </Animation>
       </UserLayout>
     </>
   )
@@ -49,4 +51,16 @@ const AddLink = styled(Link)`
   justify-content: flex-end;
   margin-right: 20px;
   margin-bottom: 20px;
+`
+
+const Animation = styled.section`
+  animation: fadein 1s;
+  @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 100;
+    }
+  }
 `
