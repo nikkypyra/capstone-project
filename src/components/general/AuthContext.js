@@ -27,7 +27,6 @@ function AuthProvider({
         const currentUser = auth.currentUser.uid
         const currentUserEmail = auth.currentUser.email
         getPets(currentUser, currentUserEmail)
-        getTasks(currentUser, currentUserEmail)
         getAllUsers()
       } else {
         setUser({})
@@ -78,36 +77,18 @@ function AuthProvider({
         })
         const petList = userPets.concat(familyPets)
         setPets(petList)
-      })
-    })
-  }
 
-  function getTasks(user, email) {
-    db.collection('tasks').onSnapshot((snapshot) => {
-      const allTasks = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }))
-      const userTasks = allTasks.filter((task) => {
-        return task.userId === user
-      })
-
-      db.collection('users').onSnapshot((snapshot) => {
-        const allUsers = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }))
-        const familyUsers = allUsers.filter((user) => {
-          return user.family.includes(email)
+        db.collection('tasks').onSnapshot((snapshot) => {
+          const allTasks = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }))
+          const petIds = petList.map((pet) => pet.id)
+          const petTasks = allTasks.filter((task) => {
+            return petIds.includes(task.petId)
+          })
+          setTasks(petTasks)
         })
-        const familyIds = familyUsers.map((user) => {
-          return user.id
-        })
-        const familyTasks = allTasks.filter((task) => {
-          return familyIds.includes(task.userId)
-        })
-        const taskList = userTasks.concat(familyTasks)
-        setTasks(taskList)
       })
     })
   }
