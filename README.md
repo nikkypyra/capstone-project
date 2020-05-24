@@ -4,13 +4,14 @@
 
 ---
 
-Pawlog is an app to organize the daily needs of your furry companions.🐱 It was made with Create React App and a Firebase backend.
+Pawlog is a family sharing app to organize the daily needs of your furry companions.🐱 It was made with Create React App and a Firebase backend.
 
 - Create individualized pet profiles including photos
 - Assign each pet their own task list
 - Designate tasks to members of your family
 - Edit and delete pets and tasks as needed
 - Search for tasks by date or person responsible
+- Add family members to share your pets, grant them access to make changes, and keep your schedules up to date
 - A secure login ensures your information will be private
 
 Pawlog was developed as my capstone project during the final three weeks of the [neuefische Web Developer Bootcamp](https://www.neuefische.de) in May, 2020.
