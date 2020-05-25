@@ -16,7 +16,7 @@ JoinFamily.propTypes = {
 export default function JoinFamily({ user }) {
   const [email, setEmail] = useState('')
   const history = useHistory()
-  const disabled = email.length === 0
+  const disabled = !email.includes('@')
   return (
     <>
       <UserLayout>
