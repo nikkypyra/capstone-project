@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import { AuthConsumer } from './AuthContext'
+import { AuthConsumer } from '../../AuthContext'
 import logoSrc from '../../images/pawlog.png'
 
 export default function Header() {

@@ -1,13 +1,12 @@
 import React from 'react'
 import { action } from '@storybook/addon-actions'
-import { withKnobs, text } from '@storybook/addon-knobs'
 import mobileWrapper from '../../../.storybook/preview'
 import AddButton from './AddButton'
 
 export default {
   title: 'Add Button',
   component: AddButton,
-  decorators: [mobileWrapper, withKnobs],
+  decorators: [mobileWrapper],
 }
 export const Simple = () => (
   <AddButton text="Simple" onClick={action('Button is clicked')} />

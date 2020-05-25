@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { withRouter } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
-import { auth, db } from '../../firebase'
+import { auth, db } from './firebase'
 
 const AuthContext = React.createContext()
 
@@ -124,8 +124,6 @@ function AuthProvider({
   )
 }
 
-const AuthConsumer = AuthContext.Consumer
+export const AuthConsumer = AuthContext.Consumer
 
 export default withRouter(AuthProvider)
-
-export { AuthConsumer }

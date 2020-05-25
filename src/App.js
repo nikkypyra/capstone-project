@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
-import GlobalStyles from './GlobalStyles'
+import AuthProvider, { AuthConsumer } from './AuthContext'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Home from './pages/Home'
@@ -16,7 +16,6 @@ import useServices from './components/hooks/useServices'
 import usePets from './components/hooks/usePets'
 import usePhoto from './components/hooks/usePhoto'
 import useFamily from './components/hooks/useFamily'
-import AuthProvider, { AuthConsumer } from './components/general/AuthContext'
 
 export default function App() {
   const { signUp, logIn, resetPassword, profile, setProfile } = useServices()
@@ -34,7 +33,6 @@ export default function App() {
 
   return (
     <>
-      <GlobalStyles />
       <AuthProvider
         setProfile={setProfile}
         setPets={setPets}
