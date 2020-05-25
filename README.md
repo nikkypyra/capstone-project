@@ -25,12 +25,12 @@ When viewing this app, please switch your browser to iPhone 6/7/8 mode, as it wa
 
 ## Additional dependencies
 
-- Storybook
+- storybook
 - styled-components
 - react-router-dom
 - prop-types
 - cypress
-- testing-library
+- react-testing-library
 - jest
 - react-hook-form
 
