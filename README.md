@@ -20,6 +20,8 @@ When viewing this app, please switch your browser to iPhone 6/7/8 mode, as it wa
 
 ## Preview
 
+![preview](https://user-images.githubusercontent.com/57285588/82927154-8d17d100-9f80-11ea-9654-05deef0dd1ab.gif)
+
 ## Tech stack
 
 - React
