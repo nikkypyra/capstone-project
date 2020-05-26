@@ -19,6 +19,7 @@ Pawlog was developed as my capstone project during the final three weeks of the 
 When viewing this app, please switch your browser to iPhone 6/7/8 mode, as it was developed and optimized for mobile use.
 
 ## Preview
+
 <div align="center">
 <img src="public/images/preview.gif">
 </div>
@@ -45,11 +46,10 @@ When viewing this app, please switch your browser to iPhone 6/7/8 mode, as it wa
    `git@github.com:nikkypyra/capstone-project.git`
 2. Install dependencies  
    `npm install`
-3. Install and initialize Firebase CLI. For more information check out the [firebase CLI documentation](https://firebase.google.com/docs/cli/).  
+3. Install and initialize Firebase CLI. For more information check out the [firebase CLI documentation](https://firebase.google.com/docs/cli/).
 4. Run Storybook with  
    `npm run storybook`
 5. Run Cypress with  
    `npm run cypress`
 6. Run React Testing Library & Jest with  
    `npm test`
-
