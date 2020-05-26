@@ -20,8 +20,6 @@ When viewing this app, please switch your browser to iPhone 6/7/8 mode, as it wa
 
 ## Preview
 
-![Pawlog](public/images/preview.gif)
-
 ## Tech stack
 
 - React
