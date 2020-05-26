@@ -7,15 +7,22 @@ UpdateImageUpload.propTypes = {
   petImage: PropTypes.object.isRequired,
   handleUpload: PropTypes.func.isRequired,
   onClick: PropTypes.func,
+  loading: PropTypes.number.isRequired,
 }
 
-export default function UpdateImageUpload({ petImage, handleUpload, onClick }) {
+export default function UpdateImageUpload({
+  petImage,
+  handleUpload,
+  onClick,
+  loading,
+}) {
   return (
     <>
       <ImageWrapper>
         <img src={petImage.imageUrl} alt="" />
       </ImageWrapper>
       <UploadWrapper>
+        {loading > 0 && <span>Upload is {Math.trunc(loading)}% done</span>}
         <AddButton
           className="upload-button"
           text="Upload photo"
@@ -34,6 +41,7 @@ export default function UpdateImageUpload({ petImage, handleUpload, onClick }) {
 
 const UploadWrapper = styled.section`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   .file-input {

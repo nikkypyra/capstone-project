@@ -33,12 +33,14 @@ export default function SignUp({ setProfile, signUp }) {
     <NonUserLayout>
       <Form onSubmit={handleSubmit(onSubmit)} data-cy="login">
         <div className="email">
+          <label for="email">Email</label>
           <input
             type="text"
             placeholder="Enter your E-mail"
             name="email"
             ref={register({ required: true, pattern: /^\S+@\S+$/i })}
           />
+
           {((errors.email && errors.email.type === 'required') ||
             (errors.email && errors.email.type === 'pattern')) && (
             <Error>Please enter a valid e-mail address.</Error>
@@ -48,6 +50,7 @@ export default function SignUp({ setProfile, signUp }) {
           )}
         </div>
         <div className="password">
+          <label for="password">Password</label>
           <input
             ref={register({
               required: true,
@@ -66,6 +69,7 @@ export default function SignUp({ setProfile, signUp }) {
           )}
         </div>
         <div>
+          <label for="passwordRepeat">Confirm password</label>
           <input
             name="passwordRepeat"
             type="password"
@@ -108,7 +112,7 @@ export default function SignUp({ setProfile, signUp }) {
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  margin: 60px 20px 20px;
+  margin: 40px 20px 20px;
 
   div {
     margin: 24px 0;

@@ -12,6 +12,7 @@ CreatePet.propTypes = {
   handleImageUpload: PropTypes.func.isRequired,
   previewImage: PropTypes.object.isRequired,
   setPreviewImage: PropTypes.func.isRequired,
+  loading: PropTypes.number.isRequired,
   user: PropTypes.object.isRequired,
 }
 
@@ -19,6 +20,7 @@ export default function CreatePet({
   previewImage,
   setPreviewImage,
   handleImageUpload,
+  loading,
   user,
 }) {
   const [name, setName] = useState('')
@@ -35,6 +37,7 @@ export default function CreatePet({
               className="photo"
               handleImageUpload={handleImageUpload}
               previewImage={previewImage}
+              loading={loading}
             />
           </PhotoContainer>
           <Rules>*Mandatory Field</Rules>

@@ -7,13 +7,17 @@ export default function usePhoto() {
     imageUrl: pawSrc,
     imageName: 'taskpaw.png',
   })
+  const [loading, setLoading] = useState()
 
   function handleImageUpload(event) {
     const image = event.target.files[0]
     const uploadTask = storage.ref(`images/${image.name}`).put(image)
     uploadTask.on(
       'state_changed',
-      (snapshot) => {},
+      (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        setLoading(progress)
+      },
       (error) => {
         alert('An error occurred, please try again.')
       },
@@ -24,10 +28,17 @@ export default function usePhoto() {
           .getDownloadURL()
           .then((url) => {
             setPreviewImage({ imageUrl: url, imageName: image.name })
+            setLoading()
           })
       }
     )
   }
 
-  return { previewImage, setPreviewImage, handleImageUpload }
+  return {
+    previewImage,
+    setPreviewImage,
+    handleImageUpload,
+    loading,
+    setLoading,
+  }
 }

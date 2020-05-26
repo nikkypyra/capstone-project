@@ -12,9 +12,11 @@ import DeleteButton from '../components/buttons/DeleteButton'
 UpdatePet.propTypes = {
   pets: PropTypes.array.isRequired,
   deletePet: PropTypes.func.isRequired,
+  loading: PropTypes.number.isRequired,
+  setLoading: PropTypes.func.isRequired,
 }
 
-export default function UpdatePet({ pets, deletePet }) {
+export default function UpdatePet({ pets, deletePet, loading, setLoading }) {
   const history = useHistory()
   const params = useParams()
   const pet = pets.find((pet) => pet.id === params.id)
@@ -35,6 +37,7 @@ export default function UpdatePet({ pets, deletePet }) {
               className="photo"
               handleUpload={handleUpload}
               petImage={petImage}
+              loading={loading}
             />
           </PhotoContainer>
           <Delete>
@@ -62,7 +65,10 @@ export default function UpdatePet({ pets, deletePet }) {
     const uploadTask = storage.ref(`images/${image.name}`).put(image)
     uploadTask.on(
       'state_changed',
-      (snapshot) => {},
+      (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        setLoading(progress)
+      },
       (error) => {
         alert('An error occurred, please try again.')
       },
@@ -73,6 +79,7 @@ export default function UpdatePet({ pets, deletePet }) {
           .getDownloadURL()
           .then((url) => {
             setPetImage({ imageUrl: url, imageName: image.name })
+            setLoading()
           })
       }
     )

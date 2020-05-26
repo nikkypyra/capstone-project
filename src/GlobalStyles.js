@@ -7,6 +7,7 @@ export default createGlobalStyle`
     padding: 0;
     cursor: default;
     font-family: sans-serif;
+
     
     a {
         color: var(--primary);
@@ -32,7 +33,16 @@ export default createGlobalStyle`
         font-size: 16px;
         border: none;
         border-bottom: 1px solid var(--primary);
+        :focus {
+          outline: none;
+      }
       } 
+
+      button {
+        :focus {
+          outline: none;
+      }
+      }
 }
 
 body {
@@ -53,6 +63,6 @@ main {
     --primary: #3ec2c4;
     --secondary: #3e474a;
     --tertiary: #cff0f0;
-    --quaternary: #b1b1b1;
+    --quaternary: #757575;
     }
 `

@@ -7,9 +7,14 @@ import pawSrc from '../../images/taskpaw.png'
 CreateImageUpload.propTypes = {
   previewImage: PropTypes.object.isRequired,
   handleImageUpload: PropTypes.func.isRequired,
+  loading: PropTypes.number.isRequired,
 }
 
-export default function CreateImageUpload({ previewImage, handleImageUpload }) {
+export default function CreateImageUpload({
+  previewImage,
+  handleImageUpload,
+  loading,
+}) {
   return (
     <>
       {previewImage.imageUrl ? (
@@ -22,6 +27,7 @@ export default function CreateImageUpload({ previewImage, handleImageUpload }) {
         </ImageWrapper>
       )}
       <UploadWrapper>
+        {loading > 0 && <span>Upload is {Math.trunc(loading)}% done</span>}
         <AddButton className="upload-button" text="Upload photo" />
         <input
           type="file"
@@ -36,6 +42,7 @@ export default function CreateImageUpload({ previewImage, handleImageUpload }) {
 
 const UploadWrapper = styled.section`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   .file-input {

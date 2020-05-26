@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
-import GlobalStyles from './GlobalStyles'
+import AuthProvider, { AuthConsumer } from './AuthContext'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Home from './pages/Home'
@@ -16,7 +16,6 @@ import useServices from './components/hooks/useServices'
 import usePets from './components/hooks/usePets'
 import usePhoto from './components/hooks/usePhoto'
 import useFamily from './components/hooks/useFamily'
-import AuthProvider, { AuthConsumer } from './components/general/AuthContext'
 
 export default function App() {
   const { signUp, logIn, resetPassword, profile, setProfile } = useServices()
@@ -29,12 +28,17 @@ export default function App() {
     tasks,
     setTasks,
   } = usePets()
-  const { previewImage, setPreviewImage, handleImageUpload } = usePhoto()
+  const {
+    previewImage,
+    setPreviewImage,
+    handleImageUpload,
+    loading,
+    setLoading,
+  } = usePhoto()
   const { allUsers, setAllUsers, deleteFamily } = useFamily()
 
   return (
     <>
-      <GlobalStyles />
       <AuthProvider
         setProfile={setProfile}
         setPets={setPets}
@@ -65,6 +69,7 @@ export default function App() {
                     previewImage={previewImage}
                     setPreviewImage={setPreviewImage}
                     handleImageUpload={handleImageUpload}
+                    loading={loading}
                     user={user}
                   />
                 ) : (
@@ -78,7 +83,12 @@ export default function App() {
               </Route>
               <Route path="/pet/:id/update-pet">
                 {user && user.id ? (
-                  <UpdatePet pets={pets} deletePet={deletePet} />
+                  <UpdatePet
+                    pets={pets}
+                    deletePet={deletePet}
+                    loading={loading}
+                    setLoading={setLoading}
+                  />
                 ) : (
                   <Login
                     logIn={logIn}

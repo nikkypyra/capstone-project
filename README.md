@@ -40,14 +40,11 @@ When viewing this app, please switch your browser to iPhone 6/7/8 mode, as it wa
    `git@github.com:nikkypyra/capstone-project.git`
 2. Install dependencies  
    `npm install`
-3. Run the application with  
-   `npm start`
-4. Install and initialize Firebase CLI. For more information check out the [firebase CLI documentation](https://firebase.google.com/docs/cli/).  
-   `npm install -g firebase-tools`
-5. Run Storybook with  
+3. Install and initialize Firebase CLI. For more information check out the [firebase CLI documentation](https://firebase.google.com/docs/cli/).  
+4. Run Storybook with  
    `npm run storybook`
-6. Run Cypress with  
+5. Run Cypress with  
    `npm run cypress`
-7. Run React Testing Library & Jest with  
+6. Run React Testing Library & Jest with  
    `npm test`
 
