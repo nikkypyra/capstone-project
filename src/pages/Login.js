@@ -134,7 +134,7 @@ const FormWrapper = styled.section`
   .signup {
     margin-top: -8px;
     button {
-      padding: 12px 56px;
+      padding: 12px 50px;
     }
   }
 
