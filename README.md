@@ -19,7 +19,9 @@ Pawlog was developed as my capstone project during the final three weeks of the 
 When viewing this app, please switch your browser to iPhone 6/7/8 mode, as it was developed and optimized for mobile use.
 
 ## Preview
-
+<div align="center">
+<img src="public/images/preview.gif">
+</div>
 
 ## Tech stack
 
