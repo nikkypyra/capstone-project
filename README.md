@@ -22,15 +22,15 @@ When viewing this app, please switch your browser to iPhone 6/7/8 mode, as it wa
 
 ![preview](https://user-images.githubusercontent.com/57285588/82927154-8d17d100-9f80-11ea-9654-05deef0dd1ab.gif)
 
-##
+
 
 ![topbanner1](https://user-images.githubusercontent.com/57285588/82932679-17fcc980-9f89-11ea-9587-fea2611e4a05.png)
 
-##
+
 
 ![bottombanner2](https://user-images.githubusercontent.com/57285588/82932687-192df680-9f89-11ea-8602-31b5ff67c0f8.png)
 
-##
+
 
 Visit the app at [https://pawlog-app.web.app/](https://pawlog-app.web.app/) 
 
