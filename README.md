@@ -22,6 +22,16 @@ When viewing this app, please switch your browser to iPhone 6/7/8 mode, as it wa
 
 ![preview](https://user-images.githubusercontent.com/57285588/82927154-8d17d100-9f80-11ea-9654-05deef0dd1ab.gif)
 
+##
+
+![topbanner](https://user-images.githubusercontent.com/57285588/82930206-4bd5f000-9f85-11ea-93d8-dea879f5da4d.png)
+
+##
+
+![bottombanner](https://user-images.githubusercontent.com/57285588/82930192-47a9d280-9f85-11ea-8b5a-5a4f943eeb5e.png)
+
+##
+
 Visit the app at [https://pawlog-app.web.app/](https://pawlog-app.web.app/) 
 
 ## Tech stack
