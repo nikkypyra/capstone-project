@@ -27,6 +27,6 @@ const HeaderStyled = styled.header`
   }
   p {
     margin-right: 8px;
-    color: var(--primary);
+    color: var(--quaternary);
   }
 `
