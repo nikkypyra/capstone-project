@@ -28,7 +28,13 @@ export default function App() {
     tasks,
     setTasks,
   } = usePets()
-  const { previewImage, setPreviewImage, handleImageUpload } = usePhoto()
+  const {
+    previewImage,
+    setPreviewImage,
+    handleImageUpload,
+    loading,
+    setLoading,
+  } = usePhoto()
   const { allUsers, setAllUsers, deleteFamily } = useFamily()
 
   return (
@@ -63,6 +69,7 @@ export default function App() {
                     previewImage={previewImage}
                     setPreviewImage={setPreviewImage}
                     handleImageUpload={handleImageUpload}
+                    loading={loading}
                     user={user}
                   />
                 ) : (
@@ -76,7 +83,12 @@ export default function App() {
               </Route>
               <Route path="/pet/:id/update-pet">
                 {user && user.id ? (
-                  <UpdatePet pets={pets} deletePet={deletePet} />
+                  <UpdatePet
+                    pets={pets}
+                    deletePet={deletePet}
+                    loading={loading}
+                    setLoading={setLoading}
+                  />
                 ) : (
                   <Login
                     logIn={logIn}
