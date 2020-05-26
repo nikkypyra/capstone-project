@@ -24,11 +24,11 @@ When viewing this app, please switch your browser to iPhone 6/7/8 mode, as it wa
 
 ##
 
-![topbanner](https://user-images.githubusercontent.com/57285588/82930206-4bd5f000-9f85-11ea-93d8-dea879f5da4d.png)
+![topbanner1](https://user-images.githubusercontent.com/57285588/82932679-17fcc980-9f89-11ea-9587-fea2611e4a05.png)
 
 ##
 
-![bottombanner](https://user-images.githubusercontent.com/57285588/82930192-47a9d280-9f85-11ea-8b5a-5a4f943eeb5e.png)
+![bottombanner2](https://user-images.githubusercontent.com/57285588/82932687-192df680-9f89-11ea-8602-31b5ff67c0f8.png)
 
 ##
 
