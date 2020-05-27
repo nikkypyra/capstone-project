@@ -27,13 +27,17 @@ When viewing this app, please switch your browser to iPhone 6/7/8 mode, as it wa
 
 </div>
 
-
+<div align="center" style="height:400px">
+   
 ![topbanner1](https://user-images.githubusercontent.com/57285588/82932679-17fcc980-9f89-11ea-9587-fea2611e4a05.png)
 
+</div>
 
+<div align="center" style="height:400px">
 
 ![bottombanner2](https://user-images.githubusercontent.com/57285588/82932687-192df680-9f89-11ea-8602-31b5ff67c0f8.png)
 
+</div>
 
 
 Visit the app at [https://pawlog-app.web.app/](https://pawlog-app.web.app/) 
