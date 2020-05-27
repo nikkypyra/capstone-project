@@ -44,6 +44,8 @@ When viewing this app, please switch your browser to iPhone 6/7/8 mode, as it wa
 </div>
 
 
+
+
 Visit the app at [https://pawlog-app.web.app/](https://pawlog-app.web.app/) 
 
 ## Tech stack
