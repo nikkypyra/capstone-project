@@ -29,7 +29,7 @@ When viewing this app, please switch your browser to iPhone 6/7/8 mode, as it wa
 
 <div align="center">
    
-<img src="https://user-images.githubusercontent.com/57285588/83040656-cb27fa00-a03f-11ea-85ae-bf0ca2f80741.png" height="400px" />
+<img src="https://user-images.githubusercontent.com/57285588/83040656-cb27fa00-a03f-11ea-85ae-bf0ca2f80741.png" height="400px" style="margin: 20px" />
 <img src="https://user-images.githubusercontent.com/57285588/83040658-cbc09080-a03f-11ea-9db5-f51fd6ce24f2.png" height="400px" />
 <img src="https://user-images.githubusercontent.com/57285588/83040661-cc592700-a03f-11ea-9c33-5868f55bc1b8.png" height="400px" />
 
