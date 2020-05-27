@@ -42,9 +42,11 @@ When viewing this app, please switch your browser to iPhone 6/7/8 mode, as it wa
 <img src="https://user-images.githubusercontent.com/57285588/83040668-cd8a5400-a03f-11ea-8a58-dc338ef9e396.png" height="400px" />
 
 </div>
+<br />
 
 
 Visit the app at [https://pawlog-app.web.app/](https://pawlog-app.web.app/) 
+
 
 ---
 
