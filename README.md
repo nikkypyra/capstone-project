@@ -29,13 +29,18 @@ When viewing this app, please switch your browser to iPhone 6/7/8 mode, as it wa
 
 <div align="center" style="height:400px">
    
-![topbanner1](https://user-images.githubusercontent.com/57285588/82932679-17fcc980-9f89-11ea-9587-fea2611e4a05.png)
+
+![Untitled design](https://user-images.githubusercontent.com/57285588/83040656-cb27fa00-a03f-11ea-85ae-bf0ca2f80741.png)
+![Untitled design(1)](https://user-images.githubusercontent.com/57285588/83040658-cbc09080-a03f-11ea-9db5-f51fd6ce24f2.png)
+![Untitled design(2)](https://user-images.githubusercontent.com/57285588/83040661-cc592700-a03f-11ea-9c33-5868f55bc1b8.png)
 
 </div>
 
 <div align="center" style="height:400px">
 
-![bottombanner2](https://user-images.githubusercontent.com/57285588/82932687-192df680-9f89-11ea-8602-31b5ff67c0f8.png)
+![Untitled design(3)](https://user-images.githubusercontent.com/57285588/83040662-cc592700-a03f-11ea-8249-277dde8c56e3.png)
+![Untitled design(4)](https://user-images.githubusercontent.com/57285588/83040663-ccf1bd80-a03f-11ea-9fde-0d3d34726806.png)
+![Untitled design(5)](https://user-images.githubusercontent.com/57285588/83040668-cd8a5400-a03f-11ea-8a58-dc338ef9e396.png)
 
 </div>
 
