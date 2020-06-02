@@ -7,25 +7,25 @@ describe('Add a new family member then delete this family member', () => {
     cy.logout()
   })
 
-  it('goes to the join-family page', () => {
+  it('should go to the join-family page', () => {
     cy.get('[data-cy=settings]').click()
     cy.get('a[href="/add-family"]').click()
-    cy.location().should((loc) => {
-      expect(loc.pathname).to.equal('/add-family')
+    cy.location().should((location) => {
+      expect(location.pathname).to.equal('/add-family')
     })
   })
 
-  it('creates a new family member', () => {
+  it('should create a new family member', () => {
     cy.get('[data-cy=add-family]')
     cy.get('input[name="email"]').type('delete@family.com')
     cy.get('[data-cy=add-family]').submit()
   })
 
-  it('checks that this family member exists', () => {
+  it('should check that this family member exists', () => {
     cy.contains('delete@family.com').should('exist')
   })
 
-  it('deletes the created family member when ok is clicked', () => {
+  it('should delete the created family member when ok is clicked', () => {
     cy.contains('delete@family.com')
       .parent('div')
       .parent('section')
@@ -37,7 +37,7 @@ describe('Add a new family member then delete this family member', () => {
     cy.contains('OK').click()
   })
 
-  it('checks that the family member has been deleted', () => {
+  it('should check that the family member has been deleted', () => {
     cy.contains('delete@family.com').should('not.exist')
   })
 })

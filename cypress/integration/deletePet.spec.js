@@ -7,21 +7,21 @@ describe('Add a new pet and then delete this pet', () => {
     cy.logout()
   })
 
-  it('goes to the create pet page from the home page', () => {
+  it('should go to the create pet page from the home page', () => {
     cy.get('a[href="/create-pet"]').click()
-    cy.location().should((loc) => {
-      expect(loc.pathname).to.equal('/create-pet')
+    cy.location().should((location) => {
+      expect(location.pathname).to.equal('/create-pet')
     })
   })
 
-  it('creates a new pet on submit', () => {
+  it('should create a new pet on submit', () => {
     cy.get('[data-cy=create-pet]')
     cy.get('input[name="name"]').type('DELETE ME')
     cy.get('[data-cy=create-pet]').submit()
     cy.contains('DELETE ME').should('exist')
   })
 
-  it('deletes the created pet when ok is clicked', () => {
+  it('should delete the created pet when ok is clicked', () => {
     cy.contains('DELETE ME')
       .parent('div')
       .parent('section')
@@ -32,7 +32,7 @@ describe('Add a new pet and then delete this pet', () => {
     cy.contains('OK').click()
   })
 
-  it('checks that the pet has been deleted', () => {
+  it('should check that the pet has been deleted', () => {
     cy.contains('DELETE ME').should('not.exist')
   })
 })

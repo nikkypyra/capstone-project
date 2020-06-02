@@ -7,7 +7,7 @@ describe('Add a new task and then edit this task', () => {
     cy.logout()
   })
 
-  it('goes to the create task page from the pet page', () => {
+  it('should go to the create task page from the pet page', () => {
     cy.contains('FLUFFY')
       .parent('div')
       .parent('section')
@@ -15,12 +15,14 @@ describe('Add a new task and then edit this task', () => {
         cy.get('[data-cy=pet]').click({ force: true })
       })
     cy.get('a[href="/pet/1YNhFhOW02GO4x7oN4Dq/create-task"]').click()
-    cy.location().should((loc) => {
-      expect(loc.pathname).to.equal('/pet/1YNhFhOW02GO4x7oN4Dq/create-task')
+    cy.location().should((location) => {
+      expect(location.pathname).to.equal(
+        '/pet/1YNhFhOW02GO4x7oN4Dq/create-task'
+      )
     })
   })
 
-  it('creates a new task on submit', () => {
+  it('should create a new task on submit', () => {
     cy.get('input[name="description"]').type('Task to edit')
     cy.get('input[name="date"]').type('2020-05-29')
     cy.get('input[name="time"]').type('08:00')
@@ -29,7 +31,7 @@ describe('Add a new task and then edit this task', () => {
     cy.contains('Task to edit').should('exist')
   })
 
-  it('edits the created task on submit', () => {
+  it('should edit the created task on submit', () => {
     cy.contains('Task to edit')
       .parent('div')
       .parent('section')
@@ -41,7 +43,7 @@ describe('Add a new task and then edit this task', () => {
     cy.get('[data-cy=update-task]').submit()
   })
 
-  it('checks that the edited task exists and the previous version does not', () => {
+  it('should check that the edited task exists and the previous version does not', () => {
     cy.contains('Task to edit').should('not.exist')
     cy.contains('Task is edited').should('exist')
   })

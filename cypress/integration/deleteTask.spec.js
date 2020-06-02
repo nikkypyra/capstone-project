@@ -7,7 +7,7 @@ describe('Add a new task and then delete this task', () => {
     cy.logout()
   })
 
-  it('goes to the create task page from the pet page', () => {
+  it('should go to the create task page from the pet page', () => {
     cy.contains('FLUFFY')
       .parent('div')
       .parent('section')
@@ -15,12 +15,14 @@ describe('Add a new task and then delete this task', () => {
         cy.get('[data-cy=pet]').click({ force: true })
       })
     cy.get('a[href="/pet/1YNhFhOW02GO4x7oN4Dq/create-task"]').click()
-    cy.location().should((loc) => {
-      expect(loc.pathname).to.equal('/pet/1YNhFhOW02GO4x7oN4Dq/create-task')
+    cy.location().should((location) => {
+      expect(location.pathname).to.equal(
+        '/pet/1YNhFhOW02GO4x7oN4Dq/create-task'
+      )
     })
   })
 
-  it('creates a new task on submit', () => {
+  it('should create a new task on submit', () => {
     cy.get('input[name="description"]').type('Task to delete')
     cy.get('input[name="date"]').type('2020-05-29')
     cy.get('input[name="time"]').type('08:00')
@@ -29,7 +31,7 @@ describe('Add a new task and then delete this task', () => {
     cy.contains('Task to delete').should('exist')
   })
 
-  it('deletes the created task when ok is clicked', () => {
+  it('should delete the created task when ok is clicked', () => {
     cy.contains('Task to delete')
       .parent('div')
       .parent('section')
@@ -40,7 +42,7 @@ describe('Add a new task and then delete this task', () => {
     cy.contains('OK').click()
   })
 
-  it('checks that the task has been deleted', () => {
+  it('should check that the task has been deleted', () => {
     cy.contains('Task to delete').should('not.exist')
   })
 })

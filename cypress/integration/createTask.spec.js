@@ -7,7 +7,7 @@ describe('Add task', () => {
     cy.logout()
   })
 
-  it('goes to the create task page', () => {
+  it('should go to the create task page', () => {
     cy.contains('FLUFFY')
       .parent('div')
       .parent('section')
@@ -15,12 +15,14 @@ describe('Add task', () => {
         cy.get('[data-cy=pet]').click({ force: true })
       })
     cy.get('a[href="/pet/1YNhFhOW02GO4x7oN4Dq/create-task"]').click()
-    cy.location().should((loc) => {
-      expect(loc.pathname).to.equal('/pet/1YNhFhOW02GO4x7oN4Dq/create-task')
+    cy.location().should((location) => {
+      expect(location.pathname).to.equal(
+        '/pet/1YNhFhOW02GO4x7oN4Dq/create-task'
+      )
     })
   })
 
-  it('creates a new task', () => {
+  it('should create a new task', () => {
     cy.get('input[name="description"]').type('Random task')
     cy.get('input[name="date"]').type('2020-05-29')
     cy.get('input[name="time"]').type('08:00')
@@ -28,7 +30,7 @@ describe('Add task', () => {
     cy.get('[data-cy=create-task]').submit()
   })
 
-  it('checks that this task exists', () => {
+  it('should check that this task exists', () => {
     cy.contains('Random task').should('exist')
   })
 })
