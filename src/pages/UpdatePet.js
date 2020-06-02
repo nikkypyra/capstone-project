@@ -12,7 +12,7 @@ import DeleteButton from '../components/buttons/DeleteButton'
 UpdatePet.propTypes = {
   pets: PropTypes.array.isRequired,
   deletePet: PropTypes.func.isRequired,
-  loading: PropTypes.number.isRequired,
+  loading: PropTypes.number,
   setLoading: PropTypes.func.isRequired,
 }
 

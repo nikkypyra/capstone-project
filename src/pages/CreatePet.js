@@ -12,7 +12,7 @@ CreatePet.propTypes = {
   handleImageUpload: PropTypes.func.isRequired,
   previewImage: PropTypes.object.isRequired,
   setPreviewImage: PropTypes.func.isRequired,
-  loading: PropTypes.number.isRequired,
+  loading: PropTypes.number,
   user: PropTypes.object.isRequired,
 }
 
