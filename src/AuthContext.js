@@ -27,7 +27,6 @@ function AuthProvider({
         const currentUser = auth.currentUser.uid
         const currentUserEmail = auth.currentUser.email
         getPets(currentUser, currentUserEmail)
-        getAllUsers()
       } else {
         setUser({})
         setProfile({ email: '', password: '', id: '' })
@@ -66,6 +65,7 @@ function AuthProvider({
           id: doc.id,
           ...doc.data(),
         }))
+        setAllUsers(allUsers)
         const familyUsers = allUsers.filter((user) => {
           return user.family.includes(email)
         })
@@ -90,16 +90,6 @@ function AuthProvider({
           setTasks(petTasks)
         })
       })
-    })
-  }
-
-  function getAllUsers() {
-    db.collection('users').onSnapshot((snapshot) => {
-      const allUsers = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }))
-      setAllUsers(allUsers)
     })
   }
 

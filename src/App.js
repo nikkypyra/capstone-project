@@ -36,6 +36,14 @@ export default function App() {
     setLoading,
   } = usePhoto()
   const { allUsers, setAllUsers, deleteFamily } = useFamily()
+  const login = (
+    <Login
+      logIn={logIn}
+      resetPassword={resetPassword}
+      profile={profile}
+      setProfile={setProfile}
+    />
+  )
 
   return (
     <>
@@ -50,21 +58,10 @@ export default function App() {
             <Switch>
               <Redirect exact from="/" to="home" />
               <Route path="/home">
-                {user && user.id ? (
-                  <>
-                    <Home pets={pets} />
-                  </>
-                ) : (
-                  <Login
-                    logIn={logIn}
-                    resetPassword={resetPassword}
-                    profile={profile}
-                    setProfile={setProfile}
-                  />
-                )}
+                {user.id ? <Home pets={pets} /> : login}
               </Route>
               <Route path="/create-pet">
-                {user && user.id ? (
+                {user.id ? (
                   <CreatePet
                     previewImage={previewImage}
                     setPreviewImage={setPreviewImage}
@@ -73,16 +70,11 @@ export default function App() {
                     user={user}
                   />
                 ) : (
-                  <Login
-                    logIn={logIn}
-                    resetPassword={resetPassword}
-                    profile={profile}
-                    setProfile={setProfile}
-                  />
+                  login
                 )}
               </Route>
               <Route path="/pet/:id/update-pet">
-                {user && user.id ? (
+                {user.id ? (
                   <UpdatePet
                     pets={pets}
                     deletePet={deletePet}
@@ -90,16 +82,11 @@ export default function App() {
                     setLoading={setLoading}
                   />
                 ) : (
-                  <Login
-                    logIn={logIn}
-                    resetPassword={resetPassword}
-                    profile={profile}
-                    setProfile={setProfile}
-                  />
+                  login
                 )}
               </Route>
               <Route exact path="/pet/:id">
-                {user && user.id ? (
+                {user.id ? (
                   <PetProfile
                     pets={pets}
                     setPets={setPets}
@@ -109,44 +96,25 @@ export default function App() {
                     deleteTask={deleteTask}
                   />
                 ) : (
-                  <Login
-                    logIn={logIn}
-                    resetPassword={resetPassword}
-                    profile={profile}
-                    setProfile={setProfile}
-                  />
+                  login
                 )}
               </Route>
               <Route path="/pet/:id/create-task">
-                {user && user.id ? (
-                  <CreateTask pets={pets} user={user} />
-                ) : (
-                  <Login
-                    logIn={logIn}
-                    resetPassword={resetPassword}
-                    profile={profile}
-                    setProfile={setProfile}
-                  />
-                )}
+                {user.id ? <CreateTask pets={pets} user={user} /> : login}
               </Route>
               <Route path="/pet/:id/:taskid/update-task">
-                {user && user.id ? (
+                {user.id ? (
                   <UpdateTask
                     pets={pets}
                     tasks={tasks}
                     deleteTask={deleteTask}
                   />
                 ) : (
-                  <Login
-                    logIn={logIn}
-                    resetPassword={resetPassword}
-                    profile={profile}
-                    setProfile={setProfile}
-                  />
+                  login
                 )}
               </Route>
               <Route path="/filter">
-                {user && user.id ? (
+                {user.id ? (
                   <Filter
                     pets={pets}
                     tasks={tasks}
@@ -154,41 +122,22 @@ export default function App() {
                     deleteTask={deleteTask}
                   />
                 ) : (
-                  <Login
-                    logIn={logIn}
-                    resetPassword={resetPassword}
-                    profile={profile}
-                    setProfile={setProfile}
-                  />
+                  login
                 )}
               </Route>
               <Route path="/settings">
-                {user && user.id ? (
+                {user.id ? (
                   <Settings
                     user={user}
                     allUsers={allUsers}
                     deleteFamily={deleteFamily}
                   />
                 ) : (
-                  <Login
-                    logIn={logIn}
-                    resetPassword={resetPassword}
-                    profile={profile}
-                    setProfile={setProfile}
-                  />
+                  login
                 )}
               </Route>
               <Route path="/add-family">
-                {user && user.id ? (
-                  <JoinFamily user={user} />
-                ) : (
-                  <Login
-                    logIn={logIn}
-                    resetPassword={resetPassword}
-                    profile={profile}
-                    setProfile={setProfile}
-                  />
-                )}
+                {user.id ? <JoinFamily user={user} /> : login}
               </Route>
               <Route path="/signup">
                 <Signup signUp={signUp} setProfile={setProfile} />
