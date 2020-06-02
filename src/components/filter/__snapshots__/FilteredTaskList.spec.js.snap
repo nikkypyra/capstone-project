@@ -42,7 +42,7 @@ exports[`<FilteredTaskList /> should render correctly 1`] = `
     >
       <input
         checked=""
-        class="Checkbox__CheckboxStyled-sc-1blqffb-0 dULaaG"
+        class="Checkbox__CheckboxStyled-sc-1blqffb-0 gefyIW"
         type="checkbox"
       />
     </div>

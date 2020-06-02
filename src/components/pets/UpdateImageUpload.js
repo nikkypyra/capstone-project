@@ -7,7 +7,7 @@ UpdateImageUpload.propTypes = {
   petImage: PropTypes.object.isRequired,
   handleUpload: PropTypes.func.isRequired,
   onClick: PropTypes.func,
-  loading: PropTypes.number.isRequired,
+  loading: PropTypes.number,
 }
 
 export default function UpdateImageUpload({

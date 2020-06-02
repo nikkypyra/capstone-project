@@ -2,74 +2,78 @@
 
 exports[`<FamilyList /> should render correctly 1`] = `
 <DocumentFragment>
-  <h2
-    class="FamilyList__Title-sc-1lx9e3m-0 eggmlq"
-  >
-    Family Members
-  </h2>
   <section
-    class="FamilyList__FamilyWrapper-sc-1lx9e3m-1 lZgvI"
+    class="FamilyList__Animation-sc-1lx9e3m-4 iEWBLl"
   >
-    <div
-      class="FamilyList__Marker-sc-1lx9e3m-2 dEWogB"
+    <h2
+      class="FamilyList__Title-sc-1lx9e3m-0 eggmlq"
     >
-      <img
-        alt=""
-        src="user.png"
-      />
-    </div>
-    <div
-      class="person"
-    >
-      <h4>
-        mom@pawlog.com
-      </h4>
-    </div>
-    <div
-      class="delete"
-      data-cy="delete-family"
+      Family Members
+    </h2>
+    <section
+      class="FamilyList__FamilyWrapper-sc-1lx9e3m-1 lZgvI"
     >
       <div
-        class="sc-AxjAm ljvhLh"
+        class="FamilyList__Marker-sc-1lx9e3m-2 dEWogB"
       >
         <img
-          alt="delete"
-          src="delete.png"
+          alt=""
+          src="user.png"
         />
       </div>
-    </div>
-  </section>
-  <section
-    class="FamilyList__FamilyWrapper-sc-1lx9e3m-1 lZgvI"
-  >
-    <div
-      class="FamilyList__Marker-sc-1lx9e3m-2 dEWogB"
-    >
-      <img
-        alt=""
-        src="user.png"
-      />
-    </div>
-    <div
-      class="person"
-    >
-      <h4>
-        dad@pawlog.com
-      </h4>
-    </div>
-    <div
-      class="delete"
-      data-cy="delete-family"
+      <div
+        class="person"
+      >
+        <h4>
+          mom@pawlog.com
+        </h4>
+      </div>
+      <div
+        class="delete"
+        data-cy="delete-family"
+      >
+        <div
+          class="sc-AxjAm ljvhLh"
+        >
+          <img
+            alt="delete"
+            src="delete.png"
+          />
+        </div>
+      </div>
+    </section>
+    <section
+      class="FamilyList__FamilyWrapper-sc-1lx9e3m-1 lZgvI"
     >
       <div
-        class="sc-AxjAm ljvhLh"
+        class="FamilyList__Marker-sc-1lx9e3m-2 dEWogB"
       >
         <img
-          alt="delete"
-          src="delete.png"
+          alt=""
+          src="user.png"
         />
       </div>
-    </div>
+      <div
+        class="person"
+      >
+        <h4>
+          dad@pawlog.com
+        </h4>
+      </div>
+      <div
+        class="delete"
+        data-cy="delete-family"
+      >
+        <div
+          class="sc-AxjAm ljvhLh"
+        >
+          <img
+            alt="delete"
+            src="delete.png"
+          />
+        </div>
+      </div>
+    </section>
   </section>
 </DocumentFragment>
 `;

@@ -10,10 +10,10 @@ exports[`<UpdateImageUpload /> should render correctly 1`] = `
     />
   </div>
   <section
-    class="UpdateImageUpload__UploadWrapper-sc-1cin8yf-0 gXIbQS"
+    class="UpdateImageUpload__UploadWrapper-sc-1cin8yf-0 gdHUqm"
   >
     <button
-      class="sc-AxjAm kbegFI"
+      class="sc-AxjAm eirFEf"
     >
       Upload photo
     </button>

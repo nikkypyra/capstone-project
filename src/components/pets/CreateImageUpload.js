@@ -7,7 +7,7 @@ import pawSrc from '../../images/taskpaw.png'
 CreateImageUpload.propTypes = {
   previewImage: PropTypes.object.isRequired,
   handleImageUpload: PropTypes.func.isRequired,
-  loading: PropTypes.number.isRequired,
+  loading: PropTypes.number,
 }
 
 export default function CreateImageUpload({
