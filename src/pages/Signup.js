@@ -109,7 +109,7 @@ export default function SignUp({ setProfile, signUp }) {
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  margin: 40px 20px 20px;
+  margin: 80px 20px 20px;
 
   div {
     margin: 24px 0;
