@@ -65,6 +65,11 @@ export default function Login({ logIn, resetPassword, profile, setProfile }) {
               <AddButton text="Sign up" />
             </Link>
           </div>
+          <div className="demo">
+            <Link to="/demo">
+              <p>View video demo</p>
+            </Link>
+          </div>
         </section>
       </FormWrapper>
     </NonUserLayout>
