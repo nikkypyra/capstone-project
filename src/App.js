@@ -3,6 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 import AuthProvider, { AuthConsumer } from './AuthContext'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
+import Demo from './pages/Demo'
 import Home from './pages/Home'
 import CreatePet from './pages/CreatePet'
 import UpdatePet from './pages/UpdatePet'
@@ -141,6 +142,9 @@ export default function App() {
               </Route>
               <Route path="/signup">
                 <Signup signUp={signUp} setProfile={setProfile} />
+              </Route>
+              <Route path="/demo">
+                <Demo />
               </Route>
             </Switch>
           )}
